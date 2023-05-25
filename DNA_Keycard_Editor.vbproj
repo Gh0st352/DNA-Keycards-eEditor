@@ -105,6 +105,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Classes\FileSelectionHelper.vb" />
     <Compile Include="Classes\GlobalVariables.vb" />
     <Compile Include="ViewModel\BlankViewModel.vb" />
     <Page Include="MainWindow.xaml">
