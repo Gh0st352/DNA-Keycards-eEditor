@@ -10,7 +10,7 @@
     Title="  DNA Keycard Economy Manager" Height="600" Width="750" Icon="App.ico"
     Background="#FF3F3F46" UseLayoutRounding="True" SnapsToDevicePixels="True" ResizeMode="CanMinimize"
     CornerRadius="15" IconAlignment="Right" ShowMaximizeButton="False" TitleFontSize="20" TitleBarHeight="40"
-    AllowsTransparency="True" WindowStyle="None" MinWidth="750" MinHeight="600" MaxWidth="750" MaxHeight="600">
+    AllowsTransparency="True" WindowStyle="None" MinWidth="750" MinHeight="695" MaxWidth="750" MaxHeight="600">
     <Grid>
         <syncfusion:TabControlExt x:Name="MainTabs" Margin="0,0,0,35" TabItemSize="Normal" CloseButtonType="Hide"
                                   ShowTabItemContextMenu="False" ShowTabListContextMenu="False" EnableLabelEdit="False"
@@ -45,9 +45,9 @@
             </syncfusion:TabItemExt>
             <syncfusion:TabItemExt x:Name="Tab_Weapons" Header="Weapon Kits" MinWidth="20" MinHeight="20">
                 <Grid>
-                    <Grid x:Name="G_Weapon_Red" HorizontalAlignment="Left" Height="516" VerticalAlignment="Top" Width="193" Margin="10,10,0,0" Background="#33830E0E">
+                    <Grid x:Name="G_Weapon_Red" HorizontalAlignment="Left" Height="611" VerticalAlignment="Top" Width="193" Margin="10,10,0,0" Background="#33830E0E">
                         <Label Content="Red Weapon Kit" HorizontalAlignment="Left" VerticalAlignment="Top" Width="193" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" BorderBrush="#FF020000" BorderThickness="0,0,0,2" FontSize="16"/>
-                        <syncfusion:CheckListBox x:Name="CHK_Weapon_Red_Flags" HorizontalAlignment="Left" Height="75" VerticalAlignment="Top" Width="193" Margin="0,58,0,0" BorderThickness="0,1">
+                        <syncfusion:CheckListBox x:Name="CHK_Weapon_Red_Flags" HorizontalAlignment="Left" Height="86" VerticalAlignment="Top" Width="193" Margin="0,58,0,0" BorderThickness="0,1">
                             <syncfusion:CheckListBoxItem Content="Count in Cargo" Margin="0"/>
                             <syncfusion:CheckListBoxItem Content="Count in Hoarder" Margin="0"/>
                             <syncfusion:CheckListBoxItem Content="Count in Map" Margin="0"/>
@@ -56,14 +56,14 @@
                             <syncfusion:CheckListBoxItem Content="Dynamic Event Loot" Margin="0"/>
                         </syncfusion:CheckListBox>
                         <Label Content="Flags" HorizontalAlignment="Left" VerticalAlignment="Top" Width="193" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" BorderBrush="#FF020000" Margin="0,33,0,0"/>
-                        <syncfusion:CheckListBox x:Name="CHK_Weapon_Red_Cat" HorizontalAlignment="Left" Height="71" VerticalAlignment="Top" Width="193" Margin="0,159,0,0" BorderThickness="0,1" DisplayMemberPath="Name"/>
-                        <Label Content="Categories" HorizontalAlignment="Left" VerticalAlignment="Top" Width="193" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" BorderBrush="#FF020000" Margin="0,133,0,0"/>
-                        <syncfusion:CheckListBox x:Name="CHK_Weapon_Red_Val" HorizontalAlignment="Left" Height="71" VerticalAlignment="Top" Width="193" Margin="0,256,0,0" BorderThickness="0,1" DisplayMemberPath="Name"/>
-                        <Label Content="Value" HorizontalAlignment="Left" VerticalAlignment="Top" Width="193" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" BorderBrush="#FF020000" Margin="0,230,0,0"/>
-                        <syncfusion:CheckListBox x:Name="CHK_Weapon_Red_Use" HorizontalAlignment="Left" Height="71" VerticalAlignment="Top" Width="193" Margin="0,353,0,0" BorderThickness="0,1" DisplayMemberPath="Name"/>
-                        <Label Content="Usage" HorizontalAlignment="Left" VerticalAlignment="Top" Width="193" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" BorderBrush="#FF020000" Margin="0,327,0,0"/>
-                        <syncfusion:CheckListBox x:Name="CHK_Weapon_Red_Tag" HorizontalAlignment="Left" Height="56" VerticalAlignment="Top" Width="193" Margin="0,450,0,0" BorderThickness="0,1" DisplayMemberPath="Name"/>
-                        <Label Content="Tag" HorizontalAlignment="Left" VerticalAlignment="Top" Width="193" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" BorderBrush="#FF020000" Margin="0,424,0,0"/>
+                        <syncfusion:CheckListBox x:Name="CHK_Weapon_Red_Cat" HorizontalAlignment="Left" Height="84" VerticalAlignment="Top" Width="193" Margin="0,170,0,0" BorderThickness="0,1" DisplayMemberPath="Name"/>
+                        <Label Content="Categories" HorizontalAlignment="Left" VerticalAlignment="Top" Width="193" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" BorderBrush="#FF020000" Margin="0,144,0,0"/>
+                        <syncfusion:CheckListBox x:Name="CHK_Weapon_Red_Val" HorizontalAlignment="Left" Height="97" VerticalAlignment="Top" Width="193" Margin="0,280,0,0" BorderThickness="0,1" DisplayMemberPath="Name"/>
+                        <Label Content="Value" HorizontalAlignment="Left" VerticalAlignment="Top" Width="193" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" BorderBrush="#FF020000" Margin="0,254,0,0"/>
+                        <syncfusion:CheckListBox x:Name="CHK_Weapon_Red_Use" HorizontalAlignment="Left" Height="93" VerticalAlignment="Top" Width="193" Margin="0,403,0,0" BorderThickness="0,1" DisplayMemberPath="Name"/>
+                        <Label Content="Usage" HorizontalAlignment="Left" VerticalAlignment="Top" Width="193" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" BorderBrush="#FF020000" Margin="0,377,0,0"/>
+                        <syncfusion:CheckListBox x:Name="CHK_Weapon_Red_Tag" HorizontalAlignment="Left" Height="89" VerticalAlignment="Top" Width="193" Margin="0,522,0,0" BorderThickness="0,1" DisplayMemberPath="Name"/>
+                        <Label Content="Tag" HorizontalAlignment="Left" VerticalAlignment="Top" Width="193" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" BorderBrush="#FF020000" Margin="0,496,0,0"/>
                     </Grid>
                 </Grid>
             </syncfusion:TabItemExt>
