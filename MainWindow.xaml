@@ -45,7 +45,9 @@
             </syncfusion:TabItemExt>
             <syncfusion:TabItemExt x:Name="Tab_Weapons" Header="Weapon Kits" MinWidth="20" MinHeight="20">
                 <Grid>
-                    <syncfusion:SfDataGrid x:Name="G_WeaponKits" />
+                    <Grid x:Name="G_Weapon_Red" HorizontalAlignment="Left" Height="516" VerticalAlignment="Top" Width="193" Margin="10,10,0,0" Background="#33830E0E">
+                        <Label Content="Red Weapon Kit" HorizontalAlignment="Left" VerticalAlignment="Top" Width="193" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" BorderBrush="#FF020000" BorderThickness="0,0,0,2" FontSize="16"/>
+                    </Grid>
                 </Grid>
             </syncfusion:TabItemExt>
         </syncfusion:TabControlExt>
