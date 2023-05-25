@@ -143,17 +143,6 @@ Namespace Classes
                 GlobalVariables.Types.Types.Add(_Type)
             Next
         End Function
-        'Public Shared Function IsStringExistsInCollection(Of T)(collection As ObservableCollection(Of T), searchString As String) As Boolean
-        '    For Each item As T In collection
-        '        Dim properties = item.GetType().GetProperties()
-        '        For Each prop In properties
-        '            If prop.PropertyType = GetType(String) AndAlso prop.GetValue(item)?.ToString() = searchString Then
-        '                Return True
-        '            End If
-        '        Next
-        '    Next
-        '    Return False
-        'End Function
         Public Shared Function IsStringExistsInCollection(Of T)(collection As ObservableCollection(Of T), searchString As String) As Boolean
             For Each item As T In collection
                 Dim properties = item.GetType().GetProperties()
@@ -185,33 +174,13 @@ Namespace Classes
         Public Shared Sub AddOptionToCollection(str As String, type As String)
             Select Case type
                 Case "usage"
-                    GlobalVariables.Types.Usages.Add(New GlobalVariables.Types.UsageInfo() With {.Checked = False, .Name = _str})
+                    GlobalVariables.Types.Usages.Add(New GlobalVariables.Types.UsageInfo() With {.Checked = False, .Name = str})
                 Case "tag"
-                    GlobalVariables.Types.Tags.Add(New GlobalVariables.Types.TagInfo() With {.Checked = False, .Name = _str})
+                    GlobalVariables.Types.Tags.Add(New GlobalVariables.Types.TagInfo() With {.Checked = False, .Name = str})
                 Case "value"
-                    GlobalVariables.Types.Values.Add(New GlobalVariables.Types.ValueInfo() With {.Checked = False, .Name = _str})
+                    GlobalVariables.Types.Values.Add(New GlobalVariables.Types.ValueInfo() With {.Checked = False, .Name = str})
                 Case Else
             End Select
         End Sub
-        'Public Shared Sub UpdateCollectionsList(searchString, CollectionObject, type)
-        '    Dim tCollectionObject As ObservableCollection(Of T) = CollectionObject
-        '    Dim TempStringArr As String() = SeparateString(searchString)
-        '    For Each _str In TempStringArr
-        '        Dim exists As Boolean = IsStringExistsInCollection(tCollectionObject, _str)
-        '        If exists Then
-        '            Continue For
-        '        Else
-        '            Select Case type
-        '                Case "usage"
-        '                    CollectionObject.Add(New GlobalVariables.Types.UsageInfo() With {.Checked = False, .Name = _str})
-        '                Case "tag"
-        '                    CollectionObject.Add(New GlobalVariables.Types.TagInfo() With {.Checked = False, .Name = _str})
-        '                Case "value"
-        '                    CollectionObject.Add(New GlobalVariables.Types.ValueInfo() With {.Checked = False, .Name = _str})
-        '                Case Else
-        '            End Select
-        '        End If
-        '    Next
-        'End Sub
     End Class
 End Namespace
