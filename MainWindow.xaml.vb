@@ -31,6 +31,7 @@ Partial Public Class MainWindow
     Inherits ChromelessWindow
     Private currentVisualStyle As String
     Private currentSizeMode As String
+
     ''' <summary>
     ''' Property for Visual Style
     '''</summary>
@@ -64,7 +65,18 @@ Partial Public Class MainWindow
         InitializeComponent()
         AddHandler Me.Loaded, AddressOf OnLoaded
         G_ImportedTypes.ItemsSource = GlobalVariables.Types.TypeFiles
+
+
+        ' Dim treeGrid As SfTreeGrid = New SfTreeGrid()
+        Dim viewModel As GlobalVariables.Types.ViewModel = New GlobalVariables.Types.ViewModel()
+        'G_Types.ParentPropertyName = "ID"
+        'G_Types.ChildPropertyName = "ReportsTo"
+        'G_Types.SelfRelationRootValue = -1
+        G_Types.AutoExpandMode = AutoExpandMode.RootNodesExpanded
+        G_Types.ItemsSource = viewModel.Types
+
     End Sub
+
     ''' <summary>
     ''' Method for onload
     '''</summary>
@@ -72,6 +84,7 @@ Partial Public Class MainWindow
         CurrentVisualStyleProperty = "Windows11Dark"
         CurrentSizeModeProperty = "Default"
     End Sub
+
     ''' <summary>
     ''' Method for Visual Style
     '''</summary>
@@ -116,12 +129,12 @@ Public Class FileSelectionHelper
         openFileDialog.Multiselect = True
 
         Dim fileNames As String() = Await Application.Current.Dispatcher.InvokeAsync(Function()
-                                                                                         If openFileDialog.ShowDialog() = True Then
-                                                                                             Return openFileDialog.FileNames
-                                                                                         Else
-                                                                                             Return New String() {}
-                                                                                         End If
-                                                                                     End Function)
+            If openFileDialog.ShowDialog() = True Then
+                Return openFileDialog.FileNames
+            Else
+                Return New String() {}
+            End If
+        End Function)
 
         Return fileNames
     End Function

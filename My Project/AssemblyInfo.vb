@@ -40,7 +40,6 @@ Imports System.Windows
 <Assembly: ThemeInfo(ResourceDictionaryLocation.None, ResourceDictionaryLocation.SourceAssembly)>
 
 
-
 'The following GUID is for the ID of the typelib if this project is exposed to COM
 <Assembly: Guid("623177d5-752c-4a6f-9483-d95dbb4876df")>
 
