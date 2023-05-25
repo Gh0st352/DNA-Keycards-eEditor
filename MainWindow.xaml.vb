@@ -19,6 +19,9 @@ Imports System.Windows.Threading
 Imports DNA_Keycard_Editor.Classes
 Imports System.IO
 Imports Syncfusion.UI.Xaml.Grid
+Imports System.Xml
+Imports Syncfusion.UI.Xaml.TreeGrid
+Imports Syncfusion.Data
 
 
 ''' <summary>
@@ -60,7 +63,7 @@ Partial Public Class MainWindow
 
         InitializeComponent()
         AddHandler Me.Loaded, AddressOf OnLoaded
-
+        G_ImportedTypes.ItemsSource = GlobalVariables.Types.TypeFiles
     End Sub
     ''' <summary>
     ''' Method for onload
@@ -100,9 +103,10 @@ Partial Public Class MainWindow
         For Each resultPath As String In results
             Dim temp As New GlobalVariables.Types.File(resultPath, IO.Path.GetFileName(resultPath), "types")
             GlobalVariables.Types.TypeFiles.Add(temp)
+            'LB_ImportedTypes.Items.Add(New ListBoxItem() With {
+            '                              .Content = temp.Name})
 
         Next
-        Dim xx = 0
     End Sub
 End Class
 

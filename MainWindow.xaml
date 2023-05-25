@@ -12,7 +12,7 @@
     CornerRadius="15" IconAlignment="Right" ShowMaximizeButton="False" TitleFontSize="20" TitleBarHeight="40"
     AllowsTransparency="True" WindowStyle="None" MinWidth="750" MinHeight="600" MaxWidth="750" MaxHeight="600">
     <Grid>
-        <syncfusion:TabControlExt x:Name="MainTabs" Margin="0,0,0,35" TabItemSize="Normal" CloseButtonType="Hide" ShowTabItemContextMenu="False" ShowTabListContextMenu="False" EnableLabelEdit="False">
+        <syncfusion:TabControlExt x:Name="MainTabs" Margin="0,0,0,35" TabItemSize="Normal" CloseButtonType="Hide" ShowTabItemContextMenu="False" ShowTabListContextMenu="False" EnableLabelEdit="False" TabStripPlacement="Top">
             <syncfusion:TabItemExt x:Name="Tab_Main" Header="Main Menu" MinWidth="20">
                 <Grid>
                     <Grid.ColumnDefinitions>
@@ -20,11 +20,13 @@
                         <ColumnDefinition Width="407*"/>
                     </Grid.ColumnDefinitions>
                     <syncfusion:ButtonAdv x:Name="B_ImportTypes" Content="ButtonAdv" HorizontalAlignment="Left" Height="29" Label="Import Types" VerticalAlignment="Top" Width="213" Margin="10,10,0,0"/>
-                    <syncfusion:SfDataGrid x:Name="G_ImportedTypes" HorizontalAlignment="Left" Height="380" VerticalAlignment="Top" Width="213" Margin="10,44,0,0" ColumnSizer="Star" AutoGenerateColumns="False">
-                        <syncfusion:SfDataGrid.Columns>
-                            <syncfusion:GridCheckBoxColumn AllowBlankFilters="False" ColumnFilter="DisplayText" DisplayBinding="{x:Null}" FilteredFrom="None" HeaderText="Imported Types Lists" IsReadOnly="True" TextAlignment="Center" ValueBinding="{x:Null}" MappingName="Name"/>
-                        </syncfusion:SfDataGrid.Columns>
-                    </syncfusion:SfDataGrid>
+                    <syncfusion:SfTreeGrid x:Name="G_ImportedTypes" Margin="10,49,114,10" ColumnSizer="Auto">
+                        <syncfusion:SfTreeGrid.Columns>
+                            <syncfusion:TreeGridTextColumn HeaderText="Imported List Types" MappingName="Name" IsReadOnly="True" ColumnSizer="FillColumn"/>
+                            <syncfusion:TreeGridTextColumn IsHidden="True" MappingName="Path"/>
+                            <syncfusion:TreeGridTextColumn IsHidden="True" MappingName="Kind"/>
+                        </syncfusion:SfTreeGrid.Columns>
+                    </syncfusion:SfTreeGrid>
                 </Grid>
             </syncfusion:TabItemExt>
             <syncfusion:TabItemExt x:Name="Tab_Types" Header="Types" MinWidth="20" MinHeight="20">
