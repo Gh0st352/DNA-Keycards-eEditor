@@ -2,6 +2,20 @@
 
 Namespace Classes
     Public Class GlobalVariables
+        Public Shared SideArms As New ObservableCollection(Of String)()
+        Public Class WeaponKitsInfo
+            Public Sub New(label As String, selected As Boolean, color As String)
+                Me.Label = label
+                Me.Selected = selected
+                Me.Color = color
+            End Sub
+
+            Public Property Label As String
+            Public Property Selected As Boolean
+            Public Property Color As String
+
+        End Class
+        Public Shared WeaponKits As New ObservableCollection(Of WeaponKitsInfo)()
         Public Class Types
             Public Class CategoryInfo
                 Private _Checked As Boolean

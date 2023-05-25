@@ -23,6 +23,8 @@ Imports Syncfusion.UI.Xaml.Grid
 Imports System.Xml
 Imports Syncfusion.UI.Xaml.TreeGrid
 Imports Syncfusion.Data
+Imports Newtonsoft.Json.Linq
+
 
 Namespace Classes
     Public Class FileSelectionHelper
@@ -182,5 +184,63 @@ Namespace Classes
                 Case Else
             End Select
         End Sub
+        Public Shared Function GetUniqueClassnamesAndVariants(jsonFilePath As String) As List(Of String)
+            Dim classNamesAndVariants As New List(Of String)()
+            Dim variantsArray
+            ' Read the JSON file
+            Dim jsonText As String = File.ReadAllText(jsonFilePath)
+
+            ' Parse the JSON data
+            Dim jsonData As JObject = JObject.Parse(jsonText)
+
+            ' Get the "Items" array
+            Dim itemsArray As JArray = jsonData("Items")
+
+            ' Iterate through each item
+            For Each item As JObject In itemsArray
+                variantsArray = ""
+                ' Get the "ClassName" value
+                Dim className As String = item("ClassName").ToString()
+
+                ' Add the "ClassName" value to the list if it's not already present
+                If Not classNamesAndVariants.Contains(className) Then
+                    classNamesAndVariants.Add(className)
+                End If
+
+                ' Get the "Variants" array
+                variantsArray = item("Variants")
+
+                ' Iterate through each variant
+                For Each tvariant As JToken In variantsArray
+                    ' Get the variant string
+                    Dim variantString As String = tvariant.ToString()
+
+                    ' Add the variant string to the list if it's not already present
+                    If Not classNamesAndVariants.Contains(variantString) Then
+                        classNamesAndVariants.Add(variantString)
+                    End If
+                Next
+            Next
+
+            ' Return the list of unique "classname" and "variants" strings
+            Return classNamesAndVariants
+        End Function
+        Public Shared Function RemoveDuplicates(ByVal list As List(Of String)) As List(Of String)
+            Dim uniqueItems As New HashSet(Of String)()
+
+            ' Iterate over the list and add each item to the HashSet.
+            ' The HashSet will automatically remove duplicate items.
+            For Each item As String In list
+                uniqueItems.Add(item)
+            Next
+
+            ' Clear the original list.
+            list.Clear()
+
+            ' Add the unique items back to the list.
+            list.AddRange(uniqueItems)
+            Return list
+        End Function
     End Class
+
 End Namespace
