@@ -1,0 +1,10 @@
+﻿<Window x:Class="MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:syncfusion="http://schemas.syncfusion.com/wpf"    
+        Title="MainWindow" Height="350" Width="525" Icon="App.ico">
+
+    <Grid>
+        <TextBlock VerticalAlignment="Center" HorizontalAlignment="Center">Welcome to Syncfusion Controls</TextBlock>
+    </Grid>
+</Window>
