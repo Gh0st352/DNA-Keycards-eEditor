@@ -3,6 +3,98 @@
 Namespace Classes
     Public Class GlobalVariables
         Public Class Types
+            Public Class CategoryInfo
+                Private _Checked As Boolean
+                Private _Name As String
+
+                Public Property Checked As Boolean
+                    Get
+                        Return _Checked
+                    End Get
+                    Set
+                        _Checked = Value
+                    End Set
+                End Property
+
+                Public Property Name As String
+                    Get
+                        Return _Name
+                    End Get
+                    Set
+                        _Name = Value
+                    End Set
+                End Property
+            End Class
+            Public Shared Categories As New ObservableCollection(Of CategoryInfo)()
+            Public Class UsageInfo
+                Private _Checked As Boolean
+                Private _Name As String
+
+                Public Property Checked As Boolean
+                    Get
+                        Return _Checked
+                    End Get
+                    Set
+                        _Checked = Value
+                    End Set
+                End Property
+
+                Public Property Name As String
+                    Get
+                        Return _Name
+                    End Get
+                    Set
+                        _Name = Value
+                    End Set
+                End Property
+            End Class
+            Public Shared Usages As New ObservableCollection(Of UsageInfo)()
+            Public Class TagInfo
+                Private _Checked As Boolean
+                Private _Name As String
+
+                Public Property Checked As Boolean
+                    Get
+                        Return _Checked
+                    End Get
+                    Set
+                        _Checked = Value
+                    End Set
+                End Property
+
+                Public Property Name As String
+                    Get
+                        Return _Name
+                    End Get
+                    Set
+                        _Name = Value
+                    End Set
+                End Property
+            End Class
+            Public Shared Tags As New ObservableCollection(Of TagInfo)()
+            Public Class ValueInfo
+                Private _Checked As Boolean
+                Private _Name As String
+
+                Public Property Checked As Boolean
+                    Get
+                        Return _Checked
+                    End Get
+                    Set
+                        _Checked = Value
+                    End Set
+                End Property
+
+                Public Property Name As String
+                    Get
+                        Return _Name
+                    End Get
+                    Set
+                        _Name = Value
+                    End Set
+                End Property
+            End Class
+            Public Shared Values As New ObservableCollection(Of ValueInfo)()
             Public Class File
                 Public Sub New(path As String, name As String, kind As String)
                     Me.Path = path

@@ -1,5 +1,6 @@
 ﻿Imports System
 Imports System.Collections.Generic
+Imports System.Collections.ObjectModel
 Imports System.Linq
 Imports System.Text
 Imports System.Windows
@@ -66,23 +67,10 @@ Partial Public Class MainWindow
         AddHandler Me.Loaded, AddressOf OnLoaded
         G_ImportedTypes.ItemsSource = GlobalVariables.Types.TypeFiles
         G_Types.ItemsSource = GlobalVariables.Types.Types
-
-
-
-        'GlobalVariables.Types.Types.Add(New GlobalVariables.Types.TypeInfo() With {
-        '                   .category = "cat1,cat2",
-        '                   .cost = "cost",
-        '                   .flags = "flag1,flag2",
-        '                   .lifetime = "lifetime",
-        '                   .min = "min",
-        '                   .nominal = "nominal",
-        '                   .quantmax = "quantmax",
-        '                   .quantmin = "quantmin",
-        '                   .restock = "restock",
-        '                   .tag = "tag1,tag2",
-        '                   .typename = "typename",
-        '                   .usage = "usage1,usage2",
-        '                   .value = "value1,value2"})
+        CHK_Weapon_Red_Cat.ItemsSource = GlobalVariables.Types.Categories
+        CHK_Weapon_Red_Use.ItemsSource = GlobalVariables.Types.Usages
+        CHK_Weapon_Red_Val.ItemsSource = GlobalVariables.Types.Values
+        CHK_Weapon_Red_Tag.ItemsSource = GlobalVariables.Types.Tags
 
 
     End Sub
@@ -130,9 +118,6 @@ Partial Public Class MainWindow
         Next
     End Sub
 
-    Private Sub CheckListBoxItem_Selected(sender As Object, e As RoutedEventArgs)
-
-    End Sub
 
 End Class
 
@@ -158,10 +143,6 @@ Public Class FileSelectionHelper
         ' Load the XML file
         Dim xmlDoc As New XmlDocument()
         xmlDoc.Load(xmlFilePath)
-
-
-
-
 
         Dim typeNodes As XmlNodeList = xmlDoc.SelectNodes("/types/type")
 
@@ -206,6 +187,12 @@ Public Class FileSelectionHelper
             If typeNode.SelectSingleNode("category") IsNot Nothing Then
                 If typeNode.SelectSingleNode("category").Attributes("name").Value IsNot Nothing Then
                     _Type.category = typeNode.SelectSingleNode("category").Attributes("name").Value
+                    Dim exists As Boolean = IsStringExistsInCollection(GlobalVariables.Types.Categories, _Type.category)
+                    If exists Then
+                    Else
+                        GlobalVariables.Types.Categories.Add(New GlobalVariables.Types.CategoryInfo() With {.Checked = False, .Name = _Type.category})
+                    End If
+
                 End If
             End If
             Dim tempstr As String = ""
@@ -238,10 +225,25 @@ Public Class FileSelectionHelper
                     Select Case att_
                         Case "usage"
                             _Type.usage = tempstr
+                            Dim exists As Boolean = IsStringExistsInCollection(GlobalVariables.Types.Usages, _Type.usage)
+                            If exists Then
+                            Else
+                                GlobalVariables.Types.Usages.Add(New GlobalVariables.Types.UsageInfo() With {.Checked = False, .Name = _Type.usage})
+                            End If
                         Case "tag"
                             _Type.tag = tempstr
+                            Dim exists As Boolean = IsStringExistsInCollection(GlobalVariables.Types.Tags, _Type.tag)
+                            If exists Then
+                            Else
+                                GlobalVariables.Types.Tags.Add(New GlobalVariables.Types.TagInfo() With {.Checked = False, .Name = _Type.tag})
+                            End If
                         Case "value"
                             _Type.value = tempstr
+                            Dim exists As Boolean = IsStringExistsInCollection(GlobalVariables.Types.Values, _Type.value)
+                            If exists Then
+                            Else
+                                GlobalVariables.Types.Values.Add(New GlobalVariables.Types.ValueInfo() With {.Checked = False, .Name = _Type.value})
+                            End If
                         Case Else
                     End Select
                 End If
@@ -249,4 +251,23 @@ Public Class FileSelectionHelper
             GlobalVariables.Types.Types.Add(_Type)
         Next
     End Function
+    Public Shared Function IsStringExistsInCollection(Of T)(collection As ObservableCollection(Of T), searchString As String) As Boolean
+        For Each item As T In collection
+            Dim properties = item.GetType().GetProperties()
+            For Each prop In properties
+                If prop.PropertyType = GetType(String) AndAlso prop.GetValue(item)?.ToString() = searchString Then
+                    Return True
+                End If
+            Next
+        Next
+        Return False
+    End Function
+    'Public Shared Function IsStringExistsInCollection_Cat(collection As ObservableCollection(Of GlobalVariables.Types.CategoryInfo), searchString As String) As Boolean
+    '    For Each category As GlobalVariables.Types.CategoryInfo In collection
+    '        If category.Name = searchString Then
+    '            Return True
+    '        End If
+    '    Next
+    '    Return False
+    'End Function
 End Class
