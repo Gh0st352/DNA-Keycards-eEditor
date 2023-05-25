@@ -129,6 +129,11 @@ Partial Public Class MainWindow
             Dim results2 = Await FileSelectionHelper.LoadDataFromXml(resultPath)
         Next
     End Sub
+
+    Private Sub CheckListBoxItem_Selected(sender As Object, e As RoutedEventArgs)
+
+    End Sub
+
 End Class
 
 Public Class FileSelectionHelper
