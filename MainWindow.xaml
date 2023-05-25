@@ -84,8 +84,10 @@
                         <Grid x:Name="G_Sidearms" HorizontalAlignment="Left" Height="361" VerticalAlignment="Top" Width="296" Margin="438,270,0,0">
                             <Label Content="Side Arms Types" HorizontalAlignment="Left" VerticalAlignment="Top" Width="276" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" BorderBrush="#FF020000" Margin="10,0,0,0"/>
                             <syncfusion:SfTextBoxExt x:Name="WeaponKits_SideArms" HorizontalAlignment="Left" Height="230" Margin="10,31,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="276"/>
-                            <syncfusion:ButtonAdv x:Name="WeaponKits_ImportSidearm" Content="ButtonAdv" HorizontalAlignment="Left" Height="35" Label="Import Sidearms From Expansion Market" VerticalAlignment="Top" Width="276" Margin="10,266,0,0" Click="ButtonAdv_Click"/>
+                            <syncfusion:ButtonAdv x:Name="WeaponKits_ImportSidearm" Content="ButtonAdv" HorizontalAlignment="Left" Height="35" Label="Import Sidearms From Expansion Market" VerticalAlignment="Top" Width="163" Margin="10,266,0,0" Click="ButtonAdv_Click"/>
+                            <syncfusion:ButtonAdv x:Name="WeaponKits_ClearSidearms" Content="ButtonAdv" HorizontalAlignment="Left" Height="35" Label="Clear Sidearms" VerticalAlignment="Top" Width="108" Margin="178,266,0,0"/>
                         </Grid>
+                        <syncfusion:ButtonAdv x:Name="WeaponKits_Generate" Content="ButtonAdv" Label="Generate" Background="#632CC33A" FontSize="36" Margin="10,502,311,10"/>
                     </Grid>
                 </Grid>
             </syncfusion:TabItemExt>

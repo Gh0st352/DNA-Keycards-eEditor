@@ -19,6 +19,7 @@ Imports Microsoft.Win32
 Imports System.Windows.Threading
 Imports DNA_Keycard_Editor.Classes
 Imports System.IO
+Imports System.Windows.Forms
 Imports Syncfusion.UI.Xaml.Grid
 Imports System.Xml
 Imports Syncfusion.UI.Xaml.TreeGrid
@@ -190,6 +191,24 @@ Partial Public Class MainWindow
         For Each str As String In strings
             textBox.Text += str & Environment.NewLine ' Append each string followed by a new line character
         Next
+    End Sub
+
+    Private Sub WeaponKits_ClearSidearms_Click(sender As Object, e As RoutedEventArgs) Handles WeaponKits_ClearSidearms.Click
+        GlobalVariables.SideArms.Clear()
+        WeaponKits_SideArms.Clear()
+    End Sub
+
+    Private Async Sub WeaponKits_Generate_Click(sender As Object, e As RoutedEventArgs) Handles WeaponKits_Generate.Click
+        Dim WeaponColorTier As String
+
+        If IsNothing(WeaponKit_ColorChoice.SelectedItem) Then
+            Windows.MessageBox.Show("Please select a color tier", "Alert", MessageBoxButtons.OK, MessageBoxIcon.Information)
+        Else
+            WeaponColorTier = WeaponKit_ColorChoice.SelectedItem.Content
+            WeaponColorTier = WeaponColorTier.Replace(" Weapon Kit", "")
+            Await GenerateConfigs.Weapons.GenerateConfig(WeaponColorTier)
+        End If
+
     End Sub
 End Class
 
