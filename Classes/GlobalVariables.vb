@@ -150,41 +150,7 @@ Namespace Classes
                     End Set
                 End Property
             End Class
-            Public Class ViewModel
-                Public Sub New()
-                    Me.Types = Me.GetTypes()
-                End Sub
-
-                Private _types As ObservableCollection(Of TypeInfo)
-
-                Public Property Types As ObservableCollection(Of TypeInfo)
-                    Get
-                        Return _types
-                    End Get
-                    Set(ByVal value As ObservableCollection(Of TypeInfo))
-                        _types = value
-                    End Set
-                End Property
-
-                Private Function GetTypes() As ObservableCollection(Of TypeInfo)
-                    Dim typeDetails As ObservableCollection(Of TypeInfo) = New ObservableCollection(Of TypeInfo)()
-                    typeDetails.Add(New TypeInfo() With {
-                                       .category = "cat1,cat2",
-                                       .cost = "cost",
-                                       .flags = "flag1,flag2",
-                                       .lifetime = "lifetime",
-                                       .min = "min",
-                                       .nominal = "nominal",
-                                       .quantmax = "quantmax",
-                                       .quantmin = "quantmin",
-                                       .restock = "restock",
-                                       .tag = "tag1,tag2",
-                                       .typename = "typename",
-                                       .usage = "usage1,usage2",
-                                       .value = "value1,value2"})
-                    Return typeDetails
-                End Function
-            End Class
+            Public Shared Types As New ObservableCollection(Of TypeInfo)()
         End Class
     End Class
 End Namespace
