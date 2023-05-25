@@ -7,9 +7,36 @@
         mc:Ignorable="d" x:Name="MainExe"
         x:Class="MainWindow"
         syncfusion:SfSkinManager.Theme="{syncfusion:SkinManager ThemeName=Windows11Dark}"
-            Title="DNA Keycard Economy Manager" Height="600" Width="750" Icon="App.ico"
+            Title="  DNA Keycard Economy Manager" Height="600" Width="750" Icon="App.ico"
     Background="#FF3F3F46" UseLayoutRounding="True" SnapsToDevicePixels="True" ResizeMode="CanMinimize"
     CornerRadius="15" IconAlignment="Right" ShowMaximizeButton="False" TitleFontSize="20" TitleBarHeight="40"
     AllowsTransparency="True" WindowStyle="None" MinWidth="750" MinHeight="600" MaxWidth="750" MaxHeight="600">
-    <Grid/>
+    <Grid>
+        <syncfusion:TabControlExt x:Name="MainTabs" Margin="0,0,0,35" TabItemSize="Normal" CloseButtonType="Hide" ShowTabItemContextMenu="False" ShowTabListContextMenu="False" EnableLabelEdit="False">
+            <syncfusion:TabItemExt x:Name="Tab_Main" Header="Main Menu" MinWidth="20">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="337*"/>
+                        <ColumnDefinition Width="407*"/>
+                    </Grid.ColumnDefinitions>
+                    <syncfusion:ButtonAdv x:Name="B_ImportTypes" Content="ButtonAdv" HorizontalAlignment="Left" Height="29" Label="Import Types" VerticalAlignment="Top" Width="213" Margin="10,10,0,0"/>
+                    <syncfusion:SfDataGrid x:Name="G_ImportedTypes" HorizontalAlignment="Left" Height="380" VerticalAlignment="Top" Width="213" Margin="10,44,0,0" ColumnSizer="Star" AutoGenerateColumns="False">
+                        <syncfusion:SfDataGrid.Columns>
+                            <syncfusion:GridCheckBoxColumn AllowBlankFilters="False" ColumnFilter="DisplayText" DisplayBinding="{x:Null}" FilteredFrom="None" HeaderText="Imported Types Lists" IsReadOnly="True" TextAlignment="Center" ValueBinding="{x:Null}" MappingName="Name"/>
+                        </syncfusion:SfDataGrid.Columns>
+                    </syncfusion:SfDataGrid>
+                </Grid>
+            </syncfusion:TabItemExt>
+            <syncfusion:TabItemExt x:Name="Tab_Types" Header="Types" MinWidth="20" MinHeight="20">
+                <Grid>
+                    <syncfusion:SfTreeGrid x:Name="G_Types"/>
+                </Grid>
+            </syncfusion:TabItemExt>
+            <syncfusion:TabItemExt x:Name="Tab_Weapons" Header="Weapon Kits" MinWidth="20" MinHeight="20">
+                <Grid>
+                    <syncfusion:SfDataGrid x:Name="G_WeaponKits"/>
+                </Grid>
+            </syncfusion:TabItemExt>
+        </syncfusion:TabControlExt>
+    </Grid>
 </syncfusion:ChromelessWindow>

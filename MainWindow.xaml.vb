@@ -13,6 +13,13 @@ Imports System.Windows.Navigation
 Imports System.Windows.Shapes
 Imports Syncfusion.SfSkinManager
 Imports Syncfusion.Windows.Shared
+Imports System.Threading.Tasks
+Imports Microsoft.Win32
+Imports System.Windows.Threading
+Imports DNA_Keycard_Editor.Classes
+Imports System.IO
+Imports Syncfusion.UI.Xaml.Grid
+
 
 ''' <summary>
 ''' Interaction logic for MainWindow.xaml
@@ -61,7 +68,6 @@ Partial Public Class MainWindow
     Private Sub OnLoaded(ByVal sender As Object, ByVal e As RoutedEventArgs)
         CurrentVisualStyleProperty = "Windows11Dark"
         CurrentSizeModeProperty = "Default"
-
     End Sub
     ''' <summary>
     ''' Method for Visual Style
@@ -88,5 +94,31 @@ Partial Public Class MainWindow
             SfSkinManager.ApplyStylesOnApplication = False
         End If
     End Sub
+
+    Private Async Sub B_ImportTypes_Click(sender As Object, e As RoutedEventArgs) Handles B_ImportTypes.Click
+        Dim results As String() = Await FileSelectionHelper.SelectMultipleFilesAsync()
+        For Each resultPath As String In results
+            Dim temp As New GlobalVariables.Types.File(resultPath, IO.Path.GetFileName(resultPath), "types")
+            GlobalVariables.Types.TypeFiles.Add(temp)
+
+        Next
+        Dim xx = 0
+    End Sub
 End Class
 
+Public Class FileSelectionHelper
+    Public Shared Async Function SelectMultipleFilesAsync() As Task(Of String())
+        Dim openFileDialog As New OpenFileDialog()
+        openFileDialog.Multiselect = True
+
+        Dim fileNames As String() = Await Application.Current.Dispatcher.InvokeAsync(Function()
+                                                                                         If openFileDialog.ShowDialog() = True Then
+                                                                                             Return openFileDialog.FileNames
+                                                                                         Else
+                                                                                             Return New String() {}
+                                                                                         End If
+                                                                                     End Function)
+
+        Return fileNames
+    End Function
+End Class
