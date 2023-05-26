@@ -7,7 +7,7 @@
     mc:Ignorable="d" x:Name="MainExe"
     x:Class="MainWindow"
     syncfusion:SfSkinManager.Theme="{syncfusion:SkinManager ThemeName=Windows11Dark}"
-    Title="  DNA_Keycard Economy Manager" Height="725" Width="1155" Icon="App.ico"
+    Title="  DNA_Keycard Economy Editor" Height="725" Width="1155" Icon="App.ico"
     Background="#FF3F3F46" UseLayoutRounding="True" SnapsToDevicePixels="True" ResizeMode="CanMinimize"
     CornerRadius="15" IconAlignment="Right" ShowMaximizeButton="False" TitleFontSize="20" TitleBarHeight="40"
     AllowsTransparency="True" WindowStyle="None" MinWidth="1155" MinHeight="725" MaxWidth="750" MaxHeight="600">
@@ -250,6 +250,112 @@
                                     </syncfusion:SfTreeView.Nodes>
                                 </syncfusion:SfTreeView>
                             </Grid>
+                        </Grid>
+                    </Grid>
+                </syncfusion:TabItemExt>
+                <syncfusion:TabItemExt x:Name="Tab_Clothing" Header="Clothing Kits" MinWidth="20" MinHeight="20">
+                    <Grid>
+                        <Grid x:Name="G_Clothing" Background="#33535353">
+                            <Grid x:Name="G_Flags1" HorizontalAlignment="Left" Height="227" VerticalAlignment="Top"
+                                Width="209" Margin="10,38,0,0">
+                                <Label Content="Flags" HorizontalAlignment="Left" VerticalAlignment="Top" Width="209"
+                                    HorizontalContentAlignment="Center" VerticalContentAlignment="Center"
+                                    BorderBrush="#FF020000" />
+                                <syncfusion:CheckListBox x:Name="CHK_Clothing_Flags" HorizontalAlignment="Left"
+                                    Height="196" VerticalAlignment="Top" Width="209" Margin="0,31,0,0"
+                                    BorderThickness="2">
+                                    <syncfusion:CheckListBoxItem Content="Count in Cargo" Margin="0" />
+                                    <syncfusion:CheckListBoxItem Content="Count in Hoarder" Margin="0" />
+                                    <syncfusion:CheckListBoxItem Content="Count in Map" Margin="0" />
+                                    <syncfusion:CheckListBoxItem Content="Count in Player" Margin="0" />
+                                    <syncfusion:CheckListBoxItem Content="Crafted" Margin="0" />
+                                    <syncfusion:CheckListBoxItem Content="Dynamic Event Loot" Margin="0" />
+                                </syncfusion:CheckListBox>
+                            </Grid>
+                            <Grid x:Name="G_Categories1" HorizontalAlignment="Left" Height="227" VerticalAlignment="Top"
+                                Width="209" Margin="240,38,0,0">
+                                <Label Content="Detected Categories" HorizontalAlignment="Left" VerticalAlignment="Top"
+                                    Width="209" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"
+                                    BorderBrush="#FF020000" />
+                                <syncfusion:CheckListBox x:Name="CHK_Clothing_Cat" HorizontalAlignment="Left"
+                                    Height="196" VerticalAlignment="Top" Width="209" Margin="0,31,0,0"
+                                    BorderThickness="2" DisplayMemberPath="Name" />
+                            </Grid>
+                            <Grid x:Name="G_Values1" HorizontalAlignment="Left" Height="227" VerticalAlignment="Top"
+                                Width="209" Margin="468,38,0,0">
+                                <Label Content="Detected Values" HorizontalAlignment="Left" VerticalAlignment="Top"
+                                    Width="209" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"
+                                    BorderBrush="#FF020000" />
+                                <syncfusion:CheckListBox x:Name="CHK_Clothing_Val" HorizontalAlignment="Left"
+                                    Height="196" VerticalAlignment="Top" Width="209" Margin="0,31,0,0"
+                                    BorderThickness="2" DisplayMemberPath="Name" />
+                            </Grid>
+                            <Grid x:Name="G_Usages1" HorizontalAlignment="Left" Height="459" VerticalAlignment="Top"
+                                Width="209" Margin="696,38,0,0">
+                                <Label Content="Detected Usages" HorizontalAlignment="Left" VerticalAlignment="Top"
+                                    Width="209" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"
+                                    BorderBrush="#FF020000" />
+                                <syncfusion:CheckListBox x:Name="CHK_Clothing_Use" HorizontalAlignment="Left"
+                                    Height="418" VerticalAlignment="Top" Width="209" Margin="0,31,0,0"
+                                    BorderThickness="2" DisplayMemberPath="Name" />
+                            </Grid>
+                            <Grid x:Name="G_Tags1" HorizontalAlignment="Left" Height="459" VerticalAlignment="Top"
+                                Width="209" Margin="925,38,0,0">
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="91*"/>
+                                    <RowDefinition Height="136*"/>
+                                </Grid.RowDefinitions>
+                                <Label Content="Detected Tags" HorizontalAlignment="Left" VerticalAlignment="Top"
+                                    Width="209" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"
+                                    BorderBrush="#FF020000" />
+                                <syncfusion:CheckListBox x:Name="CHK_Clothing_Tag" HorizontalAlignment="Left"
+                                    Height="418" VerticalAlignment="Top" Width="209" Margin="0,31,0,0"
+                                    BorderThickness="2" DisplayMemberPath="Name" Grid.RowSpan="2" />
+                            </Grid>
+                            <syncfusion:ComboBoxAdv x:Name="Clothing_ColorChoice" HorizontalAlignment="Left" Height="33"
+                                Margin="10,5,0,0" VerticalAlignment="Top" Width="1124"
+                                DefaultText="Select Clothing Kit Type"
+                                HorizontalContentAlignment="Center" FontSize="16">
+                                <ListBoxItem Content="Red Clothing Kit" />
+                                <ListBoxItem Content="Purple Clothing Kit" />
+                                <ListBoxItem Content="Blue Clothing Kit" />
+                                <ListBoxItem Content="Green Clothing Kit" />
+                                <ListBoxItem Content="Yellow Clothing Kit" />
+                            </syncfusion:ComboBoxAdv>
+                            <Grid x:Name="G_Sidearms1" HorizontalAlignment="Left" Height="340" VerticalAlignment="Top"
+                                Width="333" Margin="10,270,0,0">
+                                <Label Content="Side Arms Types (1 per line, will be set to &quot;side&quot;)" HorizontalAlignment="Left" VerticalAlignment="Top"
+                                    Width="313" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"
+                                    BorderBrush="#FF020000" Margin="10,0,0,0" />
+                                <syncfusion:SfTextBoxExt x:Name="Clothing_SideArms"
+                                    Height="259" Margin="0,31,0,0" TextWrapping="Wrap"
+                                    VerticalAlignment="Top" />
+                                <syncfusion:ButtonAdv x:Name="ClothingKits_ImportSidearm" Content="ButtonAdv"
+                                    HorizontalAlignment="Left" Height="35"
+                                    Label="Import Sidearms From Expansion Market" VerticalAlignment="Top"
+                                    Width="200" Margin="0,295,0,0" Click="ButtonAdv_Click" Background="#261A88E4" />
+                                <syncfusion:ButtonAdv x:Name="ClothingKits_ClearSidearms" Content="ButtonAdv"
+                                    HorizontalAlignment="Left" Height="35" Label="Clear Sidearms"
+                                    VerticalAlignment="Top" Width="128" Margin="205,295,0,0" Background="#4CD13333" />
+                            </Grid>
+                            <syncfusion:ButtonAdv x:Name="ClothingKits_Generate" Content="ButtonAdv" Label="Generate"
+                                Background="#632CC33A" FontSize="36" Margin="696,502,10,10" />
+                        </Grid>
+                        <Grid x:Name="G_Sidearms_Copy1" HorizontalAlignment="Left" Height="340" VerticalAlignment="Top"
+                            Width="333" Margin="354,270,0,0">
+                            <Label Content="Restricted Types (1 per line ,will be skipped)" HorizontalAlignment="Left" VerticalAlignment="Top"
+                                Width="333" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"
+                                BorderBrush="#FF020000" />
+                            <syncfusion:SfTextBoxExt x:Name="ClothingKits_Restricted"
+                                Height="259" Margin="0,31,0,0" TextWrapping="Wrap"
+                                VerticalAlignment="Top" />
+                            <syncfusion:ButtonAdv x:Name="ClothingKits_ImportRestricted" Content="ButtonAdv"
+                                HorizontalAlignment="Left" Height="35"
+                                Label="Import types from Expansion Market file" VerticalAlignment="Top"
+                                Width="176" Margin="0,295,0,0" Background="#261A88E4" />
+                            <syncfusion:ButtonAdv x:Name="ClothingKits_ClearRestricted" Content="ButtonAdv"
+                                HorizontalAlignment="Left" Height="35" Label="Clear Restricted"
+                                VerticalAlignment="Top" Width="152" Margin="181,295,0,0" Background="#4CD13333" />
                         </Grid>
                     </Grid>
                 </syncfusion:TabItemExt>

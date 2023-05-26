@@ -317,11 +317,21 @@ Partial Public Class MainWindow
     Public Sub seedItemSources()
         G_ImportedTypes.ItemsSource = GlobalVariables.Types.TypeFiles
         G_Types.ItemsSource = GlobalVariables.Types.Types
+
+        'Weapon Kits 
         CHK_Weapon_Red_Cat.ItemsSource = GlobalVariables.Types.Categories
         CHK_Weapon_Red_Use.ItemsSource = GlobalVariables.Types.Usages
         CHK_Weapon_Red_Val.ItemsSource = GlobalVariables.Types.Values
         CHK_Weapon_Red_Tag.ItemsSource = GlobalVariables.Types.Tags
-        WeaponKits_SideArms.DataContext = GlobalVariables.SideArms
+        'WeaponKits_SideArms.DataContext = GlobalVariables.SideArms
+
+        'Clothing Kits
+        CHK_Clothing_Cat.ItemsSource = GlobalVariables.Types.Categories
+        CHK_Clothing_Use.ItemsSource = GlobalVariables.Types.Usages
+        CHK_Clothing_Val.ItemsSource = GlobalVariables.Types.Values
+        CHK_Clothing_Tag.ItemsSource = GlobalVariables.Types.Tags
+        'WeaponKits_SideArms.DataContext = GlobalVariables.SideArms
+
     End Sub
 
     Public Sub seedHandlers()
@@ -670,6 +680,27 @@ Partial Public Class MainWindow
     Private Sub WeaponKits_ClearRestricted_Click(sender As Object, e As RoutedEventArgs) Handles WeaponKits_ClearRestricted.Click
         GlobalVariables.RestrictedTypes.Clear()
         WeaponKits_Restricted.Clear()
+    End Sub
+
+    Private Sub Clothing_ColorChoice_SelectionChanged(sender As Object, e As Windows.Controls.SelectionChangedEventArgs) Handles Clothing_ColorChoice.SelectionChanged
+        Dim SelectedItems = e.AddedItems
+        Dim SelectedText = SelectedItems.Item(0).Content
+        Select Case SelectedText
+            Case "Red Clothing Kit"
+                SetGridBackgroundColor(G_Clothing, 131, 14, 14, 30)
+            Case "Purple Clothing Kit"
+                SetGridBackgroundColor(G_Clothing, 238, 51, 229, 20)
+            Case "Blue Clothing Kit"
+                SetGridBackgroundColor(G_Clothing, 48, 67, 225, 20)
+            Case "Green Clothing Kit"
+                SetGridBackgroundColor(G_Clothing, 80, 255, 71, 20)
+            Case "Yellow Clothing Kit"
+                SetGridBackgroundColor(G_Clothing, 255, 243, 0, 30)
+            Case Else
+                SetGridBackgroundColor(G_Clothing, 83, 83, 83, 20)
+        End Select
+        Dim xx = ""
+
     End Sub
 End Class
 
