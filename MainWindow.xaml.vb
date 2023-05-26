@@ -187,7 +187,7 @@ Partial Public Class MainWindow
 
 
 
-            Dim weaponList As New Collection(Of GenerateConfigs.Weapons.WeaponInfo)()
+            Dim weaponList As New ObservableCollection(Of GenerateConfigs.Weapons.WeaponInfo)()
 
             For Each type In GlobalVariables.Types.Types
 
@@ -196,24 +196,16 @@ Partial Public Class MainWindow
 
                 checkedAddArgs = Await determineIfAdd(type)
 
-
-
-                'Dim weapon As New WeaponInfo()
-                'weapon.dna_Tier = t_tier
-                'weapon.dna_TheChosenOne = type.typename
-                'Dim exists As Boolean = StringExistsInCollection(type.typename, GlobalVariables.SideArms)
-                'If exists Then
-                '    weapon.dna_WeaponCategory = "side"
-                'End If
-
-                'CHECK IF TYPE CONTAINS REQUIRED FLAGS FOR ADD
-                'if selectedcats is not nothing then
-                'for every selectedcat in selectedcats
-                ' if type.section contains selected cat then
-                'flag to add
-                'else continue
-
                 If checkedAddArgs = True Then
+                    Dim weapon As New GenerateConfigs.Weapons.WeaponInfo()
+                    weapon.dna_Tier = WeaponColorTier
+                    weapon.dna_TheChosenOne = type.typename
+                    Dim exists As Boolean = StringExistsInCollection(type.typename, GlobalVariables.SideArms)
+                    If exists Then
+                        weapon.dna_WeaponCategory = "side"
+                    End If
+
+
                     weaponList.Add(weapon)
                 End If
             Next
@@ -261,16 +253,39 @@ Partial Public Class MainWindow
         '        'else continue
 
         Dim selectedArgs
-
         'Flags
         selectedArgs = Nothing
         selectedArgs = CHK_Weapon_Red_Flags.SelectedItems
+        For Each _arg As CheckListBoxItem In selectedArgs
+            Select Case _arg.Content
+                Case "Count in Cargo"
+                    If type.flags.Contains("count_in_cargo=1") Then
+                        Return True
+                    End If
+                Case "Count in Hoarder"
+                    If type.flags.Contains("count_in_hoarder=1") Then
+                        Return True
+                    End If
+                Case "Count in Map"
+                    If type.flags.Contains("count_in_map=1") Then
+                        Return True
+                    End If
+                Case "Count in Player"
+                    If type.flags.Contains("count_in_player=1") Then
+                        Return True
+                    End If
+                Case "Crafted"
+                    If type.flags.Contains("crafted=1") Then
+                        Return True
+                    End If
+                Case "Dynamic Event Loot"
+                    If type.flags.Contains("deloot=""1""") Then
+                        Return True
+                    End If
+            End Select
+        Next
 
-
-
-
-        Dim xx = ""
-        Return True
+        Return False
     End Function
 
     Function StringExistsInCollection(ByVal searchString As String, ByVal collection As ObservableCollection(Of String)) As Boolean
