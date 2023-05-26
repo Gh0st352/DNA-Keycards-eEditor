@@ -127,16 +127,22 @@ Partial Public Class MainWindow
         Select Case SelectedText
             Case "Red Kit"
                 SetGridBackgroundColor(G_KitType, 131, 14, 14, 30)
+                SetGridBackgroundColor(G_ClothesSettings, 131, 14, 14, 30)
             Case "Purple Kit"
                 SetGridBackgroundColor(G_KitType, 238, 51, 229, 20)
+                SetGridBackgroundColor(G_ClothesSettings, 238, 51, 229, 20)
             Case "Blue Kit"
                 SetGridBackgroundColor(G_KitType, 48, 67, 225, 20)
+                SetGridBackgroundColor(G_ClothesSettings, 48, 67, 225, 20)
             Case "Green Kit"
                 SetGridBackgroundColor(G_KitType, 80, 255, 71, 20)
+                SetGridBackgroundColor(G_ClothesSettings, 80, 255, 71, 20)
             Case "Yellow Kit"
                 SetGridBackgroundColor(G_KitType, 255, 243, 0, 30)
+                SetGridBackgroundColor(G_ClothesSettings, 255, 243, 0, 30)
             Case Else
                 SetGridBackgroundColor(G_KitType, 83, 83, 83, 20)
+                SetGridBackgroundColor(G_ClothesSettings, 83, 83, 83, 20)
         End Select
         Dim xx = ""
     End Sub
@@ -147,7 +153,7 @@ Partial Public Class MainWindow
         grid.Background = brush
     End Sub
 
-    Private Async Sub ButtonAdv_Click(sender As Object, e As RoutedEventArgs)
+    Private Async Sub ButtonImportExpansionMarketClick(sender As Object, e As RoutedEventArgs) Handles Kits_ImportRestricted.Click
         Dim results As String() = Await FileSelectionHelper.SelectMultipleFilesAsync()
         Dim foundTypes As List(Of String)
         For Each resultPath As String In results
@@ -155,7 +161,40 @@ Partial Public Class MainWindow
             foundTypes = FileSelectionHelper.GetUniqueClassnamesAndVariants(resultPath) _
             '.Add(FileSelectionHelper.GetUniqueClassnamesAndVariants(resultPath))
             foundTypes = FileSelectionHelper.RemoveDuplicates(foundTypes)
-            AddMissingTypes(foundTypes, GlobalVariables.SideArms)
+
+
+            Select Case True
+                'Sidearms
+                Case sender Is Kits_ImportSidearm
+                    AddMissingTypes(foundTypes, GlobalVariables.SideArms)
+                'Restricted
+                Case sender Is Kits_ImportRestricted
+                    AddMissingTypes(foundTypes, GlobalVariables.RestrictedTypes)
+                'Clothing Market
+                Case sender Is Clothes_Helmets_Import
+                    AddMissingTypes(foundTypes, GlobalVariables.ClothingMarket.Helmets)
+                Case sender Is Clothes_Shirts_Import
+                    AddMissingTypes(foundTypes, GlobalVariables.ClothingMarket.Shirts)
+                Case sender Is Clothes_Vests_Import
+                    AddMissingTypes(foundTypes, GlobalVariables.ClothingMarket.Vests)
+                Case sender Is Clothes_Pants_Import
+                    AddMissingTypes(foundTypes, GlobalVariables.ClothingMarket.Pants)
+                Case sender Is Clothes_Shoes_Import
+                    AddMissingTypes(foundTypes, GlobalVariables.ClothingMarket.Shoes)
+                Case sender Is Clothes_Backpacks_Import
+                    AddMissingTypes(foundTypes, GlobalVariables.ClothingMarket.Backpacks)
+                Case sender Is Clothes_Gloves_Import
+                    AddMissingTypes(foundTypes, GlobalVariables.ClothingMarket.Gloves)
+                Case sender Is Clothes_Belts_Import
+                    AddMissingTypes(foundTypes, GlobalVariables.ClothingMarket.Belts)
+                Case sender Is Clothes_Facewear_Import
+                    AddMissingTypes(foundTypes, GlobalVariables.ClothingMarket.Facewears)
+                Case sender Is Clothes_Eyewear_Import
+                    AddMissingTypes(foundTypes, GlobalVariables.ClothingMarket.Eyewears)
+                Case sender Is Clothes_Armbands_Import
+                    AddMissingTypes(foundTypes, GlobalVariables.ClothingMarket.Armbands)
+            End Select
+
         Next
 
         UpdateTextBoxWithStrings(Kits_SideArms, GlobalVariables.SideArms)
@@ -656,7 +695,7 @@ Partial Public Class MainWindow
         End If
     End Sub
 
-    Private Async Sub Kits_ImportRestricted_Click(sender As Object, e As RoutedEventArgs) Handles Kits_ImportRestricted.Click
+    Private Async Sub Kits_ImportRestricted_Click(sender As Object, e As RoutedEventArgs)
         Dim results As String() = Await FileSelectionHelper.SelectMultipleFilesAsync()
         Dim foundTypes As List(Of String)
         For Each resultPath As String In results

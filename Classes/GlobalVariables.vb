@@ -2,6 +2,20 @@
 
 Namespace Classes
     Public Class GlobalVariables
+        Public Class ClothingMarket
+            Public Shared Helmets As New ObservableCollection(Of String)()
+            Public Shared Shirts As New ObservableCollection(Of String)()
+            Public Shared Vests As New ObservableCollection(Of String)()
+            Public Shared Pants As New ObservableCollection(Of String)()
+            Public Shared Shoes As New ObservableCollection(Of String)()
+            Public Shared Backpacks As New ObservableCollection(Of String)()
+            Public Shared Gloves As New ObservableCollection(Of String)()
+            Public Shared Belts As New ObservableCollection(Of String)()
+            Public Shared Facewears As New ObservableCollection(Of String)()
+            Public Shared Eyewears As New ObservableCollection(Of String)()
+            Public Shared Armbands As New ObservableCollection(Of String)()
+        End Class
+
         Public Shared SideArms As New ObservableCollection(Of String)()
         Public Shared RestrictedTypes As New ObservableCollection(Of String)()
         Public Class WeaponKitsInfo
