@@ -24,6 +24,8 @@ Imports Syncfusion.UI.Xaml.Grid
 Imports System.Xml
 Imports Syncfusion.UI.Xaml.TreeGrid
 Imports Syncfusion.Data
+Imports Syncfusion.UI.Xaml.TreeView
+Imports Syncfusion.UI.Xaml.TreeView.Engine
 Imports Syncfusion.Windows.Controls.Input
 Imports Syncfusion.Windows.Tools.Controls
 
@@ -71,6 +73,7 @@ Partial Public Class MainWindow
 
         seedItemSources()
         seedWeaponKitSettings()
+        seedHandlers()
         'HandleGridControlEvents(G_Weapon_Red)
 
     End Sub
@@ -222,12 +225,41 @@ Partial Public Class MainWindow
                 Case "Yellow"
 
             End Select
-
+            UpdateGeneratedWeaponKits()
             'Await GenerateConfigs.Weapons.GenerateConfig(WeaponColorTier)
         End If
 
     End Sub
+    Sub UpdateGeneratedWeaponKits()
+        Tab_WeaponsGenerated.IsSelected = True
 
+
+        'Red Update
+        TV_WeaponKits_Generated_Red.Nodes.Clear()
+        For Each WeaponSet_ As GenerateConfigs.Weapons.WeaponInfo In GenerateConfigs.Weapons.RedWeaponKits
+            Dim tParentNode As New TreeViewNode
+
+            tParentNode.Content = WeaponSet_.dna_TheChosenOne
+            tParentNode.ChildNodes.Add(New TreeViewNode() With {.Content = "dna_Tier : " + WeaponSet_.dna_Tier})
+            tParentNode.ChildNodes.Add(New TreeViewNode() With {.Content = "dna_WeaponCategory : " + WeaponSet_.dna_WeaponCategory})
+            tParentNode.ChildNodes.Add(New TreeViewNode() With {.Content = "dna_TheChosenOne : " + WeaponSet_.dna_TheChosenOne})
+            tParentNode.ChildNodes.Add(New TreeViewNode() With {.Content = "dna_Magazine : " + WeaponSet_.dna_Magazine})
+            tParentNode.ChildNodes.Add(New TreeViewNode() With {.Content = "dna_Ammunition : " + WeaponSet_.dna_Ammunition})
+            tParentNode.ChildNodes.Add(New TreeViewNode() With {.Content = "dna_OpticType : " + WeaponSet_.dna_OpticType})
+            tParentNode.ChildNodes.Add(New TreeViewNode() With {.Content = "dna_Suppressor : " + WeaponSet_.dna_Suppressor})
+            tParentNode.ChildNodes.Add(New TreeViewNode() With {.Content = "dna_UnderBarrel : " + WeaponSet_.dna_UnderBarrel})
+            tParentNode.ChildNodes.Add(New TreeViewNode() With {.Content = "dna_ButtStock : " + WeaponSet_.dna_ButtStock})
+            tParentNode.ChildNodes.Add(New TreeViewNode() With {.Content = "dna_HandGuard : " + WeaponSet_.dna_HandGuard})
+
+
+            TV_WeaponKits_Generated_Red.Nodes.Add(tParentNode)
+        Next
+
+
+
+
+        Tab_Weapons.IsSelected = True
+    End Sub
     Public Shared Sub seedWeaponKitSettings()
         Dim WeaponKitsTypes As String() = New String() {"Red", "Purple", "Blue", "Green", "Yellow"}
         For Each type As String In WeaponKitsTypes
@@ -243,7 +275,21 @@ Partial Public Class MainWindow
         CHK_Weapon_Red_Tag.ItemsSource = GlobalVariables.Types.Tags
         WeaponKits_SideArms.DataContext = GlobalVariables.SideArms
     End Sub
+    Public Sub seedHandlers()
+        AddHandler TV_WeaponKits_Generated_Red.ItemBeginEdit, AddressOf Event_BeginEdit_TV_WeaponKits_Generated_Red ' tabLocal.ModTree.ItemDropping, AddressOf Steam.TabOperations.modtree_Drop
+    End Sub
 
+    Async Sub Event_BeginEdit_TV_WeaponKits_Generated_Red(sender As Object, e As EventArgs)
+        Dim Edited_ As SfTreeView = sender
+        Dim eventInfo As TreeViewItemBeginEditEventArgs = e
+
+        If IsNothing(eventInfo.Node.ParentNode) Then
+            eventInfo.Cancel = True
+        Else
+            eventInfo.Cancel = False
+        End If
+
+    End Sub
     Async Function determineIfAdd(type As GlobalVariables.Types.TypeInfo) As Task(Of Boolean)
         'CHECK IF TYPE CONTAINS REQUIRED FLAGS FOR ADD
         '        'if selectedcats is not nothing then
@@ -251,41 +297,124 @@ Partial Public Class MainWindow
         '        ' if type.section contains selected cat then
         '        'flag to add
         '        'else continue
-
         Dim selectedArgs
+
+
+        If type.typename.ToLower.Contains("ammo") Or
+           type.typename.ToLower.Contains("mag") Or
+           type.typename.ToLower.Contains("stock") Or
+           type.typename.ToLower.Contains("optic") Or
+           type.typename.ToLower.Contains("muzzle") Or
+           type.typename.ToLower.Contains("bttstck") Or
+           type.typename.ToLower.Contains("Hndgrd") Or
+           type.typename.ToLower.Contains("Suppressor") Or
+           type.typename.ToLower.Contains("bayonet") Or
+           type.typename.ToLower.Contains("compensator") Or
+           type.typename.ToLower.Contains("goggles") Or
+           type.typename.ToLower.Contains("light") Then
+            Return False
+        End If
+        Dim counter = 0
+        Dim RequiredCount = 0
         'Flags
         selectedArgs = Nothing
         selectedArgs = CHK_Weapon_Red_Flags.SelectedItems
-        For Each _arg As CheckListBoxItem In selectedArgs
-            Select Case _arg.Content
-                Case "Count in Cargo"
-                    If type.flags.Contains("count_in_cargo=1") Then
-                        Return True
-                    End If
-                Case "Count in Hoarder"
-                    If type.flags.Contains("count_in_hoarder=1") Then
-                        Return True
-                    End If
-                Case "Count in Map"
-                    If type.flags.Contains("count_in_map=1") Then
-                        Return True
-                    End If
-                Case "Count in Player"
-                    If type.flags.Contains("count_in_player=1") Then
-                        Return True
-                    End If
-                Case "Crafted"
-                    If type.flags.Contains("crafted=1") Then
-                        Return True
-                    End If
-                Case "Dynamic Event Loot"
-                    If type.flags.Contains("deloot=""1""") Then
-                        Return True
-                    End If
-            End Select
-        Next
+        counter = 0
+        RequiredCount = selectedArgs.Count
+        If RequiredCount <> 0 Then
+            For Each _arg As CheckListBoxItem In selectedArgs
+                Select Case _arg.Content
+                    Case "Count in Cargo"
+                        If type.flags.Contains("count_in_cargo=1") Then
+                            counter += 1
+                        End If
+                    Case "Count in Hoarder"
+                        If type.flags.Contains("count_in_hoarder=1") Then
+                            counter += 1
+                        End If
+                    Case "Count in Map"
+                        If type.flags.Contains("count_in_map=1") Then
+                            counter += 1
+                        End If
+                    Case "Count in Player"
+                        If type.flags.Contains("count_in_player=1") Then
+                            counter += 1
+                        End If
+                    Case "Crafted"
+                        If type.flags.Contains("crafted=1") Then
+                            counter += 1
+                        End If
+                    Case "Dynamic Event Loot"
+                        If type.flags.Contains("deloot=1") Then
+                            counter += 1
+                        End If
+                End Select
+            Next
+            If counter <> RequiredCount Then Return False
+        End If
 
-        Return False
+        'Categories
+        selectedArgs = Nothing
+        selectedArgs = CHK_Weapon_Red_Cat.SelectedItems
+        counter = 0
+        RequiredCount = selectedArgs.Count
+        If RequiredCount <> 0 Then
+            If type.category IsNot Nothing Then
+                For Each _arg As GlobalVariables.Types.CategoryInfo In selectedArgs
+                    If type.category.Contains(_arg.Name) Then
+                        counter += 1
+                    End If
+                Next
+            End If
+            If counter <> RequiredCount Then Return False
+        End If
+        'Values
+        selectedArgs = Nothing
+        selectedArgs = CHK_Weapon_Red_Val.SelectedItems
+        counter = 0
+        RequiredCount = selectedArgs.Count
+        If RequiredCount <> 0 Then
+            If type.value IsNot Nothing Then
+                For Each _arg As GlobalVariables.Types.ValueInfo In selectedArgs
+                    If type.value.Contains(_arg.Name) Then
+                        counter += 1
+                    End If
+                Next
+            End If
+            If counter <> RequiredCount Then Return False
+        End If
+        'Usages
+        selectedArgs = Nothing
+        selectedArgs = CHK_Weapon_Red_Use.SelectedItems
+        counter = 0
+        RequiredCount = selectedArgs.Count
+        If RequiredCount <> 0 Then
+            If type.usage IsNot Nothing Then
+                For Each _arg As GlobalVariables.Types.UsageInfo In selectedArgs
+                    If type.usage.Contains(_arg.Name) Then
+                        counter += 1
+                    End If
+                Next
+            End If
+            If counter <> RequiredCount Then Return False
+        End If
+        'Tags
+        selectedArgs = Nothing
+        selectedArgs = CHK_Weapon_Red_Tag.SelectedItems
+        counter = 0
+        RequiredCount = selectedArgs.Count
+        If RequiredCount <> 0 Then
+            If type.tag IsNot Nothing Then
+                For Each _arg As GlobalVariables.Types.TagInfo In selectedArgs
+                    If type.tag.Contains(_arg.Name) Then
+                        counter += 1
+                    End If
+                Next
+            End If
+            If counter <> RequiredCount Then Return False
+        End If
+
+        Return True
     End Function
 
     Function StringExistsInCollection(ByVal searchString As String, ByVal collection As ObservableCollection(Of String)) As Boolean

@@ -93,9 +93,9 @@
             </syncfusion:TabItemExt>
             <syncfusion:TabItemExt x:Name="Tab_WeaponsGenerated" Header="Generated Weapon Kits" MinWidth="150" MinHeight="20">
                 <Grid>
-                    <Grid HorizontalAlignment="Left" Height="559" VerticalAlignment="Top" Width="203" Background="#4C830E0E">
-                        <Label Content="Red Kits" HorizontalAlignment="Left" VerticalAlignment="Top" Width="203" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" FontSize="16"/>
-                        <syncfusion:SfTreeView AllowDragging="True" AllowDrop="True" HorizontalAlignment="Left" Height="518" ItemTemplateDataContextType="Item" Margin="10,31,0,0" ShowLines="True" ShowRootLines="True" SelectionMode="Multiple" VerticalAlignment="Top" Width="183">
+                    <Grid HorizontalAlignment="Left" Height="559" VerticalAlignment="Top" Width="249" Background="#4C830E0E">
+                        <Label Content="Red Kits" HorizontalAlignment="Left" VerticalAlignment="Top" Width="229" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" FontSize="16" Margin="10,0,0,0"/>
+                        <syncfusion:SfTreeView x:Name="TV_WeaponKits_Generated_Red" AllowDrop="False" HorizontalAlignment="Left" Height="518" ItemTemplateDataContextType="Item" Margin="10,31,0,0" ShowLines="True" ShowRootLines="True" SelectionMode="SingleDeselect" VerticalAlignment="Top" Width="229" AllowDeleting="True" AllowEditing="True" EditTrigger="DoubleTap" IsAnimationEnabled="True" IsManipulationEnabled="True">
                             <syncfusion:SfTreeView.Nodes>
                                 <syncfusion:TreeViewNode Content="Please Generate a Kit" HasChildNodes="False" IsExpanded="False" IsChecked="False" ShowExpanderAnimation="False"/>
                             </syncfusion:SfTreeView.Nodes>
