@@ -167,37 +167,61 @@ Partial Public Class MainWindow
                 'Sidearms
                 Case sender Is Kits_ImportSidearm
                     AddMissingTypes(foundTypes, GlobalVariables.SideArms)
+                    UpdateTextBoxWithStrings(Kits_SideArms, GlobalVariables.SideArms)
                 'Restricted
                 Case sender Is Kits_ImportRestricted
                     AddMissingTypes(foundTypes, GlobalVariables.RestrictedTypes)
+                    UpdateTextBoxWithStrings(Kits_Restricted, GlobalVariables.RestrictedTypes)
                 'Clothing Market
+                    'dna_Helm
                 Case sender Is Clothes_Helmets_Import
                     AddMissingTypes(foundTypes, GlobalVariables.ClothingMarket.Helmets)
+                    UpdateTextBoxWithStrings(Kits_SideArms, GlobalVariables.ClothingMarket.Helmets)
+                    'dna_Shirt
                 Case sender Is Clothes_Shirts_Import
                     AddMissingTypes(foundTypes, GlobalVariables.ClothingMarket.Shirts)
+                    UpdateTextBoxWithStrings(Kits_SideArms, GlobalVariables.ClothingMarket.Shirts)
+                    'dna_Vest
                 Case sender Is Clothes_Vests_Import
                     AddMissingTypes(foundTypes, GlobalVariables.ClothingMarket.Vests)
+                    UpdateTextBoxWithStrings(Kits_SideArms, GlobalVariables.ClothingMarket.Vests)
+                    'dna_Pants
                 Case sender Is Clothes_Pants_Import
                     AddMissingTypes(foundTypes, GlobalVariables.ClothingMarket.Pants)
+                    UpdateTextBoxWithStrings(Kits_SideArms, GlobalVariables.ClothingMarket.Pants)
+                    'dna_Shoes
                 Case sender Is Clothes_Shoes_Import
                     AddMissingTypes(foundTypes, GlobalVariables.ClothingMarket.Shoes)
+                    UpdateTextBoxWithStrings(Kits_SideArms, GlobalVariables.ClothingMarket.Shoes)
+                    'dna_Backpack
                 Case sender Is Clothes_Backpacks_Import
                     AddMissingTypes(foundTypes, GlobalVariables.ClothingMarket.Backpacks)
+                    UpdateTextBoxWithStrings(Kits_SideArms, GlobalVariables.ClothingMarket.Backpacks)
+                    'dna_Gloves
                 Case sender Is Clothes_Gloves_Import
                     AddMissingTypes(foundTypes, GlobalVariables.ClothingMarket.Gloves)
+                    UpdateTextBoxWithStrings(Kits_SideArms, GlobalVariables.ClothingMarket.Gloves)
+                    'dna_Belt
                 Case sender Is Clothes_Belts_Import
                     AddMissingTypes(foundTypes, GlobalVariables.ClothingMarket.Belts)
+                    UpdateTextBoxWithStrings(Kits_SideArms, GlobalVariables.ClothingMarket.Belts)
+                    'dna_Facewear
                 Case sender Is Clothes_Facewear_Import
                     AddMissingTypes(foundTypes, GlobalVariables.ClothingMarket.Facewears)
+                    UpdateTextBoxWithStrings(Kits_SideArms, GlobalVariables.ClothingMarket.Facewears)
+                    'dna_Eyewear
                 Case sender Is Clothes_Eyewear_Import
                     AddMissingTypes(foundTypes, GlobalVariables.ClothingMarket.Eyewears)
+                    UpdateTextBoxWithStrings(Kits_SideArms, GlobalVariables.ClothingMarket.Eyewears)
+                    'dna_Armband
                 Case sender Is Clothes_Armbands_Import
                     AddMissingTypes(foundTypes, GlobalVariables.ClothingMarket.Armbands)
+                    UpdateTextBoxWithStrings(Kits_SideArms, GlobalVariables.ClothingMarket.Armbands)
             End Select
 
         Next
 
-        UpdateTextBoxWithStrings(Kits_SideArms, GlobalVariables.SideArms)
+
     End Sub
 
     Sub AddMissingTypes(foundTypes As List(Of String), SideArms As ObservableCollection(Of String))
