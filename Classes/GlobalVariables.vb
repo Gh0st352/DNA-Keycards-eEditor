@@ -3,6 +3,7 @@
 Namespace Classes
     Public Class GlobalVariables
         Public Shared SideArms As New ObservableCollection(Of String)()
+
         Public Class WeaponKitsInfo
             Public Sub New(label As String, selected As Boolean, color As String)
                 Me.Label = label
@@ -13,12 +14,14 @@ Namespace Classes
             Public Property Label As String
             Public Property Selected As Boolean
             Public Property Color As String
-
         End Class
+
         Public Shared WeaponKits As New ObservableCollection(Of WeaponKitsInfo)()
+
         Public Class Types
             Public Class WeaponKitSettings
-                Public Sub New(type As String, flags() As String, categories() As String, values() As String, usages() As String, tags() As String)
+                Public Sub New(type As String, flags() As String, categories() As String, values() As String,
+                               usages() As String, tags() As String)
                     Me.Type = type
                     Me.Flags = flags
                     Me.Categories = categories
@@ -35,7 +38,9 @@ Namespace Classes
                 Public Property Usages As String()
                 Public Property Tags As String()
             End Class
+
             Public Shared WeaponKits As New ObservableCollection(Of WeaponKitSettings)()
+
             Public Class CategoryInfo
                 Private _Checked As Boolean
                 Private _Name As String
@@ -58,7 +63,9 @@ Namespace Classes
                     End Set
                 End Property
             End Class
+
             Public Shared Categories As New ObservableCollection(Of CategoryInfo)()
+
             Public Class UsageInfo
                 Private _Checked As Boolean
                 Private _Name As String
@@ -81,7 +88,9 @@ Namespace Classes
                     End Set
                 End Property
             End Class
+
             Public Shared Usages As New ObservableCollection(Of UsageInfo)()
+
             Public Class TagInfo
                 Private _Checked As Boolean
                 Private _Name As String
@@ -104,7 +113,9 @@ Namespace Classes
                     End Set
                 End Property
             End Class
+
             Public Shared Tags As New ObservableCollection(Of TagInfo)()
+
             Public Class ValueInfo
                 Private _Checked As Boolean
                 Private _Name As String
@@ -127,7 +138,9 @@ Namespace Classes
                     End Set
                 End Property
             End Class
+
             Public Shared Values As New ObservableCollection(Of ValueInfo)()
+
             Public Class File
                 Public Sub New(path As String, name As String, kind As String)
                     Me.Path = path
@@ -275,6 +288,7 @@ Namespace Classes
                     End Set
                 End Property
             End Class
+
             Public Shared Types As New ObservableCollection(Of TypeInfo)()
         End Class
     End Class

@@ -4,7 +4,6 @@
     xmlns:syncfusion="http://schemas.syncfusion.com/wpf"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-    xmlns:Classes="clr-namespace:DNA_Keycard_Editor.Classes"
     mc:Ignorable="d" x:Name="MainExe"
     x:Class="MainWindow"
     syncfusion:SfSkinManager.Theme="{syncfusion:SkinManager ThemeName=Windows11Dark}"
@@ -37,9 +36,10 @@
             </syncfusion:TabItemExt>
             <syncfusion:TabItemExt x:Name="Tab_Types" Header="Types" MinWidth="20" MinHeight="20">
                 <Grid>
-                    <syncfusion:SfTreeGrid x:Name="G_Types" ColumnSizer="SizeToHeader" >
+                    <syncfusion:SfTreeGrid x:Name="G_Types" ColumnSizer="SizeToHeader">
                         <syncfusion:SfTreeGrid.Columns>
-                            <syncfusion:TreeGridTextColumn HeaderText="Type Name" MappingName="typename" IsReadOnly="True"/>
+                            <syncfusion:TreeGridTextColumn HeaderText="Type Name" MappingName="typename"
+                                                           IsReadOnly="True" />
                         </syncfusion:SfTreeGrid.Columns>
                     </syncfusion:SfTreeGrid>
                 </Grid>
@@ -47,59 +47,116 @@
             <syncfusion:TabItemExt x:Name="Tab_Weapons" Header="Weapon Kits" MinWidth="20" MinHeight="20">
                 <Grid>
                     <Grid x:Name="G_Weapon_Red" Background="#33535353">
-                        <Grid x:Name="G_Flags" HorizontalAlignment="Left" Height="227" VerticalAlignment="Top" Width="209" Margin="10,38,0,0">
-                            <Label Content="Flags" HorizontalAlignment="Left" VerticalAlignment="Top" Width="209" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" BorderBrush="#FF020000"/>
-                            <syncfusion:CheckListBox x:Name="CHK_Weapon_Red_Flags" HorizontalAlignment="Left" Height="196" VerticalAlignment="Top" Width="209" Margin="0,31,0,0" BorderThickness="2">
-                                <syncfusion:CheckListBoxItem Content="Count in Cargo" Margin="0"/>
-                                <syncfusion:CheckListBoxItem Content="Count in Hoarder" Margin="0"/>
-                                <syncfusion:CheckListBoxItem Content="Count in Map" Margin="0"/>
-                                <syncfusion:CheckListBoxItem Content="Count in Player" Margin="0"/>
-                                <syncfusion:CheckListBoxItem Content="Crafted" Margin="0"/>
-                                <syncfusion:CheckListBoxItem Content="Dynamic Event Loot" Margin="0"/>
+                        <Grid x:Name="G_Flags" HorizontalAlignment="Left" Height="227" VerticalAlignment="Top"
+                              Width="209" Margin="10,38,0,0">
+                            <Label Content="Flags" HorizontalAlignment="Left" VerticalAlignment="Top" Width="209"
+                                   HorizontalContentAlignment="Center" VerticalContentAlignment="Center"
+                                   BorderBrush="#FF020000" />
+                            <syncfusion:CheckListBox x:Name="CHK_Weapon_Red_Flags" HorizontalAlignment="Left"
+                                                     Height="196" VerticalAlignment="Top" Width="209" Margin="0,31,0,0"
+                                                     BorderThickness="2">
+                                <syncfusion:CheckListBoxItem Content="Count in Cargo" Margin="0" />
+                                <syncfusion:CheckListBoxItem Content="Count in Hoarder" Margin="0" />
+                                <syncfusion:CheckListBoxItem Content="Count in Map" Margin="0" />
+                                <syncfusion:CheckListBoxItem Content="Count in Player" Margin="0" />
+                                <syncfusion:CheckListBoxItem Content="Crafted" Margin="0" />
+                                <syncfusion:CheckListBoxItem Content="Dynamic Event Loot" Margin="0" />
                             </syncfusion:CheckListBox>
                         </Grid>
-                        <Grid x:Name="G_Categories" HorizontalAlignment="Left" Height="227" VerticalAlignment="Top" Width="209" Margin="224,38,0,0">
-                            <Label Content="Detected Categories" HorizontalAlignment="Left" VerticalAlignment="Top" Width="209" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" BorderBrush="#FF020000"/>
-                            <syncfusion:CheckListBox x:Name="CHK_Weapon_Red_Cat" HorizontalAlignment="Left" Height="196" VerticalAlignment="Top" Width="209" Margin="0,31,0,0" BorderThickness="2" DisplayMemberPath="Name"/>
+                        <Grid x:Name="G_Categories" HorizontalAlignment="Left" Height="227" VerticalAlignment="Top"
+                              Width="209" Margin="224,38,0,0">
+                            <Label Content="Detected Categories" HorizontalAlignment="Left" VerticalAlignment="Top"
+                                   Width="209" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"
+                                   BorderBrush="#FF020000" />
+                            <syncfusion:CheckListBox x:Name="CHK_Weapon_Red_Cat" HorizontalAlignment="Left"
+                                                     Height="196" VerticalAlignment="Top" Width="209" Margin="0,31,0,0"
+                                                     BorderThickness="2" DisplayMemberPath="Name" />
                         </Grid>
-                        <Grid x:Name="G_Values" HorizontalAlignment="Left" Height="227" VerticalAlignment="Top" Width="209" Margin="438,38,0,0">
-                            <Label Content="Detected Values" HorizontalAlignment="Left" VerticalAlignment="Top" Width="209" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" BorderBrush="#FF020000"/>
-                            <syncfusion:CheckListBox x:Name="CHK_Weapon_Red_Val" HorizontalAlignment="Left" Height="196" VerticalAlignment="Top" Width="209" Margin="0,31,0,0" BorderThickness="2" DisplayMemberPath="Name"/>
+                        <Grid x:Name="G_Values" HorizontalAlignment="Left" Height="227" VerticalAlignment="Top"
+                              Width="209" Margin="438,38,0,0">
+                            <Label Content="Detected Values" HorizontalAlignment="Left" VerticalAlignment="Top"
+                                   Width="209" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"
+                                   BorderBrush="#FF020000" />
+                            <syncfusion:CheckListBox x:Name="CHK_Weapon_Red_Val" HorizontalAlignment="Left"
+                                                     Height="196" VerticalAlignment="Top" Width="209" Margin="0,31,0,0"
+                                                     BorderThickness="2" DisplayMemberPath="Name" />
                         </Grid>
-                        <Grid x:Name="G_Usages" HorizontalAlignment="Left" Height="227" VerticalAlignment="Top" Width="209" Margin="10,270,0,0">
-                            <Label Content="Detected Usages" HorizontalAlignment="Left" VerticalAlignment="Top" Width="209" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" BorderBrush="#FF020000"/>
-                            <syncfusion:CheckListBox x:Name="CHK_Weapon_Red_Use" HorizontalAlignment="Left" Height="196" VerticalAlignment="Top" Width="209" Margin="0,31,0,0" BorderThickness="2" DisplayMemberPath="Name"/>
+                        <Grid x:Name="G_Usages" HorizontalAlignment="Left" Height="227" VerticalAlignment="Top"
+                              Width="209" Margin="10,270,0,0">
+                            <Label Content="Detected Usages" HorizontalAlignment="Left" VerticalAlignment="Top"
+                                   Width="209" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"
+                                   BorderBrush="#FF020000" />
+                            <syncfusion:CheckListBox x:Name="CHK_Weapon_Red_Use" HorizontalAlignment="Left"
+                                                     Height="196" VerticalAlignment="Top" Width="209" Margin="0,31,0,0"
+                                                     BorderThickness="2" DisplayMemberPath="Name" />
                         </Grid>
-                        <Grid x:Name="G_Tags" HorizontalAlignment="Left" Height="227" VerticalAlignment="Top" Width="209" Margin="224,270,0,0">
-                            <Label Content="Detected Tags" HorizontalAlignment="Left" VerticalAlignment="Top" Width="209" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" BorderBrush="#FF020000"/>
-                            <syncfusion:CheckListBox x:Name="CHK_Weapon_Red_Tag" HorizontalAlignment="Left" Height="196" VerticalAlignment="Top" Width="209" Margin="0,31,0,0" BorderThickness="2" DisplayMemberPath="Name"/>
+                        <Grid x:Name="G_Tags" HorizontalAlignment="Left" Height="227" VerticalAlignment="Top"
+                              Width="209" Margin="224,270,0,0">
+                            <Label Content="Detected Tags" HorizontalAlignment="Left" VerticalAlignment="Top"
+                                   Width="209" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"
+                                   BorderBrush="#FF020000" />
+                            <syncfusion:CheckListBox x:Name="CHK_Weapon_Red_Tag" HorizontalAlignment="Left"
+                                                     Height="196" VerticalAlignment="Top" Width="209" Margin="0,31,0,0"
+                                                     BorderThickness="2" DisplayMemberPath="Name" />
                         </Grid>
-                        <syncfusion:ComboBoxAdv x:Name="WeaponKit_ColorChoice" HorizontalAlignment="Left" Height="33" Margin="10,5,0,0" VerticalAlignment="Top" Width="724" DefaultText="Select Weapon Kit Type" HorizontalContentAlignment="Center" FontSize="16">
-                            <ListBoxItem Content="Red Weapon Kit"/>
-                            <ListBoxItem Content="Purple Weapon Kit"/>
-                            <ListBoxItem Content="Blue Weapon Kit"/>
-                            <ListBoxItem Content="Green Weapon Kit"/>
-                            <ListBoxItem Content="Yellow Weapon Kit"/>
+                        <syncfusion:ComboBoxAdv x:Name="WeaponKit_ColorChoice" HorizontalAlignment="Left" Height="33"
+                                                Margin="10,5,0,0" VerticalAlignment="Top" Width="724"
+                                                DefaultText="Select Weapon Kit Type"
+                                                HorizontalContentAlignment="Center" FontSize="16">
+                            <ListBoxItem Content="Red Weapon Kit" />
+                            <ListBoxItem Content="Purple Weapon Kit" />
+                            <ListBoxItem Content="Blue Weapon Kit" />
+                            <ListBoxItem Content="Green Weapon Kit" />
+                            <ListBoxItem Content="Yellow Weapon Kit" />
                         </syncfusion:ComboBoxAdv>
-                        <Grid x:Name="G_Sidearms" HorizontalAlignment="Left" Height="361" VerticalAlignment="Top" Width="296" Margin="438,270,0,0">
-                            <Label Content="Side Arms Types" HorizontalAlignment="Left" VerticalAlignment="Top" Width="276" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" BorderBrush="#FF020000" Margin="10,0,0,0"/>
-                            <syncfusion:SfTextBoxExt x:Name="WeaponKits_SideArms" HorizontalAlignment="Left" Height="230" Margin="10,31,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="276"/>
-                            <syncfusion:ButtonAdv x:Name="WeaponKits_ImportSidearm" Content="ButtonAdv" HorizontalAlignment="Left" Height="35" Label="Import Sidearms From Expansion Market" VerticalAlignment="Top" Width="163" Margin="10,266,0,0" Click="ButtonAdv_Click"/>
-                            <syncfusion:ButtonAdv x:Name="WeaponKits_ClearSidearms" Content="ButtonAdv" HorizontalAlignment="Left" Height="35" Label="Clear Sidearms" VerticalAlignment="Top" Width="108" Margin="178,266,0,0"/>
+                        <Grid x:Name="G_Sidearms" HorizontalAlignment="Left" Height="361" VerticalAlignment="Top"
+                              Width="296" Margin="438,270,0,0">
+                            <Label Content="Side Arms Types" HorizontalAlignment="Left" VerticalAlignment="Top"
+                                   Width="276" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"
+                                   BorderBrush="#FF020000" Margin="10,0,0,0" />
+                            <syncfusion:SfTextBoxExt x:Name="WeaponKits_SideArms" HorizontalAlignment="Left"
+                                                     Height="230" Margin="10,31,0,0" TextWrapping="Wrap"
+                                                     VerticalAlignment="Top" Width="276" />
+                            <syncfusion:ButtonAdv x:Name="WeaponKits_ImportSidearm" Content="ButtonAdv"
+                                                  HorizontalAlignment="Left" Height="35"
+                                                  Label="Import Sidearms From Expansion Market" VerticalAlignment="Top"
+                                                  Width="163" Margin="10,266,0,0" Click="ButtonAdv_Click" />
+                            <syncfusion:ButtonAdv x:Name="WeaponKits_ClearSidearms" Content="ButtonAdv"
+                                                  HorizontalAlignment="Left" Height="35" Label="Clear Sidearms"
+                                                  VerticalAlignment="Top" Width="108" Margin="178,266,0,0" />
                         </Grid>
-                        <syncfusion:ButtonAdv x:Name="WeaponKits_Generate" Content="ButtonAdv" Label="Generate" Background="#632CC33A" FontSize="36" Margin="10,502,311,10"/>
+                        <syncfusion:ButtonAdv x:Name="WeaponKits_Generate" Content="ButtonAdv" Label="Generate"
+                                              Background="#632CC33A" FontSize="36" Margin="10,502,311,10" />
                     </Grid>
                 </Grid>
             </syncfusion:TabItemExt>
-            <syncfusion:TabItemExt x:Name="Tab_WeaponsGenerated" Header="Generated Weapon Kits" MinWidth="150" MinHeight="20">
+            <syncfusion:TabItemExt x:Name="Tab_WeaponsGenerated" Header="Generated Weapon Kits" MinWidth="150"
+                                   MinHeight="20">
                 <Grid>
-                    <Grid HorizontalAlignment="Left" Height="559" VerticalAlignment="Top" Width="249" Background="#4C830E0E">
-                        <Label Content="Red Kits" HorizontalAlignment="Left" VerticalAlignment="Top" Width="229" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" FontSize="16" Margin="10,0,0,0"/>
-                        <syncfusion:SfTreeView x:Name="TV_WeaponKits_Generated_Red" AllowDrop="False" HorizontalAlignment="Left" Height="518" ItemTemplateDataContextType="Item" Margin="10,31,0,0" ShowLines="True" ShowRootLines="True" SelectionMode="SingleDeselect" VerticalAlignment="Top" Width="229" AllowDeleting="True" AllowEditing="True" EditTrigger="DoubleTap" IsAnimationEnabled="True" IsManipulationEnabled="True">
+                    <Grid Height="483" Width="249"
+                          Background="#4C830E0E" Margin="10,10,485,138">
+                        <Label Content="Red Kits" HorizontalAlignment="Left" VerticalAlignment="Top" Width="229"
+                               HorizontalContentAlignment="Center" VerticalContentAlignment="Center" FontSize="16"
+                               Margin="10,0,0,0" />
+                        <syncfusion:SfTreeView x:Name="TV_WeaponKits_Generated_Red" AllowDrop="False"
+                                               HorizontalAlignment="Left" Height="442"
+                                               ItemTemplateDataContextType="Item" Margin="10,31,0,0" ShowLines="True"
+                                               ShowRootLines="True" SelectionMode="SingleDeselect"
+                                               VerticalAlignment="Top" Width="229" AllowDeleting="True"
+                                               AllowEditing="True" EditTrigger="DoubleTap" IsAnimationEnabled="True"
+                                               IsManipulationEnabled="True">
                             <syncfusion:SfTreeView.Nodes>
-                                <syncfusion:TreeViewNode Content="Please Generate a Kit" HasChildNodes="False" IsExpanded="False" IsChecked="False" ShowExpanderAnimation="False"/>
+                                <syncfusion:TreeViewNode Content="Please Generate a Kit" HasChildNodes="False"
+                                                         IsExpanded="False" IsChecked="False"
+                                                         ShowExpanderAnimation="False" />
                             </syncfusion:SfTreeView.Nodes>
                         </syncfusion:SfTreeView>
+                    </Grid>
+                    <Grid Height="57" Width="724"
+                          Margin="10,498,10,76">
+                        <syncfusion:ButtonAdv x:Name="WeaponKits_Generated_Export" Content="ButtonAdv" Height="37"
+                                              Label="Export : KeyCard Weapons Config Json"
+                                              Width="704" Margin="10" FontSize="18" Background="#4C26D315" />
                     </Grid>
                 </Grid>
             </syncfusion:TabItemExt>

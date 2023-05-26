@@ -33,12 +33,12 @@ Namespace Classes
             openFileDialog.Multiselect = True
 
             Dim fileNames As String() = Await Application.Current.Dispatcher.InvokeAsync(Function()
-                                                                                             If openFileDialog.ShowDialog() = True Then
-                                                                                                 Return openFileDialog.FileNames
-                                                                                             Else
-                                                                                                 Return New String() {}
-                                                                                             End If
-                                                                                         End Function)
+                If openFileDialog.ShowDialog() = True Then
+                    Return openFileDialog.FileNames
+                Else
+                    Return New String() {}
+                End If
+            End Function)
             Return fileNames
         End Function
 
@@ -93,10 +93,12 @@ Namespace Classes
                 If typeNode.SelectSingleNode("category") IsNot Nothing Then
                     If typeNode.SelectSingleNode("category").Attributes("name").Value IsNot Nothing Then
                         _Type.category = typeNode.SelectSingleNode("category").Attributes("name").Value
-                        Dim exists As Boolean = IsStringExistsInCollection(GlobalVariables.Types.Categories, _Type.category)
+                        Dim exists As Boolean = IsStringExistsInCollection(GlobalVariables.Types.Categories,
+                                                                           _Type.category)
                         If exists Then
                         Else
-                            GlobalVariables.Types.Categories.Add(New GlobalVariables.Types.CategoryInfo() With {.Checked = False, .Name = _Type.category})
+                            GlobalVariables.Types.Categories.Add(New GlobalVariables.Types.CategoryInfo() _
+                                                                    With {.Checked = False, .Name = _Type.category})
                         End If
 
                     End If
@@ -145,7 +147,9 @@ Namespace Classes
                 GlobalVariables.Types.Types.Add(_Type)
             Next
         End Function
-        Public Shared Function IsStringExistsInCollection(Of T)(collection As ObservableCollection(Of T), searchString As String) As Boolean
+
+        Public Shared Function IsStringExistsInCollection (Of T)(collection As ObservableCollection(Of T),
+                                                                 searchString As String) As Boolean
             For Each item As T In collection
                 Dim properties = item.GetType().GetProperties()
                 For Each prop In properties
@@ -156,16 +160,19 @@ Namespace Classes
             Next
             Return False
         End Function
+
         Public Shared Function SeparateString(ByVal inputString As String) As String()
             Dim separator As String = ","
             Dim separatedArray As String() = inputString.Split({separator}, StringSplitOptions.RemoveEmptyEntries)
             Return separatedArray
         End Function
-        Public Shared Sub UpdateCollectionsList(Of T)(searchString As String, CollectionObject As ObservableCollection(Of T), type As String)
+
+        Public Shared Sub UpdateCollectionsList (Of T)(searchString As String,
+                                                       CollectionObject As ObservableCollection(Of T), type As String)
             Dim tCollectionObject As ObservableCollection(Of T) = CollectionObject
             Dim TempStringArr As String() = SeparateString(searchString)
             For Each _str In TempStringArr
-                Dim exists As Boolean = IsStringExistsInCollection(Of T)(tCollectionObject, _str)
+                Dim exists As Boolean = IsStringExistsInCollection (Of T)(tCollectionObject, _str)
                 If exists Then
                     Continue For
                 Else
@@ -173,17 +180,22 @@ Namespace Classes
                 End If
             Next
         End Sub
+
         Public Shared Sub AddOptionToCollection(str As String, type As String)
             Select Case type
                 Case "usage"
-                    GlobalVariables.Types.Usages.Add(New GlobalVariables.Types.UsageInfo() With {.Checked = False, .Name = str})
+                    GlobalVariables.Types.Usages.Add(New GlobalVariables.Types.UsageInfo() _
+                                                        With {.Checked = False, .Name = str})
                 Case "tag"
-                    GlobalVariables.Types.Tags.Add(New GlobalVariables.Types.TagInfo() With {.Checked = False, .Name = str})
+                    GlobalVariables.Types.Tags.Add(New GlobalVariables.Types.TagInfo() _
+                                                      With {.Checked = False, .Name = str})
                 Case "value"
-                    GlobalVariables.Types.Values.Add(New GlobalVariables.Types.ValueInfo() With {.Checked = False, .Name = str})
+                    GlobalVariables.Types.Values.Add(New GlobalVariables.Types.ValueInfo() _
+                                                        With {.Checked = False, .Name = str})
                 Case Else
             End Select
         End Sub
+
         Public Shared Function GetUniqueClassnamesAndVariants(jsonFilePath As String) As List(Of String)
             Dim classNamesAndVariants As New List(Of String)()
             Dim variantsArray
@@ -225,6 +237,7 @@ Namespace Classes
             ' Return the list of unique "classname" and "variants" strings
             Return classNamesAndVariants
         End Function
+
         Public Shared Function RemoveDuplicates(ByVal list As List(Of String)) As List(Of String)
             Dim uniqueItems As New HashSet(Of String)()
 
@@ -242,5 +255,4 @@ Namespace Classes
             Return list
         End Function
     End Class
-
 End Namespace

@@ -14,7 +14,6 @@
 '                ExportTypesCollection(GlobalVariables.Types.Types, "KeyCard_Weapons_Config.json", t_tier)
 
 
-
 '            End Function
 
 
@@ -54,12 +53,6 @@
 
 '                    Dim workerThread As New Threading.Thread(AddressOf MainWindow.determineIfAdd)
 '                    workerThread.Start()
-
-
-
-
-
-
 
 
 '                    'Dim weapon As New WeaponInfo()
