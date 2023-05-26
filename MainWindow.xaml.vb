@@ -25,6 +25,7 @@ Imports System.Xml
 Imports Syncfusion.UI.Xaml.TreeGrid
 Imports Syncfusion.Data
 Imports Syncfusion.Windows.Controls.Input
+Imports Syncfusion.Windows.Tools.Controls
 
 
 ''' <summary>
@@ -67,33 +68,10 @@ Partial Public Class MainWindow
 
         InitializeComponent()
         AddHandler Me.Loaded, AddressOf OnLoaded
-        G_ImportedTypes.ItemsSource = GlobalVariables.Types.TypeFiles
-        G_Types.ItemsSource = GlobalVariables.Types.Types
-        CHK_Weapon_Red_Cat.ItemsSource = GlobalVariables.Types.Categories
-        CHK_Weapon_Red_Use.ItemsSource = GlobalVariables.Types.Usages
-        CHK_Weapon_Red_Val.ItemsSource = GlobalVariables.Types.Values
-        CHK_Weapon_Red_Tag.ItemsSource = GlobalVariables.Types.Tags
-        WeaponKits_SideArms.DataContext = GlobalVariables.SideArms
 
-
-        'Dim WeaponKitsTypes As String() = New String() {"Red", "Purple", "Blue", "Green", "Yellow"}
-        '' Create the drop-down menu
-        'Dim dropDownMenu As New ContextMenu()
-        '' Create menu items for each type
-        'For Each type As String In WeaponKitsTypes
-        '    Dim menuItem As New MenuItem()
-        '    menuItem.Header = type
-        '    dropDownMenu.Items.Add(menuItem)
-        'Next
-
-        'WeaponKit_ColorChoice.Content = dropDownMenu
-
-        'Dim WeaponKitsTypes As String() = New String() {"Red", "Purple", "Blue", "Green", "Yellow"}
-        'Dim WeaponKitsColorCodes As String() = New String() {"Red", "Purple", "Blue", "Green", "Yellow"}
-        'For i As Integer = 0 To WeaponKitsTypes.Length - 1
-        '    GlobalVariables.WeaponKits.Add(New GlobalVariables.WeaponKitsInfo(WeaponKitsTypes(i), False, WeaponKitsColorCodes(i)))
-        'Next i
-
+        seedItemSources()
+        seedWeaponKitSettings()
+        'HandleGridControlEvents(G_Weapon_Red)
 
     End Sub
 
@@ -122,9 +100,9 @@ Partial Public Class MainWindow
     ''' Method for Size Mode
     '''</summary>
     Private Sub OnSizeModeChanged()
-        Dim sizeMode As SizeMode = SizeMode.[Default]
+        Dim sizeMode As Syncfusion.SfSkinManager.SizeMode = Syncfusion.SfSkinManager.SizeMode.[Default]
         [Enum].TryParse(CurrentSizeModeProperty, sizeMode)
-        If sizeMode <> SizeMode.[Default] Then
+        If sizeMode <> Syncfusion.SfSkinManager.SizeMode.[Default] Then
             SfSkinManager.ApplyStylesOnApplication = True
             SfSkinManager.SetSizeMode(Me, sizeMode)
             SfSkinManager.ApplyStylesOnApplication = False
@@ -206,9 +184,217 @@ Partial Public Class MainWindow
         Else
             WeaponColorTier = WeaponKit_ColorChoice.SelectedItem.Content
             WeaponColorTier = WeaponColorTier.Replace(" Weapon Kit", "")
-            Await GenerateConfigs.Weapons.GenerateConfig(WeaponColorTier)
+
+
+
+            Dim weaponList As New Collection(Of GenerateConfigs.Weapons.WeaponInfo)()
+
+            For Each type In GlobalVariables.Types.Types
+
+
+                ''''''''FLAGS
+
+                checkedAddArgs = Await determineIfAdd(type)
+
+
+
+                'Dim weapon As New WeaponInfo()
+                'weapon.dna_Tier = t_tier
+                'weapon.dna_TheChosenOne = type.typename
+                'Dim exists As Boolean = StringExistsInCollection(type.typename, GlobalVariables.SideArms)
+                'If exists Then
+                '    weapon.dna_WeaponCategory = "side"
+                'End If
+
+                'CHECK IF TYPE CONTAINS REQUIRED FLAGS FOR ADD
+                'if selectedcats is not nothing then
+                'for every selectedcat in selectedcats
+                ' if type.section contains selected cat then
+                'flag to add
+                'else continue
+
+                If checkedAddArgs = True Then
+                    weaponList.Add(weapon)
+                End If
+            Next
+
+            Select Case WeaponColorTier
+                Case "Red"
+                    GenerateConfigs.Weapons.RedWeaponKits = weaponList
+                Case "Purple"
+
+                Case "Blue"
+
+                Case "Green"
+
+                Case "Yellow"
+
+            End Select
+
+            'Await GenerateConfigs.Weapons.GenerateConfig(WeaponColorTier)
         End If
 
     End Sub
+
+    Public Shared Sub seedWeaponKitSettings()
+        Dim WeaponKitsTypes As String() = New String() {"Red", "Purple", "Blue", "Green", "Yellow"}
+        For Each type As String In WeaponKitsTypes
+            GlobalVariables.Types.WeaponKits.Add(New GlobalVariables.Types.WeaponKitSettings(type, Nothing, Nothing, Nothing, Nothing, Nothing))
+        Next
+    End Sub
+    Public Sub seedItemSources()
+        G_ImportedTypes.ItemsSource = GlobalVariables.Types.TypeFiles
+        G_Types.ItemsSource = GlobalVariables.Types.Types
+        CHK_Weapon_Red_Cat.ItemsSource = GlobalVariables.Types.Categories
+        CHK_Weapon_Red_Use.ItemsSource = GlobalVariables.Types.Usages
+        CHK_Weapon_Red_Val.ItemsSource = GlobalVariables.Types.Values
+        CHK_Weapon_Red_Tag.ItemsSource = GlobalVariables.Types.Tags
+        WeaponKits_SideArms.DataContext = GlobalVariables.SideArms
+    End Sub
+
+    Async Function determineIfAdd(type As GlobalVariables.Types.TypeInfo) As Task(Of Boolean)
+        'CHECK IF TYPE CONTAINS REQUIRED FLAGS FOR ADD
+        '        'if selectedcats is not nothing then
+        '        'for every selectedcat in selectedcats
+        '        ' if type.section contains selected cat then
+        '        'flag to add
+        '        'else continue
+
+        Dim selectedArgs
+
+        'Flags
+        selectedArgs = Nothing
+        selectedArgs = CHK_Weapon_Red_Flags.SelectedItems
+
+
+
+
+        Dim xx = ""
+        Return True
+    End Function
+
+    Function StringExistsInCollection(ByVal searchString As String, ByVal collection As ObservableCollection(Of String)) As Boolean
+        Return collection.Any(Function(item) String.Equals(item, searchString, StringComparison.OrdinalIgnoreCase))
+    End Function
+    Public Class GenerateConfigs
+        Public Class Weapons
+
+            'Async Function GenerateConfig(t_tier As String) As Task
+            '    ExportTypesCollection(GlobalVariables.Types.Types, t_tier)
+
+
+
+            'End Function
+
+
+            Public Class WeaponInfo
+                Public Property dna_Tier As String
+                Public Property dna_WeaponCategory As String = "main"
+                Public Property dna_TheChosenOne As String = ""
+                Public Property dna_Magazine As String = "random"
+                Public Property dna_Ammunition As String = "random"
+                Public Property dna_OpticType As String = "random"
+                Public Property dna_Suppressor As String = "random"
+                Public Property dna_UnderBarrel As String = "random"
+                Public Property dna_ButtStock As String = "random"
+                Public Property dna_HandGuard As String = "random"
+                Public Property dna_Wrap As String = "random"
+            End Class
+            Public Shared RedWeaponKits As ObservableCollection(Of WeaponInfo)
+            Public Shared PurpleWeaponKits As ObservableCollection(Of WeaponInfo)
+            Public Shared BlueWeaponKits As ObservableCollection(Of WeaponInfo)
+            Public Shared GreenWeaponKits As ObservableCollection(Of WeaponInfo)
+            Public Shared YellowWeaponKits As ObservableCollection(Of WeaponInfo)
+
+            'Public Shared Function StringExistsInCollection(ByVal searchString As String, ByVal collection As ObservableCollection(Of String)) As Boolean
+            '    Return collection.Any(Function(item) String.Equals(item, searchString, StringComparison.OrdinalIgnoreCase))
+            'End Function
+
+            'Async Sub ExportTypesCollection(t_Types As ObservableCollection(Of GlobalVariables.Types.TypeInfo), t_tier As String)
+            '    Dim weaponList As New List(Of WeaponInfo)()
+
+            '    For Each type In t_Types
+
+
+            '        ''''''''FLAGS
+
+            '        checkedAddArgs = Await determineIfAdd(type)
+
+
+
+            '        'Dim weapon As New WeaponInfo()
+            '        'weapon.dna_Tier = t_tier
+            '        'weapon.dna_TheChosenOne = type.typename
+            '        'Dim exists As Boolean = StringExistsInCollection(type.typename, GlobalVariables.SideArms)
+            '        'If exists Then
+            '        '    weapon.dna_WeaponCategory = "side"
+            '        'End If
+
+            '        'CHECK IF TYPE CONTAINS REQUIRED FLAGS FOR ADD
+            '        'if selectedcats is not nothing then
+            '        'for every selectedcat in selectedcats
+            '        ' if type.section contains selected cat then
+            '        'flag to add
+            '        'else continue
+
+            '        If checkedAddArgs = True Then
+            '            weaponList.Add(weapon)
+            '        End If
+            '    Next
+
+            '    'Dim json = JsonConvert.SerializeObject(New With {Key .m_DNAConfig_Weapons = weaponList}, Formatting.Indented)
+            '    '' Get the directory path of the executable
+            '    'Dim executableDirectory = AppDomain.CurrentDomain.BaseDirectory
+
+            '    '' Combine the directory path with the provided file name
+            '    'Dim filePath = Path.Combine(executableDirectory, fileName)
+
+            '    '' Write the JSON to the file
+            '    'File.WriteAllText(filePath, json)
+            '    ''File.WriteAllText(filePath, json)
+            'End Sub
+            'Public Shared Sub ExportTypesToJson(t_Types As ObservableCollection(Of GlobalVariables.Types.TypeInfo), fileName As String, t_tier As String)
+            '    Dim weaponList As New List(Of WeaponInfo)()
+
+            '    For Each type In t_Types
+            '        Dim weapon As New WeaponInfo()
+            '        weapon.dna_Tier = t_tier
+            '        weapon.dna_TheChosenOne = type.typename
+            '        Dim exists As Boolean = StringExistsInCollection(type.typename, GlobalVariables.SideArms)
+            '        If exists Then
+            '            weapon.dna_WeaponCategory = "side"
+            '        End If
+
+            '        'CHECK IF TYPE CONTAINS REQUIRED FLAGS FOR ADD
+            '        'if selectedcats is not nothing then
+            '        'for every selectedcat in selectedcats
+            '        ' if type.section contains selected cat then
+            '        'flag to add
+            '        'else continue
+
+            '        If checkedAddArgs = True Then
+            '            weaponList.Add(weapon)
+            '        End If
+            '    Next
+
+            '    Dim json = JsonConvert.SerializeObject(New With {Key .m_DNAConfig_Weapons = weaponList}, Formatting.Indented)
+            '    ' Get the directory path of the executable
+            '    Dim executableDirectory = AppDomain.CurrentDomain.BaseDirectory
+
+            '    ' Combine the directory path with the provided file name
+            '    Dim filePath = Path.Combine(executableDirectory, fileName)
+
+            '    ' Write the JSON to the file
+            '    File.WriteAllText(filePath, json)
+            '    'File.WriteAllText(filePath, json)
+            'End Sub
+            'Public Function GetWeaponKitByCategory(category As String) As GlobalVariables.Types.WeaponKitSettings
+            '    Dim selectedKit = GlobalVariables.WeaponKits.FirstOrDefault(Function(kit) kit.Label.Contains(category))
+            '    Return selectedKit
+            'End Function
+
+        End Class
+    End Class
+
 End Class
 

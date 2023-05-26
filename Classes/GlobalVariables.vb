@@ -17,6 +17,25 @@ Namespace Classes
         End Class
         Public Shared WeaponKits As New ObservableCollection(Of WeaponKitsInfo)()
         Public Class Types
+            Public Class WeaponKitSettings
+                Public Sub New(type As String, flags() As String, categories() As String, values() As String, usages() As String, tags() As String)
+                    Me.Type = type
+                    Me.Flags = flags
+                    Me.Categories = categories
+                    Me.Values = values
+                    Me.Usages = usages
+                    Me.Tags = tags
+                End Sub
+
+                Public Property Type As String
+
+                Public Property Flags As String()
+                Public Property Categories As String()
+                Public Property Values As String()
+                Public Property Usages As String()
+                Public Property Tags As String()
+            End Class
+            Public Shared WeaponKits As New ObservableCollection(Of WeaponKitSettings)()
             Public Class CategoryInfo
                 Private _Checked As Boolean
                 Private _Name As String

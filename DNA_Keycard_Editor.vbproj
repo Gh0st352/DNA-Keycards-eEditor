@@ -48,6 +48,7 @@
     <OptionInfer>On</OptionInfer>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Microsoft.CSharp" />
     <Reference Include="Newtonsoft.Json, Version=13.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
       <HintPath>packages\Newtonsoft.Json.13.0.3\lib\net45\Newtonsoft.Json.dll</HintPath>
     </Reference>
@@ -55,6 +56,7 @@
       <HintPath>C:\Program Files (x86)\Syncfusion\Essential Studio\WPF\\precompiledassemblies\4.6\Syncfusion.Data.WPF.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="Syncfusion.SfBusyIndicator.WPF, Version=20.4460.0.38, Culture=neutral, PublicKeyToken=3d67ed1f87d44c89, processorArchitecture=MSIL" />
     <Reference Include="Syncfusion.SfChart.WPF, Version=20.4460.0.38, Culture=neutral, PublicKeyToken=3d67ed1f87d44c89, processorArchitecture=MSIL">
       <HintPath>C:\Program Files (x86)\Syncfusion\Essential Studio\WPF\\precompiledassemblies\4.6\Syncfusion.SfChart.WPF.dll</HintPath>
       <Private>True</Private>
@@ -67,11 +69,13 @@
       <HintPath>C:\Program Files (x86)\Syncfusion\Essential Studio\WPF\\precompiledassemblies\4.6\Syncfusion.SfGrid.WPF.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="Syncfusion.SfGridCommon.WPF, Version=20.4460.0.38, Culture=neutral, PublicKeyToken=3d67ed1f87d44c89, processorArchitecture=MSIL" />
     <Reference Include="Syncfusion.SfInput.WPF, Version=20.4460.0.38, Culture=neutral, PublicKeyToken=3d67ed1f87d44c89, processorArchitecture=MSIL" />
     <Reference Include="Syncfusion.SfSkinManager.WPF, Version=20.4460.0.38, Culture=neutral, PublicKeyToken=3d67ed1f87d44c89, processorArchitecture=MSIL">
       <HintPath>C:\Program Files (x86)\Syncfusion\Essential Studio\WPF\\precompiledassemblies\4.6\Syncfusion.SfSkinManager.WPF.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="Syncfusion.SfTreeView.WPF, Version=20.4460.0.38, Culture=neutral, PublicKeyToken=3d67ed1f87d44c89, processorArchitecture=MSIL" />
     <Reference Include="Syncfusion.Shared.WPF, Version=20.4460.0.38, Culture=neutral, PublicKeyToken=3d67ed1f87d44c89, processorArchitecture=MSIL">
       <HintPath>C:\Program Files (x86)\Syncfusion\Essential Studio\WPF\\precompiledassemblies\4.6\Syncfusion.Shared.WPF.dll</HintPath>
       <Private>True</Private>
