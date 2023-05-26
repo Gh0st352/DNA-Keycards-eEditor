@@ -120,23 +120,23 @@ Partial Public Class MainWindow
         Next
     End Sub
 
-    Private Sub WeaponKit_ColorChoice_SelectionChanged(sender As Object, e As Windows.Controls.SelectionChangedEventArgs) _
-        Handles WeaponKit_ColorChoice.SelectionChanged
+    Private Sub Kit_ColorChoice_SelectionChanged(sender As Object, e As Windows.Controls.SelectionChangedEventArgs) _
+        Handles Kit_ColorChoice.SelectionChanged
         Dim SelectedItems = e.AddedItems
         Dim SelectedText = SelectedItems.Item(0).Content
         Select Case SelectedText
-            Case "Red Weapon Kit"
-                SetGridBackgroundColor(G_Weapon_Red, 131, 14, 14, 30)
-            Case "Purple Weapon Kit"
-                SetGridBackgroundColor(G_Weapon_Red, 238, 51, 229, 20)
-            Case "Blue Weapon Kit"
-                SetGridBackgroundColor(G_Weapon_Red, 48, 67, 225, 20)
-            Case "Green Weapon Kit"
-                SetGridBackgroundColor(G_Weapon_Red, 80, 255, 71, 20)
-            Case "Yellow Weapon Kit"
-                SetGridBackgroundColor(G_Weapon_Red, 255, 243, 0, 30)
+            Case "Red Kit"
+                SetGridBackgroundColor(G_KitType, 131, 14, 14, 30)
+            Case "Purple Kit"
+                SetGridBackgroundColor(G_KitType, 238, 51, 229, 20)
+            Case "Blue Kit"
+                SetGridBackgroundColor(G_KitType, 48, 67, 225, 20)
+            Case "Green Kit"
+                SetGridBackgroundColor(G_KitType, 80, 255, 71, 20)
+            Case "Yellow Kit"
+                SetGridBackgroundColor(G_KitType, 255, 243, 0, 30)
             Case Else
-                SetGridBackgroundColor(G_Weapon_Red, 83, 83, 83, 20)
+                SetGridBackgroundColor(G_KitType, 83, 83, 83, 20)
         End Select
         Dim xx = ""
     End Sub
@@ -158,7 +158,7 @@ Partial Public Class MainWindow
             AddMissingTypes(foundTypes, GlobalVariables.SideArms)
         Next
 
-        UpdateTextBoxWithStrings(WeaponKits_SideArms, GlobalVariables.SideArms)
+        UpdateTextBoxWithStrings(Kits_SideArms, GlobalVariables.SideArms)
     End Sub
 
     Sub AddMissingTypes(foundTypes As List(Of String), SideArms As ObservableCollection(Of String))
@@ -177,22 +177,22 @@ Partial Public Class MainWindow
         Next
     End Sub
 
-    Private Sub WeaponKits_ClearSidearms_Click(sender As Object, e As RoutedEventArgs) _
-        Handles WeaponKits_ClearSidearms.Click
+    Private Sub Kits_ClearSidearms_Click(sender As Object, e As RoutedEventArgs) _
+        Handles Kits_ClearSidearms.Click
         GlobalVariables.SideArms.Clear()
-        WeaponKits_SideArms.Clear()
+        Kits_SideArms.Clear()
     End Sub
 
     Private Async Sub WeaponKits_Generate_Click(sender As Object, e As RoutedEventArgs) _
         Handles WeaponKits_Generate.Click
         Dim WeaponColorTier As String
 
-        If IsNothing(WeaponKit_ColorChoice.SelectedItem) Then
+        If IsNothing(Kit_ColorChoice.SelectedItem) Then
             Windows.MessageBox.Show("Please select a color tier", "Alert", MessageBoxButtons.OK,
                                     MessageBoxIcon.Information)
         Else
-            WeaponColorTier = WeaponKit_ColorChoice.SelectedItem.Content
-            WeaponColorTier = WeaponColorTier.Replace(" Weapon Kit", "")
+            WeaponColorTier = Kit_ColorChoice.SelectedItem.Content
+            WeaponColorTier = WeaponColorTier.Replace(" Kit", "")
 
 
             Dim weaponList As New ObservableCollection(Of GenerateConfigs.Weapons.WeaponInfo)()
@@ -236,7 +236,7 @@ Partial Public Class MainWindow
     End Sub
 
     Sub UpdateGeneratedWeaponKits()
-        Tab_WeaponsGenerated.IsSelected = True
+        Tab_KitsGenerated.IsSelected = True
 
         'Red Update
         If GenerateConfigs.Weapons.RedWeaponKits IsNot Nothing Then
@@ -276,7 +276,7 @@ Partial Public Class MainWindow
 
 
 
-        Tab_Weapons.IsSelected = True
+        Tab_Kits.IsSelected = True
     End Sub
     Function CreateNodeSetWeapon(WeaponSet_ As GenerateConfigs.Weapons.WeaponInfo) As TreeViewNode
         Dim tParentNode As New TreeViewNode
@@ -323,13 +323,6 @@ Partial Public Class MainWindow
         CHK_Weapon_Red_Use.ItemsSource = GlobalVariables.Types.Usages
         CHK_Weapon_Red_Val.ItemsSource = GlobalVariables.Types.Values
         CHK_Weapon_Red_Tag.ItemsSource = GlobalVariables.Types.Tags
-        'WeaponKits_SideArms.DataContext = GlobalVariables.SideArms
-
-        'Clothing Kits
-        CHK_Clothing_Cat.ItemsSource = GlobalVariables.Types.Categories
-        CHK_Clothing_Use.ItemsSource = GlobalVariables.Types.Usages
-        CHK_Clothing_Val.ItemsSource = GlobalVariables.Types.Values
-        CHK_Clothing_Tag.ItemsSource = GlobalVariables.Types.Tags
         'WeaponKits_SideArms.DataContext = GlobalVariables.SideArms
 
     End Sub
@@ -663,7 +656,7 @@ Partial Public Class MainWindow
         End If
     End Sub
 
-    Private Async Sub WeaponKits_ImportRestricted_Click(sender As Object, e As RoutedEventArgs) Handles WeaponKits_ImportRestricted.Click
+    Private Async Sub Kits_ImportRestricted_Click(sender As Object, e As RoutedEventArgs) Handles Kits_ImportRestricted.Click
         Dim results As String() = Await FileSelectionHelper.SelectMultipleFilesAsync()
         Dim foundTypes As List(Of String)
         For Each resultPath As String In results
@@ -677,30 +670,10 @@ Partial Public Class MainWindow
         UpdateTextBoxWithStrings(WeaponKits_Restricted, GlobalVariables.RestrictedTypes)
     End Sub
 
-    Private Sub WeaponKits_ClearRestricted_Click(sender As Object, e As RoutedEventArgs) Handles WeaponKits_ClearRestricted.Click
+    Private Sub Kits_ClearRestricted_Click(sender As Object, e As RoutedEventArgs) Handles Kits_ClearRestricted.Click
         GlobalVariables.RestrictedTypes.Clear()
-        WeaponKits_Restricted.Clear()
+        Kits_Restricted.Clear()
     End Sub
 
-    Private Sub Clothing_ColorChoice_SelectionChanged(sender As Object, e As Windows.Controls.SelectionChangedEventArgs) Handles Clothing_ColorChoice.SelectionChanged
-        Dim SelectedItems = e.AddedItems
-        Dim SelectedText = SelectedItems.Item(0).Content
-        Select Case SelectedText
-            Case "Red Clothing Kit"
-                SetGridBackgroundColor(G_Clothing, 131, 14, 14, 30)
-            Case "Purple Clothing Kit"
-                SetGridBackgroundColor(G_Clothing, 238, 51, 229, 20)
-            Case "Blue Clothing Kit"
-                SetGridBackgroundColor(G_Clothing, 48, 67, 225, 20)
-            Case "Green Clothing Kit"
-                SetGridBackgroundColor(G_Clothing, 80, 255, 71, 20)
-            Case "Yellow Clothing Kit"
-                SetGridBackgroundColor(G_Clothing, 255, 243, 0, 30)
-            Case Else
-                SetGridBackgroundColor(G_Clothing, 83, 83, 83, 20)
-        End Select
-        Dim xx = ""
-
-    End Sub
 End Class
 
