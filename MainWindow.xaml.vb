@@ -70,7 +70,7 @@ Partial Public Class MainWindow
 
         InitializeComponent()
         AddHandler Me.Loaded, AddressOf OnLoaded
-
+        Me.AllowDrop = True
         seedItemSources()
         seedWeaponKitSettings()
         seedHandlers()
@@ -759,14 +759,14 @@ Partial Public Class MainWindow
     End Sub
     Private Sub MainWindow_DragEnter(sender As Object, e As Windows.DragEventArgs)
         If e.Data.GetDataPresent(Windows.DataFormats.FileDrop) Then
-            e.Effects = If(IsTabItemExtActive(), Windows.DragDropEffects.Copy, Windows.DragDropEffects.None)
+            e.Effects = If(IsTabItemExtActive(Tab_ClothesSettings), Windows.DragDropEffects.Copy, Windows.DragDropEffects.None)
         Else
             e.Effects = Windows.DragDropEffects.None
         End If
     End Sub
 
     Private Sub MainWindow_Drop(sender As Object, e As Windows.DragEventArgs)
-        If e.Data.GetDataPresent(Windows.DataFormats.FileDrop) AndAlso IsTabItemExtActive() Then
+        If e.Data.GetDataPresent(Windows.DataFormats.FileDrop) AndAlso IsTabItemExtActive(Tab_ClothesSettings) Then
             Dim files As String() = DirectCast(e.Data.GetData(Windows.DataFormats.FileDrop), String())
             Dim filePaths As New ObservableCollection(Of String)()
             For Each filePath As String In files
@@ -777,10 +777,15 @@ Partial Public Class MainWindow
         End If
     End Sub
 
-    Private Function IsTabItemExtActive() As Boolean
+    Private Function IsTabItemExtActive(TabItem As TabItemExt) As Boolean
         ' Replace 'tabItem' with the actual instance of the TabItemExt you want to check
-        Dim tabItem As TabItemExt = GetCurrentActiveTabItem()
-        Return tabItem IsNot Nothing
+        Dim ActiveTab As TabItemExt = GetCurrentActiveTabItem()
+
+        If ActiveTab Is TabItem Then
+            Return True
+        Else
+            Return False
+        End If
     End Function
 
     Private Function GetCurrentActiveTabItem() As TabItemExt

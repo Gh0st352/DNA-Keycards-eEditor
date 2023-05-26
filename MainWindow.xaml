@@ -11,21 +11,21 @@
     Background="#FF3F3F46" UseLayoutRounding="True" SnapsToDevicePixels="True" ResizeMode="CanMinimize"
     CornerRadius="15" IconAlignment="Right" ShowMaximizeButton="False" TitleFontSize="20" TitleBarHeight="40"
     AllowsTransparency="True" WindowStyle="None" MinWidth="1155" MinHeight="725" MaxWidth="750" MaxHeight="600" AllowDrop="True">
-    <Grid>
-        <Grid Height="649" VerticalAlignment="Top">
+    <Grid AllowDrop="True">
+        <Grid Height="649" VerticalAlignment="Top" AllowDrop="True">
             <syncfusion:TabControlExt x:Name="MainTabs" TabItemSize="Normal" CloseButtonType="Hide"
                                   ShowTabItemContextMenu="False" ShowTabListContextMenu="False" EnableLabelEdit="False"
                                   TabStripPlacement="Top" AllowDrop="True">
-                <syncfusion:TabItemExt x:Name="Tab_Main" Header="Main Menu" MinWidth="20" AllowDrop="False">
-                    <Grid>
+                <syncfusion:TabItemExt x:Name="Tab_Main" Header="Main Menu" MinWidth="20" AllowDrop="True">
+                    <Grid AllowDrop="True">
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="337*" />
                             <ColumnDefinition Width="407*" />
                         </Grid.ColumnDefinitions>
                         <syncfusion:ButtonAdv x:Name="B_ImportTypes" Content="ButtonAdv" HorizontalAlignment="Left"
                                           Height="29" Label="Import Types" VerticalAlignment="Top" Width="213"
-                                          Margin="10,10,0,0" />
-                        <syncfusion:SfTreeGrid x:Name="G_ImportedTypes" Margin="10,49,114,10" ColumnSizer="Auto">
+                                          Margin="10,10,0,0" AllowDrop="True" />
+                        <syncfusion:SfTreeGrid x:Name="G_ImportedTypes" Margin="10,49,114,10" ColumnSizer="Auto" AllowDrop="True">
                             <syncfusion:SfTreeGrid.Columns>
                                 <syncfusion:TreeGridTextColumn HeaderText="Imported List Types" MappingName="Name"
                                                            IsReadOnly="True" ColumnSizer="FillColumn" />
@@ -35,9 +35,9 @@
                         </syncfusion:SfTreeGrid>
                     </Grid>
                 </syncfusion:TabItemExt>
-                <syncfusion:TabItemExt x:Name="Tab_Types" Header="Types" MinWidth="20" MinHeight="20">
-                    <Grid>
-                        <syncfusion:SfTreeGrid x:Name="G_Types" ColumnSizer="SizeToHeader" ScrollViewer.CanContentScroll="True" ScrollViewer.HorizontalScrollBarVisibility="Visible" ScrollViewer.VerticalScrollBarVisibility="Visible" Margin="0,0,0,10">
+                <syncfusion:TabItemExt x:Name="Tab_Types" Header="Types" MinWidth="20" MinHeight="20" AllowDrop="True">
+                    <Grid AllowDrop="True">
+                        <syncfusion:SfTreeGrid x:Name="G_Types" ColumnSizer="SizeToHeader" ScrollViewer.CanContentScroll="True" ScrollViewer.HorizontalScrollBarVisibility="Visible" ScrollViewer.VerticalScrollBarVisibility="Visible" Margin="0,0,0,10" AllowDrop="True">
                             <syncfusion:SfTreeGrid.Columns>
                                 <syncfusion:TreeGridTextColumn HeaderText="Type Name" MappingName="typename"
                                                            IsReadOnly="True" />
@@ -45,333 +45,333 @@
                         </syncfusion:SfTreeGrid>
                     </Grid>
                 </syncfusion:TabItemExt>
-                <syncfusion:TabItemExt x:Name="Tab_Kits" Header="Kits" MinWidth="20" MinHeight="20">
-                    <Grid>
-                        <Grid x:Name="G_KitType" Background="#33535353">
+                <syncfusion:TabItemExt x:Name="Tab_Kits" Header="Kits" MinWidth="20" MinHeight="20" AllowDrop="True">
+                    <Grid AllowDrop="True">
+                        <Grid x:Name="G_KitType" Background="#33535353" AllowDrop="True">
                             <Grid x:Name="G_Flags" HorizontalAlignment="Left" Height="227" VerticalAlignment="Top"
-                              Width="209" Margin="10,38,0,0">
+                              Width="209" Margin="10,38,0,0" AllowDrop="True">
                                 <Label Content="Flags" HorizontalAlignment="Left" VerticalAlignment="Top" Width="209"
                                    HorizontalContentAlignment="Center" VerticalContentAlignment="Center"
-                                   BorderBrush="#FF020000" />
+                                   BorderBrush="#FF020000" AllowDrop="True" />
                                 <syncfusion:CheckListBox x:Name="CHK_Weapon_Red_Flags" HorizontalAlignment="Left"
                                                      Height="196" VerticalAlignment="Top" Width="209" Margin="0,31,0,0"
-                                                     BorderThickness="2">
-                                    <syncfusion:CheckListBoxItem Content="Count in Cargo" Margin="0" />
-                                    <syncfusion:CheckListBoxItem Content="Count in Hoarder" Margin="0" />
-                                    <syncfusion:CheckListBoxItem Content="Count in Map" Margin="0" />
-                                    <syncfusion:CheckListBoxItem Content="Count in Player" Margin="0" />
-                                    <syncfusion:CheckListBoxItem Content="Crafted" Margin="0" />
-                                    <syncfusion:CheckListBoxItem Content="Dynamic Event Loot" Margin="0" />
+                                                     BorderThickness="2" AllowDrop="True">
+                                    <syncfusion:CheckListBoxItem Content="Count in Cargo" Margin="0" AllowDrop="True" />
+                                    <syncfusion:CheckListBoxItem Content="Count in Hoarder" Margin="0" AllowDrop="True" />
+                                    <syncfusion:CheckListBoxItem Content="Count in Map" Margin="0" AllowDrop="True" />
+                                    <syncfusion:CheckListBoxItem Content="Count in Player" Margin="0" AllowDrop="True" />
+                                    <syncfusion:CheckListBoxItem Content="Crafted" Margin="0" AllowDrop="True" />
+                                    <syncfusion:CheckListBoxItem Content="Dynamic Event Loot" Margin="0" AllowDrop="True" />
                                 </syncfusion:CheckListBox>
                             </Grid>
                             <Grid x:Name="G_Categories" HorizontalAlignment="Left" Height="227" VerticalAlignment="Top"
-                              Width="209" Margin="240,38,0,0">
+                              Width="209" Margin="240,38,0,0" AllowDrop="True">
                                 <Label Content="Detected Categories" HorizontalAlignment="Left" VerticalAlignment="Top"
                                    Width="209" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"
-                                   BorderBrush="#FF020000" />
+                                   BorderBrush="#FF020000" AllowDrop="True" />
                                 <syncfusion:CheckListBox x:Name="CHK_Weapon_Red_Cat" HorizontalAlignment="Left"
                                                      Height="196" VerticalAlignment="Top" Width="209" Margin="0,31,0,0"
-                                                     BorderThickness="2" DisplayMemberPath="Name" />
+                                                     BorderThickness="2" DisplayMemberPath="Name" AllowDrop="True" />
                             </Grid>
                             <Grid x:Name="G_Values" HorizontalAlignment="Left" Height="227" VerticalAlignment="Top"
-                              Width="209" Margin="468,38,0,0">
+                              Width="209" Margin="468,38,0,0" AllowDrop="True">
                                 <Label Content="Detected Values" HorizontalAlignment="Left" VerticalAlignment="Top"
                                    Width="209" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"
-                                   BorderBrush="#FF020000" />
+                                   BorderBrush="#FF020000" AllowDrop="True" />
                                 <syncfusion:CheckListBox x:Name="CHK_Weapon_Red_Val" HorizontalAlignment="Left"
                                                      Height="196" VerticalAlignment="Top" Width="209" Margin="0,31,0,0"
-                                                     BorderThickness="2" DisplayMemberPath="Name" />
+                                                     BorderThickness="2" DisplayMemberPath="Name" AllowDrop="True" />
                             </Grid>
                             <Grid x:Name="G_Usages" HorizontalAlignment="Left" Height="459" VerticalAlignment="Top"
-                              Width="209" Margin="696,38,0,0">
+                              Width="209" Margin="696,38,0,0" AllowDrop="True">
                                 <Label Content="Detected Usages" HorizontalAlignment="Left" VerticalAlignment="Top"
                                    Width="209" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"
-                                   BorderBrush="#FF020000" />
+                                   BorderBrush="#FF020000" AllowDrop="True" />
                                 <syncfusion:CheckListBox x:Name="CHK_Weapon_Red_Use" HorizontalAlignment="Left"
                                                      Height="418" VerticalAlignment="Top" Width="209" Margin="0,31,0,0"
-                                                     BorderThickness="2" DisplayMemberPath="Name" />
+                                                     BorderThickness="2" DisplayMemberPath="Name" AllowDrop="True" />
                             </Grid>
                             <Grid x:Name="G_Tags" HorizontalAlignment="Left" Height="459" VerticalAlignment="Top"
-                              Width="209" Margin="925,38,0,0">
+                              Width="209" Margin="925,38,0,0" AllowDrop="True">
                                 <Grid.RowDefinitions>
                                     <RowDefinition Height="91*"/>
                                     <RowDefinition Height="136*"/>
                                 </Grid.RowDefinitions>
                                 <Label Content="Detected Tags" HorizontalAlignment="Left" VerticalAlignment="Top"
                                    Width="209" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"
-                                   BorderBrush="#FF020000" />
+                                   BorderBrush="#FF020000" AllowDrop="True" />
                                 <syncfusion:CheckListBox x:Name="CHK_Weapon_Red_Tag" HorizontalAlignment="Left"
                                                      Height="418" VerticalAlignment="Top" Width="209" Margin="0,31,0,0"
-                                                     BorderThickness="2" DisplayMemberPath="Name" Grid.RowSpan="2" />
+                                                     BorderThickness="2" DisplayMemberPath="Name" Grid.RowSpan="2" AllowDrop="True" />
                             </Grid>
                             <syncfusion:ComboBoxAdv x:Name="Kit_ColorChoice" HorizontalAlignment="Left" Height="33"
                                                 Margin="10,5,0,0" VerticalAlignment="Top" Width="1124"
                                                 DefaultText="Select Kit Type"
-                                                HorizontalContentAlignment="Center" FontSize="16">
-                                <ListBoxItem Content="Red Kit" />
-                                <ListBoxItem Content="Purple Kit" />
-                                <ListBoxItem Content="Blue Kit" />
-                                <ListBoxItem Content="Green Kit" />
-                                <ListBoxItem Content="Yellow Kit" />
+                                                HorizontalContentAlignment="Center" FontSize="16" AllowDrop="True">
+                                <ListBoxItem Content="Red Kit" AllowDrop="True" />
+                                <ListBoxItem Content="Purple Kit" AllowDrop="True" />
+                                <ListBoxItem Content="Blue Kit" AllowDrop="True" />
+                                <ListBoxItem Content="Green Kit" AllowDrop="True" />
+                                <ListBoxItem Content="Yellow Kit" AllowDrop="True" />
                             </syncfusion:ComboBoxAdv>
                             <Grid x:Name="G_Sidearms" HorizontalAlignment="Left" Height="340" VerticalAlignment="Top"
-                              Width="333" Margin="10,270,0,0">
+                              Width="333" Margin="10,270,0,0" AllowDrop="True">
                                 <Label Content="Side Arms Types (1 per line, will be set to &quot;side&quot;)" HorizontalAlignment="Left" VerticalAlignment="Top"
                                    Width="313" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"
-                                   BorderBrush="#FF020000" Margin="10,0,0,0" />
+                                   BorderBrush="#FF020000" Margin="10,0,0,0" AllowDrop="True" />
                                 <syncfusion:SfTextBoxExt x:Name="Kits_SideArms"
                                                      Height="259" Margin="0,31,0,0" TextWrapping="Wrap"
-                                                     VerticalAlignment="Top" />
+                                                     VerticalAlignment="Top" AllowDrop="True" />
                                 <syncfusion:ButtonAdv x:Name="Kits_ImportSidearm" Content="ButtonAdv"
                                                   HorizontalAlignment="Left" Height="35"
                                                   Label="Import Types From Expansion Market JSON" VerticalAlignment="Top"
-                                                  Width="200" Margin="0,295,0,0" Click="ButtonImportExpansionMarketClick" Background="#261A88E4" />
+                                                  Width="200" Margin="0,295,0,0" Click="ButtonImportExpansionMarketClick" Background="#261A88E4" AllowDrop="True" />
                                 <syncfusion:ButtonAdv x:Name="Kits_ClearSidearms" Content="ButtonAdv"
                                                   HorizontalAlignment="Left" Height="35" Label="Clear Sidearms"
-                                                  VerticalAlignment="Top" Width="128" Margin="205,295,0,0" Background="#4CD13333" />
+                                                  VerticalAlignment="Top" Width="128" Margin="205,295,0,0" Background="#4CD13333" AllowDrop="True" />
                             </Grid>
                             <syncfusion:ButtonAdv x:Name="WeaponKits_Generate" Content="ButtonAdv" Label="Generate Weapon Kit"
-                                              Background="#632CC33A" FontSize="16" Margin="696,502,10,72" />
+                                              Background="#632CC33A" FontSize="16" Margin="696,502,10,72" AllowDrop="True" />
                         </Grid>
                         <Grid x:Name="G_Sidearms_Copy" HorizontalAlignment="Left" Height="340" VerticalAlignment="Top"
-                            Width="333" Margin="354,270,0,0">
+                            Width="333" Margin="354,270,0,0" AllowDrop="True">
                             <Label Content="Restricted Types (1 per line ,will be skipped)" HorizontalAlignment="Left" VerticalAlignment="Top"
                                 Width="333" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"
-                                BorderBrush="#FF020000" />
+                                BorderBrush="#FF020000" AllowDrop="True" />
                             <syncfusion:SfTextBoxExt x:Name="Kits_Restricted"
                                 Height="259" Margin="0,31,0,0" TextWrapping="Wrap"
-                                VerticalAlignment="Top" />
+                                VerticalAlignment="Top" AllowDrop="True" />
                             <syncfusion:ButtonAdv x:Name="Kits_ImportRestricted" Content="ButtonAdv"
                                 HorizontalAlignment="Left" Height="35"
                                 Label="Import Types From Expansion Market JSON" VerticalAlignment="Top"
-                                Width="176" Margin="0,295,0,0" Background="#261A88E4" />
+                                Width="176" Margin="0,295,0,0" Background="#261A88E4" AllowDrop="True" />
                             <syncfusion:ButtonAdv x:Name="Kits_ClearRestricted" Content="ButtonAdv"
                                 HorizontalAlignment="Left" Height="35" Label="Clear Restricted"
-                                VerticalAlignment="Top" Width="152" Margin="181,295,0,0" Background="#4CD13333" />
+                                VerticalAlignment="Top" Width="152" Margin="181,295,0,0" Background="#4CD13333" AllowDrop="True" />
                         </Grid>
                     </Grid>
                 </syncfusion:TabItemExt>
                 <syncfusion:TabItemExt x:Name="Tab_ClothesSettings" Header="Clothing Kit Settings" MinWidth="20" MinHeight="20" AllowDrop="True">
-                    <Grid x:Name="G_ClothesSettings">
+                    <Grid x:Name="G_ClothesSettings" AllowDrop="True">
                         <Grid x:Name="G_Helmets" HorizontalAlignment="Left" Height="178" VerticalAlignment="Top"
-                            Width="265" Margin="10,10,0,0" Background="#4C4B2C2C">
+                            Width="265" Margin="10,10,0,0" Background="#4C4B2C2C" AllowDrop="True">
                             <Label Content="Helmet Types (1 per line)" VerticalAlignment="Top" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"
-                                BorderBrush="#FF020000" />
+                                BorderBrush="#FF020000" AllowDrop="True" />
                             <syncfusion:SfTextBoxExt x:Name="Clothes_Helmets"
                                 Height="106" Margin="0,31,0,0" TextWrapping="NoWrap"
-                                VerticalAlignment="Top" AcceptsReturn="True" MinLines="1" Delimiter="Environment.NewLine" />
+                                VerticalAlignment="Top" AcceptsReturn="True" MinLines="1" Delimiter="Environment.NewLine" AllowDrop="True" />
                             <syncfusion:ButtonAdv x:Name="Clothes_Helmets_Import" Content="ButtonAdv" Height="35"
-                                Label="Import Types From Expansion Market JSON" VerticalAlignment="Bottom" Margin="0,0,80,0" Background="#261A88E4" />
+                                Label="Import Types From Expansion Market JSON" VerticalAlignment="Bottom" Margin="0,0,80,0" Background="#261A88E4" AllowDrop="True" />
                             <syncfusion:ButtonAdv x:Name="Clothes_Helmets_Clear" Content="ButtonAdv" Height="35" Label="Clear"
-                                VerticalAlignment="Bottom" Margin="190,0,0,1" Background="#4CD13333" />
+                                VerticalAlignment="Bottom" Margin="190,0,0,1" Background="#4CD13333" AllowDrop="True" />
                         </Grid>
                         <Grid x:Name="G_Pants" HorizontalAlignment="Left" Height="178" VerticalAlignment="Top"
-                            Width="265" Margin="300,10,0,0" Background="#4C4B2C2C">
+                            Width="265" Margin="300,10,0,0" Background="#4C4B2C2C" AllowDrop="True">
                             <Label Content="Pant Types (1 per line)" VerticalAlignment="Top" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"
-                                BorderBrush="#FF020000" />
+                                BorderBrush="#FF020000" AllowDrop="True" />
                             <syncfusion:SfTextBoxExt x:Name="Clothes_Pants"
                                 Height="106" Margin="0,31,0,0" TextWrapping="NoWrap"
-                                VerticalAlignment="Top" AcceptsReturn="True" MinLines="1" Delimiter="Environment.NewLine" />
+                                VerticalAlignment="Top" AcceptsReturn="True" MinLines="1" Delimiter="Environment.NewLine" AllowDrop="True" />
                             <syncfusion:ButtonAdv x:Name="Clothes_Pants_Import" Content="ButtonAdv" Height="35"
-                                Label="Import Types From Expansion Market JSON" VerticalAlignment="Bottom" Margin="0,0,80,0" Background="#261A88E4" />
+                                Label="Import Types From Expansion Market JSON" VerticalAlignment="Bottom" Margin="0,0,80,0" Background="#261A88E4" AllowDrop="True" />
                             <syncfusion:ButtonAdv x:Name="Clothes_Pants_Clear" Content="ButtonAdv" Height="35" Label="Clear"
-                                VerticalAlignment="Bottom" Margin="190,0,0,1" Background="#4CD13333" />
+                                VerticalAlignment="Bottom" Margin="190,0,0,1" Background="#4CD13333" AllowDrop="True" />
                         </Grid>
                         <Grid x:Name="G_Gloves" HorizontalAlignment="Left" Height="178" VerticalAlignment="Top"
-                            Width="265" Margin="585,10,0,0" Background="#4C4B2C2C">
+                            Width="265" Margin="585,10,0,0" Background="#4C4B2C2C" AllowDrop="True">
                             <Label Content="Glove Types (1 per line)" VerticalAlignment="Top" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"
-                                BorderBrush="#FF020000" />
+                                BorderBrush="#FF020000" AllowDrop="True" />
                             <syncfusion:SfTextBoxExt x:Name="Clothes_Gloves"
                                 Height="106" Margin="0,31,0,0" TextWrapping="NoWrap"
-                                VerticalAlignment="Top" AcceptsReturn="True" MinLines="1" Delimiter="Environment.NewLine" />
+                                VerticalAlignment="Top" AcceptsReturn="True" MinLines="1" Delimiter="Environment.NewLine" AllowDrop="True" />
                             <syncfusion:ButtonAdv x:Name="Clothes_Gloves_Import" Content="ButtonAdv" Height="35"
-                                Label="Import Types From Expansion Market JSON" VerticalAlignment="Bottom" Margin="0,0,80,0" Background="#261A88E4" />
+                                Label="Import Types From Expansion Market JSON" VerticalAlignment="Bottom" Margin="0,0,80,0" Background="#261A88E4" AllowDrop="True" />
                             <syncfusion:ButtonAdv x:Name="Clothes_Gloves_Clear" Content="ButtonAdv" Height="35" Label="Clear"
-                                VerticalAlignment="Bottom" Margin="190,0,0,1" Background="#4CD13333" />
+                                VerticalAlignment="Bottom" Margin="190,0,0,1" Background="#4CD13333" AllowDrop="True" />
                         </Grid>
                         <Grid x:Name="G_Eyewear" HorizontalAlignment="Left" Height="149" VerticalAlignment="Top"
-                            Width="265" Margin="874,10,0,0" Background="#4C4B2C2C">
+                            Width="265" Margin="874,10,0,0" Background="#4C4B2C2C" AllowDrop="True">
                             <Label Content="Eyewear Types (1 per line)" VerticalAlignment="Top" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"
-                                BorderBrush="#FF020000" />
+                                BorderBrush="#FF020000" AllowDrop="True" />
                             <syncfusion:SfTextBoxExt x:Name="Clothes_Eyewear"
                                 Height="78" Margin="0,31,0,0" TextWrapping="NoWrap"
-                                VerticalAlignment="Top" AcceptsReturn="True" MinLines="1" Delimiter="Environment.NewLine" />
+                                VerticalAlignment="Top" AcceptsReturn="True" MinLines="1" Delimiter="Environment.NewLine" AllowDrop="True" />
                             <syncfusion:ButtonAdv x:Name="Clothes_Eyewear_Import" Content="ButtonAdv" Height="35"
-                                Label="Import Types From Expansion Market JSON" VerticalAlignment="Bottom" Margin="0,0,80,0" Background="#261A88E4" />
+                                Label="Import Types From Expansion Market JSON" VerticalAlignment="Bottom" Margin="0,0,80,0" Background="#261A88E4" AllowDrop="True" />
                             <syncfusion:ButtonAdv x:Name="Clothes_Eyewear_Clear" Content="ButtonAdv" Height="35" Label="Clear"
-                                VerticalAlignment="Bottom" Margin="190,0,0,1" Background="#4CD13333" />
+                                VerticalAlignment="Bottom" Margin="190,0,0,1" Background="#4CD13333" AllowDrop="True" />
                         </Grid>
                         <Grid x:Name="G_Shirts" HorizontalAlignment="Left" Height="178" VerticalAlignment="Top"
-                            Width="265" Margin="10,193,0,0" Background="#4C4B2C2C">
+                            Width="265" Margin="10,193,0,0" Background="#4C4B2C2C" AllowDrop="True">
                             <Label Content="Shirt Types (1 per line)" VerticalAlignment="Top" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"
-                                BorderBrush="#FF020000" />
+                                BorderBrush="#FF020000" AllowDrop="True" />
                             <syncfusion:SfTextBoxExt x:Name="Clothes_Shirts"
                                 Height="106" Margin="0,31,0,0" TextWrapping="NoWrap"
-                                VerticalAlignment="Top" AcceptsReturn="True" MinLines="1" Delimiter="Environment.NewLine" />
+                                VerticalAlignment="Top" AcceptsReturn="True" MinLines="1" Delimiter="Environment.NewLine" AllowDrop="True" />
                             <syncfusion:ButtonAdv x:Name="Clothes_Shirts_Import" Content="ButtonAdv" Height="35"
-                                Label="Import Types From Expansion Market JSON" VerticalAlignment="Bottom" Margin="0,0,80,0" Background="#261A88E4" />
+                                Label="Import Types From Expansion Market JSON" VerticalAlignment="Bottom" Margin="0,0,80,0" Background="#261A88E4" AllowDrop="True" />
                             <syncfusion:ButtonAdv x:Name="Clothes_Shirts_Clear" Content="ButtonAdv" Height="35" Label="Clear"
-                                VerticalAlignment="Bottom" Margin="190,0,0,1" Background="#4CD13333" />
+                                VerticalAlignment="Bottom" Margin="190,0,0,1" Background="#4CD13333" AllowDrop="True" />
                         </Grid>
                         <Grid x:Name="G_Shoes" HorizontalAlignment="Left" Height="178" VerticalAlignment="Top"
-                            Width="265" Margin="300,193,0,0" Background="#4C4B2C2C">
+                            Width="265" Margin="300,193,0,0" Background="#4C4B2C2C" AllowDrop="True">
                             <Label Content="Shoe Types (1 per line)" VerticalAlignment="Top" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"
-                                BorderBrush="#FF020000" />
+                                BorderBrush="#FF020000" AllowDrop="True" />
                             <syncfusion:SfTextBoxExt x:Name="Clothes_Shoes"
                                 Height="106" Margin="0,31,0,0" TextWrapping="NoWrap"
-                                VerticalAlignment="Top" AcceptsReturn="True" MinLines="1" Delimiter="Environment.NewLine" />
+                                VerticalAlignment="Top" AcceptsReturn="True" MinLines="1" Delimiter="Environment.NewLine" AllowDrop="True" />
                             <syncfusion:ButtonAdv x:Name="Clothes_Shoes_Import" Content="ButtonAdv" Height="35"
-                                Label="Import Types From Expansion Market JSON" VerticalAlignment="Bottom" Margin="0,0,80,0" Background="#261A88E4" />
+                                Label="Import Types From Expansion Market JSON" VerticalAlignment="Bottom" Margin="0,0,80,0" Background="#261A88E4" AllowDrop="True" />
                             <syncfusion:ButtonAdv x:Name="Clothes_Shoes_Clear" Content="ButtonAdv" Height="35" Label="Clear"
-                                VerticalAlignment="Bottom" Margin="190,0,0,1" Background="#4CD13333" />
+                                VerticalAlignment="Bottom" Margin="190,0,0,1" Background="#4CD13333" AllowDrop="True" />
                         </Grid>
                         <Grid x:Name="G_Belts" HorizontalAlignment="Left" Height="178" VerticalAlignment="Top"
-                            Width="265" Margin="585,193,0,0" Background="#4C4B2C2C">
+                            Width="265" Margin="585,193,0,0" Background="#4C4B2C2C" AllowDrop="True">
                             <Label Content="Belt Types (1 per line)" VerticalAlignment="Top" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"
-                                BorderBrush="#FF020000" />
+                                BorderBrush="#FF020000" AllowDrop="True" />
                             <syncfusion:SfTextBoxExt x:Name="Clothes_Belts"
                                 Height="106" Margin="0,31,0,0" TextWrapping="NoWrap"
-                                VerticalAlignment="Top" AcceptsReturn="True" MinLines="1" Delimiter="Environment.NewLine" />
+                                VerticalAlignment="Top" AcceptsReturn="True" MinLines="1" Delimiter="Environment.NewLine" AllowDrop="True" />
                             <syncfusion:ButtonAdv x:Name="Clothes_Belts_Import" Content="ButtonAdv" Height="35"
-                                Label="Import Types From Expansion Market JSON" VerticalAlignment="Bottom" Margin="0,0,80,0" Background="#261A88E4" />
+                                Label="Import Types From Expansion Market JSON" VerticalAlignment="Bottom" Margin="0,0,80,0" Background="#261A88E4" AllowDrop="True" />
                             <syncfusion:ButtonAdv x:Name="Clothes_Belts_Clear" Content="ButtonAdv" Height="35" Label="Clear"
-                                VerticalAlignment="Bottom" Margin="190,0,0,1" Background="#4CD13333" />
+                                VerticalAlignment="Bottom" Margin="190,0,0,1" Background="#4CD13333" AllowDrop="True" />
                         </Grid>
                         <Grid x:Name="G_Armbands" HorizontalAlignment="Left" Height="149" VerticalAlignment="Top"
-                            Width="265" Margin="874,164,0,0" Background="#4C4B2C2C">
+                            Width="265" Margin="874,164,0,0" Background="#4C4B2C2C" AllowDrop="True">
                             <Label Content="Armbands Types (1 per line)" VerticalAlignment="Top" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"
-                                BorderBrush="#FF020000" />
+                                BorderBrush="#FF020000" AllowDrop="True" />
                             <syncfusion:SfTextBoxExt x:Name="Clothes_Armbands"
                                 Height="78" Margin="0,31,0,0" TextWrapping="NoWrap"
-                                VerticalAlignment="Top" AcceptsReturn="True" MinLines="1" Delimiter="Environment.NewLine" />
+                                VerticalAlignment="Top" AcceptsReturn="True" MinLines="1" Delimiter="Environment.NewLine" AllowDrop="True" />
                             <syncfusion:ButtonAdv x:Name="Clothes_Armbands_Import" Content="ButtonAdv" Height="35"
-                                Label="Import Types From Expansion Market JSON" VerticalAlignment="Bottom" Margin="0,0,80,0" Background="#261A88E4" />
+                                Label="Import Types From Expansion Market JSON" VerticalAlignment="Bottom" Margin="0,0,80,0" Background="#261A88E4" AllowDrop="True" />
                             <syncfusion:ButtonAdv x:Name="Clothes_Armbands_Clear" Content="ButtonAdv" Height="35" Label="Clear"
-                                VerticalAlignment="Bottom" Margin="190,0,0,1" Background="#4CD13333" />
+                                VerticalAlignment="Bottom" Margin="190,0,0,1" Background="#4CD13333" AllowDrop="True" />
                         </Grid>
                         <Grid x:Name="G_Vests" HorizontalAlignment="Left" Height="178" VerticalAlignment="Top"
-                            Width="265" Margin="10,376,0,0" Background="#4C4B2C2C">
+                            Width="265" Margin="10,376,0,0" Background="#4C4B2C2C" AllowDrop="True">
                             <Label Content="Vest Types (1 per line)" VerticalAlignment="Top" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"
-                                BorderBrush="#FF020000" />
+                                BorderBrush="#FF020000" AllowDrop="True" />
                             <syncfusion:SfTextBoxExt x:Name="Clothes_Vests"
                                 Height="106" Margin="0,31,0,0" TextWrapping="NoWrap"
-                                VerticalAlignment="Top" AcceptsReturn="True" MinLines="1" Delimiter="Environment.NewLine" />
+                                VerticalAlignment="Top" AcceptsReturn="True" MinLines="1" Delimiter="Environment.NewLine" AllowDrop="True" />
                             <syncfusion:ButtonAdv x:Name="Clothes_Vests_Import" Content="ButtonAdv" Height="35"
-                                Label="Import Types From Expansion Market JSON" VerticalAlignment="Bottom" Margin="0,0,80,0" Background="#261A88E4" />
+                                Label="Import Types From Expansion Market JSON" VerticalAlignment="Bottom" Margin="0,0,80,0" Background="#261A88E4" AllowDrop="True" />
                             <syncfusion:ButtonAdv x:Name="Clothes_Vests_Clear" Content="ButtonAdv" Height="35" Label="Clear"
-                                VerticalAlignment="Bottom" Margin="190,0,0,1" Background="#4CD13333" />
+                                VerticalAlignment="Bottom" Margin="190,0,0,1" Background="#4CD13333" AllowDrop="True" />
                         </Grid>
                         <Grid x:Name="G_Backpacks" HorizontalAlignment="Left" Height="178" VerticalAlignment="Top"
-                            Width="265" Margin="300,376,0,0" Background="#4C4B2C2C">
+                            Width="265" Margin="300,376,0,0" Background="#4C4B2C2C" AllowDrop="True">
                             <Label Content="Backpack Types (1 per line)" VerticalAlignment="Top" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"
-                                BorderBrush="#FF020000" />
+                                BorderBrush="#FF020000" AllowDrop="True" />
                             <syncfusion:SfTextBoxExt x:Name="Clothes_Backpacks"
                                 Height="106" Margin="0,31,0,0" TextWrapping="NoWrap"
-                                VerticalAlignment="Top" AcceptsReturn="True" MinLines="1" Delimiter="Environment.NewLine" />
+                                VerticalAlignment="Top" AcceptsReturn="True" MinLines="1" Delimiter="Environment.NewLine" AllowDrop="True" />
                             <syncfusion:ButtonAdv x:Name="Clothes_Backpacks_Import" Content="ButtonAdv" Height="35"
-                                Label="Import Types From Expansion Market JSON" VerticalAlignment="Bottom" Margin="0,0,80,0" Background="#261A88E4" />
+                                Label="Import Types From Expansion Market JSON" VerticalAlignment="Bottom" Margin="0,0,80,0" Background="#261A88E4" AllowDrop="True" />
                             <syncfusion:ButtonAdv x:Name="Clothes_Backpacks_Clear" Content="ButtonAdv" Height="35" Label="Clear"
-                                VerticalAlignment="Bottom" Margin="190,0,0,1" Background="#4CD13333" />
+                                VerticalAlignment="Bottom" Margin="190,0,0,1" Background="#4CD13333" AllowDrop="True" />
                         </Grid>
                         <Grid x:Name="G_Facewear" HorizontalAlignment="Left" Height="178" VerticalAlignment="Top"
-                            Width="265" Margin="585,376,0,0" Background="#4C4B2C2C">
+                            Width="265" Margin="585,376,0,0" Background="#4C4B2C2C" AllowDrop="True">
                             <Label Content="Facewear Types (1 per line)" VerticalAlignment="Top" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"
-                                BorderBrush="#FF020000" />
+                                BorderBrush="#FF020000" AllowDrop="True" />
                             <syncfusion:SfTextBoxExt x:Name="Clothes_Facewear"
                                 Height="106" Margin="0,31,0,0" TextWrapping="NoWrap"
-                                VerticalAlignment="Top" AcceptsReturn="True" MinLines="1" Delimiter="Environment.NewLine" />
+                                VerticalAlignment="Top" AcceptsReturn="True" MinLines="1" Delimiter="Environment.NewLine" AllowDrop="True" />
                             <syncfusion:ButtonAdv x:Name="Clothes_Facewear_Import" Content="ButtonAdv" Height="35"
-                                Label="Import Types From Expansion Market JSON" VerticalAlignment="Bottom" Margin="0,0,80,0" Background="#261A88E4" />
+                                Label="Import Types From Expansion Market JSON" VerticalAlignment="Bottom" Margin="0,0,80,0" Background="#261A88E4" AllowDrop="True" />
                             <syncfusion:ButtonAdv x:Name="Clothes_Facewear_Clear" Content="ButtonAdv" Height="35" Label="Clear"
-                                VerticalAlignment="Bottom" Margin="190,0,0,1" Background="#4CD13333" />
+                                VerticalAlignment="Bottom" Margin="190,0,0,1" Background="#4CD13333" AllowDrop="True" />
                         </Grid>
-                        <Grid x:Name="G_Clothing_Gen_Opt" HorizontalAlignment="Left" Height="286" VerticalAlignment="Top" Width="265" Margin="874,324,0,0" Background="#FF363636">
-                            <Label Content="Clothing Kit Generation Options" VerticalAlignment="Top" HorizontalContentAlignment="Center" BorderThickness="0,0,0,2" BorderBrush="#FF424242"/>
-                            <Grid x:Name="G_Clothing_Gen_Opt_Header" HorizontalAlignment="Left" Height="28" VerticalAlignment="Top" Width="265" Margin="0,28,0,0">
-                                <Label Content="Slot" Width="95" BorderThickness="0,0,0,1" HorizontalAlignment="Left" HorizontalContentAlignment="Center" BorderBrush="#FF8B8B8B"/>
-                                <Label x:Name="___Label___Add___Chance_" Content="% Chance to add item to slot" HorizontalAlignment="Left" Width="169" Margin="96,0,0,0" BorderThickness="0,0,0,1" BorderBrush="#FF8B8B8B"/>
-                                <Rectangle Fill="#7F494949" HorizontalAlignment="Left" Stroke="#FF5B5B5B" Width="1" Margin="95,0,0,0"/>
+                        <Grid x:Name="G_Clothing_Gen_Opt" HorizontalAlignment="Left" Height="286" VerticalAlignment="Top" Width="265" Margin="874,324,0,0" Background="#FF363636" AllowDrop="True">
+                            <Label Content="Clothing Kit Generation Options" VerticalAlignment="Top" HorizontalContentAlignment="Center" BorderThickness="0,0,0,2" BorderBrush="#FF424242" AllowDrop="True"/>
+                            <Grid x:Name="G_Clothing_Gen_Opt_Header" HorizontalAlignment="Left" Height="28" VerticalAlignment="Top" Width="265" Margin="0,28,0,0" AllowDrop="True">
+                                <Label Content="Slot" Width="95" BorderThickness="0,0,0,1" HorizontalAlignment="Left" HorizontalContentAlignment="Center" BorderBrush="#FF8B8B8B" AllowDrop="True"/>
+                                <Label x:Name="___Label___Add___Chance_" Content="% Chance to add item to slot" HorizontalAlignment="Left" Width="169" Margin="96,0,0,0" BorderThickness="0,0,0,1" BorderBrush="#FF8B8B8B" AllowDrop="True"/>
+                                <Rectangle Fill="#7F494949" HorizontalAlignment="Left" Stroke="#FF5B5B5B" Width="1" Margin="95,0,0,0" AllowDrop="True"/>
                             </Grid>
-                            <Grid x:Name="G_ClothingOpt_Helm" Height="19" VerticalAlignment="Top" Margin="0,56,0,0" Background="#33858585">
-                                <Label Content="Helmet" HorizontalAlignment="Left" Width="85" Margin="5,0,0,0" BorderThickness="0,0,0,1" FontFamily="Arial" Padding="0,2" VerticalContentAlignment="Bottom" HorizontalContentAlignment="Center"/>
-                                <TextBox x:Name="TB_Slot_Chance" HorizontalAlignment="Left" TextWrapping="Wrap" Text="100" Width="169" Margin="96,0,0,0" MaxLength="3" MaxLines="1" BorderThickness="1,0" HorizontalContentAlignment="Center" Padding="0,0,10,0"/>
-                                <Rectangle Fill="#7F494949" HorizontalAlignment="Left" Stroke="#FF5B5B5B" Width="1" Margin="95,0,0,0"/>
+                            <Grid x:Name="G_ClothingOpt_Helm" Height="19" VerticalAlignment="Top" Margin="0,56,0,0" Background="#33858585" AllowDrop="True">
+                                <Label Content="Helmet" HorizontalAlignment="Left" Width="85" Margin="5,0,0,0" BorderThickness="0,0,0,1" FontFamily="Arial" Padding="0,2" VerticalContentAlignment="Bottom" HorizontalContentAlignment="Center" AllowDrop="True"/>
+                                <TextBox x:Name="TB_Slot_Chance" HorizontalAlignment="Left" TextWrapping="Wrap" Text="100" Width="169" Margin="96,0,0,0" MaxLength="3" MaxLines="1" BorderThickness="1,0" HorizontalContentAlignment="Center" Padding="0,0,10,0" AllowDrop="True"/>
+                                <Rectangle Fill="#7F494949" HorizontalAlignment="Left" Stroke="#FF5B5B5B" Width="1" Margin="95,0,0,0" AllowDrop="True"/>
                             </Grid>
-                            <Grid x:Name="G_ClothingOpt_Shirt" Height="19" VerticalAlignment="Top" Margin="0,75,0,0" Background="#19858585">
-                                <Label Content="Shirt" HorizontalAlignment="Left" Width="85" Margin="5,0,0,0" BorderThickness="0,0,0,1" FontFamily="Arial" Padding="0,2" VerticalContentAlignment="Bottom" HorizontalContentAlignment="Center"/>
-                                <TextBox x:Name="TB_Slot_Chance1" HorizontalAlignment="Left" TextWrapping="Wrap" Text="100" Width="169" Margin="96,0,0,0" MaxLength="3" MaxLines="1" BorderThickness="1,0" HorizontalContentAlignment="Center" Padding="0,0,10,0"/>
-                                <Rectangle Fill="#7F494949" HorizontalAlignment="Left" Stroke="#FF5B5B5B" Width="1" Margin="95,0,0,0"/>
+                            <Grid x:Name="G_ClothingOpt_Shirt" Height="19" VerticalAlignment="Top" Margin="0,75,0,0" Background="#19858585" AllowDrop="True">
+                                <Label Content="Shirt" HorizontalAlignment="Left" Width="85" Margin="5,0,0,0" BorderThickness="0,0,0,1" FontFamily="Arial" Padding="0,2" VerticalContentAlignment="Bottom" HorizontalContentAlignment="Center" AllowDrop="True"/>
+                                <TextBox x:Name="TB_Slot_Chance1" HorizontalAlignment="Left" TextWrapping="Wrap" Text="100" Width="169" Margin="96,0,0,0" MaxLength="3" MaxLines="1" BorderThickness="1,0" HorizontalContentAlignment="Center" Padding="0,0,10,0" AllowDrop="True"/>
+                                <Rectangle Fill="#7F494949" HorizontalAlignment="Left" Stroke="#FF5B5B5B" Width="1" Margin="95,0,0,0" AllowDrop="True"/>
                             </Grid>
-                            <Grid x:Name="G_ClothingOpt_Vest" Height="19" VerticalAlignment="Top" Margin="0,94,0,0" Background="#33858585">
-                                <Label Content="Vest" HorizontalAlignment="Left" Width="85" Margin="5,0,0,0" BorderThickness="0,0,0,1" FontFamily="Arial" Padding="0,2" VerticalContentAlignment="Bottom" HorizontalContentAlignment="Center"/>
-                                <TextBox x:Name="TB_Slot_Chance2" HorizontalAlignment="Left" TextWrapping="Wrap" Text="100" Width="169" Margin="96,0,0,0" MaxLength="3" MaxLines="1" BorderThickness="1,0" HorizontalContentAlignment="Center" Padding="0,0,10,0"/>
-                                <Rectangle Fill="#7F494949" HorizontalAlignment="Left" Stroke="#FF5B5B5B" Width="1" Margin="95,0,0,0"/>
+                            <Grid x:Name="G_ClothingOpt_Vest" Height="19" VerticalAlignment="Top" Margin="0,94,0,0" Background="#33858585" AllowDrop="True">
+                                <Label Content="Vest" HorizontalAlignment="Left" Width="85" Margin="5,0,0,0" BorderThickness="0,0,0,1" FontFamily="Arial" Padding="0,2" VerticalContentAlignment="Bottom" HorizontalContentAlignment="Center" AllowDrop="True"/>
+                                <TextBox x:Name="TB_Slot_Chance2" HorizontalAlignment="Left" TextWrapping="Wrap" Text="100" Width="169" Margin="96,0,0,0" MaxLength="3" MaxLines="1" BorderThickness="1,0" HorizontalContentAlignment="Center" Padding="0,0,10,0" AllowDrop="True"/>
+                                <Rectangle Fill="#7F494949" HorizontalAlignment="Left" Stroke="#FF5B5B5B" Width="1" Margin="95,0,0,0" AllowDrop="True"/>
                             </Grid>
-                            <Grid x:Name="G_ClothingOpt_Pants" Height="19" VerticalAlignment="Top" Margin="0,113,0,0" Background="#16858585">
-                                <Label Content="Pants" HorizontalAlignment="Left" Width="85" Margin="5,0,0,0" BorderThickness="0,0,0,1" HorizontalContentAlignment="Center" FontFamily="Arial" Padding="0,2" VerticalContentAlignment="Bottom"/>
-                                <TextBox x:Name="TB_Slot_Chance3" HorizontalAlignment="Left" TextWrapping="Wrap" Text="100" Width="169" Margin="96,0,0,0" MaxLength="3" MaxLines="1" BorderThickness="1,0" HorizontalContentAlignment="Center" Padding="0,0,10,0"/>
-                                <Rectangle Fill="#7F494949" HorizontalAlignment="Left" Stroke="#FF5B5B5B" Width="1" Margin="95,0,0,0"/>
+                            <Grid x:Name="G_ClothingOpt_Pants" Height="19" VerticalAlignment="Top" Margin="0,113,0,0" Background="#16858585" AllowDrop="True">
+                                <Label Content="Pants" HorizontalAlignment="Left" Width="85" Margin="5,0,0,0" BorderThickness="0,0,0,1" HorizontalContentAlignment="Center" FontFamily="Arial" Padding="0,2" VerticalContentAlignment="Bottom" AllowDrop="True"/>
+                                <TextBox x:Name="TB_Slot_Chance3" HorizontalAlignment="Left" TextWrapping="Wrap" Text="100" Width="169" Margin="96,0,0,0" MaxLength="3" MaxLines="1" BorderThickness="1,0" HorizontalContentAlignment="Center" Padding="0,0,10,0" AllowDrop="True"/>
+                                <Rectangle Fill="#7F494949" HorizontalAlignment="Left" Stroke="#FF5B5B5B" Width="1" Margin="95,0,0,0" AllowDrop="True"/>
                             </Grid>
-                            <Grid x:Name="G_ClothingOpt_Shoes" Height="19" VerticalAlignment="Top" Margin="0,132,0,0" Background="#33858585">
-                                <Label Content="Shoes" HorizontalAlignment="Left" Width="85" Margin="5,0,0,0" BorderThickness="0,0,0,1" FontFamily="Arial" Padding="0,2" VerticalContentAlignment="Bottom" HorizontalContentAlignment="Center"/>
-                                <TextBox x:Name="TB_Slot_Chance4" HorizontalAlignment="Left" TextWrapping="Wrap" Text="100" Width="169" Margin="96,0,0,0" MaxLength="3" MaxLines="1" BorderThickness="1,0" HorizontalContentAlignment="Center" Padding="0,0,10,0"/>
-                                <Rectangle Fill="#7F494949" HorizontalAlignment="Left" Stroke="#FF5B5B5B" Width="1" Margin="95,0,0,0"/>
+                            <Grid x:Name="G_ClothingOpt_Shoes" Height="19" VerticalAlignment="Top" Margin="0,132,0,0" Background="#33858585" AllowDrop="True">
+                                <Label Content="Shoes" HorizontalAlignment="Left" Width="85" Margin="5,0,0,0" BorderThickness="0,0,0,1" FontFamily="Arial" Padding="0,2" VerticalContentAlignment="Bottom" HorizontalContentAlignment="Center" AllowDrop="True"/>
+                                <TextBox x:Name="TB_Slot_Chance4" HorizontalAlignment="Left" TextWrapping="Wrap" Text="100" Width="169" Margin="96,0,0,0" MaxLength="3" MaxLines="1" BorderThickness="1,0" HorizontalContentAlignment="Center" Padding="0,0,10,0" AllowDrop="True"/>
+                                <Rectangle Fill="#7F494949" HorizontalAlignment="Left" Stroke="#FF5B5B5B" Width="1" Margin="95,0,0,0" AllowDrop="True"/>
                             </Grid>
-                            <Grid x:Name="G_ClothingOpt_Backpack" Height="19" VerticalAlignment="Top" Margin="0,151,0,0" Background="#19858585">
-                                <Label Content="Backpack" HorizontalAlignment="Left" Width="85" Margin="5,0,0,0" BorderThickness="0,0,0,1" FontFamily="Arial" Padding="0,2" VerticalContentAlignment="Bottom" HorizontalContentAlignment="Center"/>
-                                <TextBox x:Name="TB_Slot_Chance5" HorizontalAlignment="Left" TextWrapping="Wrap" Text="100" Width="169" Margin="96,0,0,0" MaxLength="3" MaxLines="1" BorderThickness="1,0" HorizontalContentAlignment="Center" Padding="0,0,10,0"/>
-                                <Rectangle Fill="#7F494949" HorizontalAlignment="Left" Stroke="#FF5B5B5B" Width="1" Margin="95,0,0,0"/>
+                            <Grid x:Name="G_ClothingOpt_Backpack" Height="19" VerticalAlignment="Top" Margin="0,151,0,0" Background="#19858585" AllowDrop="True">
+                                <Label Content="Backpack" HorizontalAlignment="Left" Width="85" Margin="5,0,0,0" BorderThickness="0,0,0,1" FontFamily="Arial" Padding="0,2" VerticalContentAlignment="Bottom" HorizontalContentAlignment="Center" AllowDrop="True"/>
+                                <TextBox x:Name="TB_Slot_Chance5" HorizontalAlignment="Left" TextWrapping="Wrap" Text="100" Width="169" Margin="96,0,0,0" MaxLength="3" MaxLines="1" BorderThickness="1,0" HorizontalContentAlignment="Center" Padding="0,0,10,0" AllowDrop="True"/>
+                                <Rectangle Fill="#7F494949" HorizontalAlignment="Left" Stroke="#FF5B5B5B" Width="1" Margin="95,0,0,0" AllowDrop="True"/>
                             </Grid>
-                            <Grid x:Name="G_ClothingOpt_Gloves" Height="19" VerticalAlignment="Top" Margin="0,170,0,0" Background="#33858585">
-                                <Label Content="Gloves" HorizontalAlignment="Left" Width="85" Margin="5,0,0,0" BorderThickness="0,0,0,1" FontFamily="Arial" Padding="0,2" VerticalContentAlignment="Bottom" HorizontalContentAlignment="Center"/>
-                                <TextBox x:Name="TB_Slot_Chance6" HorizontalAlignment="Left" TextWrapping="Wrap" Text="100" Width="169" Margin="96,0,0,0" MaxLength="3" MaxLines="1" BorderThickness="1,0" HorizontalContentAlignment="Center" Padding="0,0,10,0"/>
-                                <Rectangle Fill="#7F494949" HorizontalAlignment="Left" Stroke="#FF5B5B5B" Width="1" Margin="95,0,0,0"/>
+                            <Grid x:Name="G_ClothingOpt_Gloves" Height="19" VerticalAlignment="Top" Margin="0,170,0,0" Background="#33858585" AllowDrop="True">
+                                <Label Content="Gloves" HorizontalAlignment="Left" Width="85" Margin="5,0,0,0" BorderThickness="0,0,0,1" FontFamily="Arial" Padding="0,2" VerticalContentAlignment="Bottom" HorizontalContentAlignment="Center" AllowDrop="True"/>
+                                <TextBox x:Name="TB_Slot_Chance6" HorizontalAlignment="Left" TextWrapping="Wrap" Text="100" Width="169" Margin="96,0,0,0" MaxLength="3" MaxLines="1" BorderThickness="1,0" HorizontalContentAlignment="Center" Padding="0,0,10,0" AllowDrop="True"/>
+                                <Rectangle Fill="#7F494949" HorizontalAlignment="Left" Stroke="#FF5B5B5B" Width="1" Margin="95,0,0,0" AllowDrop="True"/>
                             </Grid>
-                            <Grid x:Name="G_ClothingOpt_Belt" Height="19" VerticalAlignment="Top" Margin="0,189,0,0" Background="#19858585">
-                                <Label Content="Belt" HorizontalAlignment="Left" Width="85" Margin="5,0,0,0" BorderThickness="0,0,0,1" HorizontalContentAlignment="Center" FontFamily="Arial" Padding="0,2" VerticalContentAlignment="Bottom"/>
-                                <TextBox x:Name="TB_Slot_Chance7" HorizontalAlignment="Left" TextWrapping="Wrap" Text="100" Width="169" Margin="96,0,0,0" MaxLength="3" MaxLines="1" BorderThickness="1,0" HorizontalContentAlignment="Center" Padding="0,0,10,0"/>
-                                <Rectangle Fill="#7F494949" HorizontalAlignment="Left" Stroke="#FF5B5B5B" Width="1" Margin="95,0,0,0"/>
+                            <Grid x:Name="G_ClothingOpt_Belt" Height="19" VerticalAlignment="Top" Margin="0,189,0,0" Background="#19858585" AllowDrop="True">
+                                <Label Content="Belt" HorizontalAlignment="Left" Width="85" Margin="5,0,0,0" BorderThickness="0,0,0,1" HorizontalContentAlignment="Center" FontFamily="Arial" Padding="0,2" VerticalContentAlignment="Bottom" AllowDrop="True"/>
+                                <TextBox x:Name="TB_Slot_Chance7" HorizontalAlignment="Left" TextWrapping="Wrap" Text="100" Width="169" Margin="96,0,0,0" MaxLength="3" MaxLines="1" BorderThickness="1,0" HorizontalContentAlignment="Center" Padding="0,0,10,0" AllowDrop="True"/>
+                                <Rectangle Fill="#7F494949" HorizontalAlignment="Left" Stroke="#FF5B5B5B" Width="1" Margin="95,0,0,0" AllowDrop="True"/>
                             </Grid>
-                            <Grid x:Name="G_ClothingOpt_Facewear" Height="19" VerticalAlignment="Top" Margin="0,208,0,0" Background="#33858585">
-                                <Label Content="Facewear" HorizontalAlignment="Left" Width="85" Margin="5,0,0,0" BorderThickness="0,0,0,1" FontFamily="Arial" Padding="0,2" VerticalContentAlignment="Bottom" HorizontalContentAlignment="Center"/>
-                                <TextBox x:Name="TB_Slot_Chance8" HorizontalAlignment="Left" TextWrapping="Wrap" Text="100" Width="169" Margin="96,0,0,0" MaxLength="3" MaxLines="1" BorderThickness="1,0" HorizontalContentAlignment="Center" Padding="0,0,10,0"/>
-                                <Rectangle Fill="#7F494949" HorizontalAlignment="Left" Stroke="#FF5B5B5B" Width="1" Margin="95,0,0,0"/>
+                            <Grid x:Name="G_ClothingOpt_Facewear" Height="19" VerticalAlignment="Top" Margin="0,208,0,0" Background="#33858585" AllowDrop="True">
+                                <Label Content="Facewear" HorizontalAlignment="Left" Width="85" Margin="5,0,0,0" BorderThickness="0,0,0,1" FontFamily="Arial" Padding="0,2" VerticalContentAlignment="Bottom" HorizontalContentAlignment="Center" AllowDrop="True"/>
+                                <TextBox x:Name="TB_Slot_Chance8" HorizontalAlignment="Left" TextWrapping="Wrap" Text="100" Width="169" Margin="96,0,0,0" MaxLength="3" MaxLines="1" BorderThickness="1,0" HorizontalContentAlignment="Center" Padding="0,0,10,0" AllowDrop="True"/>
+                                <Rectangle Fill="#7F494949" HorizontalAlignment="Left" Stroke="#FF5B5B5B" Width="1" Margin="95,0,0,0" AllowDrop="True"/>
                             </Grid>
-                            <Grid x:Name="G_ClothingOpt_Eyewear" Height="19" VerticalAlignment="Top" Margin="0,227,0,0" Background="#19858585">
-                                <Label Content="Eyewear" HorizontalAlignment="Left" Width="85" Margin="5,0,0,0" BorderThickness="0,0,0,1" FontFamily="Arial" Padding="0,2" VerticalContentAlignment="Bottom" HorizontalContentAlignment="Center"/>
-                                <TextBox x:Name="TB_Slot_Chance9" HorizontalAlignment="Left" TextWrapping="Wrap" Text="100" Width="169" Margin="96,0,0,0" MaxLength="3" MaxLines="1" BorderThickness="1,0" HorizontalContentAlignment="Center" Padding="0,0,10,0"/>
-                                <Rectangle Fill="#7F494949" HorizontalAlignment="Left" Stroke="#FF5B5B5B" Width="1" Margin="95,0,0,0"/>
+                            <Grid x:Name="G_ClothingOpt_Eyewear" Height="19" VerticalAlignment="Top" Margin="0,227,0,0" Background="#19858585" AllowDrop="True">
+                                <Label Content="Eyewear" HorizontalAlignment="Left" Width="85" Margin="5,0,0,0" BorderThickness="0,0,0,1" FontFamily="Arial" Padding="0,2" VerticalContentAlignment="Bottom" HorizontalContentAlignment="Center" AllowDrop="True"/>
+                                <TextBox x:Name="TB_Slot_Chance9" HorizontalAlignment="Left" TextWrapping="Wrap" Text="100" Width="169" Margin="96,0,0,0" MaxLength="3" MaxLines="1" BorderThickness="1,0" HorizontalContentAlignment="Center" Padding="0,0,10,0" AllowDrop="True"/>
+                                <Rectangle Fill="#7F494949" HorizontalAlignment="Left" Stroke="#FF5B5B5B" Width="1" Margin="95,0,0,0" AllowDrop="True"/>
                             </Grid>
-                            <Grid x:Name="G_ClothingOpt_Armband" Height="19" VerticalAlignment="Top" Margin="0,246,0,0" Background="#33858585">
-                                <Label Content="Armband" HorizontalAlignment="Left" Width="85" Margin="5,0,0,0" BorderThickness="0,0,0,1" HorizontalContentAlignment="Center" FontFamily="Arial" Padding="0,2" VerticalContentAlignment="Bottom"/>
-                                <TextBox x:Name="TB_Slot_Chance10" HorizontalAlignment="Left" TextWrapping="Wrap" Text="100" Width="169" Margin="96,0,0,0" MaxLength="3" MaxLines="1" BorderThickness="1,0" HorizontalContentAlignment="Center" Padding="0,0,10,0"/>
-                                <Rectangle Fill="#7F494949" HorizontalAlignment="Left" Stroke="#FF5B5B5B" Width="1" Margin="95,0,0,0"/>
+                            <Grid x:Name="G_ClothingOpt_Armband" Height="19" VerticalAlignment="Top" Margin="0,246,0,0" Background="#33858585" AllowDrop="True">
+                                <Label Content="Armband" HorizontalAlignment="Left" Width="85" Margin="5,0,0,0" BorderThickness="0,0,0,1" HorizontalContentAlignment="Center" FontFamily="Arial" Padding="0,2" VerticalContentAlignment="Bottom" AllowDrop="True"/>
+                                <TextBox x:Name="TB_Slot_Chance10" HorizontalAlignment="Left" TextWrapping="Wrap" Text="100" Width="169" Margin="96,0,0,0" MaxLength="3" MaxLines="1" BorderThickness="1,0" HorizontalContentAlignment="Center" Padding="0,0,10,0" AllowDrop="True"/>
+                                <Rectangle Fill="#7F494949" HorizontalAlignment="Left" Stroke="#FF5B5B5B" Width="1" Margin="95,0,0,0" AllowDrop="True"/>
                             </Grid>
-                            <Grid x:Name="G_ClothingOpt_NVG" Height="19" VerticalAlignment="Top" Margin="0,265,0,0" Background="#19858585">
-                                <Label Content="NVG" HorizontalAlignment="Left" Width="85" Margin="5,0,0,0" BorderThickness="0,0,0,1" FontFamily="Arial" Padding="0,2" VerticalContentAlignment="Bottom" HorizontalContentAlignment="Center"/>
-                                <TextBox x:Name="TB_Slot_Chance11" HorizontalAlignment="Left" TextWrapping="Wrap" Text="100" Width="169" Margin="96,0,0,0" MaxLength="3" MaxLines="1" BorderThickness="1,0" HorizontalContentAlignment="Center" Padding="0,0,10,0"/>
-                                <Rectangle Fill="#7F494949" HorizontalAlignment="Left" Stroke="#FF5B5B5B" Width="1" Margin="95,0,0,0"/>
+                            <Grid x:Name="G_ClothingOpt_NVG" Height="19" VerticalAlignment="Top" Margin="0,265,0,0" Background="#19858585" AllowDrop="True">
+                                <Label Content="NVG" HorizontalAlignment="Left" Width="85" Margin="5,0,0,0" BorderThickness="0,0,0,1" FontFamily="Arial" Padding="0,2" VerticalContentAlignment="Bottom" HorizontalContentAlignment="Center" AllowDrop="True"/>
+                                <TextBox x:Name="TB_Slot_Chance11" HorizontalAlignment="Left" TextWrapping="Wrap" Text="100" Width="169" Margin="96,0,0,0" MaxLength="3" MaxLines="1" BorderThickness="1,0" HorizontalContentAlignment="Center" Padding="0,0,10,0" AllowDrop="True"/>
+                                <Rectangle Fill="#7F494949" HorizontalAlignment="Left" Stroke="#FF5B5B5B" Width="1" Margin="95,0,0,0" AllowDrop="True"/>
                             </Grid>
                         </Grid>
-                        <Grid x:Name="G_BottomSettings" HorizontalAlignment="Left" Height="51" VerticalAlignment="Top" Width="859" Margin="10,559,0,0">
-                            <Grid x:Name="G_ClothingOpt_Helm_Copy" Height="19" VerticalAlignment="Top" Margin="0,32,594,0" Background="#33858585">
-                                <Label Content="# Sets to Generate" HorizontalAlignment="Left" Width="128" Margin="5,0,0,0" BorderThickness="0,0,0,1" FontFamily="Arial" Padding="0,2" VerticalContentAlignment="Bottom" HorizontalContentAlignment="Center"/>
-                                <TextBox x:Name="TB_Slot_Chance12" HorizontalAlignment="Left" TextWrapping="Wrap" Text="100" Width="112" Margin="153,0,0,0" MaxLines="1" BorderThickness="1,0" HorizontalContentAlignment="Center" Padding="0,0,10,0"/>
-                                <Rectangle Fill="#7F494949" HorizontalAlignment="Left" Stroke="#FF5B5B5B" Width="1" Margin="152,0,0,0"/>
+                        <Grid x:Name="G_BottomSettings" HorizontalAlignment="Left" Height="51" VerticalAlignment="Top" Width="859" Margin="10,559,0,0" AllowDrop="True">
+                            <Grid x:Name="G_ClothingOpt_Helm_Copy" Height="19" VerticalAlignment="Top" Margin="0,32,594,0" Background="#33858585" AllowDrop="True">
+                                <Label Content="# Sets to Generate" HorizontalAlignment="Left" Width="128" Margin="5,0,0,0" BorderThickness="0,0,0,1" FontFamily="Arial" Padding="0,2" VerticalContentAlignment="Bottom" HorizontalContentAlignment="Center" AllowDrop="True"/>
+                                <TextBox x:Name="TB_Slot_Chance12" HorizontalAlignment="Left" TextWrapping="Wrap" Text="100" Width="112" Margin="153,0,0,0" MaxLines="1" BorderThickness="1,0" HorizontalContentAlignment="Center" Padding="0,0,10,0" AllowDrop="True"/>
+                                <Rectangle Fill="#7F494949" HorizontalAlignment="Left" Stroke="#FF5B5B5B" Width="1" Margin="152,0,0,0" AllowDrop="True"/>
                             </Grid>
                         </Grid>
                     </Grid>
                 </syncfusion:TabItemExt>
                 <syncfusion:TabItemExt x:Name="Tab_KitsGenerated" Header="Generated Kits" MinWidth="20"
-                                   MinHeight="20">
-                    <Grid>
+                                   MinHeight="20" AllowDrop="True">
+                    <Grid AllowDrop="True">
                         <Grid x:Name="G_Kit_GenRed" Width="229"
-                          Background="#4C830E0E" Height="582" HorizontalAlignment="Left" VerticalAlignment="Top">
+                          Background="#4C830E0E" Height="582" HorizontalAlignment="Left" VerticalAlignment="Top" AllowDrop="True">
                             <Label Content="Red Kits" HorizontalAlignment="Left" VerticalAlignment="Top" Width="228"
                                HorizontalContentAlignment="Center" VerticalContentAlignment="Center" FontSize="16"
-                               Margin="1,0,0,0" />
-                            <Grid HorizontalAlignment="Left" Height="551" VerticalAlignment="Top" Width="230" Margin="0,31,0,0">
-                                <syncfusion:SfTreeView x:Name="TV_WeaponKits_Generated_Red" AllowDrop="False"
+                               Margin="1,0,0,0" AllowDrop="True" />
+                            <Grid HorizontalAlignment="Left" Height="551" VerticalAlignment="Top" Width="230" Margin="0,31,0,0" AllowDrop="True">
+                                <syncfusion:SfTreeView x:Name="TV_WeaponKits_Generated_Red" AllowDrop="True"
                                                ItemTemplateDataContextType="Item" ShowLines="True"
                                                ShowRootLines="True" SelectionMode="SingleDeselect" AllowDeleting="True"
                                                AllowEditing="True" EditTrigger="DoubleTap" IsAnimationEnabled="True"
@@ -385,14 +385,14 @@
                             </Grid>
                         </Grid>
                         <syncfusion:ButtonAdv x:Name="WeaponKits_Generated_Export" Content="ButtonAdv"
-                                              Label="Export : KeyCard Weapons Config Json" Margin="0,587,691,0" FontSize="18" Background="#4C26D315" />
+                                              Label="Export : KeyCard Weapons Config Json" Margin="0,587,691,0" FontSize="18" Background="#4C26D315" AllowDrop="True" />
                         <Grid x:Name="G_Weapon_GenPurp" Width="229"
-                            Background="#33EE33E5" Height="582" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="229,0,0,0">
+                            Background="#33EE33E5" Height="582" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="229,0,0,0" AllowDrop="True">
                             <Label Content="Purple Kits" HorizontalAlignment="Left" VerticalAlignment="Top" Width="228"
                                 HorizontalContentAlignment="Center" VerticalContentAlignment="Center" FontSize="16"
-                                Margin="1,0,0,0" />
-                            <Grid HorizontalAlignment="Left" Height="551" VerticalAlignment="Top" Width="230" Margin="0,31,0,0">
-                                <syncfusion:SfTreeView x:Name="TV_WeaponKits_Generated_Purple" AllowDrop="False"
+                                Margin="1,0,0,0" AllowDrop="True" />
+                            <Grid HorizontalAlignment="Left" Height="551" VerticalAlignment="Top" Width="230" Margin="0,31,0,0" AllowDrop="True">
+                                <syncfusion:SfTreeView x:Name="TV_WeaponKits_Generated_Purple" AllowDrop="True"
                                     ItemTemplateDataContextType="Item" ShowLines="True"
                                     ShowRootLines="True" SelectionMode="SingleDeselect" AllowDeleting="True"
                                     AllowEditing="True" EditTrigger="DoubleTap" IsAnimationEnabled="True"
@@ -406,12 +406,12 @@
                             </Grid>
                         </Grid>
                         <Grid x:Name="G_Weapon_GenBlue" Width="229"
-                            Background="#333043E1" Height="582" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="458,0,0,0">
+                            Background="#333043E1" Height="582" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="458,0,0,0" AllowDrop="True">
                             <Label Content="Blue Kits" HorizontalAlignment="Left" VerticalAlignment="Top" Width="228"
                                 HorizontalContentAlignment="Center" VerticalContentAlignment="Center" FontSize="16"
-                                Margin="1,0,0,0" />
-                            <Grid HorizontalAlignment="Left" Height="551" VerticalAlignment="Top" Width="230" Margin="0,31,0,0">
-                                <syncfusion:SfTreeView x:Name="TV_WeaponKits_Generated_Blue" AllowDrop="False"
+                                Margin="1,0,0,0" AllowDrop="True" />
+                            <Grid HorizontalAlignment="Left" Height="551" VerticalAlignment="Top" Width="230" Margin="0,31,0,0" AllowDrop="True">
+                                <syncfusion:SfTreeView x:Name="TV_WeaponKits_Generated_Blue" AllowDrop="True"
                                     ItemTemplateDataContextType="Item" ShowLines="True"
                                     ShowRootLines="True" SelectionMode="SingleDeselect" AllowDeleting="True"
                                     AllowEditing="True" EditTrigger="DoubleTap" IsAnimationEnabled="True"
@@ -425,12 +425,12 @@
                             </Grid>
                         </Grid>
                         <Grid x:Name="G_Weapon_GenGreen" Width="229"
-                            Background="#3350FF47" Height="582" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="687,0,-22,0">
+                            Background="#3350FF47" Height="582" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="687,0,-22,0" AllowDrop="True">
                             <Label Content="Green Kits" HorizontalAlignment="Left" VerticalAlignment="Top" Width="228"
                                 HorizontalContentAlignment="Center" VerticalContentAlignment="Center" FontSize="16"
-                                Margin="1,0,0,0" />
-                            <Grid HorizontalAlignment="Left" Height="551" VerticalAlignment="Top" Width="230" Margin="0,31,0,0">
-                                <syncfusion:SfTreeView x:Name="TV_WeaponKits_Generated_Green" AllowDrop="False"
+                                Margin="1,0,0,0" AllowDrop="True" />
+                            <Grid HorizontalAlignment="Left" Height="551" VerticalAlignment="Top" Width="230" Margin="0,31,0,0" AllowDrop="True">
+                                <syncfusion:SfTreeView x:Name="TV_WeaponKits_Generated_Green" AllowDrop="True"
                                     ItemTemplateDataContextType="Item" ShowLines="True"
                                     ShowRootLines="True" SelectionMode="SingleDeselect" AllowDeleting="True"
                                     AllowEditing="True" EditTrigger="DoubleTap" IsAnimationEnabled="True"
@@ -444,12 +444,12 @@
                             </Grid>
                         </Grid>
                         <Grid x:Name="G_Weapon_GenYellow" Width="229"
-                            Background="#4CFFF300" Height="582" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="916,0,-251,0">
+                            Background="#4CFFF300" Height="582" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="916,0,-251,0" AllowDrop="True">
                             <Label Content="Yellow Kits" HorizontalAlignment="Left" VerticalAlignment="Top" Width="228"
                                 HorizontalContentAlignment="Center" VerticalContentAlignment="Center" FontSize="16"
-                                Margin="1,0,0,0" />
-                            <Grid HorizontalAlignment="Left" Height="551" VerticalAlignment="Top" Width="230" Margin="0,31,0,0">
-                                <syncfusion:SfTreeView x:Name="TV_WeaponKits_Generated_Yellow" AllowDrop="False"
+                                Margin="1,0,0,0" AllowDrop="True" />
+                            <Grid HorizontalAlignment="Left" Height="551" VerticalAlignment="Top" Width="230" Margin="0,31,0,0" AllowDrop="True">
+                                <syncfusion:SfTreeView x:Name="TV_WeaponKits_Generated_Yellow" AllowDrop="True"
                                     ItemTemplateDataContextType="Item" ShowLines="True"
                                     ShowRootLines="True" SelectionMode="SingleDeselect" AllowDeleting="True"
                                     AllowEditing="True" EditTrigger="DoubleTap" IsAnimationEnabled="True"
@@ -469,6 +469,6 @@
         <Label x:Name="FooterText"
                Content="Author:    Gh0st                  |                  Discord:    Gh0st#5623                  |                  Github:    https://github.com/Gh0st352                  |                  GNU General Public License v3.0" VerticalAlignment="Bottom" Height="32"
                BorderThickness="0" ClipToBounds="True" FontStyle="Italic" FontWeight="SemiBold"
-               Foreground="White" HorizontalContentAlignment="Center" />
+               Foreground="White" HorizontalContentAlignment="Center" AllowDrop="True" />
     </Grid>
 </syncfusion:ChromelessWindow>
