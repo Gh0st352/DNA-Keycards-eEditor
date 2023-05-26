@@ -222,13 +222,13 @@ Partial Public Class MainWindow
                 Case "Red"
                     GenerateConfigs.Weapons.RedWeaponKits = weaponList
                 Case "Purple"
-
+                    GenerateConfigs.Weapons.PurpleWeaponKits = weaponList
                 Case "Blue"
-
+                    GenerateConfigs.Weapons.BlueWeaponKits = weaponList
                 Case "Green"
-
+                    GenerateConfigs.Weapons.GreenWeaponKits = weaponList
                 Case "Yellow"
-
+                    GenerateConfigs.Weapons.YellowWeaponKits = weaponList
             End Select
             UpdateGeneratedWeaponKits()
             'Await GenerateConfigs.Weapons.GenerateConfig(WeaponColorTier)
@@ -238,40 +238,73 @@ Partial Public Class MainWindow
     Sub UpdateGeneratedWeaponKits()
         Tab_WeaponsGenerated.IsSelected = True
 
-
         'Red Update
-        TV_WeaponKits_Generated_Red.Nodes.Clear()
-        For Each WeaponSet_ As GenerateConfigs.Weapons.WeaponInfo In GenerateConfigs.Weapons.RedWeaponKits
-            Dim tParentNode As New TreeViewNode
+        If GenerateConfigs.Weapons.RedWeaponKits IsNot Nothing Then
+            TV_WeaponKits_Generated_Red.Nodes.Clear()
+            For Each WeaponSet_ As GenerateConfigs.Weapons.WeaponInfo In GenerateConfigs.Weapons.RedWeaponKits
+                TV_WeaponKits_Generated_Red.Nodes.Add(CreateNodeSetWeapon(WeaponSet_))
+            Next
+        End If
+        If GenerateConfigs.Weapons.PurpleWeaponKits IsNot Nothing Then
+            'Purple Update
+            TV_WeaponKits_Generated_Purple.Nodes.Clear()
+            For Each WeaponSet_ As GenerateConfigs.Weapons.WeaponInfo In GenerateConfigs.Weapons.PurpleWeaponKits
+                TV_WeaponKits_Generated_Purple.Nodes.Add(CreateNodeSetWeapon(WeaponSet_))
+            Next
+        End If
+        If GenerateConfigs.Weapons.BlueWeaponKits IsNot Nothing Then
+            'Blue Update
+            TV_WeaponKits_Generated_Blue.Nodes.Clear()
+            For Each WeaponSet_ As GenerateConfigs.Weapons.WeaponInfo In GenerateConfigs.Weapons.BlueWeaponKits
+                TV_WeaponKits_Generated_Blue.Nodes.Add(CreateNodeSetWeapon(WeaponSet_))
+            Next
+        End If
+        If GenerateConfigs.Weapons.GreenWeaponKits IsNot Nothing Then
+            'Green Update
+            TV_WeaponKits_Generated_Green.Nodes.Clear()
+            For Each WeaponSet_ As GenerateConfigs.Weapons.WeaponInfo In GenerateConfigs.Weapons.GreenWeaponKits
+                TV_WeaponKits_Generated_Green.Nodes.Add(CreateNodeSetWeapon(WeaponSet_))
+            Next
+        End If
+        If GenerateConfigs.Weapons.YellowWeaponKits IsNot Nothing Then
+            'Yellow Update
+            TV_WeaponKits_Generated_Yellow.Nodes.Clear()
+            For Each WeaponSet_ As GenerateConfigs.Weapons.WeaponInfo In GenerateConfigs.Weapons.YellowWeaponKits
+                TV_WeaponKits_Generated_Yellow.Nodes.Add(CreateNodeSetWeapon(WeaponSet_))
+            Next
+        End If
 
-            tParentNode.Content = WeaponSet_.dna_TheChosenOne
-            tParentNode.ChildNodes.Add(New TreeViewNode() With {.Content = "dna_Tier : " + WeaponSet_.dna_Tier})
-            tParentNode.ChildNodes.Add(New TreeViewNode() _
-                                          With {.Content = "dna_WeaponCategory : " + WeaponSet_.dna_WeaponCategory})
-            tParentNode.ChildNodes.Add(New TreeViewNode() _
-                                          With {.Content = "dna_TheChosenOne : " + WeaponSet_.dna_TheChosenOne})
-            tParentNode.ChildNodes.Add(New TreeViewNode() With {.Content = "dna_Magazine : " + WeaponSet_.dna_Magazine})
-            tParentNode.ChildNodes.Add(New TreeViewNode() _
-                                          With {.Content = "dna_Ammunition : " + WeaponSet_.dna_Ammunition})
-            tParentNode.ChildNodes.Add(New TreeViewNode() _
-                                          With {.Content = "dna_OpticType : " + WeaponSet_.dna_OpticType})
-            tParentNode.ChildNodes.Add(New TreeViewNode() _
-                                          With {.Content = "dna_Suppressor : " + WeaponSet_.dna_Suppressor})
-            tParentNode.ChildNodes.Add(New TreeViewNode() _
-                                          With {.Content = "dna_UnderBarrel : " + WeaponSet_.dna_UnderBarrel})
-            tParentNode.ChildNodes.Add(New TreeViewNode() _
-                                          With {.Content = "dna_ButtStock : " + WeaponSet_.dna_ButtStock})
-            tParentNode.ChildNodes.Add(New TreeViewNode() _
-                                          With {.Content = "dna_HandGuard : " + WeaponSet_.dna_HandGuard})
-            tParentNode.ChildNodes.Add(New TreeViewNode() _
-                              With {.Content = "dna_Wrap : " + WeaponSet_.dna_Wrap})
-
-            TV_WeaponKits_Generated_Red.Nodes.Add(tParentNode)
-        Next
 
 
         Tab_Weapons.IsSelected = True
     End Sub
+    Function CreateNodeSetWeapon(WeaponSet_ As GenerateConfigs.Weapons.WeaponInfo) As TreeViewNode
+        Dim tParentNode As New TreeViewNode
+
+        tParentNode.Content = WeaponSet_.dna_TheChosenOne
+        tParentNode.ChildNodes.Add(New TreeViewNode() With {.Content = "dna_Tier : " + WeaponSet_.dna_Tier})
+        tParentNode.ChildNodes.Add(New TreeViewNode() _
+                                      With {.Content = "dna_WeaponCategory : " + WeaponSet_.dna_WeaponCategory})
+        tParentNode.ChildNodes.Add(New TreeViewNode() _
+                                      With {.Content = "dna_TheChosenOne : " + WeaponSet_.dna_TheChosenOne})
+        tParentNode.ChildNodes.Add(New TreeViewNode() With {.Content = "dna_Magazine : " + WeaponSet_.dna_Magazine})
+        tParentNode.ChildNodes.Add(New TreeViewNode() _
+                                      With {.Content = "dna_Ammunition : " + WeaponSet_.dna_Ammunition})
+        tParentNode.ChildNodes.Add(New TreeViewNode() _
+                                      With {.Content = "dna_OpticType : " + WeaponSet_.dna_OpticType})
+        tParentNode.ChildNodes.Add(New TreeViewNode() _
+                                      With {.Content = "dna_Suppressor : " + WeaponSet_.dna_Suppressor})
+        tParentNode.ChildNodes.Add(New TreeViewNode() _
+                                      With {.Content = "dna_UnderBarrel : " + WeaponSet_.dna_UnderBarrel})
+        tParentNode.ChildNodes.Add(New TreeViewNode() _
+                                      With {.Content = "dna_ButtStock : " + WeaponSet_.dna_ButtStock})
+        tParentNode.ChildNodes.Add(New TreeViewNode() _
+                                      With {.Content = "dna_HandGuard : " + WeaponSet_.dna_HandGuard})
+        tParentNode.ChildNodes.Add(New TreeViewNode() _
+                          With {.Content = "dna_Wrap : " + WeaponSet_.dna_Wrap})
+
+        Return tParentNode
+    End Function
 
     Public Shared Sub seedWeaponKitSettings()
         Dim WeaponKitsTypes As String() = New String() {"Red", "Purple", "Blue", "Green", "Yellow"}
@@ -490,31 +523,37 @@ Partial Public Class MainWindow
         Dim weaponList As New List(Of GenerateConfigs.Weapons.WeaponInfo)()
         Dim WeaponKitTVTypeArr As New Collection(Of SfTreeView)
         WeaponKitTVTypeArr.Add(TV_WeaponKits_Generated_Red)
+        WeaponKitTVTypeArr.Add(TV_WeaponKits_Generated_Purple)
+        WeaponKitTVTypeArr.Add(TV_WeaponKits_Generated_Blue)
+        WeaponKitTVTypeArr.Add(TV_WeaponKits_Generated_Green)
+        WeaponKitTVTypeArr.Add(TV_WeaponKits_Generated_Yellow)
 
         For Each t_TypeColorTree As SfTreeView In WeaponKitTVTypeArr
             'Build based on Shown
-            For Each Node As TreeViewNode In t_TypeColorTree.Nodes
-                Dim tWeaponInfo As GenerateConfigs.Weapons.WeaponInfo
-                Try
-                    tWeaponInfo = New GenerateConfigs.Weapons.WeaponInfo() With {
-                        .dna_Tier = GetNodeContent(Node, "dna_Tier"),
-                        .dna_WeaponCategory = GetNodeContent(Node, "dna_WeaponCategory"),
-                        .dna_TheChosenOne = GetNodeContent(Node, "dna_TheChosenOne"),
-                        .dna_Magazine = GetNodeContent(Node, "dna_Magazine"),
-                        .dna_Ammunition = GetNodeContent(Node, "dna_Ammunition"),
-                        .dna_OpticType = GetNodeContent(Node, "dna_OpticType"),
-                        .dna_Suppressor = GetNodeContent(Node, "dna_Suppressor"),
-                        .dna_UnderBarrel = GetNodeContent(Node, "dna_UnderBarrel"),
-                        .dna_ButtStock = GetNodeContent(Node, "dna_ButtStock"),
-                        .dna_HandGuard = GetNodeContent(Node, "dna_HandGuard"),
-                        .dna_Wrap = GetNodeContent(Node, "dna_Wrap")
-                    }
-                    weaponList.Add(tWeaponInfo)
-                Catch ex As Exception
-                    ' Log or handle the exception as needed
-                    Console.WriteLine("An error occurred while processing a node: " & ex.Message)
-                End Try
-            Next
+            If t_TypeColorTree.Nodes.First().Content.ToString() <> "Please Generate a Kit" Then
+                For Each Node As TreeViewNode In t_TypeColorTree.Nodes
+                    Dim tWeaponInfo As GenerateConfigs.Weapons.WeaponInfo
+                    Try
+                        tWeaponInfo = New GenerateConfigs.Weapons.WeaponInfo() With {
+                            .dna_Tier = GetNodeContent(Node, "dna_Tier"),
+                            .dna_WeaponCategory = GetNodeContent(Node, "dna_WeaponCategory"),
+                            .dna_TheChosenOne = GetNodeContent(Node, "dna_TheChosenOne"),
+                            .dna_Magazine = GetNodeContent(Node, "dna_Magazine"),
+                            .dna_Ammunition = GetNodeContent(Node, "dna_Ammunition"),
+                            .dna_OpticType = GetNodeContent(Node, "dna_OpticType"),
+                            .dna_Suppressor = GetNodeContent(Node, "dna_Suppressor"),
+                            .dna_UnderBarrel = GetNodeContent(Node, "dna_UnderBarrel"),
+                            .dna_ButtStock = GetNodeContent(Node, "dna_ButtStock"),
+                            .dna_HandGuard = GetNodeContent(Node, "dna_HandGuard"),
+                            .dna_Wrap = GetNodeContent(Node, "dna_Wrap")
+                        }
+                        weaponList.Add(tWeaponInfo)
+                    Catch ex As Exception
+                        ' Log or handle the exception as needed
+                        Console.WriteLine("An error occurred while processing a node: " & ex.Message)
+                    End Try
+                Next
+            End If
         Next
 
         Dim json = JsonConvert.SerializeObject(New With {Key .m_DNAConfig_Weapons = weaponList}, Formatting.Indented)
