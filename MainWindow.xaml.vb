@@ -153,7 +153,7 @@ Partial Public Class MainWindow
         grid.Background = brush
     End Sub
 
-    Private Async Sub ButtonImportExpansionMarketClick(sender As Object, e As RoutedEventArgs) Handles Kits_ImportRestricted.Click
+    Private Async Sub ButtonImportExpansionMarketClick(sender As Object, e As RoutedEventArgs) Handles Kits_ImportRestricted.Click, Clothes_Helmets_Import.Click, Clothes_Pants_Import.Click, Clothes_Gloves_Import.Click, Clothes_Eyewear_Import.Click, Clothes_Shirts_Import.Click, Clothes_Shoes_Import.Click, Clothes_Belts_Import.Click, Clothes_Armbands_Import.Click, Clothes_Vests_Import.Click, Clothes_Backpacks_Import.Click, Clothes_Facewear_Import.Click
         Dim results As String() = Await FileSelectionHelper.SelectMultipleFilesAsync()
         Dim foundTypes As List(Of String)
         For Each resultPath As String In results
@@ -164,59 +164,63 @@ Partial Public Class MainWindow
 
 
             Select Case True
+
                 'Sidearms
                 Case sender Is Kits_ImportSidearm
                     AddMissingTypes(foundTypes, GlobalVariables.SideArms)
                     UpdateTextBoxWithStrings(Kits_SideArms, GlobalVariables.SideArms)
+
                 'Restricted
                 Case sender Is Kits_ImportRestricted
                     AddMissingTypes(foundTypes, GlobalVariables.RestrictedTypes)
                     UpdateTextBoxWithStrings(Kits_Restricted, GlobalVariables.RestrictedTypes)
+
                 'Clothing Market
+
                     'dna_Helm
                 Case sender Is Clothes_Helmets_Import
                     AddMissingTypes(foundTypes, GlobalVariables.ClothingMarket.Helmets)
-                    UpdateTextBoxWithStrings(Kits_SideArms, GlobalVariables.ClothingMarket.Helmets)
+                    UpdateTextBoxWithStrings(Clothes_Helmets, GlobalVariables.ClothingMarket.Helmets)
                     'dna_Shirt
                 Case sender Is Clothes_Shirts_Import
                     AddMissingTypes(foundTypes, GlobalVariables.ClothingMarket.Shirts)
-                    UpdateTextBoxWithStrings(Kits_SideArms, GlobalVariables.ClothingMarket.Shirts)
+                    UpdateTextBoxWithStrings(Clothes_Shirts, GlobalVariables.ClothingMarket.Shirts)
                     'dna_Vest
                 Case sender Is Clothes_Vests_Import
                     AddMissingTypes(foundTypes, GlobalVariables.ClothingMarket.Vests)
-                    UpdateTextBoxWithStrings(Kits_SideArms, GlobalVariables.ClothingMarket.Vests)
+                    UpdateTextBoxWithStrings(Clothes_Vests, GlobalVariables.ClothingMarket.Vests)
                     'dna_Pants
                 Case sender Is Clothes_Pants_Import
                     AddMissingTypes(foundTypes, GlobalVariables.ClothingMarket.Pants)
-                    UpdateTextBoxWithStrings(Kits_SideArms, GlobalVariables.ClothingMarket.Pants)
+                    UpdateTextBoxWithStrings(Clothes_Pants, GlobalVariables.ClothingMarket.Pants)
                     'dna_Shoes
                 Case sender Is Clothes_Shoes_Import
                     AddMissingTypes(foundTypes, GlobalVariables.ClothingMarket.Shoes)
-                    UpdateTextBoxWithStrings(Kits_SideArms, GlobalVariables.ClothingMarket.Shoes)
+                    UpdateTextBoxWithStrings(Clothes_Shoes, GlobalVariables.ClothingMarket.Shoes)
                     'dna_Backpack
                 Case sender Is Clothes_Backpacks_Import
                     AddMissingTypes(foundTypes, GlobalVariables.ClothingMarket.Backpacks)
-                    UpdateTextBoxWithStrings(Kits_SideArms, GlobalVariables.ClothingMarket.Backpacks)
+                    UpdateTextBoxWithStrings(Clothes_Backpacks, GlobalVariables.ClothingMarket.Backpacks)
                     'dna_Gloves
                 Case sender Is Clothes_Gloves_Import
                     AddMissingTypes(foundTypes, GlobalVariables.ClothingMarket.Gloves)
-                    UpdateTextBoxWithStrings(Kits_SideArms, GlobalVariables.ClothingMarket.Gloves)
+                    UpdateTextBoxWithStrings(Clothes_Gloves, GlobalVariables.ClothingMarket.Gloves)
                     'dna_Belt
                 Case sender Is Clothes_Belts_Import
                     AddMissingTypes(foundTypes, GlobalVariables.ClothingMarket.Belts)
-                    UpdateTextBoxWithStrings(Kits_SideArms, GlobalVariables.ClothingMarket.Belts)
+                    UpdateTextBoxWithStrings(Clothes_Belts, GlobalVariables.ClothingMarket.Belts)
                     'dna_Facewear
                 Case sender Is Clothes_Facewear_Import
                     AddMissingTypes(foundTypes, GlobalVariables.ClothingMarket.Facewears)
-                    UpdateTextBoxWithStrings(Kits_SideArms, GlobalVariables.ClothingMarket.Facewears)
+                    UpdateTextBoxWithStrings(Clothes_Facewear, GlobalVariables.ClothingMarket.Facewears)
                     'dna_Eyewear
                 Case sender Is Clothes_Eyewear_Import
                     AddMissingTypes(foundTypes, GlobalVariables.ClothingMarket.Eyewears)
-                    UpdateTextBoxWithStrings(Kits_SideArms, GlobalVariables.ClothingMarket.Eyewears)
+                    UpdateTextBoxWithStrings(Clothes_Eyewear, GlobalVariables.ClothingMarket.Eyewears)
                     'dna_Armband
                 Case sender Is Clothes_Armbands_Import
                     AddMissingTypes(foundTypes, GlobalVariables.ClothingMarket.Armbands)
-                    UpdateTextBoxWithStrings(Kits_SideArms, GlobalVariables.ClothingMarket.Armbands)
+                    UpdateTextBoxWithStrings(Clothes_Armbands, GlobalVariables.ClothingMarket.Armbands)
             End Select
 
         Next
@@ -393,6 +397,9 @@ Partial Public Class MainWindow
     Public Sub seedHandlers()
         AddHandler TV_WeaponKits_Generated_Red.ItemBeginEdit, AddressOf Event_BeginEdit_TV_WeaponKits_Generated_Red _
         ' tabLocal.ModTree.ItemDropping, AddressOf Steam.TabOperations.modtree_Drop
+        Tab_ClothesSettings.AllowDrop = True
+        AddHandler Tab_ClothesSettings.Drop, AddressOf ClothingKitDropFiles
+
     End Sub
 
     Async Sub Event_BeginEdit_TV_WeaponKits_Generated_Red(sender As Object, e As EventArgs)
@@ -738,5 +745,15 @@ Partial Public Class MainWindow
         Kits_Restricted.Clear()
     End Sub
 
+    Private Async Sub ClothingKitDropFiles(sender As Object, e As Windows.DragEventArgs)
+        Dim filePaths As New ObservableCollection(Of String)()
+        If e.Data.GetDataPresent(Windows.DataFormats.FileDrop) Then
+            Dim files As String() = DirectCast(e.Data.GetData(Windows.DataFormats.FileDrop), String())
+            For Each filePath As String In files
+                filePaths.Add(filePath)
+            Next
+        End If
+        Dim xx = ""
+    End Sub
 End Class
 
