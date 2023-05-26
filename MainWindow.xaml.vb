@@ -364,6 +364,12 @@ Partial Public Class MainWindow
            type.typename.ToLower.Contains("light") Then
             Return False
         End If
+
+        If StringExistsInCollection(type.typename.ToLower, GlobalVariables.RestrictedTypes) Then
+            Return False
+        End If
+
+
         Dim counter = 0
         Dim RequiredCount = 0
         'Flags
@@ -645,6 +651,25 @@ Partial Public Class MainWindow
                                     MessageBoxIcon.Information)
             Return
         End If
+    End Sub
+
+    Private Async Sub WeaponKits_ImportRestricted_Click(sender As Object, e As RoutedEventArgs) Handles WeaponKits_ImportRestricted.Click
+        Dim results As String() = Await FileSelectionHelper.SelectMultipleFilesAsync()
+        Dim foundTypes As List(Of String)
+        For Each resultPath As String In results
+            foundTypes = New List(Of String)()
+            foundTypes = FileSelectionHelper.GetUniqueClassnamesAndVariants(resultPath) _
+            '.Add(FileSelectionHelper.GetUniqueClassnamesAndVariants(resultPath))
+            foundTypes = FileSelectionHelper.RemoveDuplicates(foundTypes)
+            AddMissingTypes(foundTypes, GlobalVariables.RestrictedTypes)
+        Next
+
+        UpdateTextBoxWithStrings(WeaponKits_Restricted, GlobalVariables.RestrictedTypes)
+    End Sub
+
+    Private Sub WeaponKits_ClearRestricted_Click(sender As Object, e As RoutedEventArgs) Handles WeaponKits_ClearRestricted.Click
+        GlobalVariables.RestrictedTypes.Clear()
+        WeaponKits_Restricted.Clear()
     End Sub
 End Class
 
