@@ -10,13 +10,13 @@
     Title="  DNA_Keycard Economy Editor" Height="725" Width="1155" Icon="App.ico"
     Background="#FF3F3F46" UseLayoutRounding="True" SnapsToDevicePixels="True" ResizeMode="CanMinimize"
     CornerRadius="15" IconAlignment="Right" ShowMaximizeButton="False" TitleFontSize="20" TitleBarHeight="40"
-    AllowsTransparency="True" WindowStyle="None" MinWidth="1155" MinHeight="725" MaxWidth="750" MaxHeight="600">
+    AllowsTransparency="True" WindowStyle="None" MinWidth="1155" MinHeight="725" MaxWidth="750" MaxHeight="600" AllowDrop="True">
     <Grid>
         <Grid Height="649" VerticalAlignment="Top">
             <syncfusion:TabControlExt x:Name="MainTabs" TabItemSize="Normal" CloseButtonType="Hide"
                                   ShowTabItemContextMenu="False" ShowTabListContextMenu="False" EnableLabelEdit="False"
-                                  TabStripPlacement="Top">
-                <syncfusion:TabItemExt x:Name="Tab_Main" Header="Main Menu" MinWidth="20">
+                                  TabStripPlacement="Top" AllowDrop="True">
+                <syncfusion:TabItemExt x:Name="Tab_Main" Header="Main Menu" MinWidth="20" AllowDrop="False">
                     <Grid>
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="337*" />
@@ -151,7 +151,7 @@
                         </Grid>
                     </Grid>
                 </syncfusion:TabItemExt>
-                <syncfusion:TabItemExt x:Name="Tab_ClothesSettings" Header="Clothing Kit Settings" MinWidth="20" MinHeight="20">
+                <syncfusion:TabItemExt x:Name="Tab_ClothesSettings" Header="Clothing Kit Settings" MinWidth="20" MinHeight="20" AllowDrop="True">
                     <Grid x:Name="G_ClothesSettings">
                         <Grid x:Name="G_Helmets" HorizontalAlignment="Left" Height="178" VerticalAlignment="Top"
                             Width="265" Margin="10,10,0,0" Background="#4C4B2C2C">

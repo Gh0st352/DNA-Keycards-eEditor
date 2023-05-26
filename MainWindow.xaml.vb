@@ -397,9 +397,11 @@ Partial Public Class MainWindow
     Public Sub seedHandlers()
         AddHandler TV_WeaponKits_Generated_Red.ItemBeginEdit, AddressOf Event_BeginEdit_TV_WeaponKits_Generated_Red _
         ' tabLocal.ModTree.ItemDropping, AddressOf Steam.TabOperations.modtree_Drop
-        Tab_ClothesSettings.AllowDrop = True
-        AddHandler Tab_ClothesSettings.Drop, AddressOf ClothingKitDropFiles
+        'AddHandler Tab_ClothesSettings.Drop, AddressOf ClothingKitDropFiles
 
+        ' Assign event handlers to the MainWindow
+        AddHandler DragEnter, AddressOf MainWindow_DragEnter
+        AddHandler Drop, AddressOf MainWindow_Drop
     End Sub
 
     Async Sub Event_BeginEdit_TV_WeaponKits_Generated_Red(sender As Object, e As EventArgs)
@@ -755,5 +757,40 @@ Partial Public Class MainWindow
         End If
         Dim xx = ""
     End Sub
+    Private Sub MainWindow_DragEnter(sender As Object, e As Windows.DragEventArgs)
+        If e.Data.GetDataPresent(Windows.DataFormats.FileDrop) Then
+            e.Effects = If(IsTabItemExtActive(), Windows.DragDropEffects.Copy, Windows.DragDropEffects.None)
+        Else
+            e.Effects = Windows.DragDropEffects.None
+        End If
+    End Sub
+
+    Private Sub MainWindow_Drop(sender As Object, e As Windows.DragEventArgs)
+        If e.Data.GetDataPresent(Windows.DataFormats.FileDrop) AndAlso IsTabItemExtActive() Then
+            Dim files As String() = DirectCast(e.Data.GetData(Windows.DataFormats.FileDrop), String())
+            Dim filePaths As New ObservableCollection(Of String)()
+            For Each filePath As String In files
+                filePaths.Add(filePath)
+            Next
+
+            Dim xx = ""
+        End If
+    End Sub
+
+    Private Function IsTabItemExtActive() As Boolean
+        ' Replace 'tabItem' with the actual instance of the TabItemExt you want to check
+        Dim tabItem As TabItemExt = GetCurrentActiveTabItem()
+        Return tabItem IsNot Nothing
+    End Function
+
+    Private Function GetCurrentActiveTabItem() As TabItemExt
+        ' Code to retrieve the currently active TabItemExt, for example:
+        ' Assuming you have a TabControl named 'tabControl' and you want to get the currently selected TabItemExt
+        If TypeOf MainTabs.SelectedItem Is TabItemExt Then
+            Return DirectCast(MainTabs.SelectedItem, TabItemExt)
+        End If
+
+        Return Nothing
+    End Function
 End Class
 
