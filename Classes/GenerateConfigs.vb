@@ -19,25 +19,44 @@ Namespace Classes
                 Public Property dna_Tier As String
                 Public Property dna_WeaponCategory As String = "main"
                 Public Property dna_TheChosenOne As String = ""
-                Public Property dna_Magazine As String = ""
-                Public Property dna_Ammunition As String = ""
-                Public Property dna_OpticType As String = ""
-                Public Property dna_Suppressor As String = ""
-                Public Property dna_UnderBarrel As String = ""
-                Public Property dna_ButtStock As String = ""
-                Public Property dna_HandGuard As String = ""
-                Public Property dna_Wrap As String = ""
+                Public Property dna_Magazine As String = "random"
+                Public Property dna_Ammunition As String = "random"
+                Public Property dna_OpticType As String = "random"
+                Public Property dna_Suppressor As String = "random"
+                Public Property dna_UnderBarrel As String = "random"
+                Public Property dna_ButtStock As String = "random"
+                Public Property dna_HandGuard As String = "random"
+                Public Property dna_Wrap As String = "random"
             End Class
+            Public Shared Function StringExistsInCollection(ByVal searchString As String, ByVal collection As ObservableCollection(Of String)) As Boolean
+                Return collection.Any(Function(item) String.Equals(item, searchString, StringComparison.OrdinalIgnoreCase))
+            End Function
             Public Shared Sub ExportTypesToJson(t_Types As ObservableCollection(Of GlobalVariables.Types.TypeInfo), fileName As String, t_tier As String)
                 Dim weaponList As New List(Of WeaponInfo)()
 
                 For Each type In t_Types
                     Dim weapon As New WeaponInfo()
-
-
                     weapon.dna_Tier = t_tier
                     weapon.dna_TheChosenOne = type.typename
-                    ' Set other properties as needed
+                    Dim exists As Boolean = StringExistsInCollection(type.typename, GlobalVariables.SideArms)
+                    If exists Then
+                        weapon.dna_WeaponCategory = "side"
+                    End If
+
+                    'CHECK IF TYPE CONTAINS REQUIRED FLAGS FOR ADD
+                    'if selectedcats is not nothing then
+                    'for every selectedcat in selectedcats
+                    ' if type.section contains selected cat then
+                    'flag to add
+                    'else continue
+
+
+
+
+
+
+
+
 
                     weaponList.Add(weapon)
                 Next
