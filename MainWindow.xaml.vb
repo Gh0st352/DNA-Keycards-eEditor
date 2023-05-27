@@ -162,15 +162,15 @@ Partial Public Class MainWindow
 
             Select Case True
 
-                'Sidearms
-                Case sender Is Kits_SideArms
-                    AddMissingTypes(foundTypes, GlobalVariables.SideArms)
-                    UpdateTextBoxWithStrings(Kits_SideArms, GlobalVariables.SideArms)
+                ''Sidearms
+                'Case sender Is Kits_SideArms
+                '    AddMissingTypes(foundTypes, GlobalVariables.SideArms)
+                '    UpdateTextBoxWithStrings(Kits_SideArms, GlobalVariables.SideArms)
 
-                'Restricted
-                Case sender Is Kits_Restricted
-                    AddMissingTypes(foundTypes, GlobalVariables.RestrictedTypes)
-                    UpdateTextBoxWithStrings(Kits_Restricted, GlobalVariables.RestrictedTypes)
+                ''Restricted
+                'Case sender Is Kits_Restricted
+                '    AddMissingTypes(foundTypes, GlobalVariables.RestrictedTypes)
+                '    UpdateTextBoxWithStrings(Kits_Restricted, GlobalVariables.RestrictedTypes)
 
                 'Clothing Market
 
