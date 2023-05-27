@@ -333,36 +333,57 @@ Partial Public Class MainWindow
             colorTier = Kit_ColorChoice.SelectedItem.Content
             colorTier = colorTier.Replace(" Kit", "")
 
-            'Dim clothesInfos As New ObservableCollection(Of GenerateConfigs.Clothes.ClothesInfo)()
-            Dim acceptableTypes As New ObservableCollection(Of GlobalVariables.Types.TypeInfo)()
+            Dim tHelmets As New ObservableCollection(Of String)() 
+            Dim tShirts As New ObservableCollection(Of String)()
+            Dim tVests As New ObservableCollection(Of String)()
+            Dim tPants As New ObservableCollection(Of String)()
+            Dim tShoes As New ObservableCollection(Of String)()
+            Dim tBackpacks As New ObservableCollection(Of String)()
+            Dim tGloves As New ObservableCollection(Of String)()
+            Dim tBelts As New ObservableCollection(Of String)()
+            Dim tFacewears As New ObservableCollection(Of String)()
+            Dim tEyewears As New ObservableCollection(Of String)()
+            Dim tArmbands As New ObservableCollection(Of String)()
+
             For Each type In GlobalVariables.Types.Types
                 checkedAddArgs = Await determineIfAdd(type)
                 If checkedAddArgs = True Then
-                    acceptableTypes.Add(type)
+                    'If GlobalVariables.ClothingMarket.Helmets.Contains(type.typename) Then
+                    If GlobalVariables.ClothingMarket.Helmets.Any(Function(t_) String.Equals(t_, type.typename, StringComparison.OrdinalIgnoreCase)) Then tHelmets.Add(type.typename)
+                    If GlobalVariables.ClothingMarket.Shirts.Any(Function(t_) String.Equals(t_, type.typename, StringComparison.OrdinalIgnoreCase)) Then tShirts.Add(type.typename)
+                    If GlobalVariables.ClothingMarket.Vests.Any(Function(t_) String.Equals(t_, type.typename, StringComparison.OrdinalIgnoreCase)) Then tVests.Add(type.typename)
+                    If GlobalVariables.ClothingMarket.Pants.Any(Function(t_) String.Equals(t_, type.typename, StringComparison.OrdinalIgnoreCase)) Then tPants.Add(type.typename)
+                    If GlobalVariables.ClothingMarket.Shoes.Any(Function(t_) String.Equals(t_, type.typename, StringComparison.OrdinalIgnoreCase)) Then tShoes.Add(type.typename)
+                    If GlobalVariables.ClothingMarket.Backpacks.Any(Function(t_) String.Equals(t_, type.typename, StringComparison.OrdinalIgnoreCase)) Then tBackpacks.Add(type.typename)
+                    If GlobalVariables.ClothingMarket.Gloves.Any(Function(t_) String.Equals(t_, type.typename, StringComparison.OrdinalIgnoreCase)) Then tGloves.Add(type.typename)
+                    If GlobalVariables.ClothingMarket.Belts.Any(Function(t_) String.Equals(t_, type.typename, StringComparison.OrdinalIgnoreCase)) Then tBelts.Add(type.typename)
+                    If GlobalVariables.ClothingMarket.Facewears.Any(Function(t_) String.Equals(t_, type.typename, StringComparison.OrdinalIgnoreCase)) Then tFacewears.Add(type.typename)
+                    If GlobalVariables.ClothingMarket.Eyewears.Any(Function(t_) String.Equals(t_, type.typename, StringComparison.OrdinalIgnoreCase)) Then tEyewears.Add(type.typename)
+                    If GlobalVariables.ClothingMarket.Armbands.Any(Function(t_) String.Equals(t_, type.typename, StringComparison.OrdinalIgnoreCase)) Then tArmbands.Add(type.typename)
                 End If
             Next
-
-            Select Case colorTier
-                Case "Red"
-                    GenerateConfigs.Weapons.RedWeaponKits = clothesInfos
-                Case "Purple"
-                    GenerateConfigs.Weapons.PurpleWeaponKits = clothesInfos
-                Case "Blue"
-                    GenerateConfigs.Weapons.BlueWeaponKits = clothesInfos
-                Case "Green"
-                    GenerateConfigs.Weapons.GreenWeaponKits = clothesInfos
-                Case "Yellow"
-                    GenerateConfigs.Weapons.YellowWeaponKits = clothesInfos
-            End Select
-            UpdateGeneratedWeaponKits()
-            'Await GenerateConfigs.Weapons.GenerateConfig(WeaponColorTier)
-            'Dim info As New GenerateConfigs.Clothes.ClothesInfo()
-            'info.dna_Tier = colorTier
-            'info.dna_TheChosenOne = type.typename
-            'Dim exists As Boolean = StringExistsInCollection(type.typename, GlobalVariables.RestrictedTypes)
-            'If exists Then
-            '    Continue For
-            'End If
+            Dim xx = ""
+            'Select Case colorTier
+            '    Case "Red"
+            '        GenerateConfigs.Weapons.RedWeaponKits = clothesInfos
+            '    Case "Purple"
+            '        GenerateConfigs.Weapons.PurpleWeaponKits = clothesInfos
+            '    Case "Blue"
+            '        GenerateConfigs.Weapons.BlueWeaponKits = clothesInfos
+            '    Case "Green"
+            '        GenerateConfigs.Weapons.GreenWeaponKits = clothesInfos
+            '    Case "Yellow"
+            '        GenerateConfigs.Weapons.YellowWeaponKits = clothesInfos
+            'End Select
+            'UpdateGeneratedWeaponKits()
+            ''Await GenerateConfigs.Weapons.GenerateConfig(WeaponColorTier)
+            ''Dim info As New GenerateConfigs.Clothes.ClothesInfo()
+            ''info.dna_Tier = colorTier
+            ''info.dna_TheChosenOne = type.typename
+            ''Dim exists As Boolean = StringExistsInCollection(type.typename, GlobalVariables.RestrictedTypes)
+            ''If exists Then
+            ''    Continue For
+            ''End If
 
 
             'clothesInfos.Add(info)
@@ -525,6 +546,7 @@ Partial Public Class MainWindow
         ' tabLocal.ModTree.ItemDropping, AddressOf Steam.TabOperations.modtree_Drop
 
         AddHandler MainExe.Drop, AddressOf MainExeDropFiles
+        AttachTextChangedEventToAllTextBoxes(Tab_ClothesSettings)
     End Sub
 
     Async Sub Event_BeginEdit_TV_WeaponKits_Generated_Red(sender As Object, e As EventArgs)
@@ -537,7 +559,6 @@ Partial Public Class MainWindow
             eventInfo.Cancel = False
         End If
     End Sub
-
     Async Function determineIfAdd(type As GlobalVariables.Types.TypeInfo) As Task(Of Boolean)
         'CHECK IF TYPE CONTAINS REQUIRED FLAGS FOR ADD
         '        'if selectedcats is not nothing then
@@ -910,6 +931,66 @@ Partial Public Class MainWindow
             Next
         End If
     End Sub
+    Private Sub AttachTextChangedEventHandlerToTextBoxes(container As DependencyObject)
+        For i As Integer = 0 To VisualTreeHelper.GetChildrenCount(container) - 1
+            Dim child As DependencyObject = VisualTreeHelper.GetChild(container, i)
+
+            If TypeOf child Is SfTextBoxExt Then
+                Dim textBox As SfTextBoxExt = DirectCast(child, SfTextBoxExt)
+                AddHandler textBox.TextChanged, AddressOf SfTextBoxExt_TextChanged
+                AddHandler textBox.LostFocus, AddressOf SfTextBoxExt_LostFocus
+            Else
+                AttachTextChangedEventHandlerToTextBoxes(child)
+            End If
+        Next
+    End Sub
+
+    Private Sub SfTextBoxExt_TextChanged(sender As Object, e As TextChangedEventArgs)
+        ' Handle the text changed event here
+        Dim textBox As SfTextBoxExt = DirectCast(sender, SfTextBoxExt)
+        ' Store the updated text in a variable or perform any immediate actions
+        ' This section will be reached as the user is typing or making changes
+
+        ' Example: Store the updated text
+        Dim newText As String = textBox.Text
+        textBox.Tag = newText
+    End Sub
+
+    Private Sub SfTextBoxExt_LostFocus(sender As Object, e As RoutedEventArgs)
+        ' Handle the lost focus event here
+        Dim textBox As SfTextBoxExt = DirectCast(sender, SfTextBoxExt)
+        ' Retrieve the stored updated text
+        Dim newText As String = CStr(textBox.Tag)
+
+        ' Perform any desired actions with the updated text
+        Windows.MessageBox.Show("Text changed to: " & newText)
+    End Sub
+
+    Private Sub AttachTextChangedEventToAllTextBoxes(tabItem As TabItemExt)
+        AttachTextChangedEventHandlerToTextBoxes(tabItem.Content)
+    End Sub
+    Private Sub Grid_PreviewMouseDown(sender As Object, e As MouseButtonEventArgs)
+        Dim scope As DependencyObject = TryCast(Mouse.Captured, DependencyObject)
+        Dim sfTextBoxParent As DependencyObject = VisualTreeHelper.GetParent(TextBox)
+
+        While scope IsNot Nothing
+            If scope Is sfTextBoxParent Then
+                Return
+            End If
+
+            If TypeOf scope Is Syncfusion.Windows.Controls.SfTextBoxExt Then
+                Dim sfTextBox As Syncfusion.Windows.Controls.SfTextBoxExt = DirectCast(scope, Syncfusion.Windows.Controls.SfTextBoxExt)
+                If sfTextBox IsNot TextBox Then
+                    TextBox.MoveFocus(New TraversalRequest(FocusNavigationDirection.Next))
+                End If
+                Return
+            End If
+
+            scope = VisualTreeHelper.GetParent(scope)
+        End While
+    End Sub
+
+
 
 
 End Class

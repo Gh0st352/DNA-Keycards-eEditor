@@ -197,7 +197,7 @@
                             <syncfusion:SfTextBoxExt x:Name="Clothes_Helmets"
                                                      Height="106" Margin="0,31,0,0" TextWrapping="NoWrap"
                                                      VerticalAlignment="Top" AcceptsReturn="True" MinLines="1"
-                                                     Delimiter="Environment.NewLine" AllowDrop="False" />
+                                                     Delimiter="Environment.NewLine" AllowDrop="False" IsTabStop="False" />
                             <syncfusion:ButtonAdv x:Name="Clothes_Helmets_Import" Content="ButtonAdv" Height="35"
                                                   Label="Import Types From Expansion Market JSON"
                                                   VerticalAlignment="Bottom" Margin="0,0,80,0" Background="#261A88E4"
@@ -215,7 +215,7 @@
                             <syncfusion:SfTextBoxExt x:Name="Clothes_Pants"
                                                      Height="106" Margin="0,31,0,0" TextWrapping="NoWrap"
                                                      VerticalAlignment="Top" AcceptsReturn="True" MinLines="1"
-                                                     Delimiter="Environment.NewLine" AllowDrop="False" />
+                                                     Delimiter="Environment.NewLine" AllowDrop="False" IsTabStop="False" />
                             <syncfusion:ButtonAdv x:Name="Clothes_Pants_Import" Content="ButtonAdv" Height="35"
                                                   Label="Import Types From Expansion Market JSON"
                                                   VerticalAlignment="Bottom" Margin="0,0,80,0" Background="#261A88E4"
@@ -233,7 +233,7 @@
                             <syncfusion:SfTextBoxExt x:Name="Clothes_Gloves"
                                                      Height="106" Margin="0,31,0,0" TextWrapping="NoWrap"
                                                      VerticalAlignment="Top" AcceptsReturn="True" MinLines="1"
-                                                     Delimiter="Environment.NewLine" AllowDrop="False" />
+                                                     Delimiter="Environment.NewLine" AllowDrop="False" IsTabStop="False" />
                             <syncfusion:ButtonAdv x:Name="Clothes_Gloves_Import" Content="ButtonAdv" Height="35"
                                                   Label="Import Types From Expansion Market JSON"
                                                   VerticalAlignment="Bottom" Margin="0,0,80,0" Background="#261A88E4"
@@ -251,7 +251,7 @@
                             <syncfusion:SfTextBoxExt x:Name="Clothes_Eyewear"
                                                      Height="78" Margin="0,31,0,0" TextWrapping="NoWrap"
                                                      VerticalAlignment="Top" AcceptsReturn="True" MinLines="1"
-                                                     Delimiter="Environment.NewLine" AllowDrop="False" />
+                                                     Delimiter="Environment.NewLine" AllowDrop="False" IsTabStop="False" />
                             <syncfusion:ButtonAdv x:Name="Clothes_Eyewear_Import" Content="ButtonAdv" Height="35"
                                                   Label="Import Types From Expansion Market JSON"
                                                   VerticalAlignment="Bottom" Margin="0,0,80,0" Background="#261A88E4"
@@ -269,7 +269,7 @@
                             <syncfusion:SfTextBoxExt x:Name="Clothes_Shirts"
                                                      Height="106" Margin="0,31,0,0" TextWrapping="NoWrap"
                                                      VerticalAlignment="Top" AcceptsReturn="True" MinLines="1"
-                                                     Delimiter="Environment.NewLine" AllowDrop="False" />
+                                                     Delimiter="Environment.NewLine" AllowDrop="False" IsTabStop="False" />
                             <syncfusion:ButtonAdv x:Name="Clothes_Shirts_Import" Content="ButtonAdv" Height="35"
                                                   Label="Import Types From Expansion Market JSON"
                                                   VerticalAlignment="Bottom" Margin="0,0,80,0" Background="#261A88E4"
@@ -287,7 +287,7 @@
                             <syncfusion:SfTextBoxExt x:Name="Clothes_Shoes"
                                                      Height="106" Margin="0,31,0,0" TextWrapping="NoWrap"
                                                      VerticalAlignment="Top" AcceptsReturn="True" MinLines="1"
-                                                     Delimiter="Environment.NewLine" AllowDrop="False" />
+                                                     Delimiter="Environment.NewLine" AllowDrop="False" IsTabStop="False" />
                             <syncfusion:ButtonAdv x:Name="Clothes_Shoes_Import" Content="ButtonAdv" Height="35"
                                                   Label="Import Types From Expansion Market JSON"
                                                   VerticalAlignment="Bottom" Margin="0,0,80,0" Background="#261A88E4"
@@ -305,7 +305,7 @@
                             <syncfusion:SfTextBoxExt x:Name="Clothes_Belts"
                                                      Height="106" Margin="0,31,0,0" TextWrapping="NoWrap"
                                                      VerticalAlignment="Top" AcceptsReturn="True" MinLines="1"
-                                                     Delimiter="Environment.NewLine" AllowDrop="False" />
+                                                     Delimiter="Environment.NewLine" AllowDrop="False" IsTabStop="False" />
                             <syncfusion:ButtonAdv x:Name="Clothes_Belts_Import" Content="ButtonAdv" Height="35"
                                                   Label="Import Types From Expansion Market JSON"
                                                   VerticalAlignment="Bottom" Margin="0,0,80,0" Background="#261A88E4"
@@ -323,7 +323,7 @@
                             <syncfusion:SfTextBoxExt x:Name="Clothes_Armbands"
                                                      Height="78" Margin="0,31,0,0" TextWrapping="NoWrap"
                                                      VerticalAlignment="Top" AcceptsReturn="True" MinLines="1"
-                                                     Delimiter="Environment.NewLine" AllowDrop="False" />
+                                                     Delimiter="Environment.NewLine" AllowDrop="False" IsTabStop="False" />
                             <syncfusion:ButtonAdv x:Name="Clothes_Armbands_Import" Content="ButtonAdv" Height="35"
                                                   Label="Import Types From Expansion Market JSON"
                                                   VerticalAlignment="Bottom" Margin="0,0,80,0" Background="#261A88E4"
@@ -341,7 +341,7 @@
                             <syncfusion:SfTextBoxExt x:Name="Clothes_Vests"
                                                      Height="106" Margin="0,31,0,0" TextWrapping="NoWrap"
                                                      VerticalAlignment="Top" AcceptsReturn="True" MinLines="1"
-                                                     Delimiter="Environment.NewLine" AllowDrop="False" />
+                                                     Delimiter="Environment.NewLine" AllowDrop="False" IsTabStop="False" />
                             <syncfusion:ButtonAdv x:Name="Clothes_Vests_Import" Content="ButtonAdv" Height="35"
                                                   Label="Import Types From Expansion Market JSON"
                                                   VerticalAlignment="Bottom" Margin="0,0,80,0" Background="#261A88E4"
@@ -359,7 +359,7 @@
                             <syncfusion:SfTextBoxExt x:Name="Clothes_Backpacks"
                                                      Height="106" Margin="0,31,0,0" TextWrapping="NoWrap"
                                                      VerticalAlignment="Top" AcceptsReturn="True" MinLines="1"
-                                                     Delimiter="Environment.NewLine" AllowDrop="False" />
+                                                     Delimiter="Environment.NewLine" AllowDrop="False" IsTabStop="False" />
                             <syncfusion:ButtonAdv x:Name="Clothes_Backpacks_Import" Content="ButtonAdv" Height="35"
                                                   Label="Import Types From Expansion Market JSON"
                                                   VerticalAlignment="Bottom" Margin="0,0,80,0" Background="#261A88E4"
@@ -377,7 +377,7 @@
                             <syncfusion:SfTextBoxExt x:Name="Clothes_Facewear"
                                                      Height="106" Margin="0,31,0,0" TextWrapping="NoWrap"
                                                      VerticalAlignment="Top" AcceptsReturn="True" MinLines="1"
-                                                     Delimiter="Environment.NewLine" AllowDrop="False" />
+                                                     Delimiter="Environment.NewLine" AllowDrop="False" IsTabStop="False" />
                             <syncfusion:ButtonAdv x:Name="Clothes_Facewear_Import" Content="ButtonAdv" Height="35"
                                                   Label="Import Types From Expansion Market JSON"
                                                   VerticalAlignment="Bottom" Margin="0,0,80,0" Background="#261A88E4"
