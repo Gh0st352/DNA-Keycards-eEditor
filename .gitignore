@@ -338,3 +338,6 @@ ASALocalRun/
 
 # BeatPulse healthcheck temp database
 healthchecksdb
+/Classes/EventHandlers.vb
+/Classes/UI.vb
+/SharedResources.xaml

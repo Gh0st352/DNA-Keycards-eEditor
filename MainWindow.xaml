@@ -55,8 +55,12 @@
                 <syncfusion:TabItemExt x:Name="Tab_Kits" Header="Kits" MinWidth="20" MinHeight="20" AllowDrop="False">
                     <Grid AllowDrop="False">
                         <Grid x:Name="G_KitType" Background="#33535353" AllowDrop="False">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="72*"/>
+                                <ColumnDefinition Width="311*"/>
+                            </Grid.ColumnDefinitions>
                             <Grid x:Name="G_Flags" HorizontalAlignment="Left" Height="227" VerticalAlignment="Top"
-                                  Width="209" Margin="10,38,0,0" AllowDrop="False">
+                                  Width="209" Margin="10,38,0,0" AllowDrop="False" Grid.ColumnSpan="2">
                                 <Label Content="Flags" HorizontalAlignment="Left" VerticalAlignment="Top" Width="209"
                                        HorizontalContentAlignment="Center" VerticalContentAlignment="Center"
                                        BorderBrush="#FF020000" AllowDrop="False" />
@@ -75,7 +79,7 @@
                                 </syncfusion:CheckListBox>
                             </Grid>
                             <Grid x:Name="G_Categories" HorizontalAlignment="Left" Height="227" VerticalAlignment="Top"
-                                  Width="209" Margin="240,38,0,0" AllowDrop="False">
+                                  Width="209" Margin="24,38,0,0" AllowDrop="False" Grid.Column="1">
                                 <Label Content="Detected Categories" HorizontalAlignment="Left" VerticalAlignment="Top"
                                        Width="209" HorizontalContentAlignment="Center"
                                        VerticalContentAlignment="Center"
@@ -86,7 +90,7 @@
                                                          BorderThickness="2" DisplayMemberPath="Name" AllowDrop="False" />
                             </Grid>
                             <Grid x:Name="G_Values" HorizontalAlignment="Left" Height="227" VerticalAlignment="Top"
-                                  Width="209" Margin="468,38,0,0" AllowDrop="False">
+                                  Width="209" Margin="252,38,0,0" AllowDrop="False" Grid.Column="1">
                                 <Label Content="Detected Values" HorizontalAlignment="Left" VerticalAlignment="Top"
                                        Width="209" HorizontalContentAlignment="Center"
                                        VerticalContentAlignment="Center"
@@ -97,7 +101,7 @@
                                                          BorderThickness="2" DisplayMemberPath="Name" AllowDrop="False" />
                             </Grid>
                             <Grid x:Name="G_Usages" HorizontalAlignment="Left" Height="459" VerticalAlignment="Top"
-                                  Width="209" Margin="696,38,0,0" AllowDrop="False">
+                                  Width="209" Margin="480,38,0,0" AllowDrop="False" Grid.Column="1">
                                 <Label Content="Detected Usages" HorizontalAlignment="Left" VerticalAlignment="Top"
                                        Width="209" HorizontalContentAlignment="Center"
                                        VerticalContentAlignment="Center"
@@ -108,7 +112,7 @@
                                                          BorderThickness="2" DisplayMemberPath="Name" AllowDrop="False" />
                             </Grid>
                             <Grid x:Name="G_Tags" HorizontalAlignment="Left" Height="459" VerticalAlignment="Top"
-                                  Width="209" Margin="925,38,0,0" AllowDrop="False">
+                                  Width="209" Margin="709,38,0,0" AllowDrop="False" Grid.Column="1">
                                 <Grid.RowDefinitions>
                                     <RowDefinition Height="91*" />
                                     <RowDefinition Height="136*" />
@@ -126,7 +130,7 @@
                             <syncfusion:ComboBoxAdv x:Name="Kit_ColorChoice" HorizontalAlignment="Left" Height="33"
                                                     Margin="10,5,0,0" VerticalAlignment="Top" Width="1124"
                                                     DefaultText="Select Kit Type"
-                                                    HorizontalContentAlignment="Center" FontSize="16" AllowDrop="False">
+                                                    HorizontalContentAlignment="Center" FontSize="16" AllowDrop="False" Grid.ColumnSpan="2">
                                 <ListBoxItem Content="Red Kit" AllowDrop="False" />
                                 <ListBoxItem Content="Purple Kit" AllowDrop="False" />
                                 <ListBoxItem Content="Blue Kit" AllowDrop="False" />
@@ -134,7 +138,7 @@
                                 <ListBoxItem Content="Yellow Kit" AllowDrop="False" />
                             </syncfusion:ComboBoxAdv>
                             <Grid x:Name="G_Sidearms" HorizontalAlignment="Left" Height="340" VerticalAlignment="Top"
-                                  Width="333" Margin="10,270,0,0" AllowDrop="False">
+                                  Width="333" Margin="10,270,0,0" AllowDrop="False" Grid.ColumnSpan="2">
                                 <Label Content="Side Arms Types (1 per line, will be set to &quot;side&quot;)"
                                        HorizontalAlignment="Left" VerticalAlignment="Top"
                                        Width="313" HorizontalContentAlignment="Center"
@@ -157,12 +161,12 @@
                             </Grid>
                             <syncfusion:ButtonAdv x:Name="WeaponKits_Generate" Content="ButtonAdv"
                                                   Label="Generate Weapon Kit"
-                                                  Background="#632CC33A" FontSize="16" Margin="696,502,10,72"
-                                                  AllowDrop="False" />
+                                                  Background="#632CC33A" FontSize="16" Margin="480,502,10,72"
+                                                  AllowDrop="False" Grid.Column="1" />
                             <syncfusion:ButtonAdv x:Name="ClothingKits_Generate" Content="ButtonAdv"
                                 Label="Generate Clothing Kit"
-                                Background="#632CC33A" FontSize="16" Margin="696,553,10,21"
-                                AllowDrop="False" />
+                                Background="#632CC33A" FontSize="16" Margin="480,553,10,21"
+                                AllowDrop="False" Grid.Column="1" />
                         </Grid>
                         <Grid x:Name="G_Sidearms_Copy" HorizontalAlignment="Left" Height="340" VerticalAlignment="Top"
                               Width="333" Margin="354,270,0,0" AllowDrop="False">
@@ -511,7 +515,7 @@
                                        BorderThickness="0,0,0,1" FontFamily="Arial" Padding="0,2"
                                        VerticalContentAlignment="Bottom" HorizontalContentAlignment="Center"
                                        AllowDrop="False" />
-                                <TextBox x:Name="TB_Facewear_Chance8" HorizontalAlignment="Left" TextWrapping="Wrap"
+                                <TextBox x:Name="TB_Facewear_Chance" HorizontalAlignment="Left" TextWrapping="Wrap"
                                          Text="100" Width="169" Margin="96,0,0,0" MaxLength="3" MaxLines="1"
                                          BorderThickness="1,0" HorizontalContentAlignment="Center" Padding="0,0,10,0"
                                          AllowDrop="False" />
