@@ -317,6 +317,13 @@ Partial Public Class MainWindow
             textBox.Text += str & Environment.NewLine ' Append each string followed by a new line character
         Next
     End Sub
+    Public Sub UpdateGlobalsWithTextBox(textBox As SfTextBoxExt, strings As ObservableCollection(Of String))
+        strings.Clear() ' Clear the existing strings in the collection
+        Dim lines() As String = textBox.Text.Split({Environment.NewLine}, StringSplitOptions.RemoveEmptyEntries)
+        For Each line As String In lines
+            strings.Add(line) ' Add each line as a string to the collection
+        Next
+    End Sub
 
     Private Sub Kits_ClearSidearms_Click(sender As Object, e As RoutedEventArgs) _
         Handles Kits_ClearSidearms.Click
@@ -363,6 +370,20 @@ Partial Public Class MainWindow
                 End If
             Next
             Dim xx = ""
+
+
+
+
+
+
+
+
+
+
+
+
+
+
             'Select Case colorTier
             '    Case "Red"
             '        GenerateConfigs.Weapons.RedWeaponKits = clothesInfos
@@ -538,6 +559,8 @@ Partial Public Class MainWindow
         CHK_Kits_Use.ItemsSource = GlobalVariables.Types.Usages
         CHK_Kits_Val.ItemsSource = GlobalVariables.Types.Values
         CHK_Kits_Tag.ItemsSource = GlobalVariables.Types.Tags
+
+
         'WeaponKits_SideArms.DataContext = GlobalVariables.SideArms
     End Sub
 
@@ -547,6 +570,7 @@ Partial Public Class MainWindow
 
         AddHandler MainExe.Drop, AddressOf MainExeDropFiles
         AttachTextChangedEventToAllTextBoxes(Tab_ClothesSettings)
+        AttachTextChangedEventToAllTextBoxes(Tab_Kits)
     End Sub
 
     Async Sub Event_BeginEdit_TV_WeaponKits_Generated_Red(sender As Object, e As EventArgs)
@@ -960,38 +984,75 @@ Partial Public Class MainWindow
         ' Handle the lost focus event here
         Dim textBox As SfTextBoxExt = DirectCast(sender, SfTextBoxExt)
         ' Retrieve the stored updated text
-        Dim newText As String = CStr(textBox.Tag)
+        'Dim newText As String = CStr(textBox.Tag)
 
         ' Perform any desired actions with the updated text
-        Windows.MessageBox.Show("Text changed to: " & newText)
+
+
+        Select Case True
+
+                'Sidearms
+            Case textBox Is Kits_SideArms
+                UpdateGlobalsWithTextBox(Kits_SideArms, GlobalVariables.SideArms)
+                UpdateTextBoxWithStrings(Kits_SideArms, GlobalVariables.SideArms)
+
+                    'Restricted
+            Case textBox Is Kits_Restricted
+                UpdateGlobalsWithTextBox(Kits_Restricted, GlobalVariables.RestrictedTypes)
+                UpdateTextBoxWithStrings(Kits_Restricted, GlobalVariables.RestrictedTypes)
+
+                    'Clothing Market
+
+                    'dna_Helm
+            Case textBox Is Clothes_Helmets
+                UpdateGlobalsWithTextBox(Clothes_Helmets, GlobalVariables.ClothingMarket.Helmets)
+                UpdateTextBoxWithStrings(Clothes_Helmets, GlobalVariables.ClothingMarket.Helmets)
+                    'dna_Shirt
+            Case textBox Is Clothes_Shirts
+                UpdateGlobalsWithTextBox(Clothes_Shirts, GlobalVariables.ClothingMarket.Shirts)
+                UpdateTextBoxWithStrings(Clothes_Shirts, GlobalVariables.ClothingMarket.Shirts)
+                    'dna_Vest
+            Case textBox Is Clothes_Vests
+                UpdateGlobalsWithTextBox(Clothes_Vests, GlobalVariables.ClothingMarket.Vests)
+                UpdateTextBoxWithStrings(Clothes_Vests, GlobalVariables.ClothingMarket.Vests)
+                    'dna_Pants
+            Case textBox Is Clothes_Pants
+                UpdateGlobalsWithTextBox(Clothes_Pants, GlobalVariables.ClothingMarket.Pants)
+                UpdateTextBoxWithStrings(Clothes_Pants, GlobalVariables.ClothingMarket.Pants)
+                    'dna_Shoes
+            Case textBox Is Clothes_Shoes
+                UpdateGlobalsWithTextBox(Clothes_Shoes, GlobalVariables.ClothingMarket.Shirts)
+                UpdateTextBoxWithStrings(Clothes_Shoes, GlobalVariables.ClothingMarket.Shoes)
+                    'dna_Backpack
+            Case textBox Is Clothes_Backpacks
+                UpdateGlobalsWithTextBox(Clothes_Backpacks, GlobalVariables.ClothingMarket.Backpacks)
+                UpdateTextBoxWithStrings(Clothes_Backpacks, GlobalVariables.ClothingMarket.Backpacks)
+                    'dna_Gloves
+            Case textBox Is Clothes_Gloves
+                UpdateGlobalsWithTextBox(Clothes_Gloves, GlobalVariables.ClothingMarket.Gloves)
+                UpdateTextBoxWithStrings(Clothes_Gloves, GlobalVariables.ClothingMarket.Gloves)
+                    'dna_Belt
+            Case textBox Is Clothes_Belts
+                UpdateGlobalsWithTextBox(Clothes_Belts, GlobalVariables.ClothingMarket.Belts)
+                UpdateTextBoxWithStrings(Clothes_Belts, GlobalVariables.ClothingMarket.Belts)
+                    'dna_Facewear
+            Case textBox Is Clothes_Facewear
+                UpdateGlobalsWithTextBox(Clothes_Facewear, GlobalVariables.ClothingMarket.Facewears)
+                UpdateTextBoxWithStrings(Clothes_Facewear, GlobalVariables.ClothingMarket.Facewears)
+                    'dna_Eyewear
+            Case textBox Is Clothes_Eyewear
+                UpdateGlobalsWithTextBox(Clothes_Eyewear, GlobalVariables.ClothingMarket.Eyewears)
+                UpdateTextBoxWithStrings(Clothes_Eyewear, GlobalVariables.ClothingMarket.Eyewears)
+                    'dna_Armband
+            Case textBox Is Clothes_Armbands
+                UpdateGlobalsWithTextBox(Clothes_Armbands, GlobalVariables.ClothingMarket.Armbands)
+                UpdateTextBoxWithStrings(Clothes_Armbands, GlobalVariables.ClothingMarket.Armbands)
+        End Select
     End Sub
 
     Private Sub AttachTextChangedEventToAllTextBoxes(tabItem As TabItemExt)
         AttachTextChangedEventHandlerToTextBoxes(tabItem.Content)
     End Sub
-    Private Sub Grid_PreviewMouseDown(sender As Object, e As MouseButtonEventArgs)
-        Dim scope As DependencyObject = TryCast(Mouse.Captured, DependencyObject)
-        Dim sfTextBoxParent As DependencyObject = VisualTreeHelper.GetParent(TextBox)
-
-        While scope IsNot Nothing
-            If scope Is sfTextBoxParent Then
-                Return
-            End If
-
-            If TypeOf scope Is Syncfusion.Windows.Controls.SfTextBoxExt Then
-                Dim sfTextBox As Syncfusion.Windows.Controls.SfTextBoxExt = DirectCast(scope, Syncfusion.Windows.Controls.SfTextBoxExt)
-                If sfTextBox IsNot TextBox Then
-                    TextBox.MoveFocus(New TraversalRequest(FocusNavigationDirection.Next))
-                End If
-                Return
-            End If
-
-            scope = VisualTreeHelper.GetParent(scope)
-        End While
-    End Sub
-
-
-
 
 End Class
 

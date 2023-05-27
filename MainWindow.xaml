@@ -409,7 +409,7 @@
                                        BorderThickness="0,0,0,1" FontFamily="Arial" Padding="0,2"
                                        VerticalContentAlignment="Bottom" HorizontalContentAlignment="Center"
                                        AllowDrop="False" />
-                                <TextBox x:Name="TB_Slot_Chance" HorizontalAlignment="Left" TextWrapping="Wrap"
+                                <TextBox x:Name="TB_Helmet_Chance" HorizontalAlignment="Left" TextWrapping="Wrap"
                                          Text="100" Width="169" Margin="96,0,0,0" MaxLength="3" MaxLines="1"
                                          BorderThickness="1,0" HorizontalContentAlignment="Center" Padding="0,0,10,0"
                                          AllowDrop="False" />
@@ -422,7 +422,7 @@
                                        BorderThickness="0,0,0,1" FontFamily="Arial" Padding="0,2"
                                        VerticalContentAlignment="Bottom" HorizontalContentAlignment="Center"
                                        AllowDrop="False" />
-                                <TextBox x:Name="TB_Slot_Chance1" HorizontalAlignment="Left" TextWrapping="Wrap"
+                                <TextBox x:Name="TB_Shirt_Chance" HorizontalAlignment="Left" TextWrapping="Wrap"
                                          Text="100" Width="169" Margin="96,0,0,0" MaxLength="3" MaxLines="1"
                                          BorderThickness="1,0" HorizontalContentAlignment="Center" Padding="0,0,10,0"
                                          AllowDrop="False" />
@@ -435,7 +435,7 @@
                                        BorderThickness="0,0,0,1" FontFamily="Arial" Padding="0,2"
                                        VerticalContentAlignment="Bottom" HorizontalContentAlignment="Center"
                                        AllowDrop="False" />
-                                <TextBox x:Name="TB_Slot_Chance2" HorizontalAlignment="Left" TextWrapping="Wrap"
+                                <TextBox x:Name="TB_Vest_Chance" HorizontalAlignment="Left" TextWrapping="Wrap"
                                          Text="100" Width="169" Margin="96,0,0,0" MaxLength="3" MaxLines="1"
                                          BorderThickness="1,0" HorizontalContentAlignment="Center" Padding="0,0,10,0"
                                          AllowDrop="False" />
@@ -447,7 +447,7 @@
                                 <Label Content="Pants" HorizontalAlignment="Left" Width="85" Margin="5,0,0,0"
                                        BorderThickness="0,0,0,1" HorizontalContentAlignment="Center" FontFamily="Arial"
                                        Padding="0,2" VerticalContentAlignment="Bottom" AllowDrop="False" />
-                                <TextBox x:Name="TB_Slot_Chance3" HorizontalAlignment="Left" TextWrapping="Wrap"
+                                <TextBox x:Name="TB_Pants_Chance" HorizontalAlignment="Left" TextWrapping="Wrap"
                                          Text="100" Width="169" Margin="96,0,0,0" MaxLength="3" MaxLines="1"
                                          BorderThickness="1,0" HorizontalContentAlignment="Center" Padding="0,0,10,0"
                                          AllowDrop="False" />
@@ -460,7 +460,7 @@
                                        BorderThickness="0,0,0,1" FontFamily="Arial" Padding="0,2"
                                        VerticalContentAlignment="Bottom" HorizontalContentAlignment="Center"
                                        AllowDrop="False" />
-                                <TextBox x:Name="TB_Slot_Chance4" HorizontalAlignment="Left" TextWrapping="Wrap"
+                                <TextBox x:Name="TB_Shoes_Chance" HorizontalAlignment="Left" TextWrapping="Wrap"
                                          Text="100" Width="169" Margin="96,0,0,0" MaxLength="3" MaxLines="1"
                                          BorderThickness="1,0" HorizontalContentAlignment="Center" Padding="0,0,10,0"
                                          AllowDrop="False" />
@@ -473,7 +473,7 @@
                                        BorderThickness="0,0,0,1" FontFamily="Arial" Padding="0,2"
                                        VerticalContentAlignment="Bottom" HorizontalContentAlignment="Center"
                                        AllowDrop="False" />
-                                <TextBox x:Name="TB_Slot_Chance5" HorizontalAlignment="Left" TextWrapping="Wrap"
+                                <TextBox x:Name="TB_Backpack_Chance" HorizontalAlignment="Left" TextWrapping="Wrap"
                                          Text="100" Width="169" Margin="96,0,0,0" MaxLength="3" MaxLines="1"
                                          BorderThickness="1,0" HorizontalContentAlignment="Center" Padding="0,0,10,0"
                                          AllowDrop="False" />
@@ -486,7 +486,7 @@
                                        BorderThickness="0,0,0,1" FontFamily="Arial" Padding="0,2"
                                        VerticalContentAlignment="Bottom" HorizontalContentAlignment="Center"
                                        AllowDrop="False" />
-                                <TextBox x:Name="TB_Slot_Chance6" HorizontalAlignment="Left" TextWrapping="Wrap"
+                                <TextBox x:Name="TB_Gloves_Chance" HorizontalAlignment="Left" TextWrapping="Wrap"
                                          Text="100" Width="169" Margin="96,0,0,0" MaxLength="3" MaxLines="1"
                                          BorderThickness="1,0" HorizontalContentAlignment="Center" Padding="0,0,10,0"
                                          AllowDrop="False" />
@@ -498,7 +498,7 @@
                                 <Label Content="Belt" HorizontalAlignment="Left" Width="85" Margin="5,0,0,0"
                                        BorderThickness="0,0,0,1" HorizontalContentAlignment="Center" FontFamily="Arial"
                                        Padding="0,2" VerticalContentAlignment="Bottom" AllowDrop="False" />
-                                <TextBox x:Name="TB_Slot_Chance7" HorizontalAlignment="Left" TextWrapping="Wrap"
+                                <TextBox x:Name="TB_Belt_Chance" HorizontalAlignment="Left" TextWrapping="Wrap"
                                          Text="100" Width="169" Margin="96,0,0,0" MaxLength="3" MaxLines="1"
                                          BorderThickness="1,0" HorizontalContentAlignment="Center" Padding="0,0,10,0"
                                          AllowDrop="False" />
@@ -511,7 +511,7 @@
                                        BorderThickness="0,0,0,1" FontFamily="Arial" Padding="0,2"
                                        VerticalContentAlignment="Bottom" HorizontalContentAlignment="Center"
                                        AllowDrop="False" />
-                                <TextBox x:Name="TB_Slot_Chance8" HorizontalAlignment="Left" TextWrapping="Wrap"
+                                <TextBox x:Name="TB_Facewear_Chance8" HorizontalAlignment="Left" TextWrapping="Wrap"
                                          Text="100" Width="169" Margin="96,0,0,0" MaxLength="3" MaxLines="1"
                                          BorderThickness="1,0" HorizontalContentAlignment="Center" Padding="0,0,10,0"
                                          AllowDrop="False" />
@@ -524,7 +524,7 @@
                                        BorderThickness="0,0,0,1" FontFamily="Arial" Padding="0,2"
                                        VerticalContentAlignment="Bottom" HorizontalContentAlignment="Center"
                                        AllowDrop="False" />
-                                <TextBox x:Name="TB_Slot_Chance9" HorizontalAlignment="Left" TextWrapping="Wrap"
+                                <TextBox x:Name="TB_Eyewear_Chance" HorizontalAlignment="Left" TextWrapping="Wrap"
                                          Text="100" Width="169" Margin="96,0,0,0" MaxLength="3" MaxLines="1"
                                          BorderThickness="1,0" HorizontalContentAlignment="Center" Padding="0,0,10,0"
                                          AllowDrop="False" />
@@ -536,7 +536,7 @@
                                 <Label Content="Armband" HorizontalAlignment="Left" Width="85" Margin="5,0,0,0"
                                        BorderThickness="0,0,0,1" HorizontalContentAlignment="Center" FontFamily="Arial"
                                        Padding="0,2" VerticalContentAlignment="Bottom" AllowDrop="False" />
-                                <TextBox x:Name="TB_Slot_Chance10" HorizontalAlignment="Left" TextWrapping="Wrap"
+                                <TextBox x:Name="TB_Armband_Chance" HorizontalAlignment="Left" TextWrapping="Wrap"
                                          Text="100" Width="169" Margin="96,0,0,0" MaxLength="3" MaxLines="1"
                                          BorderThickness="1,0" HorizontalContentAlignment="Center" Padding="0,0,10,0"
                                          AllowDrop="False" />
@@ -549,7 +549,7 @@
                                        BorderThickness="0,0,0,1" FontFamily="Arial" Padding="0,2"
                                        VerticalContentAlignment="Bottom" HorizontalContentAlignment="Center"
                                        AllowDrop="False" />
-                                <TextBox x:Name="TB_Slot_Chance11" HorizontalAlignment="Left" TextWrapping="Wrap"
+                                <TextBox x:Name="TB_NVG_Chance" HorizontalAlignment="Left" TextWrapping="Wrap"
                                          Text="100" Width="169" Margin="96,0,0,0" MaxLength="3" MaxLines="1"
                                          BorderThickness="1,0" HorizontalContentAlignment="Center" Padding="0,0,10,0"
                                          AllowDrop="False" />
@@ -565,7 +565,7 @@
                                        Margin="5,0,0,0" BorderThickness="0,0,0,1" FontFamily="Arial" Padding="0,2"
                                        VerticalContentAlignment="Center" HorizontalContentAlignment="Center"
                                        AllowDrop="False" FontSize="14" />
-                                <TextBox x:Name="TB_Slot_Chance12" HorizontalAlignment="Left" TextWrapping="Wrap"
+                                <TextBox x:Name="ClothingKits_GenNum" HorizontalAlignment="Left" TextWrapping="Wrap"
                                          Text="100" Width="112" Margin="153,0,0,0" MaxLines="1" BorderThickness="1,0"
                                          HorizontalContentAlignment="Center" Padding="0,0,10,0" AllowDrop="False" />
                                 <Rectangle Fill="#7F494949" HorizontalAlignment="Left" Stroke="#FF5B5B5B" Width="1"
