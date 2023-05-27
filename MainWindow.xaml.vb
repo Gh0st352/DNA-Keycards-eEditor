@@ -152,62 +152,60 @@ Partial Public Class MainWindow
         grid.Background = brush
     End Sub
 
-    Private Async Function DragImportExpansionMarket(results As ObservableCollection(Of String), sender As SfTextBoxExt) As Task
+    Private Async Function DragImportExpansionMarket(resultPath As String, sender As SfTextBoxExt) As Task
         Dim foundTypes As List(Of String)
-        For Each resultPath As String In results
-            foundTypes = New List(Of String)()
-            foundTypes = Await FileSelectionHelper.GetUniqueClassnamesAndVariants(resultPath) _
-            '.Add(FileSelectionHelper.GetUniqueClassnamesAndVariants(resultPath))
-            foundTypes = Await FileSelectionHelper.RemoveDuplicates(foundTypes)
+        foundTypes = New List(Of String)()
+        foundTypes = Await FileSelectionHelper.GetUniqueClassnamesAndVariants(resultPath) _
+        '.Add(FileSelectionHelper.GetUniqueClassnamesAndVariants(resultPath))
+        foundTypes = Await FileSelectionHelper.RemoveDuplicates(foundTypes)
 
-            Select Case True
+        Select Case True
                 'dna_Helm
-                Case sender Is Clothes_Helmets
-                    AddMissingTypes(foundTypes, GlobalVariables.ClothingMarket.Helmets)
-                    UpdateTextBoxWithStrings(Clothes_Helmets, GlobalVariables.ClothingMarket.Helmets)
+            Case sender Is Clothes_Helmets
+                AddMissingTypes(foundTypes, GlobalVariables.ClothingMarket.Helmets)
+                UpdateTextBoxWithStrings(Clothes_Helmets, GlobalVariables.ClothingMarket.Helmets)
                     'dna_Shirt
-                Case sender Is Clothes_Shirts
-                    AddMissingTypes(foundTypes, GlobalVariables.ClothingMarket.Shirts)
-                    UpdateTextBoxWithStrings(Clothes_Shirts, GlobalVariables.ClothingMarket.Shirts)
+            Case sender Is Clothes_Shirts
+                AddMissingTypes(foundTypes, GlobalVariables.ClothingMarket.Shirts)
+                UpdateTextBoxWithStrings(Clothes_Shirts, GlobalVariables.ClothingMarket.Shirts)
                     'dna_Vest
-                Case sender Is Clothes_Vests
-                    AddMissingTypes(foundTypes, GlobalVariables.ClothingMarket.Vests)
-                    UpdateTextBoxWithStrings(Clothes_Vests, GlobalVariables.ClothingMarket.Vests)
+            Case sender Is Clothes_Vests
+                AddMissingTypes(foundTypes, GlobalVariables.ClothingMarket.Vests)
+                UpdateTextBoxWithStrings(Clothes_Vests, GlobalVariables.ClothingMarket.Vests)
                     'dna_Pants
-                Case sender Is Clothes_Pants
-                    AddMissingTypes(foundTypes, GlobalVariables.ClothingMarket.Pants)
-                    UpdateTextBoxWithStrings(Clothes_Pants, GlobalVariables.ClothingMarket.Pants)
+            Case sender Is Clothes_Pants
+                AddMissingTypes(foundTypes, GlobalVariables.ClothingMarket.Pants)
+                UpdateTextBoxWithStrings(Clothes_Pants, GlobalVariables.ClothingMarket.Pants)
                     'dna_Shoes
-                Case sender Is Clothes_Shoes
-                    AddMissingTypes(foundTypes, GlobalVariables.ClothingMarket.Shoes)
-                    UpdateTextBoxWithStrings(Clothes_Shoes, GlobalVariables.ClothingMarket.Shoes)
+            Case sender Is Clothes_Shoes
+                AddMissingTypes(foundTypes, GlobalVariables.ClothingMarket.Shoes)
+                UpdateTextBoxWithStrings(Clothes_Shoes, GlobalVariables.ClothingMarket.Shoes)
                     'dna_Backpack
-                Case sender Is Clothes_Backpacks
-                    AddMissingTypes(foundTypes, GlobalVariables.ClothingMarket.Backpacks)
-                    UpdateTextBoxWithStrings(Clothes_Backpacks, GlobalVariables.ClothingMarket.Backpacks)
+            Case sender Is Clothes_Backpacks
+                AddMissingTypes(foundTypes, GlobalVariables.ClothingMarket.Backpacks)
+                UpdateTextBoxWithStrings(Clothes_Backpacks, GlobalVariables.ClothingMarket.Backpacks)
                     'dna_Gloves
-                Case sender Is Clothes_Gloves
-                    AddMissingTypes(foundTypes, GlobalVariables.ClothingMarket.Gloves)
-                    UpdateTextBoxWithStrings(Clothes_Gloves, GlobalVariables.ClothingMarket.Gloves)
+            Case sender Is Clothes_Gloves
+                AddMissingTypes(foundTypes, GlobalVariables.ClothingMarket.Gloves)
+                UpdateTextBoxWithStrings(Clothes_Gloves, GlobalVariables.ClothingMarket.Gloves)
                     'dna_Belt
-                Case sender Is Clothes_Belts
-                    AddMissingTypes(foundTypes, GlobalVariables.ClothingMarket.Belts)
-                    UpdateTextBoxWithStrings(Clothes_Belts, GlobalVariables.ClothingMarket.Belts)
+            Case sender Is Clothes_Belts
+                AddMissingTypes(foundTypes, GlobalVariables.ClothingMarket.Belts)
+                UpdateTextBoxWithStrings(Clothes_Belts, GlobalVariables.ClothingMarket.Belts)
                     'dna_Facewear
-                Case sender Is Clothes_Facewear
-                    AddMissingTypes(foundTypes, GlobalVariables.ClothingMarket.Facewears)
-                    UpdateTextBoxWithStrings(Clothes_Facewear, GlobalVariables.ClothingMarket.Facewears)
+            Case sender Is Clothes_Facewear
+                AddMissingTypes(foundTypes, GlobalVariables.ClothingMarket.Facewears)
+                UpdateTextBoxWithStrings(Clothes_Facewear, GlobalVariables.ClothingMarket.Facewears)
                     'dna_Eyewear
-                Case sender Is Clothes_Eyewear
-                    AddMissingTypes(foundTypes, GlobalVariables.ClothingMarket.Eyewears)
-                    UpdateTextBoxWithStrings(Clothes_Eyewear, GlobalVariables.ClothingMarket.Eyewears)
+            Case sender Is Clothes_Eyewear
+                AddMissingTypes(foundTypes, GlobalVariables.ClothingMarket.Eyewears)
+                UpdateTextBoxWithStrings(Clothes_Eyewear, GlobalVariables.ClothingMarket.Eyewears)
                     'dna_Armband
-                Case sender Is Clothes_Armbands
-                    AddMissingTypes(foundTypes, GlobalVariables.ClothingMarket.Armbands)
-                    UpdateTextBoxWithStrings(Clothes_Armbands, GlobalVariables.ClothingMarket.Armbands)
-            End Select
+            Case sender Is Clothes_Armbands
+                AddMissingTypes(foundTypes, GlobalVariables.ClothingMarket.Armbands)
+                UpdateTextBoxWithStrings(Clothes_Armbands, GlobalVariables.ClothingMarket.Armbands)
+        End Select
 
-        Next
     End Function
 
     Private Async Sub ButtonImportExpansionMarketClick(sender As Object, e As RoutedEventArgs) _
@@ -287,13 +285,30 @@ Partial Public Class MainWindow
         Next
     End Sub
 
-    Sub AddMissingTypes(foundTypes As List(Of String), SideArms As ObservableCollection(Of String))
+    'Sub AddMissingTypes(foundTypes As List(Of String), collect_ As ObservableCollection(Of String))
+    '    For Each item In foundTypes
+    '        If Not collect_.Contains(item) Then
+    '            collect_.Add(item)
+    '        End If
+    '    Next
+    'End Sub
+
+    Sub AddMissingTypes(foundTypes As List(Of String), collect_ As ObservableCollection(Of String))
+        Dim uniqueTypes As HashSet(Of String) = New HashSet(Of String)(collect_)
+
         For Each item In foundTypes
-            If Not SideArms.Contains(item) Then
-                SideArms.Add(item)
+            If Not uniqueTypes.Contains(item) Then
+                uniqueTypes.Add(item)
             End If
         Next
+
+        collect_.Clear()
+
+        For Each item In uniqueTypes
+            collect_.Add(item)
+        Next
     End Sub
+
 
     Public Sub UpdateTextBoxWithStrings(textBox As SfTextBoxExt, strings As ObservableCollection(Of String))
         textBox.Clear() ' Clear the existing contents of the textbox
@@ -786,37 +801,37 @@ Partial Public Class MainWindow
 
 
                 If fileName.ToLower.Contains("helmet") Then
-                    Await DragImportExpansionMarket(filePaths, Clothes_Helmets)
+                    Await DragImportExpansionMarket(filePath, Clothes_Helmets)
                     Continue For
                 ElseIf fileName.ToLower.Contains("pant") Then
-                    Await DragImportExpansionMarket(filePaths, Clothes_Pants)
+                    Await DragImportExpansionMarket(filePath, Clothes_Pants)
                     Continue For
                 ElseIf fileName.ToLower.Contains("glove") Then
-                    Await DragImportExpansionMarket(filePaths, Clothes_Gloves)
+                    Await DragImportExpansionMarket(filePath, Clothes_Gloves)
                     Continue For
                 ElseIf fileName.ToLower.Contains("eyewear") Then
-                    Await DragImportExpansionMarket(filePaths, Clothes_Eyewear)
+                    Await DragImportExpansionMarket(filePath, Clothes_Eyewear)
                     Continue For
                 ElseIf fileName.ToLower.Contains("shirt") Then
-                    Await DragImportExpansionMarket(filePaths, Clothes_Shirts)
+                    Await DragImportExpansionMarket(filePath, Clothes_Shirts)
                     Continue For
                 ElseIf fileName.ToLower.Contains("shoe") Then
-                    Await DragImportExpansionMarket(filePaths, Clothes_Shoes)
+                    Await DragImportExpansionMarket(filePath, Clothes_Shoes)
                     Continue For
                 ElseIf fileName.ToLower.Contains("belt") Then
-                    Await DragImportExpansionMarket(filePaths, Clothes_Belts)
+                    Await DragImportExpansionMarket(filePath, Clothes_Belts)
                     Continue For
                 ElseIf fileName.ToLower.Contains("armband") Then
-                    Await DragImportExpansionMarket(filePaths, Clothes_Armbands)
+                    Await DragImportExpansionMarket(filePath, Clothes_Armbands)
                     Continue For
                 ElseIf fileName.ToLower.Contains("vest") Then
-                    Await DragImportExpansionMarket(filePaths, Clothes_Vests)
+                    Await DragImportExpansionMarket(filePath, Clothes_Vests)
                     Continue For
                 ElseIf fileName.ToLower.Contains("backpack") Then
-                    Await DragImportExpansionMarket(filePaths, Clothes_Backpacks)
+                    Await DragImportExpansionMarket(filePath, Clothes_Backpacks)
                     Continue For
                 ElseIf fileName.ToLower.Contains("face") Then
-                    Await DragImportExpansionMarket(filePaths, Clothes_Facewear)
+                    Await DragImportExpansionMarket(filePath, Clothes_Facewear)
                     Continue For
                 Else
                     Continue For
