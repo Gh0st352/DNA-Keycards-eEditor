@@ -97,7 +97,8 @@ Namespace Classes
                                                                            _Type.category)
                         If exists Then
                         Else
-                            GlobalVariables.Types.Categories.Add(New GlobalVariables.Types.CategoryInfo() _
+                            GlobalVariables.Types.Categories.Add(
+                                New GlobalVariables.Types.CategoryInfo() _
                                                                     With {.Checked = False, .Name = _Type.category})
                         End If
 
@@ -184,13 +185,16 @@ Namespace Classes
         Public Shared Sub AddOptionToCollection(str As String, type As String)
             Select Case type
                 Case "usage"
-                    GlobalVariables.Types.Usages.Add(New GlobalVariables.Types.UsageInfo() _
+                    GlobalVariables.Types.Usages.Add(
+                        New GlobalVariables.Types.UsageInfo() _
                                                         With {.Checked = False, .Name = str})
                 Case "tag"
-                    GlobalVariables.Types.Tags.Add(New GlobalVariables.Types.TagInfo() _
+                    GlobalVariables.Types.Tags.Add(
+                        New GlobalVariables.Types.TagInfo() _
                                                       With {.Checked = False, .Name = str})
                 Case "value"
-                    GlobalVariables.Types.Values.Add(New GlobalVariables.Types.ValueInfo() _
+                    GlobalVariables.Types.Values.Add(
+                        New GlobalVariables.Types.ValueInfo() _
                                                         With {.Checked = False, .Name = str})
                 Case Else
             End Select

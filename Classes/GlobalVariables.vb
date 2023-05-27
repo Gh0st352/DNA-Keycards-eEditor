@@ -18,6 +18,7 @@ Namespace Classes
 
         Public Shared SideArms As New ObservableCollection(Of String)()
         Public Shared RestrictedTypes As New ObservableCollection(Of String)()
+
         Public Class WeaponKitsInfo
             Public Sub New(label As String, selected As Boolean, color As String)
                 Me.Label = label

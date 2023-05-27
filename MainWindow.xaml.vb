@@ -151,6 +151,7 @@ Partial Public Class MainWindow
         Dim brush As New SolidColorBrush(color)
         grid.Background = brush
     End Sub
+
     Private Async Sub DragImportExpansionMarket(results As ObservableCollection(Of String), sender As SfTextBoxExt)
         Dim foundTypes As List(Of String)
         For Each resultPath As String In results
@@ -174,7 +175,7 @@ Partial Public Class MainWindow
 
                 'Clothing Market
 
-                    'dna_Helm
+                'dna_Helm
                 Case sender Is Clothes_Helmets
                     AddMissingTypes(foundTypes, GlobalVariables.ClothingMarket.Helmets)
                     UpdateTextBoxWithStrings(Clothes_Helmets, GlobalVariables.ClothingMarket.Helmets)
@@ -221,9 +222,13 @@ Partial Public Class MainWindow
             End Select
 
         Next
-
     End Sub
-    Private Async Sub ButtonImportExpansionMarketClick(sender As Object, e As RoutedEventArgs) Handles Kits_ImportRestricted.Click, Clothes_Helmets_Import.Click, Clothes_Pants_Import.Click, Clothes_Gloves_Import.Click, Clothes_Eyewear_Import.Click, Clothes_Shirts_Import.Click, Clothes_Shoes_Import.Click, Clothes_Belts_Import.Click, Clothes_Armbands_Import.Click, Clothes_Vests_Import.Click, Clothes_Backpacks_Import.Click, Clothes_Facewear_Import.Click
+
+    Private Async Sub ButtonImportExpansionMarketClick(sender As Object, e As RoutedEventArgs) _
+        Handles Kits_ImportRestricted.Click, Clothes_Helmets_Import.Click, Clothes_Pants_Import.Click,
+                Clothes_Gloves_Import.Click, Clothes_Eyewear_Import.Click, Clothes_Shirts_Import.Click,
+                Clothes_Shoes_Import.Click, Clothes_Belts_Import.Click, Clothes_Armbands_Import.Click,
+                Clothes_Vests_Import.Click, Clothes_Backpacks_Import.Click, Clothes_Facewear_Import.Click
         Dim results As String() = Await FileSelectionHelper.SelectMultipleFilesAsync()
         Dim foundTypes As List(Of String)
         For Each resultPath As String In results
@@ -240,12 +245,12 @@ Partial Public Class MainWindow
                     AddMissingTypes(foundTypes, GlobalVariables.SideArms)
                     UpdateTextBoxWithStrings(Kits_SideArms, GlobalVariables.SideArms)
 
-                'Restricted
+                    'Restricted
                 Case sender Is Kits_ImportRestricted
                     AddMissingTypes(foundTypes, GlobalVariables.RestrictedTypes)
                     UpdateTextBoxWithStrings(Kits_Restricted, GlobalVariables.RestrictedTypes)
 
-                'Clothing Market
+                    'Clothing Market
 
                     'dna_Helm
                 Case sender Is Clothes_Helmets_Import
@@ -294,8 +299,6 @@ Partial Public Class MainWindow
             End Select
 
         Next
-
-
     End Sub
 
     Sub AddMissingTypes(foundTypes As List(Of String), SideArms As ObservableCollection(Of String))
@@ -412,33 +415,42 @@ Partial Public Class MainWindow
         End If
 
 
-
         Tab_Kits.IsSelected = True
     End Sub
+
     Function CreateNodeSetWeapon(WeaponSet_ As GenerateConfigs.Weapons.WeaponInfo) As TreeViewNode
         Dim tParentNode As New TreeViewNode
 
         tParentNode.Content = WeaponSet_.dna_TheChosenOne
         tParentNode.ChildNodes.Add(New TreeViewNode() With {.Content = "dna_Tier : " + WeaponSet_.dna_Tier})
-        tParentNode.ChildNodes.Add(New TreeViewNode() _
+        tParentNode.ChildNodes.Add(
+            New TreeViewNode() _
                                       With {.Content = "dna_WeaponCategory : " + WeaponSet_.dna_WeaponCategory})
-        tParentNode.ChildNodes.Add(New TreeViewNode() _
+        tParentNode.ChildNodes.Add(
+            New TreeViewNode() _
                                       With {.Content = "dna_TheChosenOne : " + WeaponSet_.dna_TheChosenOne})
         tParentNode.ChildNodes.Add(New TreeViewNode() With {.Content = "dna_Magazine : " + WeaponSet_.dna_Magazine})
-        tParentNode.ChildNodes.Add(New TreeViewNode() _
+        tParentNode.ChildNodes.Add(
+            New TreeViewNode() _
                                       With {.Content = "dna_Ammunition : " + WeaponSet_.dna_Ammunition})
-        tParentNode.ChildNodes.Add(New TreeViewNode() _
+        tParentNode.ChildNodes.Add(
+            New TreeViewNode() _
                                       With {.Content = "dna_OpticType : " + WeaponSet_.dna_OpticType})
-        tParentNode.ChildNodes.Add(New TreeViewNode() _
+        tParentNode.ChildNodes.Add(
+            New TreeViewNode() _
                                       With {.Content = "dna_Suppressor : " + WeaponSet_.dna_Suppressor})
-        tParentNode.ChildNodes.Add(New TreeViewNode() _
+        tParentNode.ChildNodes.Add(
+            New TreeViewNode() _
                                       With {.Content = "dna_UnderBarrel : " + WeaponSet_.dna_UnderBarrel})
-        tParentNode.ChildNodes.Add(New TreeViewNode() _
+        tParentNode.ChildNodes.Add(
+            New TreeViewNode() _
                                       With {.Content = "dna_ButtStock : " + WeaponSet_.dna_ButtStock})
-        tParentNode.ChildNodes.Add(New TreeViewNode() _
+        tParentNode.ChildNodes.Add(
+            New TreeViewNode() _
                                       With {.Content = "dna_HandGuard : " + WeaponSet_.dna_HandGuard})
-        tParentNode.ChildNodes.Add(New TreeViewNode() _
-                          With {.Content = "dna_Wrap : " + WeaponSet_.dna_Wrap})
+        tParentNode.ChildNodes.Add(
+            New TreeViewNode() _
+                                      With {.Content = "dna_Wrap : " + WeaponSet_.dna_Wrap})
 
         Return tParentNode
     End Function
@@ -461,7 +473,6 @@ Partial Public Class MainWindow
         CHK_Weapon_Red_Val.ItemsSource = GlobalVariables.Types.Values
         CHK_Weapon_Red_Tag.ItemsSource = GlobalVariables.Types.Tags
         'WeaponKits_SideArms.DataContext = GlobalVariables.SideArms
-
     End Sub
 
     Public Sub seedHandlers()
@@ -469,7 +480,6 @@ Partial Public Class MainWindow
         ' tabLocal.ModTree.ItemDropping, AddressOf Steam.TabOperations.modtree_Drop
 
         AddHandler MainExe.Drop, AddressOf MainExeDropFiles
-
     End Sub
 
     Async Sub Event_BeginEdit_TV_WeaponKits_Generated_Red(sender As Object, e As EventArgs)
@@ -659,15 +669,16 @@ Partial Public Class MainWindow
 
                 ' If no match is found, recursively search within the child node and its descendants.
                 Dim resultIndex As Integer = FindChildIndex(childNode, searchString)
-                If resultIndex <> -1 Then
+                If resultIndex <> - 1 Then
                     Return resultIndex ' Return the index from the recursive call.
                 End If
             Next
         End If
 
         ' If no match is found, return -1 to indicate failure.
-        Return -1
+        Return - 1
     End Function
+
     Async Function ExportWeaponKitsToJson(filepath As String) As Task
         Dim weaponList As New List(Of GenerateConfigs.Weapons.WeaponInfo)()
         Dim WeaponKitTVTypeArr As New Collection(Of SfTreeView)
@@ -695,7 +706,7 @@ Partial Public Class MainWindow
                             .dna_ButtStock = GetNodeContent(Node, "dna_ButtStock"),
                             .dna_HandGuard = GetNodeContent(Node, "dna_HandGuard"),
                             .dna_Wrap = GetNodeContent(Node, "dna_Wrap")
-                        }
+                            }
                         weaponList.Add(tWeaponInfo)
                     Catch ex As Exception
                         ' Log or handle the exception as needed
@@ -785,8 +796,8 @@ Partial Public Class MainWindow
                 Dim fileExt As String = System.IO.Path.GetExtension(filePath) ' Get the file extension
                 If fileExt <> ".json" Then Continue For
                 Dim fileRoot As String = System.IO.Path.GetDirectoryName(filePath) ' Get the file root (directory)
-                Dim fileName As String = System.IO.Path.GetFileNameWithoutExtension(filePath) ' Get the file name without extension
-
+                Dim fileName As String = System.IO.Path.GetFileNameWithoutExtension(filePath) _
+                ' Get the file name without extension
 
 
                 If fileName.ToLower.Contains("helmet") Then
@@ -815,7 +826,6 @@ Partial Public Class MainWindow
                     Continue For
                 End If
             Next
-
 
 
             Dim xx2 = ""
