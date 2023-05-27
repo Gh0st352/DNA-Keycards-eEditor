@@ -60,7 +60,7 @@
                                 <Label Content="Flags" HorizontalAlignment="Left" VerticalAlignment="Top" Width="209"
                                        HorizontalContentAlignment="Center" VerticalContentAlignment="Center"
                                        BorderBrush="#FF020000" AllowDrop="False" />
-                                <syncfusion:CheckListBox x:Name="CHK_Weapon_Red_Flags" HorizontalAlignment="Left"
+                                <syncfusion:CheckListBox x:Name="CHK_Kits_Flags" HorizontalAlignment="Left"
                                                          Height="196" VerticalAlignment="Top" Width="209"
                                                          Margin="0,31,0,0"
                                                          BorderThickness="2" AllowDrop="False">
@@ -80,7 +80,7 @@
                                        Width="209" HorizontalContentAlignment="Center"
                                        VerticalContentAlignment="Center"
                                        BorderBrush="#FF020000" AllowDrop="False" />
-                                <syncfusion:CheckListBox x:Name="CHK_Weapon_Red_Cat" HorizontalAlignment="Left"
+                                <syncfusion:CheckListBox x:Name="CHK_Kits_Cat" HorizontalAlignment="Left"
                                                          Height="196" VerticalAlignment="Top" Width="209"
                                                          Margin="0,31,0,0"
                                                          BorderThickness="2" DisplayMemberPath="Name" AllowDrop="False" />
@@ -91,7 +91,7 @@
                                        Width="209" HorizontalContentAlignment="Center"
                                        VerticalContentAlignment="Center"
                                        BorderBrush="#FF020000" AllowDrop="False" />
-                                <syncfusion:CheckListBox x:Name="CHK_Weapon_Red_Val" HorizontalAlignment="Left"
+                                <syncfusion:CheckListBox x:Name="CHK_Kits_Val" HorizontalAlignment="Left"
                                                          Height="196" VerticalAlignment="Top" Width="209"
                                                          Margin="0,31,0,0"
                                                          BorderThickness="2" DisplayMemberPath="Name" AllowDrop="False" />
@@ -102,7 +102,7 @@
                                        Width="209" HorizontalContentAlignment="Center"
                                        VerticalContentAlignment="Center"
                                        BorderBrush="#FF020000" AllowDrop="False" />
-                                <syncfusion:CheckListBox x:Name="CHK_Weapon_Red_Use" HorizontalAlignment="Left"
+                                <syncfusion:CheckListBox x:Name="CHK_Kits_Use" HorizontalAlignment="Left"
                                                          Height="418" VerticalAlignment="Top" Width="209"
                                                          Margin="0,31,0,0"
                                                          BorderThickness="2" DisplayMemberPath="Name" AllowDrop="False" />
@@ -117,7 +117,7 @@
                                        Width="209" HorizontalContentAlignment="Center"
                                        VerticalContentAlignment="Center"
                                        BorderBrush="#FF020000" AllowDrop="False" />
-                                <syncfusion:CheckListBox x:Name="CHK_Weapon_Red_Tag" HorizontalAlignment="Left"
+                                <syncfusion:CheckListBox x:Name="CHK_Kits_Tag" HorizontalAlignment="Left"
                                                          Height="418" VerticalAlignment="Top" Width="209"
                                                          Margin="0,31,0,0"
                                                          BorderThickness="2" DisplayMemberPath="Name" Grid.RowSpan="2"
@@ -159,6 +159,10 @@
                                                   Label="Generate Weapon Kit"
                                                   Background="#632CC33A" FontSize="16" Margin="696,502,10,72"
                                                   AllowDrop="False" />
+                            <syncfusion:ButtonAdv x:Name="ClothingKits_Generate" Content="ButtonAdv"
+                                Label="Generate Clothing Kit"
+                                Background="#632CC33A" FontSize="16" Margin="696,553,10,21"
+                                AllowDrop="False" />
                         </Grid>
                         <Grid x:Name="G_Sidearms_Copy" HorizontalAlignment="Left" Height="340" VerticalAlignment="Top"
                               Width="333" Margin="354,270,0,0" AllowDrop="False">

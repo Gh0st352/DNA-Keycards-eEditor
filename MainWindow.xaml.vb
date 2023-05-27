@@ -323,7 +323,51 @@ Partial Public Class MainWindow
         GlobalVariables.SideArms.Clear()
         Kits_SideArms.Clear()
     End Sub
+    Private Async Sub ClothingKits_Generate_Click(sender As Object, e As RoutedEventArgs) Handles ClothingKits_Generate.Click
+        Dim colorTier As String
 
+        If IsNothing(Kit_ColorChoice.SelectedItem) Then
+            Windows.MessageBox.Show("Please select a color tier", "Alert", MessageBoxButtons.OK,
+                                    MessageBoxIcon.Information)
+        Else
+            colorTier = Kit_ColorChoice.SelectedItem.Content
+            colorTier = colorTier.Replace(" Kit", "")
+
+            'Dim clothesInfos As New ObservableCollection(Of GenerateConfigs.Clothes.ClothesInfo)()
+            Dim acceptableTypes As New ObservableCollection(Of GlobalVariables.Types.TypeInfo)()
+            For Each type In GlobalVariables.Types.Types
+                checkedAddArgs = Await determineIfAdd(type)
+                If checkedAddArgs = True Then
+                    acceptableTypes.Add(type)
+                End If
+            Next
+
+            Select Case colorTier
+                Case "Red"
+                    GenerateConfigs.Weapons.RedWeaponKits = clothesInfos
+                Case "Purple"
+                    GenerateConfigs.Weapons.PurpleWeaponKits = clothesInfos
+                Case "Blue"
+                    GenerateConfigs.Weapons.BlueWeaponKits = clothesInfos
+                Case "Green"
+                    GenerateConfigs.Weapons.GreenWeaponKits = clothesInfos
+                Case "Yellow"
+                    GenerateConfigs.Weapons.YellowWeaponKits = clothesInfos
+            End Select
+            UpdateGeneratedWeaponKits()
+            'Await GenerateConfigs.Weapons.GenerateConfig(WeaponColorTier)
+            'Dim info As New GenerateConfigs.Clothes.ClothesInfo()
+            'info.dna_Tier = colorTier
+            'info.dna_TheChosenOne = type.typename
+            'Dim exists As Boolean = StringExistsInCollection(type.typename, GlobalVariables.RestrictedTypes)
+            'If exists Then
+            '    Continue For
+            'End If
+
+
+            'clothesInfos.Add(info)
+        End If
+    End Sub
     Private Async Sub WeaponKits_Generate_Click(sender As Object, e As RoutedEventArgs) _
         Handles WeaponKits_Generate.Click
         Dim WeaponColorTier As String
@@ -469,10 +513,10 @@ Partial Public Class MainWindow
         G_Types.ItemsSource = GlobalVariables.Types.Types
 
         'Weapon Kits 
-        CHK_Weapon_Red_Cat.ItemsSource = GlobalVariables.Types.Categories
-        CHK_Weapon_Red_Use.ItemsSource = GlobalVariables.Types.Usages
-        CHK_Weapon_Red_Val.ItemsSource = GlobalVariables.Types.Values
-        CHK_Weapon_Red_Tag.ItemsSource = GlobalVariables.Types.Tags
+        CHK_Kits_Cat.ItemsSource = GlobalVariables.Types.Categories
+        CHK_Kits_Use.ItemsSource = GlobalVariables.Types.Usages
+        CHK_Kits_Val.ItemsSource = GlobalVariables.Types.Values
+        CHK_Kits_Tag.ItemsSource = GlobalVariables.Types.Tags
         'WeaponKits_SideArms.DataContext = GlobalVariables.SideArms
     End Sub
 
@@ -528,7 +572,7 @@ Partial Public Class MainWindow
         Dim RequiredCount = 0
         'Flags
         selectedArgs = Nothing
-        selectedArgs = CHK_Weapon_Red_Flags.SelectedItems
+        selectedArgs = CHK_Kits_Flags.SelectedItems
         counter = 0
         RequiredCount = selectedArgs.Count
         If RequiredCount <> 0 Then
@@ -565,7 +609,7 @@ Partial Public Class MainWindow
 
         'Categories
         selectedArgs = Nothing
-        selectedArgs = CHK_Weapon_Red_Cat.SelectedItems
+        selectedArgs = CHK_Kits_Cat.SelectedItems
         counter = 0
         RequiredCount = selectedArgs.Count
         If RequiredCount <> 0 Then
@@ -580,7 +624,7 @@ Partial Public Class MainWindow
         End If
         'Values
         selectedArgs = Nothing
-        selectedArgs = CHK_Weapon_Red_Val.SelectedItems
+        selectedArgs = CHK_Kits_Val.SelectedItems
         counter = 0
         RequiredCount = selectedArgs.Count
         If RequiredCount <> 0 Then
@@ -595,7 +639,7 @@ Partial Public Class MainWindow
         End If
         'Usages
         selectedArgs = Nothing
-        selectedArgs = CHK_Weapon_Red_Use.SelectedItems
+        selectedArgs = CHK_Kits_Use.SelectedItems
         counter = 0
         RequiredCount = selectedArgs.Count
         If RequiredCount <> 0 Then
@@ -610,7 +654,7 @@ Partial Public Class MainWindow
         End If
         'Tags
         selectedArgs = Nothing
-        selectedArgs = CHK_Weapon_Red_Tag.SelectedItems
+        selectedArgs = CHK_Kits_Tag.SelectedItems
         counter = 0
         RequiredCount = selectedArgs.Count
         If RequiredCount <> 0 Then
@@ -654,6 +698,33 @@ Partial Public Class MainWindow
             Public Shared GreenWeaponKits As ObservableCollection(Of WeaponInfo)
             Public Shared YellowWeaponKits As ObservableCollection(Of WeaponInfo)
         End Class
+
+        Public Class Clothes
+            Public Class ClothesInfo
+                Public Property dna_Tier As String
+                Public Property dna_Helm As String = ""
+                Public Property dna_Shirt As String = ""
+                Public Property dna_Vest As String = ""
+                Public Property dna_Pants As String = ""
+                Public Property dna_Shoes As String = ""
+                Public Property dna_Backpack As String = ""
+                Public Property dna_Gloves As String = ""
+                Public Property dna_Belt As String = ""
+                Public Property dna_Facewear As String = ""
+                Public Property dna_Eyewear As String = ""
+                Public Property dna_Armband As String = ""
+                Public Property dna_NVG As String = ""
+            End Class
+
+            Public Shared RedClothesKits As ObservableCollection(Of ClothesInfo)
+            Public Shared PurpleClothesKits As ObservableCollection(Of ClothesInfo)
+            Public Shared BlueClothesKits As ObservableCollection(Of ClothesInfo)
+            Public Shared GreenClothesKits As ObservableCollection(Of ClothesInfo)
+            Public Shared YellowClothesKits As ObservableCollection(Of ClothesInfo)
+        End Class
+
+
+
     End Class
     ' Function to find the index of the child TreeViewNode with content containing the specified string.
     Private Function FindChildIndex(parentNode As TreeViewNode, searchString As String) As Integer
@@ -839,5 +910,7 @@ Partial Public Class MainWindow
             Next
         End If
     End Sub
+
+
 End Class
 
