@@ -330,6 +330,12 @@ Partial Public Class MainWindow
         GlobalVariables.SideArms.Clear()
         Kits_SideArms.Clear()
     End Sub
+    Public Function SimulateIfStatement(ByVal percentChance As Integer) As Boolean
+        Dim random As New Random()
+        Dim roll As Integer = random.Next(1, 101) ' Generate a random number between 1 and 100
+
+        Return roll <= percentChance
+    End Function
     Private Async Sub ClothingKits_Generate_Click(sender As Object, e As RoutedEventArgs) Handles ClothingKits_Generate.Click
         Dim colorTier As String
 
@@ -352,6 +358,22 @@ Partial Public Class MainWindow
             Dim tEyewears As New ObservableCollection(Of String)()
             Dim tArmbands As New ObservableCollection(Of String)()
 
+            Dim tClothingParts As New ObservableCollection(Of ObservableCollection(Of String))()
+            With tClothingParts
+                .Add(tHelmets)
+                .Add(tShirts)
+                .Add(tVests)
+                .Add(tPants)
+                .Add(tBackpacks)
+                .Add(tGloves)
+                .Add(tBelts)
+                .Add(tFacewears)
+                .Add(tEyewears)
+                .Add(tArmbands)
+
+            End With
+
+
             For Each type In GlobalVariables.Types.Types
                 checkedAddArgs = Await determineIfAdd(type)
                 If checkedAddArgs = True Then
@@ -373,6 +395,9 @@ Partial Public Class MainWindow
 
 
 
+            For Each tSlot As ObservableCollection(Of String) In tClothingParts
+                If IsNothing(tSlot) Then
+                Else
 
 
 
@@ -383,19 +408,30 @@ Partial Public Class MainWindow
 
 
 
+                End If
+            Next
 
-            'Select Case colorTier
-            '    Case "Red"
-            '        GenerateConfigs.Weapons.RedWeaponKits = clothesInfos
-            '    Case "Purple"
-            '        GenerateConfigs.Weapons.PurpleWeaponKits = clothesInfos
-            '    Case "Blue"
-            '        GenerateConfigs.Weapons.BlueWeaponKits = clothesInfos
-            '    Case "Green"
-            '        GenerateConfigs.Weapons.GreenWeaponKits = clothesInfos
-            '    Case "Yellow"
-            '        GenerateConfigs.Weapons.YellowWeaponKits = clothesInfos
-            'End Select
+
+
+
+
+
+
+
+
+
+            Select Case colorTier
+                Case "Red"
+                    GenerateConfigs.Clothes.RedClothesKits = clothesInfos
+                Case "Purple"
+                    GenerateConfigs.Clothes.PurpleClothesKits = clothesInfos
+                Case "Blue"
+                    GenerateConfigs.Clothes.BlueClothesKits = clothesInfos
+                Case "Green"
+                    GenerateConfigs.Clothes.GreenClothesKits = clothesInfos
+                Case "Yellow"
+                    GenerateConfigs.Clothes.YellowClothesKits = clothesInfos
+            End Select
             'UpdateGeneratedWeaponKits()
             ''Await GenerateConfigs.Weapons.GenerateConfig(WeaponColorTier)
             ''Dim info As New GenerateConfigs.Clothes.ClothesInfo()
