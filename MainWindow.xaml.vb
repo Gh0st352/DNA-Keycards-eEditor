@@ -29,7 +29,6 @@ Imports Syncfusion.UI.Xaml.TreeView.Engine
 Imports Syncfusion.Windows.Controls.Input
 Imports Syncfusion.Windows.Tools.Controls
 
-
 ''' <summary>
 ''' Interaction logic for MainWindow.xaml
 ''' </summary>
@@ -70,7 +69,7 @@ Partial Public Class MainWindow
 
         InitializeComponent()
         AddHandler Me.Loaded, AddressOf OnLoaded
-        Me.AllowDrop = True
+
         seedItemSources()
         seedWeaponKitSettings()
         seedHandlers()
@@ -152,7 +151,78 @@ Partial Public Class MainWindow
         Dim brush As New SolidColorBrush(color)
         grid.Background = brush
     End Sub
+    Private Async Sub DragImportExpansionMarket(results As ObservableCollection(Of String), sender As SfTextBoxExt)
+        Dim foundTypes As List(Of String)
+        For Each resultPath As String In results
+            foundTypes = New List(Of String)()
+            foundTypes = FileSelectionHelper.GetUniqueClassnamesAndVariants(resultPath) _
+            '.Add(FileSelectionHelper.GetUniqueClassnamesAndVariants(resultPath))
+            foundTypes = FileSelectionHelper.RemoveDuplicates(foundTypes)
 
+
+            Select Case True
+
+                'Sidearms
+                Case sender Is Kits_SideArms
+                    AddMissingTypes(foundTypes, GlobalVariables.SideArms)
+                    UpdateTextBoxWithStrings(Kits_SideArms, GlobalVariables.SideArms)
+
+                'Restricted
+                Case sender Is Kits_Restricted
+                    AddMissingTypes(foundTypes, GlobalVariables.RestrictedTypes)
+                    UpdateTextBoxWithStrings(Kits_Restricted, GlobalVariables.RestrictedTypes)
+
+                'Clothing Market
+
+                    'dna_Helm
+                Case sender Is Clothes_Helmets
+                    AddMissingTypes(foundTypes, GlobalVariables.ClothingMarket.Helmets)
+                    UpdateTextBoxWithStrings(Clothes_Helmets, GlobalVariables.ClothingMarket.Helmets)
+                    'dna_Shirt
+                Case sender Is Clothes_Shirts
+                    AddMissingTypes(foundTypes, GlobalVariables.ClothingMarket.Shirts)
+                    UpdateTextBoxWithStrings(Clothes_Shirts, GlobalVariables.ClothingMarket.Shirts)
+                    'dna_Vest
+                Case sender Is Clothes_Vests
+                    AddMissingTypes(foundTypes, GlobalVariables.ClothingMarket.Vests)
+                    UpdateTextBoxWithStrings(Clothes_Vests, GlobalVariables.ClothingMarket.Vests)
+                    'dna_Pants
+                Case sender Is Clothes_Pants
+                    AddMissingTypes(foundTypes, GlobalVariables.ClothingMarket.Pants)
+                    UpdateTextBoxWithStrings(Clothes_Pants, GlobalVariables.ClothingMarket.Pants)
+                    'dna_Shoes
+                Case sender Is Clothes_Shoes
+                    AddMissingTypes(foundTypes, GlobalVariables.ClothingMarket.Shoes)
+                    UpdateTextBoxWithStrings(Clothes_Shoes, GlobalVariables.ClothingMarket.Shoes)
+                    'dna_Backpack
+                Case sender Is Clothes_Backpacks
+                    AddMissingTypes(foundTypes, GlobalVariables.ClothingMarket.Backpacks)
+                    UpdateTextBoxWithStrings(Clothes_Backpacks, GlobalVariables.ClothingMarket.Backpacks)
+                    'dna_Gloves
+                Case sender Is Clothes_Gloves
+                    AddMissingTypes(foundTypes, GlobalVariables.ClothingMarket.Gloves)
+                    UpdateTextBoxWithStrings(Clothes_Gloves, GlobalVariables.ClothingMarket.Gloves)
+                    'dna_Belt
+                Case sender Is Clothes_Belts
+                    AddMissingTypes(foundTypes, GlobalVariables.ClothingMarket.Belts)
+                    UpdateTextBoxWithStrings(Clothes_Belts, GlobalVariables.ClothingMarket.Belts)
+                    'dna_Facewear
+                Case sender Is Clothes_Facewear
+                    AddMissingTypes(foundTypes, GlobalVariables.ClothingMarket.Facewears)
+                    UpdateTextBoxWithStrings(Clothes_Facewear, GlobalVariables.ClothingMarket.Facewears)
+                    'dna_Eyewear
+                Case sender Is Clothes_Eyewear
+                    AddMissingTypes(foundTypes, GlobalVariables.ClothingMarket.Eyewears)
+                    UpdateTextBoxWithStrings(Clothes_Eyewear, GlobalVariables.ClothingMarket.Eyewears)
+                    'dna_Armband
+                Case sender Is Clothes_Armbands
+                    AddMissingTypes(foundTypes, GlobalVariables.ClothingMarket.Armbands)
+                    UpdateTextBoxWithStrings(Clothes_Armbands, GlobalVariables.ClothingMarket.Armbands)
+            End Select
+
+        Next
+
+    End Sub
     Private Async Sub ButtonImportExpansionMarketClick(sender As Object, e As RoutedEventArgs) Handles Kits_ImportRestricted.Click, Clothes_Helmets_Import.Click, Clothes_Pants_Import.Click, Clothes_Gloves_Import.Click, Clothes_Eyewear_Import.Click, Clothes_Shirts_Import.Click, Clothes_Shoes_Import.Click, Clothes_Belts_Import.Click, Clothes_Armbands_Import.Click, Clothes_Vests_Import.Click, Clothes_Backpacks_Import.Click, Clothes_Facewear_Import.Click
         Dim results As String() = Await FileSelectionHelper.SelectMultipleFilesAsync()
         Dim foundTypes As List(Of String)
@@ -397,11 +467,9 @@ Partial Public Class MainWindow
     Public Sub seedHandlers()
         AddHandler TV_WeaponKits_Generated_Red.ItemBeginEdit, AddressOf Event_BeginEdit_TV_WeaponKits_Generated_Red _
         ' tabLocal.ModTree.ItemDropping, AddressOf Steam.TabOperations.modtree_Drop
-        'AddHandler Tab_ClothesSettings.Drop, AddressOf ClothingKitDropFiles
 
-        ' Assign event handlers to the MainWindow
-        AddHandler DragEnter, AddressOf MainWindow_DragEnter
-        AddHandler Drop, AddressOf MainWindow_Drop
+        AddHandler MainExe.Drop, AddressOf MainExeDropFiles
+
     End Sub
 
     Async Sub Event_BeginEdit_TV_WeaponKits_Generated_Red(sender As Object, e As EventArgs)
@@ -658,51 +726,6 @@ Partial Public Class MainWindow
         Return Nothing
     End Function
 
-    'Async Function ExportWeaponKitsToJson(filepath As String) As Task
-    '    Dim weaponList As New List(Of GenerateConfigs.Weapons.WeaponInfo)()
-
-    '    Dim WeaponKitTVTypeArr As New Collection(Of SfTreeView)
-    '    WeaponKitTVTypeArr.Add(TV_WeaponKits_Generated_Red)
-
-
-    '    For Each t_TypeColorTree As SfTreeView In WeaponKitTVTypeArr
-    '        'Build based on Shown
-    '        For Each Node As TreeViewNode In t_TypeColorTree.Nodes
-    '            Dim tWeaponInfo As GenerateConfigs.Weapons.WeaponInfo
-    '            Try
-    '                tWeaponInfo = New GenerateConfigs.Weapons.WeaponInfo() With {
-    '                            .dna_Tier = Node.ChildNodes.Item(FindChildIndex(Node, "dna_Tier")).Content.ToString().Replace(" ", "").Replace("dna_Tier", "").Replace(":", ""),
-    '                            .dna_WeaponCategory = Node.ChildNodes.Item(FindChildIndex(Node, "dna_WeaponCategory")).Content.ToString().Replace(" ", "").Replace("dna_WeaponCategory", "").Replace(":", ""),
-    '                            .dna_TheChosenOne = Node.ChildNodes.Item(FindChildIndex(Node, "dna_TheChosenOne")).Content.ToString().Replace(" ", "").Replace("dna_TheChosenOne", "").Replace(":", ""),
-    '                            .dna_Magazine = Node.ChildNodes.Item(FindChildIndex(Node, "dna_Magazine")).Content.ToString().Replace(" ", "").Replace("dna_Magazine", "").Replace(":", ""),
-    '                            .dna_Ammunition = Node.ChildNodes.Item(FindChildIndex(Node, "dna_Ammunition")).Content.ToString().Replace(" ", "").Replace("dna_Ammunition", "").Replace(":", ""),
-    '                            .dna_OpticType = Node.ChildNodes.Item(FindChildIndex(Node, "dna_OpticType")).Content.ToString().Replace(" ", "").Replace("dna_OpticType", "").Replace(":", ""),
-    '                            .dna_Suppressor = Node.ChildNodes.Item(FindChildIndex(Node, "dna_Suppressor")).Content.ToString().Replace(" ", "").Replace("dna_Suppressor", "").Replace(":", ""),
-    '                            .dna_UnderBarrel = Node.ChildNodes.Item(FindChildIndex(Node, "dna_UnderBarrel")).Content.ToString().Replace(" ", "").Replace("dna_UnderBarrel", "").Replace(":", ""),
-    '                            .dna_ButtStock = Node.ChildNodes.Item(FindChildIndex(Node, "dna_ButtStock")).Content.ToString().Replace(" ", "").Replace("dna_ButtStock", "").Replace(":", ""),
-    '                            .dna_HandGuard = Node.ChildNodes.Item(FindChildIndex(Node, "dna_HandGuard")).Content.ToString().Replace(" ", "").Replace("dna_HandGuard", "").Replace(":", ""),
-    '                            .dna_Wrap = Node.ChildNodes.Item(FindChildIndex(Node, "dna_Wrap")).Content.ToString().Replace(" ", "").Replace("dna_Wrap", "").Replace(":", "")}
-    '                weaponList.Add(tWeaponInfo)
-    '            Catch ex As Exception
-    '                Dim xx = ""
-    '            End Try
-
-
-    '        Next
-    '    Next
-
-    '    Dim json = JsonConvert.SerializeObject(New With {Key .m_DNAConfig_Weapons = weaponList}, Xml.Formatting.Indented)
-    '    '' Get the directory path of the executable
-    '    'Dim executableDirectory = AppDomain.CurrentDomain.BaseDirectory
-
-    '    ' Combine the directory path with the provided file name
-    '    'Dim filePath = IO.Path.Combine(executableDirectory, fileName)
-
-    '    ' Write the JSON to the file
-    '    File.WriteAllText(filePath, json)
-    '    'File.WriteAllText(filePath, json)
-    'End Function
-
     Private Async Sub WeaponKits_Generated_Export_Click(sender As Object, e As RoutedEventArgs) _
         Handles WeaponKits_Generated_Export.Click
 
@@ -747,7 +770,7 @@ Partial Public Class MainWindow
         Kits_Restricted.Clear()
     End Sub
 
-    Private Async Sub ClothingKitDropFiles(sender As Object, e As Windows.DragEventArgs)
+    Private Async Sub MainExeDropFiles(sender As Object, e As Windows.DragEventArgs)
         Dim filePaths As New ObservableCollection(Of String)()
         If e.Data.GetDataPresent(Windows.DataFormats.FileDrop) Then
             Dim files As String() = DirectCast(e.Data.GetData(Windows.DataFormats.FileDrop), String())
@@ -755,47 +778,49 @@ Partial Public Class MainWindow
                 filePaths.Add(filePath)
             Next
         End If
-        Dim xx = ""
-    End Sub
-    Private Sub MainWindow_DragEnter(sender As Object, e As Windows.DragEventArgs)
-        If e.Data.GetDataPresent(Windows.DataFormats.FileDrop) Then
-            e.Effects = If(IsTabItemExtActive(Tab_ClothesSettings), Windows.DragDropEffects.Copy, Windows.DragDropEffects.None)
-        Else
-            e.Effects = Windows.DragDropEffects.None
-        End If
-    End Sub
 
-    Private Sub MainWindow_Drop(sender As Object, e As Windows.DragEventArgs)
-        If e.Data.GetDataPresent(Windows.DataFormats.FileDrop) AndAlso IsTabItemExtActive(Tab_ClothesSettings) Then
-            Dim files As String() = DirectCast(e.Data.GetData(Windows.DataFormats.FileDrop), String())
-            Dim filePaths As New ObservableCollection(Of String)()
-            For Each filePath As String In files
-                filePaths.Add(filePath)
+        If MainTabs.SelectedItem Is Tab_ClothesSettings Then
+
+            For Each filePath As String In filePaths
+                Dim fileExt As String = System.IO.Path.GetExtension(filePath) ' Get the file extension
+                If fileExt <> ".json" Then Continue For
+                Dim fileRoot As String = System.IO.Path.GetDirectoryName(filePath) ' Get the file root (directory)
+                Dim fileName As String = System.IO.Path.GetFileNameWithoutExtension(filePath) ' Get the file name without extension
+
+
+
+                If fileName.ToLower.Contains("helmet") Then
+                    DragImportExpansionMarket(filePaths, Clothes_Helmets)
+                ElseIf fileName.ToLower.Contains("pant") Then
+                    DragImportExpansionMarket(filePaths, Clothes_Pants)
+                ElseIf fileName.ToLower.Contains("glove") Then
+                    DragImportExpansionMarket(filePaths, Clothes_Gloves)
+                ElseIf fileName.ToLower.Contains("eyewear") Then
+                    DragImportExpansionMarket(filePaths, Clothes_Eyewear)
+                ElseIf fileName.ToLower.Contains("shirt") Then
+                    DragImportExpansionMarket(filePaths, Clothes_Shirts)
+                ElseIf fileName.ToLower.Contains("shoe") Then
+                    DragImportExpansionMarket(filePaths, Clothes_Shoes)
+                ElseIf fileName.ToLower.Contains("belt") Then
+                    DragImportExpansionMarket(filePaths, Clothes_Belts)
+                ElseIf fileName.ToLower.Contains("armband") Then
+                    DragImportExpansionMarket(filePaths, Clothes_Armbands)
+                ElseIf fileName.ToLower.Contains("vest") Then
+                    DragImportExpansionMarket(filePaths, Clothes_Vests)
+                ElseIf fileName.ToLower.Contains("backpack") Then
+                    DragImportExpansionMarket(filePaths, Clothes_Backpacks)
+                ElseIf fileName.ToLower.Contains("face") Then
+                    DragImportExpansionMarket(filePaths, Clothes_Facewear)
+                Else
+                    Continue For
+                End If
             Next
 
-            Dim xx = ""
+
+
+            Dim xx2 = ""
         End If
+        Dim xx = ""
     End Sub
-
-    Private Function IsTabItemExtActive(TabItem As TabItemExt) As Boolean
-        ' Replace 'tabItem' with the actual instance of the TabItemExt you want to check
-        Dim ActiveTab As TabItemExt = GetCurrentActiveTabItem()
-
-        If ActiveTab Is TabItem Then
-            Return True
-        Else
-            Return False
-        End If
-    End Function
-
-    Private Function GetCurrentActiveTabItem() As TabItemExt
-        ' Code to retrieve the currently active TabItemExt, for example:
-        ' Assuming you have a TabControl named 'tabControl' and you want to get the currently selected TabItemExt
-        If TypeOf MainTabs.SelectedItem Is TabItemExt Then
-            Return DirectCast(MainTabs.SelectedItem, TabItemExt)
-        End If
-
-        Return Nothing
-    End Function
 End Class
 
