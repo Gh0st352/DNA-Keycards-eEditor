@@ -156,9 +156,9 @@ Partial Public Class MainWindow
         Dim foundTypes As List(Of String)
         For Each resultPath As String In results
             foundTypes = New List(Of String)()
-            foundTypes = FileSelectionHelper.GetUniqueClassnamesAndVariants(resultPath) _
+            foundTypes = Await FileSelectionHelper.GetUniqueClassnamesAndVariants(resultPath) _
             '.Add(FileSelectionHelper.GetUniqueClassnamesAndVariants(resultPath))
-            foundTypes = FileSelectionHelper.RemoveDuplicates(foundTypes)
+            foundTypes = Await FileSelectionHelper.RemoveDuplicates(foundTypes)
 
             Select Case True
                 'dna_Helm
@@ -219,9 +219,9 @@ Partial Public Class MainWindow
         Dim foundTypes As List(Of String)
         For Each resultPath As String In results
             foundTypes = New List(Of String)()
-            foundTypes = FileSelectionHelper.GetUniqueClassnamesAndVariants(resultPath) _
+            foundTypes = Await FileSelectionHelper.GetUniqueClassnamesAndVariants(resultPath) _
             '.Add(FileSelectionHelper.GetUniqueClassnamesAndVariants(resultPath))
-            foundTypes = FileSelectionHelper.RemoveDuplicates(foundTypes)
+            foundTypes = Await FileSelectionHelper.RemoveDuplicates(foundTypes)
 
 
             Select Case True
@@ -655,14 +655,14 @@ Partial Public Class MainWindow
 
                 ' If no match is found, recursively search within the child node and its descendants.
                 Dim resultIndex As Integer = FindChildIndex(childNode, searchString)
-                If resultIndex <> - 1 Then
+                If resultIndex <> -1 Then
                     Return resultIndex ' Return the index from the recursive call.
                 End If
             Next
         End If
 
         ' If no match is found, return -1 to indicate failure.
-        Return - 1
+        Return -1
     End Function
 
     Async Function ExportWeaponKitsToJson(filepath As String) As Task
@@ -753,9 +753,9 @@ Partial Public Class MainWindow
         Dim foundTypes As List(Of String)
         For Each resultPath As String In results
             foundTypes = New List(Of String)()
-            foundTypes = FileSelectionHelper.GetUniqueClassnamesAndVariants(resultPath) _
+            foundTypes = Await FileSelectionHelper.GetUniqueClassnamesAndVariants(resultPath) _
             '.Add(FileSelectionHelper.GetUniqueClassnamesAndVariants(resultPath))
-            foundTypes = FileSelectionHelper.RemoveDuplicates(foundTypes)
+            foundTypes = Await FileSelectionHelper.RemoveDuplicates(foundTypes)
             AddMissingTypes(foundTypes, GlobalVariables.RestrictedTypes)
         Next
 

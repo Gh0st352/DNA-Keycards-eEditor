@@ -21,6 +21,7 @@ Imports DNA_Keycard_Editor.Classes
 Imports System.IO
 Imports Syncfusion.UI.Xaml.Grid
 Imports System.Xml
+Imports Newtonsoft.Json
 Imports Syncfusion.UI.Xaml.TreeGrid
 Imports Syncfusion.Data
 Imports Newtonsoft.Json.Linq
@@ -200,63 +201,106 @@ Namespace Classes
             End Select
         End Sub
 
-        Public Shared Function GetUniqueClassnamesAndVariants(jsonFilePath As String) As List(Of String)
-            Dim classNamesAndVariants As New List(Of String)()
-            Dim variantsArray
+        'Public Shared Async Function GetUniqueClassnamesAndVariants(jsonFilePath As String) As Task(Of List(Of String))
+        '    Dim classNamesAndVariants As New List(Of String)()
+        '    Dim variantsArray
+        '    ' Read the JSON file
+        '    Dim jsonText As String = File.ReadAllText(jsonFilePath)
+
+        '    ' Parse the JSON data
+        '    Dim jsonData As JObject = JObject.Parse(jsonText)
+
+        '    ' Get the "Items" array
+        '    Dim itemsArray As JArray = jsonData("Items")
+
+        '    ' Iterate through each item
+        '    For Each item As JObject In itemsArray
+        '        variantsArray = ""
+        '        ' Get the "ClassName" value
+        '        Dim className As String = item("ClassName").ToString()
+
+        '        ' Add the "ClassName" value to the list if it's not already present
+        '        If Not classNamesAndVariants.Contains(className) Then
+        '            classNamesAndVariants.Add(className)
+        '        End If
+
+        '        ' Get the "Variants" array
+        '        variantsArray = item("Variants")
+
+        '        ' Iterate through each variant
+        '        For Each tvariant As JToken In variantsArray
+        '            ' Get the variant string
+        '            Dim variantString As String = tvariant.ToString()
+
+        '            ' Add the variant string to the list if it's not already present
+        '            If Not classNamesAndVariants.Contains(variantString) Then
+        '                classNamesAndVariants.Add(variantString)
+        '            End If
+        '        Next
+        '    Next
+
+        '    ' Return the list of unique "classname" and "variants" strings
+        '    Return classNamesAndVariants
+        'End Function
+        Public Shared Async Function GetUniqueClassnamesAndVariants(jsonFilePath As String) As Task(Of List(Of String))
+            Dim classNamesAndVariants As New HashSet(Of String)()
+
             ' Read the JSON file
-            Dim jsonText As String = File.ReadAllText(jsonFilePath)
+            Using reader As StreamReader = File.OpenText(jsonFilePath)
+                Dim jsonText As String = Await reader.ReadToEndAsync()
 
-            ' Parse the JSON data
-            Dim jsonData As JObject = JObject.Parse(jsonText)
+                ' Deserialize the JSON data
+                Dim jsonData As JObject = JsonConvert.DeserializeObject(Of JObject)(jsonText)
 
-            ' Get the "Items" array
-            Dim itemsArray As JArray = jsonData("Items")
+                ' Get the "Items" array
+                Dim itemsArray As JArray = jsonData("Items")
 
-            ' Iterate through each item
-            For Each item As JObject In itemsArray
-                variantsArray = ""
-                ' Get the "ClassName" value
-                Dim className As String = item("ClassName").ToString()
+                ' Iterate through each item
+                For Each item As JObject In itemsArray
+                    ' Get the "ClassName" value
+                    Dim className As String = item("ClassName").ToString()
 
-                ' Add the "ClassName" value to the list if it's not already present
-                If Not classNamesAndVariants.Contains(className) Then
+                    ' Add the "ClassName" value to the hash set if it's not already present
                     classNamesAndVariants.Add(className)
-                End If
 
-                ' Get the "Variants" array
-                variantsArray = item("Variants")
+                    ' Get the "Variants" array
+                    Dim variantsArray As JArray = item("Variants")
 
-                ' Iterate through each variant
-                For Each tvariant As JToken In variantsArray
-                    ' Get the variant string
-                    Dim variantString As String = tvariant.ToString()
+                    ' Iterate through each variant
+                    For Each tvariant As JToken In variantsArray
+                        ' Get the variant string
+                        Dim variantString As String = tvariant.ToString()
 
-                    ' Add the variant string to the list if it's not already present
-                    If Not classNamesAndVariants.Contains(variantString) Then
+                        ' Add the variant string to the hash set if it's not already present
                         classNamesAndVariants.Add(variantString)
-                    End If
+                    Next
                 Next
-            Next
+            End Using
 
             ' Return the list of unique "classname" and "variants" strings
-            Return classNamesAndVariants
+            Return classNamesAndVariants.ToList()
         End Function
 
-        Public Shared Function RemoveDuplicates(ByVal list As List(Of String)) As List(Of String)
-            Dim uniqueItems As New HashSet(Of String)()
-
-            ' Iterate over the list and add each item to the HashSet.
-            ' The HashSet will automatically remove duplicate items.
-            For Each item As String In list
-                uniqueItems.Add(item)
-            Next
-
-            ' Clear the original list.
-            list.Clear()
-
-            ' Add the unique items back to the list.
-            list.AddRange(uniqueItems)
-            Return list
+        Public Shared Async Function RemoveDuplicates(ByVal list As List(Of String)) As Task(Of List(Of String))
+            Dim uniqueItems As New HashSet(Of String)(list)
+            Return uniqueItems.ToList()
         End Function
+
+        'Public Shared Async Function RemoveDuplicates(ByVal list As List(Of String)) As Task(Of List(Of String))
+        '    Dim uniqueItems As New HashSet(Of String)()
+
+        '    ' Iterate over the list and add each item to the HashSet.
+        '    ' The HashSet will automatically remove duplicate items.
+        '    For Each item As String In list
+        '        uniqueItems.Add(item)
+        '    Next
+
+        '    ' Clear the original list.
+        '    list.Clear()
+
+        '    ' Add the unique items back to the list.
+        '    list.AddRange(uniqueItems)
+        '    Return list
+        'End Function
     End Class
 End Namespace

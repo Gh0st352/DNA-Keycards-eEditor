@@ -555,12 +555,12 @@
                         </Grid>
                         <Grid x:Name="G_BottomSettings" HorizontalAlignment="Left" Height="51" VerticalAlignment="Top"
                               Width="859" Margin="10,559,0,0" AllowDrop="True">
-                            <Grid x:Name="G_ClothingOpt_Helm_Copy" Height="19" VerticalAlignment="Top"
-                                  Margin="0,32,594,0" Background="#33858585" AllowDrop="False">
-                                <Label Content="# Sets to Generate" HorizontalAlignment="Left" Width="128"
+                            <Grid x:Name="G_ClothingOpt_Helm_Copy" Height="41" VerticalAlignment="Top"
+                                  Margin="0,10,594,0" Background="#33858585" AllowDrop="False">
+                                <Label Content="# Sets to Generate" HorizontalAlignment="Left" Width="147"
                                        Margin="5,0,0,0" BorderThickness="0,0,0,1" FontFamily="Arial" Padding="0,2"
-                                       VerticalContentAlignment="Bottom" HorizontalContentAlignment="Center"
-                                       AllowDrop="False" />
+                                       VerticalContentAlignment="Center" HorizontalContentAlignment="Center"
+                                       AllowDrop="False" FontSize="14" />
                                 <TextBox x:Name="TB_Slot_Chance12" HorizontalAlignment="Left" TextWrapping="Wrap"
                                          Text="100" Width="112" Margin="153,0,0,0" MaxLines="1" BorderThickness="1,0"
                                          HorizontalContentAlignment="Center" Padding="0,0,10,0" AllowDrop="False" />
