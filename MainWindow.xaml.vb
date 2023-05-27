@@ -152,7 +152,7 @@ Partial Public Class MainWindow
         grid.Background = brush
     End Sub
 
-    Private Async Sub DragImportExpansionMarket(results As ObservableCollection(Of String), sender As SfTextBoxExt)
+    Private Async Function DragImportExpansionMarket(results As ObservableCollection(Of String), sender As SfTextBoxExt) As Task
         Dim foundTypes As List(Of String)
         For Each resultPath As String In results
             foundTypes = New List(Of String)()
@@ -160,21 +160,7 @@ Partial Public Class MainWindow
             '.Add(FileSelectionHelper.GetUniqueClassnamesAndVariants(resultPath))
             foundTypes = FileSelectionHelper.RemoveDuplicates(foundTypes)
 
-
             Select Case True
-
-                ''Sidearms
-                'Case sender Is Kits_SideArms
-                '    AddMissingTypes(foundTypes, GlobalVariables.SideArms)
-                '    UpdateTextBoxWithStrings(Kits_SideArms, GlobalVariables.SideArms)
-
-                ''Restricted
-                'Case sender Is Kits_Restricted
-                '    AddMissingTypes(foundTypes, GlobalVariables.RestrictedTypes)
-                '    UpdateTextBoxWithStrings(Kits_Restricted, GlobalVariables.RestrictedTypes)
-
-                'Clothing Market
-
                 'dna_Helm
                 Case sender Is Clothes_Helmets
                     AddMissingTypes(foundTypes, GlobalVariables.ClothingMarket.Helmets)
@@ -222,7 +208,7 @@ Partial Public Class MainWindow
             End Select
 
         Next
-    End Sub
+    End Function
 
     Private Async Sub ButtonImportExpansionMarketClick(sender As Object, e As RoutedEventArgs) _
         Handles Kits_ImportRestricted.Click, Clothes_Helmets_Import.Click, Clothes_Pants_Import.Click,
@@ -791,46 +777,52 @@ Partial Public Class MainWindow
         End If
 
         If MainTabs.SelectedItem Is Tab_ClothesSettings Then
-
             For Each filePath As String In filePaths
                 Dim fileExt As String = System.IO.Path.GetExtension(filePath) ' Get the file extension
                 If fileExt <> ".json" Then Continue For
-                Dim fileRoot As String = System.IO.Path.GetDirectoryName(filePath) ' Get the file root (directory)
+                'Dim fileRoot As String = System.IO.Path.GetDirectoryName(filePath) ' Get the file root (directory)
                 Dim fileName As String = System.IO.Path.GetFileNameWithoutExtension(filePath) _
                 ' Get the file name without extension
 
 
                 If fileName.ToLower.Contains("helmet") Then
-                    DragImportExpansionMarket(filePaths, Clothes_Helmets)
+                    Await DragImportExpansionMarket(filePaths, Clothes_Helmets)
+                    Continue For
                 ElseIf fileName.ToLower.Contains("pant") Then
-                    DragImportExpansionMarket(filePaths, Clothes_Pants)
+                    Await DragImportExpansionMarket(filePaths, Clothes_Pants)
+                    Continue For
                 ElseIf fileName.ToLower.Contains("glove") Then
-                    DragImportExpansionMarket(filePaths, Clothes_Gloves)
+                    Await DragImportExpansionMarket(filePaths, Clothes_Gloves)
+                    Continue For
                 ElseIf fileName.ToLower.Contains("eyewear") Then
-                    DragImportExpansionMarket(filePaths, Clothes_Eyewear)
+                    Await DragImportExpansionMarket(filePaths, Clothes_Eyewear)
+                    Continue For
                 ElseIf fileName.ToLower.Contains("shirt") Then
-                    DragImportExpansionMarket(filePaths, Clothes_Shirts)
+                    Await DragImportExpansionMarket(filePaths, Clothes_Shirts)
+                    Continue For
                 ElseIf fileName.ToLower.Contains("shoe") Then
-                    DragImportExpansionMarket(filePaths, Clothes_Shoes)
+                    Await DragImportExpansionMarket(filePaths, Clothes_Shoes)
+                    Continue For
                 ElseIf fileName.ToLower.Contains("belt") Then
-                    DragImportExpansionMarket(filePaths, Clothes_Belts)
+                    Await DragImportExpansionMarket(filePaths, Clothes_Belts)
+                    Continue For
                 ElseIf fileName.ToLower.Contains("armband") Then
-                    DragImportExpansionMarket(filePaths, Clothes_Armbands)
+                    Await DragImportExpansionMarket(filePaths, Clothes_Armbands)
+                    Continue For
                 ElseIf fileName.ToLower.Contains("vest") Then
-                    DragImportExpansionMarket(filePaths, Clothes_Vests)
+                    Await DragImportExpansionMarket(filePaths, Clothes_Vests)
+                    Continue For
                 ElseIf fileName.ToLower.Contains("backpack") Then
-                    DragImportExpansionMarket(filePaths, Clothes_Backpacks)
+                    Await DragImportExpansionMarket(filePaths, Clothes_Backpacks)
+                    Continue For
                 ElseIf fileName.ToLower.Contains("face") Then
-                    DragImportExpansionMarket(filePaths, Clothes_Facewear)
+                    Await DragImportExpansionMarket(filePaths, Clothes_Facewear)
+                    Continue For
                 Else
                     Continue For
                 End If
             Next
-
-
-            Dim xx2 = ""
         End If
-        Dim xx = ""
     End Sub
 End Class
 
