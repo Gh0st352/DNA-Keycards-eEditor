@@ -330,6 +330,28 @@ Partial Public Class MainWindow
         GlobalVariables.SideArms.Clear()
         Kits_SideArms.Clear()
     End Sub
+    Public Function GetRandomString(ByVal percentChance As Integer, ByVal obcoll As ObservableCollection(Of String)) As String
+        If obcoll.Count = 0 Then Return String.Empty
+        If percentChance = 0 Then Return String.Empty
+
+        If percentChance = 100 Then
+            If obcoll.Count = 1 Then Return obcoll.First()
+            Dim random As New Random()
+            Dim index As Integer = random.Next(0, obcoll.Count - 1) ' Generate a random index within the range of the collection
+            Return obcoll(index)
+        End If
+
+        Dim success As Boolean = SimulateIfStatement(percentChance)
+
+        If success Then
+            If obcoll.Count = 1 Then Return obcoll.First()
+            Dim random As New Random()
+            Dim index As Integer = random.Next(0, obcoll.Count - 1) ' Generate a random index within the range of the collection
+            Return obcoll(index) ' Return the random string from the collection
+        Else
+            Return String.Empty ' Return an empty string if the roll is not successful
+        End If
+    End Function
     Public Function SimulateIfStatement(ByVal percentChance As Integer) As Boolean
         Dim random As New Random()
         Dim roll As Integer = random.Next(1, 101) ' Generate a random number between 1 and 100
@@ -357,6 +379,8 @@ Partial Public Class MainWindow
             Dim tFacewears As New ObservableCollection(Of String)()
             Dim tEyewears As New ObservableCollection(Of String)()
             Dim tArmbands As New ObservableCollection(Of String)()
+            Dim tNVG As New ObservableCollection(Of String)()
+            tNVG.Add("NVGoggles")
 
             Dim tClothingParts As New ObservableCollection(Of ObservableCollection(Of String))()
             With tClothingParts
@@ -370,7 +394,8 @@ Partial Public Class MainWindow
                 .Add(tFacewears)
                 .Add(tEyewears)
                 .Add(tArmbands)
-
+                .Add(tNVG)
+                .Add(tShoes)
             End With
             Dim NumSetsToGen As Integer = ClothingKits_GenNum.Text
 
@@ -405,26 +430,35 @@ Partial Public Class MainWindow
                     If GlobalVariables.ClothingMarket.Belts.Any(Function(t_) String.Equals(t_, type.typename, StringComparison.OrdinalIgnoreCase)) Then tBelts.Add(type.typename)
                     If GlobalVariables.ClothingMarket.Facewears.Any(Function(t_) String.Equals(t_, type.typename, StringComparison.OrdinalIgnoreCase)) Then tFacewears.Add(type.typename)
                     If GlobalVariables.ClothingMarket.Eyewears.Any(Function(t_) String.Equals(t_, type.typename, StringComparison.OrdinalIgnoreCase)) Then tEyewears.Add(type.typename)
-                    If GlobalVariables.ClothingMarket.Armbands.Any(Function(t_) String.Equals(t_, type.typename, StringComparison.OrdinalIgnoreCase)) Then tArmbands.Add(type.typename)
+                    If GlobalVariables.ClothingMarket.Armbands.Any(Function(t_) String.Equals(t_, type.typename.ToLower(), StringComparison.InvariantCultureIgnoreCase)) Then tArmbands.Add(type.typename)
                 End If
         Next
-        Dim xx = ""
 
+
+            Dim clothesKits As New ObservableCollection(Of GenerateConfigs.Clothes.ClothesInfo)
 
             For i = 1 To NumSetsToGen
                 Dim tClothesKit As New GenerateConfigs.Clothes.ClothesInfo()
-
+                tClothesKit.dna_Tier = colorTier
                 For Each tSlot As ObservableCollection(Of String) In tClothingParts
-                    If IsNothing(tSlot) Then
-                        Continue For
-                    Else
-
-
-
-                    End If
+                    'If IsNothing(tSlot) Then
+                    '    Continue For
+                    'Else
+                    If tSlot Is tHelmets Then tClothesKit.dna_Helm = GetRandomString(Helmet_Chance, tSlot)
+                        If tSlot Is tShirts Then tClothesKit.dna_Shirt = GetRandomString(Shirt_Chance, tSlot)
+                        If tSlot Is tVests Then tClothesKit.dna_Vest = GetRandomString(Vest_Chance, tSlot)
+                        If tSlot Is tPants Then tClothesKit.dna_Pants = GetRandomString(Pants_Chance, tSlot)
+                        If tSlot Is tShoes Then tClothesKit.dna_Shoes = GetRandomString(Shoes_Chance, tSlot)
+                        If tSlot Is tBackpacks Then tClothesKit.dna_Backpack = GetRandomString(Backpack_Chance, tSlot)
+                        If tSlot Is tGloves Then tClothesKit.dna_Gloves = GetRandomString(Gloves_Chance, tSlot)
+                        If tSlot Is tBelts Then tClothesKit.dna_Belt = GetRandomString(Belt_Chance, tSlot)
+                        If tSlot Is tFacewears Then tClothesKit.dna_Facewear = GetRandomString(Facewear_Chance, tSlot)
+                        If tSlot Is tEyewears Then tClothesKit.dna_Eyewear = GetRandomString(Eyewear_Chance, tSlot)
+                        If tSlot Is tArmbands Then tClothesKit.dna_Armband = GetRandomString(Armband_Chance, tSlot)
+                        If tSlot Is tNVG Then tClothesKit.dna_NVG = GetRandomString(NVG_Chance, tSlot)
+                    'End If
                 Next
-
-
+                clothesKits.Add(tClothesKit)
             Next i
 
 
@@ -435,15 +469,15 @@ Partial Public Class MainWindow
 
             Select Case colorTier
         Case "Red"
-                    GenerateConfigs.Clothes.RedClothesKits = clothesInfos
+                    GenerateConfigs.Clothes.RedClothesKits = clothesKits
                 Case "Purple"
-                    GenerateConfigs.Clothes.PurpleClothesKits = clothesInfos
+                    GenerateConfigs.Clothes.PurpleClothesKits = clothesKits
                 Case "Blue"
-                    GenerateConfigs.Clothes.BlueClothesKits = clothesInfos
+                    GenerateConfigs.Clothes.BlueClothesKits = clothesKits
                 Case "Green"
-                    GenerateConfigs.Clothes.GreenClothesKits = clothesInfos
+                    GenerateConfigs.Clothes.GreenClothesKits = clothesKits
                 Case "Yellow"
-                    GenerateConfigs.Clothes.YellowClothesKits = clothesInfos
+                    GenerateConfigs.Clothes.YellowClothesKits = clothesKits
             End Select
         'UpdateGeneratedWeaponKits()
         ''Await GenerateConfigs.Weapons.GenerateConfig(WeaponColorTier)
