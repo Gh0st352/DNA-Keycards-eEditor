@@ -582,7 +582,7 @@
                                        MinHeight="20" AllowDrop="False">
                     <Grid AllowDrop="False">
                         <syncfusion:TabControlExt x:Name="Tabs_GenKits" TabStripPlacement="Left" TabScrollButtonVisibility="Hidden" CloseButtonType="Hide" ShowTabItemContextMenu="False" ShowTabListContextMenu="False" EnableLabelEdit="False">
-                            <syncfusion:TabItemExt x:Name="Tab_WeaponKits" syncfusion:TabControlExt.CustomEditableTemplate="{Binding (syncfusion:TabItemExt.CustomEditableTemplate), Mode=TwoWay}" Header="Weapon Kits" syncfusion:TabControlExt.HoverBackground="{Binding (syncfusion:TabItemExt.HoverBackground), Mode=TwoWay}" syncfusion:TabControlExt.ImageAlignment="{Binding (syncfusion:TabItemExt.ImageAlignment), Mode=TwoWay}" syncfusion:TabControlExt.ImageWidth="{Binding (syncfusion:TabItemExt.ImageWidth), Mode=TwoWay}" syncfusion:TabControlExt.Image="{Binding (syncfusion:TabItemExt.Image), Mode=TwoWay}" syncfusion:TabControlExt.ImageHeight="{Binding (syncfusion:TabItemExt.ImageHeight), Mode=TwoWay}" MinWidth="19.7" MinHeight="20" syncfusion:TabControlExt.UseCustomEditableTemplate="{Binding (syncfusion:TabItemExt.UseCustomEditableTemplate), Mode=TwoWay}">
+                            <syncfusion:TabItemExt x:Name="Tab_WeaponKits" syncfusion:TabControlExt.CustomEditableTemplate="{Binding (syncfusion:TabItemExt.CustomEditableTemplate), Mode=TwoWay}" Header="Weapon" syncfusion:TabControlExt.HoverBackground="{Binding (syncfusion:TabItemExt.HoverBackground), Mode=TwoWay}" syncfusion:TabControlExt.ImageAlignment="{Binding (syncfusion:TabItemExt.ImageAlignment), Mode=TwoWay}" syncfusion:TabControlExt.ImageWidth="{Binding (syncfusion:TabItemExt.ImageWidth), Mode=TwoWay}" syncfusion:TabControlExt.Image="{Binding (syncfusion:TabItemExt.Image), Mode=TwoWay}" syncfusion:TabControlExt.ImageHeight="{Binding (syncfusion:TabItemExt.ImageHeight), Mode=TwoWay}" MinWidth="200" MinHeight="20" syncfusion:TabControlExt.UseCustomEditableTemplate="{Binding (syncfusion:TabItemExt.UseCustomEditableTemplate), Mode=TwoWay}" FontSize="20">
                                 <Grid>
                                     <Grid x:Name="G_WeaponKit_GenRed" Width="224"
                               Background="#4C830E0E" Height="550" HorizontalAlignment="Left" VerticalAlignment="Top"
@@ -608,7 +608,7 @@
                                         </Grid>
                                     </Grid>
                                     <syncfusion:ButtonAdv x:Name="WeaponKits_Generated_Export" Content="ButtonAdv"
-                                              Label="Export : KeyCard Weapons Config Json" Margin="10,562,675,0"
+                                              Label="Export : KeyCard Weapons Config Json" Margin="228,552,213,10"
                                               FontSize="18" Background="#4C26D315" AllowDrop="False" />
                                     <Grid x:Name="G_WeaponKit_GenPurp" Width="224"
                               Background="#33EE33E5" Height="550" HorizontalAlignment="Left" VerticalAlignment="Top"
@@ -624,7 +624,7 @@
                                                        AllowDeleting="True"
                                                        AllowEditing="True" EditTrigger="DoubleTap"
                                                        IsAnimationEnabled="True"
-                                                       IsManipulationEnabled="True" FocusBorderThickness="0,1" Margin="-1,0,6,0">
+                                                       IsManipulationEnabled="True" FocusBorderThickness="0,1" Margin="0,0,6,0">
                                                 <syncfusion:SfTreeView.Nodes>
                                                     <syncfusion:TreeViewNode Content="Please Generate a Kit" HasChildNodes="False"
                                                                  IsExpanded="False" IsChecked="False"
@@ -670,7 +670,7 @@
                                                        AllowDeleting="True"
                                                        AllowEditing="True" EditTrigger="DoubleTap"
                                                        IsAnimationEnabled="True"
-                                                       IsManipulationEnabled="True" FocusBorderThickness="0,1" Margin="-1,0,5,0">
+                                                       IsManipulationEnabled="True" FocusBorderThickness="0,1" Margin="0,0,6,0">
                                                 <syncfusion:SfTreeView.Nodes>
                                                     <syncfusion:TreeViewNode Content="Please Generate a Kit" HasChildNodes="False"
                                                                  IsExpanded="False" IsChecked="False"
@@ -693,7 +693,7 @@
                                                        AllowDeleting="True"
                                                        AllowEditing="True" EditTrigger="DoubleTap"
                                                        IsAnimationEnabled="True"
-                                                       IsManipulationEnabled="True" FocusBorderThickness="0,1" Margin="0,0,6,0">
+                                                       IsManipulationEnabled="True" FocusBorderThickness="0,1" Margin="0,0,17,0">
                                                 <syncfusion:SfTreeView.Nodes>
                                                     <syncfusion:TreeViewNode Content="Please Generate a Kit" HasChildNodes="False"
                                                                  IsExpanded="False" IsChecked="False"
@@ -704,8 +704,127 @@
                                     </Grid>
                                 </Grid>
                             </syncfusion:TabItemExt>
-                            <syncfusion:TabItemExt x:Name="Tab_ClothingKits" Header="Clothing Kits" MinWidth="20" MinHeight="20">
-                                <Grid/>
+                            <syncfusion:TabItemExt x:Name="Tab_ClothingKits" Header="Clothing" MinWidth="200" MinHeight="20" FontSize="20" Background="#CC404040">
+                                <Grid>
+                                    <Grid x:Name="G_ClothingKit_GenRed" Width="224"
+                                        Background="#4C830E0E" Height="550" HorizontalAlignment="Left" VerticalAlignment="Top"
+                                        AllowDrop="False" Margin="4,-3,0,0">
+                                        <Label Content="Red Kits" HorizontalAlignment="Left" VerticalAlignment="Top" Width="228"
+                                            HorizontalContentAlignment="Center" VerticalContentAlignment="Center" FontSize="16"
+                                            Margin="1,0,0,0" AllowDrop="False" />
+                                        <Grid HorizontalAlignment="Left" Height="519" VerticalAlignment="Top" Width="230"
+                                            Margin="0,31,-8,0" AllowDrop="False">
+                                            <syncfusion:SfTreeView x:Name="TV_ClothingKit_Generated_Red" AllowDrop="False"
+                                                ItemTemplateDataContextType="Item" ShowLines="True"
+                                                ShowRootLines="True" SelectionMode="SingleDeselect"
+                                                AllowDeleting="True"
+                                                AllowEditing="True" EditTrigger="DoubleTap"
+                                                IsAnimationEnabled="True"
+                                                IsManipulationEnabled="True" FocusBorderThickness="0,1" Margin="0,0,6,0">
+                                                <syncfusion:SfTreeView.Nodes>
+                                                    <syncfusion:TreeViewNode Content="Please Generate a Kit" HasChildNodes="False"
+                                                        IsExpanded="False" IsChecked="False"
+                                                        ShowExpanderAnimation="False" />
+                                                </syncfusion:SfTreeView.Nodes>
+                                            </syncfusion:SfTreeView>
+                                        </Grid>
+                                    </Grid>
+                                    <syncfusion:ButtonAdv x:Name="ClothingKit_Generated_Export" Content="ButtonAdv"
+                                        Label="Export : KeyCard Weapons Config Json" Margin="228,552,213,10"
+                                        FontSize="18" Background="#4C26D315" AllowDrop="False" />
+                                    <Grid x:Name="G_ClothingKit_GenPurp" Width="224"
+                                        Background="#33EE33E5" Height="550" HorizontalAlignment="Left" VerticalAlignment="Top"
+                                        Margin="228,-3,0,0" AllowDrop="False">
+                                        <Label Content="Purple Kits" HorizontalAlignment="Left" VerticalAlignment="Top" Width="228"
+                                            HorizontalContentAlignment="Center" VerticalContentAlignment="Center" FontSize="16"
+                                            Margin="1,0,0,0" AllowDrop="False" />
+                                        <Grid HorizontalAlignment="Left" Height="519" VerticalAlignment="Top" Width="230"
+                                            Margin="0,31,-8,0" AllowDrop="False">
+                                            <syncfusion:SfTreeView x:Name="TV_ClothingKit_Generated_Purple" AllowDrop="False"
+                                                ItemTemplateDataContextType="Item" ShowLines="True"
+                                                ShowRootLines="True" SelectionMode="SingleDeselect"
+                                                AllowDeleting="True"
+                                                AllowEditing="True" EditTrigger="DoubleTap"
+                                                IsAnimationEnabled="True"
+                                                IsManipulationEnabled="True" FocusBorderThickness="0,1" Margin="0,0,6,0">
+                                                <syncfusion:SfTreeView.Nodes>
+                                                    <syncfusion:TreeViewNode Content="Please Generate a Kit" HasChildNodes="False"
+                                                        IsExpanded="False" IsChecked="False"
+                                                        ShowExpanderAnimation="False" />
+                                                </syncfusion:SfTreeView.Nodes>
+                                            </syncfusion:SfTreeView>
+                                        </Grid>
+                                    </Grid>
+                                    <Grid x:Name="G_ClothingKit_GenBlue" Width="224"
+                                        Background="#333043E1" Height="550" HorizontalAlignment="Left" VerticalAlignment="Top"
+                                        Margin="452,-3,0,0" AllowDrop="False">
+                                        <Label Content="Blue Kits" HorizontalAlignment="Left" VerticalAlignment="Top" Width="228"
+                                            HorizontalContentAlignment="Center" VerticalContentAlignment="Center" FontSize="16"
+                                            Margin="1,0,0,0" AllowDrop="False" />
+                                        <Grid HorizontalAlignment="Left" Height="519" VerticalAlignment="Top" Width="230"
+                                            Margin="0,31,-9,0" AllowDrop="False">
+                                            <syncfusion:SfTreeView x:Name="TV_ClothingKit_Generated_Blue" AllowDrop="False"
+                                                ItemTemplateDataContextType="Item" ShowLines="True"
+                                                ShowRootLines="True" SelectionMode="SingleDeselect"
+                                                AllowDeleting="True"
+                                                AllowEditing="True" EditTrigger="DoubleTap"
+                                                IsAnimationEnabled="True"
+                                                IsManipulationEnabled="True" FocusBorderThickness="0,1" Margin="0,0,6,0">
+                                                <syncfusion:SfTreeView.Nodes>
+                                                    <syncfusion:TreeViewNode Content="Please Generate a Kit" HasChildNodes="False"
+                                                        IsExpanded="False" IsChecked="False"
+                                                        ShowExpanderAnimation="False" />
+                                                </syncfusion:SfTreeView.Nodes>
+                                            </syncfusion:SfTreeView>
+                                        </Grid>
+                                    </Grid>
+                                    <Grid x:Name="G_ClothingKit_GenGreen" Width="224"
+                                        Background="#3350FF47" Height="550" HorizontalAlignment="Left" VerticalAlignment="Top"
+                                        Margin="676,-3,0,0" AllowDrop="False">
+                                        <Label Content="Green Kits" HorizontalAlignment="Left" VerticalAlignment="Top" Width="228"
+                                            HorizontalContentAlignment="Center" VerticalContentAlignment="Center" FontSize="16"
+                                            Margin="1,0,0,0" AllowDrop="False" />
+                                        <Grid HorizontalAlignment="Left" Height="519" VerticalAlignment="Top" Width="230"
+                                            Margin="0,31,-8,0" AllowDrop="False">
+                                            <syncfusion:SfTreeView x:Name="TV_ClothingKit_Generated_Green" AllowDrop="False"
+                                                ItemTemplateDataContextType="Item" ShowLines="True"
+                                                ShowRootLines="True" SelectionMode="SingleDeselect"
+                                                AllowDeleting="True"
+                                                AllowEditing="True" EditTrigger="DoubleTap"
+                                                IsAnimationEnabled="True"
+                                                IsManipulationEnabled="True" FocusBorderThickness="0,1" Margin="0,0,6,0">
+                                                <syncfusion:SfTreeView.Nodes>
+                                                    <syncfusion:TreeViewNode Content="Please Generate a Kit" HasChildNodes="False"
+                                                        IsExpanded="False" IsChecked="False"
+                                                        ShowExpanderAnimation="False" />
+                                                </syncfusion:SfTreeView.Nodes>
+                                            </syncfusion:SfTreeView>
+                                        </Grid>
+                                    </Grid>
+                                    <Grid x:Name="G_ClothingKit_GenYellow" Width="224"
+                                        Background="#4CFFF300" Height="550" HorizontalAlignment="Left" VerticalAlignment="Top"
+                                        Margin="900,-3,0,0" AllowDrop="False">
+                                        <Label Content="Yellow Kits" HorizontalAlignment="Left" VerticalAlignment="Top" Width="228"
+                                            HorizontalContentAlignment="Center" VerticalContentAlignment="Center" FontSize="16"
+                                            Margin="1,0,0,0" AllowDrop="False" />
+                                        <Grid HorizontalAlignment="Left" Height="519" VerticalAlignment="Top" Width="230"
+                                            Margin="0,31,0,0" AllowDrop="False">
+                                            <syncfusion:SfTreeView x:Name="TV_ClothingKit_Generated_Yellow" AllowDrop="False"
+                                                ItemTemplateDataContextType="Item" ShowLines="True"
+                                                ShowRootLines="True" SelectionMode="SingleDeselect"
+                                                AllowDeleting="True"
+                                                AllowEditing="True" EditTrigger="DoubleTap"
+                                                IsAnimationEnabled="True"
+                                                IsManipulationEnabled="True" FocusBorderThickness="0,1" Margin="0,0,17,0">
+                                                <syncfusion:SfTreeView.Nodes>
+                                                    <syncfusion:TreeViewNode Content="Please Generate a Kit" HasChildNodes="False"
+                                                        IsExpanded="False" IsChecked="False"
+                                                        ShowExpanderAnimation="False" />
+                                                </syncfusion:SfTreeView.Nodes>
+                                            </syncfusion:SfTreeView>
+                                        </Grid>
+                                    </Grid>
+                                </Grid>
                             </syncfusion:TabItemExt>
                             <syncfusion:TabItemExt Header="tabItem3" MinWidth="150" MinHeight="20"/>
                         </syncfusion:TabControlExt>
