@@ -356,7 +356,7 @@ Partial Public Class MainWindow
 
         Return roll <= percentChance
     End Function
-    Private Async Sub ClothingKits_Generate_Click(sender As Object, e As RoutedEventArgs) Handles ClothingKits_Generate.Click
+    Private Async Sub ClothingKits_Generate_Click(sender As Object, e As RoutedEventArgs) Handles ClothingKits_Generate.Click, ClothingKits_Generate_Copy.Click
         Dim colorTier As String
 
         If IsNothing(Kit_ColorChoice.SelectedItem) Then
@@ -366,7 +366,7 @@ Partial Public Class MainWindow
             colorTier = Kit_ColorChoice.SelectedItem.Content
             colorTier = colorTier.Replace(" Kit", "")
 
-            Dim tHelmets As New ObservableCollection(Of String)() 
+            Dim tHelmets As New ObservableCollection(Of String)()
             Dim tShirts As New ObservableCollection(Of String)()
             Dim tVests As New ObservableCollection(Of String)()
             Dim tPants As New ObservableCollection(Of String)()
@@ -399,22 +399,22 @@ Partial Public Class MainWindow
 
 
             Dim Helmet_Chance = TB_Helmet_Chance.Text
-        Dim Shirt_Chance = TB_Shirt_Chance.Text
-        Dim Vest_Chance = TB_Vest_Chance.Text
-        Dim Pants_Chance = TB_Pants_Chance.Text
-        Dim Shoes_Chance = TB_Shoes_Chance.Text
-        Dim Backpack_Chance = TB_Backpack_Chance.Text
-        Dim Gloves_Chance = TB_Gloves_Chance.Text
-        Dim Belt_Chance = TB_Belt_Chance.Text
-        Dim Facewear_Chance = TB_Facewear_Chance.Text
-        Dim Eyewear_Chance = TB_Eyewear_Chance.Text
-        Dim Armband_Chance = TB_Armband_Chance.Text
-        Dim NVG_Chance = TB_NVG_Chance.Text
+            Dim Shirt_Chance = TB_Shirt_Chance.Text
+            Dim Vest_Chance = TB_Vest_Chance.Text
+            Dim Pants_Chance = TB_Pants_Chance.Text
+            Dim Shoes_Chance = TB_Shoes_Chance.Text
+            Dim Backpack_Chance = TB_Backpack_Chance.Text
+            Dim Gloves_Chance = TB_Gloves_Chance.Text
+            Dim Belt_Chance = TB_Belt_Chance.Text
+            Dim Facewear_Chance = TB_Facewear_Chance.Text
+            Dim Eyewear_Chance = TB_Eyewear_Chance.Text
+            Dim Armband_Chance = TB_Armband_Chance.Text
+            Dim NVG_Chance = TB_NVG_Chance.Text
 
 
 
 
-        For Each type In GlobalVariables.Types.Types
+            For Each type In GlobalVariables.Types.Types
                 checkedAddArgs = Await determineIfAdd(type)
                 If checkedAddArgs = True Then
                     'If GlobalVariables.ClothingMarket.Helmets.Contains(type.typename) Then
@@ -430,7 +430,7 @@ Partial Public Class MainWindow
                     If GlobalVariables.ClothingMarket.Eyewears.Any(Function(t_) String.Equals(t_, type.typename, StringComparison.OrdinalIgnoreCase)) Then tEyewears.Add(type.typename)
                     If GlobalVariables.ClothingMarket.Armbands.Any(Function(t_) String.Equals(t_, type.typename, StringComparison.OrdinalIgnoreCase)) Then tArmbands.Add(type.typename)
                 End If
-        Next
+            Next
 
 
             Dim clothesKits As New ObservableCollection(Of GenerateConfigs.Clothes.ClothesInfo)
@@ -476,7 +476,7 @@ Partial Public Class MainWindow
 
 
 
-
+            UpdateGeneratedClothingKits()
 
             'UpdateGeneratedWeaponKits()
             ''Await GenerateConfigs.Weapons.GenerateConfig(WeaponColorTier)
@@ -491,8 +491,8 @@ Partial Public Class MainWindow
 
             'clothesInfos.Add(info)
         End If
-        End Sub
-        Private Async Sub WeaponKits_Generate_Click(sender As Object, e As RoutedEventArgs) _
+    End Sub
+    Private Async Sub WeaponKits_Generate_Click(sender As Object, e As RoutedEventArgs) _
             Handles WeaponKits_Generate.Click
             Dim WeaponColorTier As String
 
@@ -545,40 +545,46 @@ Partial Public Class MainWindow
         End Sub
     Sub UpdateGeneratedClothingKits()
         Tab_KitsGenerated.IsSelected = True
+        Tab_ClothingKits.IsSelected = True
 
         'Red Update
-        If GenerateConfigs.Weapons.RedWeaponKits IsNot Nothing Then
-            TV_WeaponKits_Generated_Red.Nodes.Clear()
-            For Each WeaponSet_ As GenerateConfigs.Weapons.WeaponInfo In GenerateConfigs.Weapons.RedWeaponKits
-                TV_WeaponKits_Generated_Red.Nodes.Add(CreateNodeSetWeapon(WeaponSet_))
+        If GenerateConfigs.Clothes.RedClothesKits IsNot Nothing Then
+            TV_ClothingKit_Generated_Red.Nodes.Clear()
+            For Each Clotheset_ As GenerateConfigs.Clothes.ClothesInfo In GenerateConfigs.Clothes.RedClothesKits
+                Dim tCount = TV_ClothingKit_Generated_Red.Nodes.Count
+                TV_ClothingKit_Generated_Red.Nodes.Add(CreateNodeSetClothes(Clotheset_, tCount))
             Next
         End If
-        If GenerateConfigs.Weapons.PurpleWeaponKits IsNot Nothing Then
+        If GenerateConfigs.Clothes.PurpleClothesKits IsNot Nothing Then
             'Purple Update
-            TV_WeaponKits_Generated_Purple.Nodes.Clear()
-            For Each WeaponSet_ As GenerateConfigs.Weapons.WeaponInfo In GenerateConfigs.Weapons.PurpleWeaponKits
-                TV_WeaponKits_Generated_Purple.Nodes.Add(CreateNodeSetWeapon(WeaponSet_))
+            TV_ClothingKit_Generated_Purple.Nodes.Clear()
+            For Each Clotheset_ As GenerateConfigs.Clothes.ClothesInfo In GenerateConfigs.Clothes.PurpleClothesKits
+                Dim tCount = TV_ClothingKit_Generated_Purple.Nodes.Count
+                TV_ClothingKit_Generated_Purple.Nodes.Add(CreateNodeSetClothes(Clotheset_, tCount))
             Next
         End If
-        If GenerateConfigs.Weapons.BlueWeaponKits IsNot Nothing Then
+        If GenerateConfigs.Clothes.BlueClothesKits IsNot Nothing Then
             'Blue Update
-            TV_WeaponKits_Generated_Blue.Nodes.Clear()
-            For Each WeaponSet_ As GenerateConfigs.Weapons.WeaponInfo In GenerateConfigs.Weapons.BlueWeaponKits
-                TV_WeaponKits_Generated_Blue.Nodes.Add(CreateNodeSetWeapon(WeaponSet_))
+            TV_ClothingKit_Generated_Blue.Nodes.Clear()
+            For Each Clotheset_ As GenerateConfigs.Clothes.ClothesInfo In GenerateConfigs.Clothes.BlueClothesKits
+                Dim tCount = TV_ClothingKit_Generated_Blue.Nodes.Count
+                TV_ClothingKit_Generated_Blue.Nodes.Add(CreateNodeSetClothes(Clotheset_, tCount))
             Next
         End If
-        If GenerateConfigs.Weapons.GreenWeaponKits IsNot Nothing Then
+        If GenerateConfigs.Clothes.GreenClothesKits IsNot Nothing Then
             'Green Update
-            TV_WeaponKits_Generated_Green.Nodes.Clear()
-            For Each WeaponSet_ As GenerateConfigs.Weapons.WeaponInfo In GenerateConfigs.Weapons.GreenWeaponKits
-                TV_WeaponKits_Generated_Green.Nodes.Add(CreateNodeSetWeapon(WeaponSet_))
+            TV_ClothingKit_Generated_Green.Nodes.Clear()
+            For Each Clotheset_ As GenerateConfigs.Clothes.ClothesInfo In GenerateConfigs.Clothes.GreenClothesKits
+                Dim tCount = TV_ClothingKit_Generated_Green.Nodes.Count
+                TV_ClothingKit_Generated_Green.Nodes.Add(CreateNodeSetClothes(Clotheset_, tCount))
             Next
         End If
-        If GenerateConfigs.Weapons.YellowWeaponKits IsNot Nothing Then
+        If GenerateConfigs.Clothes.YellowClothesKits IsNot Nothing Then
             'Yellow Update
-            TV_WeaponKits_Generated_Yellow.Nodes.Clear()
-            For Each WeaponSet_ As GenerateConfigs.Weapons.WeaponInfo In GenerateConfigs.Weapons.YellowWeaponKits
-                TV_WeaponKits_Generated_Yellow.Nodes.Add(CreateNodeSetWeapon(WeaponSet_))
+            TV_ClothingKit_Generated_Yellow.Nodes.Clear()
+            For Each Clotheset_ As GenerateConfigs.Clothes.ClothesInfo In GenerateConfigs.Clothes.YellowClothesKits
+                Dim tCount = TV_ClothingKit_Generated_Yellow.Nodes.Count
+                TV_ClothingKit_Generated_Yellow.Nodes.Add(CreateNodeSetClothes(Clotheset_, tCount))
             Next
         End If
 
@@ -629,6 +635,26 @@ Partial Public Class MainWindow
         Tab_Kits.IsSelected = True
     End Sub
 
+    Function CreateNodeSetClothes(ClothesSet_ As GenerateConfigs.Clothes.ClothesInfo, tCount As Integer) As TreeViewNode
+        Dim tParentNode As New TreeViewNode
+
+        tParentNode.Content = ("Set: # " + (tCount + 1).ToString()) 'ClothesSet_.dna_TheChosenOne
+        tParentNode.ChildNodes.Add(New TreeViewNode() With {.Content = "dna_Tier : " + ClothesSet_.dna_Tier})
+        tParentNode.ChildNodes.Add(New TreeViewNode() With {.Content = "dna_Helm : " + ClothesSet_.dna_Helm})
+        tParentNode.ChildNodes.Add(New TreeViewNode() With {.Content = "dna_Shirt : " + ClothesSet_.dna_Shirt})
+        tParentNode.ChildNodes.Add(New TreeViewNode() With {.Content = "dna_Vest : " + ClothesSet_.dna_Vest})
+        tParentNode.ChildNodes.Add(New TreeViewNode() With {.Content = "dna_Pants : " + ClothesSet_.dna_Pants})
+        tParentNode.ChildNodes.Add(New TreeViewNode() With {.Content = "dna_Shoes : " + ClothesSet_.dna_Shoes})
+        tParentNode.ChildNodes.Add(New TreeViewNode() With {.Content = "dna_Backpack : " + ClothesSet_.dna_Backpack})
+        tParentNode.ChildNodes.Add(New TreeViewNode() With {.Content = "dna_Gloves : " + ClothesSet_.dna_Gloves})
+        tParentNode.ChildNodes.Add(New TreeViewNode() With {.Content = "dna_Belt : " + ClothesSet_.dna_Belt})
+        tParentNode.ChildNodes.Add(New TreeViewNode() With {.Content = "dna_Facewear : " + ClothesSet_.dna_Facewear})
+        tParentNode.ChildNodes.Add(New TreeViewNode() With {.Content = "dna_Eyewear : " + ClothesSet_.dna_Eyewear})
+        tParentNode.ChildNodes.Add(New TreeViewNode() With {.Content = "dna_Armband : " + ClothesSet_.dna_Armband})
+        tParentNode.ChildNodes.Add(New TreeViewNode() With {.Content = "dna_NVG : " + ClothesSet_.dna_NVG})
+
+        Return tParentNode
+    End Function
     Function CreateNodeSetWeapon(WeaponSet_ As GenerateConfigs.Weapons.WeaponInfo) As TreeViewNode
             Dim tParentNode As New TreeViewNode
 
@@ -919,23 +945,64 @@ Partial Public Class MainWindow
             ' If no match is found, return -1 to indicate failure.
             Return -1
         End Function
+    Async Function ExportClothingKitsToJson(filepath As String) As Task
+        Dim clothingList As New List(Of GenerateConfigs.Clothes.ClothesInfo)()
+        Dim ClothesKitTVTypeArr As New Collection(Of SfTreeView)
+        ClothesKitTVTypeArr.Add(TV_ClothingKit_Generated_Red)
+        ClothesKitTVTypeArr.Add(TV_ClothingKit_Generated_Purple)
+        ClothesKitTVTypeArr.Add(TV_ClothingKit_Generated_Blue)
+        ClothesKitTVTypeArr.Add(TV_ClothingKit_Generated_Green)
+        ClothesKitTVTypeArr.Add(TV_ClothingKit_Generated_Yellow)
 
-        Async Function ExportWeaponKitsToJson(filepath As String) As Task
-            Dim weaponList As New List(Of GenerateConfigs.Weapons.WeaponInfo)()
-            Dim WeaponKitTVTypeArr As New Collection(Of SfTreeView)
-            WeaponKitTVTypeArr.Add(TV_WeaponKits_Generated_Red)
-            WeaponKitTVTypeArr.Add(TV_WeaponKits_Generated_Purple)
-            WeaponKitTVTypeArr.Add(TV_WeaponKits_Generated_Blue)
-            WeaponKitTVTypeArr.Add(TV_WeaponKits_Generated_Green)
-            WeaponKitTVTypeArr.Add(TV_WeaponKits_Generated_Yellow)
+        For Each t_TypeColorTree As SfTreeView In ClothesKitTVTypeArr
+            'Build based on Shown
+            If t_TypeColorTree.Nodes.First().Content.ToString() <> "Please Generate a Kit" Then
+                For Each Node As TreeViewNode In t_TypeColorTree.Nodes
+                    Dim tClothesInfo As GenerateConfigs.Clothes.ClothesInfo
+                    Try
+                        tClothesInfo = New GenerateConfigs.Clothes.ClothesInfo() With {
+                            .dna_Tier = GetNodeContent(Node, "dna_Tier"),
+                            .dna_Helm = GetNodeContent(Node, "dna_Helm"),
+                            .dna_Shirt = GetNodeContent(Node, "dna_Shirt"),
+                            .dna_Vest = GetNodeContent(Node, "dna_Vest"),
+                            .dna_Pants = GetNodeContent(Node, "dna_Pants"),
+                            .dna_Shoes = GetNodeContent(Node, "dna_Shoes"),
+                            .dna_Backpack = GetNodeContent(Node, "dna_Backpack"),
+                            .dna_Gloves = GetNodeContent(Node, "dna_Gloves"),
+                            .dna_Belt = GetNodeContent(Node, "dna_Belt"),
+                            .dna_Facewear = GetNodeContent(Node, "dna_Facewear"),
+                            .dna_Eyewear = GetNodeContent(Node, "dna_Eyewear"),
+                            .dna_Armband = GetNodeContent(Node, "dna_Armband"),
+                            .dna_NVG = GetNodeContent(Node, "dna_NVG")
+                            }
+                        clothingList.Add(tClothesInfo)
+                    Catch ex As Exception
+                        ' Log or handle the exception as needed
+                        Console.WriteLine("An error occurred while processing a node: " & ex.Message)
+                    End Try
+                Next
+            End If
+        Next
 
-            For Each t_TypeColorTree As SfTreeView In WeaponKitTVTypeArr
-                'Build based on Shown
-                If t_TypeColorTree.Nodes.First().Content.ToString() <> "Please Generate a Kit" Then
-                    For Each Node As TreeViewNode In t_TypeColorTree.Nodes
-                        Dim tWeaponInfo As GenerateConfigs.Weapons.WeaponInfo
-                        Try
-                            tWeaponInfo = New GenerateConfigs.Weapons.WeaponInfo() With {
+        Dim json = JsonConvert.SerializeObject(New With {Key .m_DNAConfig_Clothing = clothingList}, Formatting.Indented)
+        File.WriteAllText(filepath, json)
+    End Function
+    Async Function ExportWeaponKitsToJson(filepath As String) As Task
+        Dim weaponList As New List(Of GenerateConfigs.Weapons.WeaponInfo)()
+        Dim WeaponKitTVTypeArr As New Collection(Of SfTreeView)
+        WeaponKitTVTypeArr.Add(TV_WeaponKits_Generated_Red)
+        WeaponKitTVTypeArr.Add(TV_WeaponKits_Generated_Purple)
+        WeaponKitTVTypeArr.Add(TV_WeaponKits_Generated_Blue)
+        WeaponKitTVTypeArr.Add(TV_WeaponKits_Generated_Green)
+        WeaponKitTVTypeArr.Add(TV_WeaponKits_Generated_Yellow)
+
+        For Each t_TypeColorTree As SfTreeView In WeaponKitTVTypeArr
+            'Build based on Shown
+            If t_TypeColorTree.Nodes.First().Content.ToString() <> "Please Generate a Kit" Then
+                For Each Node As TreeViewNode In t_TypeColorTree.Nodes
+                    Dim tWeaponInfo As GenerateConfigs.Weapons.WeaponInfo
+                    Try
+                        tWeaponInfo = New GenerateConfigs.Weapons.WeaponInfo() With {
                                 .dna_Tier = GetNodeContent(Node, "dna_Tier"),
                                 .dna_WeaponCategory = GetNodeContent(Node, "dna_WeaponCategory"),
                                 .dna_TheChosenOne = GetNodeContent(Node, "dna_TheChosenOne"),
@@ -948,20 +1015,20 @@ Partial Public Class MainWindow
                                 .dna_HandGuard = GetNodeContent(Node, "dna_HandGuard"),
                                 .dna_Wrap = GetNodeContent(Node, "dna_Wrap")
                                 }
-                            weaponList.Add(tWeaponInfo)
-                        Catch ex As Exception
-                            ' Log or handle the exception as needed
-                            Console.WriteLine("An error occurred while processing a node: " & ex.Message)
-                        End Try
-                    Next
-                End If
-            Next
+                        weaponList.Add(tWeaponInfo)
+                    Catch ex As Exception
+                        ' Log or handle the exception as needed
+                        Console.WriteLine("An error occurred while processing a node: " & ex.Message)
+                    End Try
+                Next
+            End If
+        Next
 
-            Dim json = JsonConvert.SerializeObject(New With {Key .m_DNAConfig_Weapons = weaponList}, Formatting.Indented)
-            File.WriteAllText(filepath, json)
-        End Function
+        Dim json = JsonConvert.SerializeObject(New With {Key .m_DNAConfig_Weapons = weaponList}, Formatting.Indented)
+        File.WriteAllText(filepath, json)
+    End Function
 
-        Private Function GetNodeContent(node As TreeViewNode, identifier As String) As String
+    Private Function GetNodeContent(node As TreeViewNode, identifier As String) As String
             Dim childNode = FindChildNode(node, identifier)
             If childNode IsNot Nothing Then
                 Return childNode.Content.ToString().Replace(" ", "").Replace(identifier, "").Replace(":", "")
@@ -977,33 +1044,56 @@ Partial Public Class MainWindow
             Next
             Return Nothing
         End Function
+    Private Async Sub ClothingKits_Generated_Export_Click(sender As Object, e As RoutedEventArgs) _
+    Handles ClothingKit_Generated_Export.Click
 
-        Private Async Sub WeaponKits_Generated_Export_Click(sender As Object, e As RoutedEventArgs) _
+        Dim tsaveFileDialog As New Forms.SaveFileDialog()
+
+        ' Get the directory path of the executable
+        Dim executableDirectory = AppDomain.CurrentDomain.BaseDirectory
+        ' Set initial directory and filename
+        tsaveFileDialog.InitialDirectory = executableDirectory ' Set your desired initial directory
+        tsaveFileDialog.FileName = "KeyCard_Clothing_Config"
+        tsaveFileDialog.DefaultExt = ".json"
+        tsaveFileDialog.Filter = "JSON Files (*.json)|*.json|All Files (*.*)|*.*"
+
+        Dim result As Nullable(Of Boolean) = tsaveFileDialog.ShowDialog()
+
+        If result = True Then
+            Await ExportClothingKitsToJson(tsaveFileDialog.FileName)
+            Return
+        Else
+            Windows.MessageBox.Show("Export Canceled.", "Alert", MessageBoxButtons.OK,
+                                    MessageBoxIcon.Information)
+            Return
+        End If
+    End Sub
+    Private Async Sub WeaponKits_Generated_Export_Click(sender As Object, e As RoutedEventArgs) _
             Handles WeaponKits_Generated_Export.Click
 
-            Dim tsaveFileDialog As New Forms.SaveFileDialog()
+        Dim tsaveFileDialog As New Forms.SaveFileDialog()
 
-            ' Get the directory path of the executable
-            Dim executableDirectory = AppDomain.CurrentDomain.BaseDirectory
-            ' Set initial directory and filename
-            tsaveFileDialog.InitialDirectory = executableDirectory ' Set your desired initial directory
-            tsaveFileDialog.FileName = "KeyCard_Weapons_Config"
-            tsaveFileDialog.DefaultExt = ".json"
-            tsaveFileDialog.Filter = "JSON Files (*.json)|*.json|All Files (*.*)|*.*"
+        ' Get the directory path of the executable
+        Dim executableDirectory = AppDomain.CurrentDomain.BaseDirectory
+        ' Set initial directory and filename
+        tsaveFileDialog.InitialDirectory = executableDirectory ' Set your desired initial directory
+        tsaveFileDialog.FileName = "KeyCard_Weapons_Config"
+        tsaveFileDialog.DefaultExt = ".json"
+        tsaveFileDialog.Filter = "JSON Files (*.json)|*.json|All Files (*.*)|*.*"
 
-            Dim result As Nullable(Of Boolean) = tsaveFileDialog.ShowDialog()
+        Dim result As Nullable(Of Boolean) = tsaveFileDialog.ShowDialog()
 
-            If result = True Then
-                Await ExportWeaponKitsToJson(tsaveFileDialog.FileName)
-                Return
-            Else
-                Windows.MessageBox.Show("Export Canceled.", "Alert", MessageBoxButtons.OK,
+        If result = True Then
+            Await ExportWeaponKitsToJson(tsaveFileDialog.FileName)
+            Return
+        Else
+            Windows.MessageBox.Show("Export Canceled.", "Alert", MessageBoxButtons.OK,
                                         MessageBoxIcon.Information)
-                Return
-            End If
-        End Sub
+            Return
+        End If
+    End Sub
 
-        Private Async Sub Kits_ImportRestricted_Click(sender As Object, e As RoutedEventArgs)
+    Private Async Sub Kits_ImportRestricted_Click(sender As Object, e As RoutedEventArgs)
             Dim results As String() = Await FileSelectionHelper.SelectMultipleFilesAsync()
             Dim foundTypes As List(Of String)
             For Each resultPath As String In results
