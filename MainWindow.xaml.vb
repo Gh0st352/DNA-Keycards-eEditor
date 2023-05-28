@@ -36,6 +36,7 @@ Partial Public Class MainWindow
     Inherits ChromelessWindow
     Private currentVisualStyle As String
     Private currentSizeMode As String
+    Private random As New Random()
 
     ''' <summary>
     ''' Property for Visual Style
@@ -330,13 +331,12 @@ Partial Public Class MainWindow
         GlobalVariables.SideArms.Clear()
         Kits_SideArms.Clear()
     End Sub
+
     Public Function GetRandomString(ByVal percentChance As Integer, ByVal obcoll As ObservableCollection(Of String)) As String
         If obcoll.Count = 0 Then Return String.Empty
         If percentChance = 0 Then Return String.Empty
-
         If percentChance = 100 Then
             If obcoll.Count = 1 Then Return obcoll.First()
-            Dim random As New Random()
             Dim index As Integer = random.Next(0, obcoll.Count - 1) ' Generate a random index within the range of the collection
             Return obcoll(index)
         End If
@@ -345,7 +345,6 @@ Partial Public Class MainWindow
 
         If success Then
             If obcoll.Count = 1 Then Return obcoll.First()
-            Dim random As New Random()
             Dim index As Integer = random.Next(0, obcoll.Count - 1) ' Generate a random index within the range of the collection
             Return obcoll(index) ' Return the random string from the collection
         Else
@@ -353,7 +352,6 @@ Partial Public Class MainWindow
         End If
     End Function
     Public Function SimulateIfStatement(ByVal percentChance As Integer) As Boolean
-        Dim random As New Random()
         Dim roll As Integer = random.Next(1, 101) ' Generate a random number between 1 and 100
 
         Return roll <= percentChance
@@ -430,7 +428,7 @@ Partial Public Class MainWindow
                     If GlobalVariables.ClothingMarket.Belts.Any(Function(t_) String.Equals(t_, type.typename, StringComparison.OrdinalIgnoreCase)) Then tBelts.Add(type.typename)
                     If GlobalVariables.ClothingMarket.Facewears.Any(Function(t_) String.Equals(t_, type.typename, StringComparison.OrdinalIgnoreCase)) Then tFacewears.Add(type.typename)
                     If GlobalVariables.ClothingMarket.Eyewears.Any(Function(t_) String.Equals(t_, type.typename, StringComparison.OrdinalIgnoreCase)) Then tEyewears.Add(type.typename)
-                    If GlobalVariables.ClothingMarket.Armbands.Any(Function(t_) String.Equals(t_, type.typename.ToLower(), StringComparison.InvariantCultureIgnoreCase)) Then tArmbands.Add(type.typename)
+                    If GlobalVariables.ClothingMarket.Armbands.Any(Function(t_) String.Equals(t_, type.typename, StringComparison.OrdinalIgnoreCase)) Then tArmbands.Add(type.typename)
                 End If
         Next
 
@@ -441,22 +439,18 @@ Partial Public Class MainWindow
                 Dim tClothesKit As New GenerateConfigs.Clothes.ClothesInfo()
                 tClothesKit.dna_Tier = colorTier
                 For Each tSlot As ObservableCollection(Of String) In tClothingParts
-                    'If IsNothing(tSlot) Then
-                    '    Continue For
-                    'Else
                     If tSlot Is tHelmets Then tClothesKit.dna_Helm = GetRandomString(Helmet_Chance, tSlot)
-                        If tSlot Is tShirts Then tClothesKit.dna_Shirt = GetRandomString(Shirt_Chance, tSlot)
-                        If tSlot Is tVests Then tClothesKit.dna_Vest = GetRandomString(Vest_Chance, tSlot)
-                        If tSlot Is tPants Then tClothesKit.dna_Pants = GetRandomString(Pants_Chance, tSlot)
-                        If tSlot Is tShoes Then tClothesKit.dna_Shoes = GetRandomString(Shoes_Chance, tSlot)
-                        If tSlot Is tBackpacks Then tClothesKit.dna_Backpack = GetRandomString(Backpack_Chance, tSlot)
-                        If tSlot Is tGloves Then tClothesKit.dna_Gloves = GetRandomString(Gloves_Chance, tSlot)
-                        If tSlot Is tBelts Then tClothesKit.dna_Belt = GetRandomString(Belt_Chance, tSlot)
-                        If tSlot Is tFacewears Then tClothesKit.dna_Facewear = GetRandomString(Facewear_Chance, tSlot)
-                        If tSlot Is tEyewears Then tClothesKit.dna_Eyewear = GetRandomString(Eyewear_Chance, tSlot)
-                        If tSlot Is tArmbands Then tClothesKit.dna_Armband = GetRandomString(Armband_Chance, tSlot)
-                        If tSlot Is tNVG Then tClothesKit.dna_NVG = GetRandomString(NVG_Chance, tSlot)
-                    'End If
+                    If tSlot Is tShirts Then tClothesKit.dna_Shirt = GetRandomString(Shirt_Chance, tSlot)
+                    If tSlot Is tVests Then tClothesKit.dna_Vest = GetRandomString(Vest_Chance, tSlot)
+                    If tSlot Is tPants Then tClothesKit.dna_Pants = GetRandomString(Pants_Chance, tSlot)
+                    If tSlot Is tShoes Then tClothesKit.dna_Shoes = GetRandomString(Shoes_Chance, tSlot)
+                    If tSlot Is tBackpacks Then tClothesKit.dna_Backpack = GetRandomString(Backpack_Chance, tSlot)
+                    If tSlot Is tGloves Then tClothesKit.dna_Gloves = GetRandomString(Gloves_Chance, tSlot)
+                    If tSlot Is tBelts Then tClothesKit.dna_Belt = GetRandomString(Belt_Chance, tSlot)
+                    If tSlot Is tFacewears Then tClothesKit.dna_Facewear = GetRandomString(Facewear_Chance, tSlot)
+                    If tSlot Is tEyewears Then tClothesKit.dna_Eyewear = GetRandomString(Eyewear_Chance, tSlot)
+                    If tSlot Is tArmbands Then tClothesKit.dna_Armband = GetRandomString(Armband_Chance, tSlot)
+                    If tSlot Is tNVG Then tClothesKit.dna_NVG = GetRandomString(NVG_Chance, tSlot)
                 Next
                 clothesKits.Add(tClothesKit)
             Next i
@@ -468,7 +462,7 @@ Partial Public Class MainWindow
 
 
             Select Case colorTier
-        Case "Red"
+                Case "Red"
                     GenerateConfigs.Clothes.RedClothesKits = clothesKits
                 Case "Purple"
                     GenerateConfigs.Clothes.PurpleClothesKits = clothesKits
@@ -479,18 +473,23 @@ Partial Public Class MainWindow
                 Case "Yellow"
                     GenerateConfigs.Clothes.YellowClothesKits = clothesKits
             End Select
-        'UpdateGeneratedWeaponKits()
-        ''Await GenerateConfigs.Weapons.GenerateConfig(WeaponColorTier)
-        ''Dim info As New GenerateConfigs.Clothes.ClothesInfo()
-        ''info.dna_Tier = colorTier
-        ''info.dna_TheChosenOne = type.typename
-        ''Dim exists As Boolean = StringExistsInCollection(type.typename, GlobalVariables.RestrictedTypes)
-        ''If exists Then
-        ''    Continue For
-        ''End If
 
 
-        'clothesInfos.Add(info)
+
+
+
+            'UpdateGeneratedWeaponKits()
+            ''Await GenerateConfigs.Weapons.GenerateConfig(WeaponColorTier)
+            ''Dim info As New GenerateConfigs.Clothes.ClothesInfo()
+            ''info.dna_Tier = colorTier
+            ''info.dna_TheChosenOne = type.typename
+            ''Dim exists As Boolean = StringExistsInCollection(type.typename, GlobalVariables.RestrictedTypes)
+            ''If exists Then
+            ''    Continue For
+            ''End If
+
+
+            'clothesInfos.Add(info)
         End If
         End Sub
         Private Async Sub WeaponKits_Generate_Click(sender As Object, e As RoutedEventArgs) _
@@ -544,51 +543,93 @@ Partial Public Class MainWindow
                 'Await GenerateConfigs.Weapons.GenerateConfig(WeaponColorTier)
             End If
         End Sub
+    Sub UpdateGeneratedClothingKits()
+        Tab_KitsGenerated.IsSelected = True
 
-        Sub UpdateGeneratedWeaponKits()
-            Tab_KitsGenerated.IsSelected = True
-
-            'Red Update
-            If GenerateConfigs.Weapons.RedWeaponKits IsNot Nothing Then
-                TV_WeaponKits_Generated_Red.Nodes.Clear()
-                For Each WeaponSet_ As GenerateConfigs.Weapons.WeaponInfo In GenerateConfigs.Weapons.RedWeaponKits
-                    TV_WeaponKits_Generated_Red.Nodes.Add(CreateNodeSetWeapon(WeaponSet_))
-                Next
-            End If
-            If GenerateConfigs.Weapons.PurpleWeaponKits IsNot Nothing Then
-                'Purple Update
-                TV_WeaponKits_Generated_Purple.Nodes.Clear()
-                For Each WeaponSet_ As GenerateConfigs.Weapons.WeaponInfo In GenerateConfigs.Weapons.PurpleWeaponKits
-                    TV_WeaponKits_Generated_Purple.Nodes.Add(CreateNodeSetWeapon(WeaponSet_))
-                Next
-            End If
-            If GenerateConfigs.Weapons.BlueWeaponKits IsNot Nothing Then
-                'Blue Update
-                TV_WeaponKits_Generated_Blue.Nodes.Clear()
-                For Each WeaponSet_ As GenerateConfigs.Weapons.WeaponInfo In GenerateConfigs.Weapons.BlueWeaponKits
-                    TV_WeaponKits_Generated_Blue.Nodes.Add(CreateNodeSetWeapon(WeaponSet_))
-                Next
-            End If
-            If GenerateConfigs.Weapons.GreenWeaponKits IsNot Nothing Then
-                'Green Update
-                TV_WeaponKits_Generated_Green.Nodes.Clear()
-                For Each WeaponSet_ As GenerateConfigs.Weapons.WeaponInfo In GenerateConfigs.Weapons.GreenWeaponKits
-                    TV_WeaponKits_Generated_Green.Nodes.Add(CreateNodeSetWeapon(WeaponSet_))
-                Next
-            End If
-            If GenerateConfigs.Weapons.YellowWeaponKits IsNot Nothing Then
-                'Yellow Update
-                TV_WeaponKits_Generated_Yellow.Nodes.Clear()
-                For Each WeaponSet_ As GenerateConfigs.Weapons.WeaponInfo In GenerateConfigs.Weapons.YellowWeaponKits
-                    TV_WeaponKits_Generated_Yellow.Nodes.Add(CreateNodeSetWeapon(WeaponSet_))
-                Next
-            End If
+        'Red Update
+        If GenerateConfigs.Weapons.RedWeaponKits IsNot Nothing Then
+            TV_WeaponKits_Generated_Red.Nodes.Clear()
+            For Each WeaponSet_ As GenerateConfigs.Weapons.WeaponInfo In GenerateConfigs.Weapons.RedWeaponKits
+                TV_WeaponKits_Generated_Red.Nodes.Add(CreateNodeSetWeapon(WeaponSet_))
+            Next
+        End If
+        If GenerateConfigs.Weapons.PurpleWeaponKits IsNot Nothing Then
+            'Purple Update
+            TV_WeaponKits_Generated_Purple.Nodes.Clear()
+            For Each WeaponSet_ As GenerateConfigs.Weapons.WeaponInfo In GenerateConfigs.Weapons.PurpleWeaponKits
+                TV_WeaponKits_Generated_Purple.Nodes.Add(CreateNodeSetWeapon(WeaponSet_))
+            Next
+        End If
+        If GenerateConfigs.Weapons.BlueWeaponKits IsNot Nothing Then
+            'Blue Update
+            TV_WeaponKits_Generated_Blue.Nodes.Clear()
+            For Each WeaponSet_ As GenerateConfigs.Weapons.WeaponInfo In GenerateConfigs.Weapons.BlueWeaponKits
+                TV_WeaponKits_Generated_Blue.Nodes.Add(CreateNodeSetWeapon(WeaponSet_))
+            Next
+        End If
+        If GenerateConfigs.Weapons.GreenWeaponKits IsNot Nothing Then
+            'Green Update
+            TV_WeaponKits_Generated_Green.Nodes.Clear()
+            For Each WeaponSet_ As GenerateConfigs.Weapons.WeaponInfo In GenerateConfigs.Weapons.GreenWeaponKits
+                TV_WeaponKits_Generated_Green.Nodes.Add(CreateNodeSetWeapon(WeaponSet_))
+            Next
+        End If
+        If GenerateConfigs.Weapons.YellowWeaponKits IsNot Nothing Then
+            'Yellow Update
+            TV_WeaponKits_Generated_Yellow.Nodes.Clear()
+            For Each WeaponSet_ As GenerateConfigs.Weapons.WeaponInfo In GenerateConfigs.Weapons.YellowWeaponKits
+                TV_WeaponKits_Generated_Yellow.Nodes.Add(CreateNodeSetWeapon(WeaponSet_))
+            Next
+        End If
 
 
-            Tab_Kits.IsSelected = True
-        End Sub
+        Tab_Kits.IsSelected = True
+    End Sub
+    Sub UpdateGeneratedWeaponKits()
+        Tab_KitsGenerated.IsSelected = True
+        Tab_WeaponKits.IsSelected = True
+        'Tabs_GenKits.SelectedItem = Tab_WeaponKits
+        'Red Update
+        If GenerateConfigs.Weapons.RedWeaponKits IsNot Nothing Then
+            TV_WeaponKits_Generated_Red.Nodes.Clear()
+            For Each WeaponSet_ As GenerateConfigs.Weapons.WeaponInfo In GenerateConfigs.Weapons.RedWeaponKits
+                TV_WeaponKits_Generated_Red.Nodes.Add(CreateNodeSetWeapon(WeaponSet_))
+            Next
+        End If
+        If GenerateConfigs.Weapons.PurpleWeaponKits IsNot Nothing Then
+            'Purple Update
+            TV_WeaponKits_Generated_Purple.Nodes.Clear()
+            For Each WeaponSet_ As GenerateConfigs.Weapons.WeaponInfo In GenerateConfigs.Weapons.PurpleWeaponKits
+                TV_WeaponKits_Generated_Purple.Nodes.Add(CreateNodeSetWeapon(WeaponSet_))
+            Next
+        End If
+        If GenerateConfigs.Weapons.BlueWeaponKits IsNot Nothing Then
+            'Blue Update
+            TV_WeaponKits_Generated_Blue.Nodes.Clear()
+            For Each WeaponSet_ As GenerateConfigs.Weapons.WeaponInfo In GenerateConfigs.Weapons.BlueWeaponKits
+                TV_WeaponKits_Generated_Blue.Nodes.Add(CreateNodeSetWeapon(WeaponSet_))
+            Next
+        End If
+        If GenerateConfigs.Weapons.GreenWeaponKits IsNot Nothing Then
+            'Green Update
+            TV_WeaponKits_Generated_Green.Nodes.Clear()
+            For Each WeaponSet_ As GenerateConfigs.Weapons.WeaponInfo In GenerateConfigs.Weapons.GreenWeaponKits
+                TV_WeaponKits_Generated_Green.Nodes.Add(CreateNodeSetWeapon(WeaponSet_))
+            Next
+        End If
+        If GenerateConfigs.Weapons.YellowWeaponKits IsNot Nothing Then
+            'Yellow Update
+            TV_WeaponKits_Generated_Yellow.Nodes.Clear()
+            For Each WeaponSet_ As GenerateConfigs.Weapons.WeaponInfo In GenerateConfigs.Weapons.YellowWeaponKits
+                TV_WeaponKits_Generated_Yellow.Nodes.Add(CreateNodeSetWeapon(WeaponSet_))
+            Next
+        End If
 
-        Function CreateNodeSetWeapon(WeaponSet_ As GenerateConfigs.Weapons.WeaponInfo) As TreeViewNode
+
+        Tab_Kits.IsSelected = True
+    End Sub
+
+    Function CreateNodeSetWeapon(WeaponSet_ As GenerateConfigs.Weapons.WeaponInfo) As TreeViewNode
             Dim tParentNode As New TreeViewNode
 
             tParentNode.Content = WeaponSet_.dna_TheChosenOne
