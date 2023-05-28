@@ -1,4 +1,25 @@
-﻿Imports System
+﻿'--- DNA Keycards Economy Editor
+'-- ------------------------------------------------------------------------------------------
+'-- 
+'-- This Is free software, And you are welcome to redistribute it with certain conditions.
+'-- 
+'-- --------------------- GNU General Public License v3.0 ------------------------------------
+'-- 
+'-- This program Is free software: you can redistribute it And/Or modify it under the terms 
+'-- of the GNU General Public License as published by the Free Software Foundation, 
+'-- Version 3 of the License.
+'--
+'-- This program Is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY;
+'-- without even the implied warranty of MERCHANTABILITY Or FITNESS FOR A PARTICULAR PURPOSE.
+'-- See the GNU General Public License for more details.
+'--
+'-- You should have received a copy of the GNU General Public License in the downloaded 
+'-- program folder.  If Not, see https://www.gnu.org/licenses/.
+'--
+'-- Copyright (C) 2023 Gh0st - This program comes with ABSOLUTELY NO WARRANTY
+'-- ------------------------------------------------------------------------------------------
+
+Imports System
 Imports System.Collections.Generic
 Imports System.Collections.ObjectModel
 Imports System.Linq
@@ -74,7 +95,6 @@ Partial Public Class MainWindow
         seedItemSources()
         seedWeaponKitSettings()
         seedHandlers()
-
     End Sub
 
     ''' <summary>
@@ -713,8 +733,6 @@ Partial Public Class MainWindow
         CHK_Kits_Use.ItemsSource = GlobalVariables.Types.Usages
         CHK_Kits_Val.ItemsSource = GlobalVariables.Types.Values
         CHK_Kits_Tag.ItemsSource = GlobalVariables.Types.Tags
-
-
     End Sub
 
     Public Sub seedHandlers()
