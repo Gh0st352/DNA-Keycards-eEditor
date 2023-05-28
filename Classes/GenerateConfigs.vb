@@ -55,8 +55,5 @@ Public Class GenerateConfigs
         Public Shared GreenClothesKits As ObservableCollection(Of ClothesInfo)
         Public Shared YellowClothesKits As ObservableCollection(Of ClothesInfo)
     End Class
-
-
-
 End Class
 'End Namespace

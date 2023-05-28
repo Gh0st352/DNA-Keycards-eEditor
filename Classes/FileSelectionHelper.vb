@@ -250,7 +250,7 @@ Namespace Classes
                 Dim jsonText As String = Await reader.ReadToEndAsync()
 
                 ' Deserialize the JSON data
-                Dim jsonData As JObject = JsonConvert.DeserializeObject(Of JObject)(jsonText)
+                Dim jsonData As JObject = JsonConvert.DeserializeObject (Of JObject)(jsonText)
 
                 ' Get the "Items" array
                 Dim itemsArray As JArray = jsonData("Items")
