@@ -11,11 +11,11 @@ Imports System.Windows
 
 ' Review the values of the assembly attributes
 
-<Assembly: AssemblyTitle("DNA_Keycard_Editor")>
-<Assembly: AssemblyDescription("")>
+<Assembly: AssemblyTitle("DNA Keycards eEditor")>
+<Assembly: AssemblyDescription("DNA Keycards Economy Editor")>
 <Assembly: AssemblyCompany("")>
-<Assembly: AssemblyProduct("DNA_Keycard_Editor")>
-<Assembly: AssemblyCopyright("Copyright ©  2018")>
+<Assembly: AssemblyProduct("DNA Keycards Economy Editor")>
+<Assembly: AssemblyCopyright("Copyright ©  2023 Gh0st")>
 <Assembly: AssemblyTrademark("")>
 <Assembly: ComVisible(false)>
 

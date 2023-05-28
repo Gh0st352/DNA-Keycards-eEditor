@@ -1015,7 +1015,7 @@
             </syncfusion:TabControlExt>
         </Grid>
         <Label x:Name="FooterText"
-               Content="Author:    Gh0st             |             Discord:    Gh0st#5623             |             Github:    https://github.com/Gh0st352             |             CC BY-NC-SA 3.0 IGO"
+               Content="Github:    https://github.com/Gh0st352             |             CC BY-NC-SA 3.0 IGO                            "
                VerticalAlignment="Bottom" Height="28"
                BorderThickness="0" ClipToBounds="True" FontStyle="Italic" FontWeight="SemiBold"
                Foreground="#BFB4B4B4" HorizontalContentAlignment="Center" FontSize="14" />
