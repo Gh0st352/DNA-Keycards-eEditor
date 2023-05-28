@@ -1,13 +1,4 @@
-﻿'Imports System.Collections.ObjectModel
-'Imports System.IO
-'Imports System.Threading.Tasks
-'Imports Newtonsoft.Json
-'Imports System.Linq
-'Imports System.Windows.Threading
-'Imports Syncfusion.Windows.Tools.Controls
-
-'Namespace Classes
-Imports System.Collections.ObjectModel
+﻿Imports System.Collections.ObjectModel
 
 Public Class GenerateConfigs
     Public Class Weapons
@@ -56,4 +47,4 @@ Public Class GenerateConfigs
         Public Shared YellowClothesKits As ObservableCollection(Of ClothesInfo)
     End Class
 End Class
-'End Namespace
+

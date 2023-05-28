@@ -199,6 +199,21 @@
   <ItemGroup>
     <Resource Include="App.ico" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Resource Include="etc\ico\App.ico" />
+    <Resource Include="etc\ico\arrow up\arrow-up.ico" />
+    <Resource Include="etc\ico\arrow up\attribution.txt" />
+    <Resource Include="etc\ico\delete\attribution.txt" />
+    <Resource Include="etc\ico\delete\delete.ico" />
+    <Resource Include="etc\ico\ghost\attribution.txt" />
+    <Resource Include="etc\ico\ghost\ghost.ico" />
+    <Resource Include="etc\ico\ghost_meme\attribution.txt" />
+    <Resource Include="etc\ico\ghost_meme\ghost_meme.ico" />
+    <Resource Include="etc\ico\icons8\attribution.txt" />
+    <Resource Include="etc\ico\icons8\icons8-live-folder-64.png" />
+    <Resource Include="etc\ico\icons8\icons8-steam-50.png" />
+    <Resource Include="etc\ico\savefile\attribution.txt" />
+    <Resource Include="etc\ico\savefile\save-file.ico" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.VisualBasic.targets" />
 </Project>
