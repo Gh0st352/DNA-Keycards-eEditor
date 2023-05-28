@@ -715,25 +715,25 @@ Partial Public Class MainWindow
         End Sub
 
         Public Sub seedHandlers()
-            AddHandler TV_WeaponKits_Generated_Red.ItemBeginEdit, AddressOf Event_BeginEdit_TV_WeaponKits_Generated_Red _
-            ' tabLocal.ModTree.ItemDropping, AddressOf Steam.TabOperations.modtree_Drop
+        AddHandler TV_WeaponKits_Generated_Red.ItemBeginEdit, AddressOf Event_BeginEdit_Generated_Kits _
+        ' tabLocal.ModTree.ItemDropping, AddressOf Steam.TabOperations.modtree_Drop
+        AddHandler TV_ClothingKit_Generated_Red.ItemBeginEdit, AddressOf Event_BeginEdit_Generated_Kits
+        AddHandler MainExe.Drop, AddressOf MainExeDropFiles
+        AttachTextChangedEventToAllTextBoxes(Tab_ClothesSettings)
+        AttachTextChangedEventToAllTextBoxes(Tab_Kits)
+    End Sub
 
-            AddHandler MainExe.Drop, AddressOf MainExeDropFiles
-            AttachTextChangedEventToAllTextBoxes(Tab_ClothesSettings)
-            AttachTextChangedEventToAllTextBoxes(Tab_Kits)
-        End Sub
+    Async Sub Event_BeginEdit_Generated_Kits(sender As Object, e As EventArgs)
+        Dim Edited_ As SfTreeView = sender
+        Dim eventInfo As TreeViewItemBeginEditEventArgs = e
 
-        Async Sub Event_BeginEdit_TV_WeaponKits_Generated_Red(sender As Object, e As EventArgs)
-            Dim Edited_ As SfTreeView = sender
-            Dim eventInfo As TreeViewItemBeginEditEventArgs = e
-
-            If IsNothing(eventInfo.Node.ParentNode) Then
-                eventInfo.Cancel = True
-            Else
-                eventInfo.Cancel = False
-            End If
-        End Sub
-        Async Function determineIfAdd(type As GlobalVariables.Types.TypeInfo) As Task(Of Boolean)
+        If IsNothing(eventInfo.Node.ParentNode) Then
+            eventInfo.Cancel = True
+        Else
+            eventInfo.Cancel = False
+        End If
+    End Sub
+    Async Function determineIfAdd(type As GlobalVariables.Types.TypeInfo) As Task(Of Boolean)
             'CHECK IF TYPE CONTAINS REQUIRED FLAGS FOR ADD
             '        'if selectedcats is not nothing then
             '        'for every selectedcat in selectedcats
