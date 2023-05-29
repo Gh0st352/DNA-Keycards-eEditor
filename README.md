@@ -32,7 +32,7 @@ This program allows for easy macro level configuration of the DayZ DNA Keycard m
 - [Export](#export)
 ## Video Tutorial
 
-Insert gif or link to demo
+[DNA Keycards eEditor Tutorial | v1.0.0.0](https://youtu.be/d1PAQ7JYUn8)
 
 
 ## Visual Tutorial
