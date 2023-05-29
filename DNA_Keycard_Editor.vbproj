@@ -400,6 +400,26 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="bin\Release\" />
+    <Folder Include="GitRelease\" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="etc\VisualTutorial\1 - Import.JPG" />
+    <None Include="etc\VisualTutorial\1a.JPG" />
+    <None Include="etc\VisualTutorial\2 - Types Tab.JPG" />
+    <None Include="etc\VisualTutorial\3 - Clothing Kit Settings Tab.JPG" />
+    <None Include="etc\VisualTutorial\3a - Automatic Import.JPG" />
+    <None Include="etc\VisualTutorial\3b - Manual Import.JPG" />
+    <None Include="etc\VisualTutorial\3c - Percent Chance.JPG" />
+    <None Include="etc\VisualTutorial\3d - Number of Sets to generate.JPG" />
+    <None Include="etc\VisualTutorial\4 - Kits Tab.JPG" />
+    <None Include="etc\VisualTutorial\4a - Filtering.JPG" />
+    <None Include="etc\VisualTutorial\4b - Restricting.JPG" />
+    <None Include="etc\VisualTutorial\4c - Sidearms.JPG" />
+    <None Include="etc\VisualTutorial\5 - Check Lists.JPG" />
+    <None Include="etc\VisualTutorial\6 - Kit Generation.JPG" />
+    <None Include="etc\VisualTutorial\6a - Kit Generation.JPG" />
+    <None Include="etc\VisualTutorial\7 - Kit Editing.JPG" />
+    <None Include="etc\VisualTutorial\8 - Export.JPG" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.VisualBasic.targets" />
   <Import Project="packages\Fody.6.7.0\build\Fody.targets" Condition="Exists('packages\Fody.6.7.0\build\Fody.targets')" />
