@@ -45,6 +45,7 @@ Imports Microsoft.Win32
 Imports System.Windows.Threading
 Imports DNA_Keycard_Editor.Classes
 Imports System.IO
+Imports System.Reflection
 Imports System.Windows.Forms
 Imports Syncfusion.UI.Xaml.Grid
 Imports Newtonsoft.Json
@@ -153,23 +154,28 @@ Partial Public Class MainWindow
             Case "Red Kit"
                 SetGridBackgroundColor(G_KitType, 131, 14, 14, 30)
                 SetGridBackgroundColor(G_ClothesSettings, 131, 14, 14, 30)
+                SetGridBackgroundColor(G_LootSettings, 131, 14, 14, 30)
             Case "Purple Kit"
                 SetGridBackgroundColor(G_KitType, 238, 51, 229, 20)
                 SetGridBackgroundColor(G_ClothesSettings, 238, 51, 229, 20)
+                SetGridBackgroundColor(G_LootSettings, 238, 51, 229, 20)
             Case "Blue Kit"
                 SetGridBackgroundColor(G_KitType, 48, 67, 225, 20)
                 SetGridBackgroundColor(G_ClothesSettings, 48, 67, 225, 20)
+                SetGridBackgroundColor(G_LootSettings, 48, 67, 225, 20)
             Case "Green Kit"
                 SetGridBackgroundColor(G_KitType, 80, 255, 71, 20)
                 SetGridBackgroundColor(G_ClothesSettings, 80, 255, 71, 20)
+                SetGridBackgroundColor(G_LootSettings, 80, 255, 71, 20)
             Case "Yellow Kit"
                 SetGridBackgroundColor(G_KitType, 255, 243, 0, 30)
                 SetGridBackgroundColor(G_ClothesSettings, 255, 243, 0, 30)
+                SetGridBackgroundColor(G_LootSettings, 255, 243, 0, 30)
             Case Else
                 SetGridBackgroundColor(G_KitType, 83, 83, 83, 20)
                 SetGridBackgroundColor(G_ClothesSettings, 83, 83, 83, 20)
+                SetGridBackgroundColor(G_LootSettings, 83, 83, 83, 20)
         End Select
-        Dim xx = ""
     End Sub
 
     Public Sub SetGridBackgroundColor(grid As Grid, r As Byte, g As Byte, b As Byte, alpha As Byte)
@@ -237,7 +243,7 @@ Partial Public Class MainWindow
         Handles Kits_ImportRestricted.Click, Clothes_Helmets_Import.Click, Clothes_Pants_Import.Click,
                 Clothes_Gloves_Import.Click, Clothes_Eyewear_Import.Click, Clothes_Shirts_Import.Click,
                 Clothes_Shoes_Import.Click, Clothes_Belts_Import.Click, Clothes_Armbands_Import.Click,
-                Clothes_Vests_Import.Click, Clothes_Backpacks_Import.Click, Clothes_Facewear_Import.Click
+                Clothes_Vests_Import.Click, Clothes_Backpacks_Import.Click, Clothes_Facewear_Import.Click, Loot_proprietary_Import.Click, Loot_medical_Import.Click, Loot_food_Import.Click, Loot_drink_Import.Click, Loot_tools_Import.Click, Loot_material_Import.Click, Loot_misc_Import.Click, Loot_valuable_Import.Click
         Dim results As String() = Await FileSelectionHelper.SelectMultipleFilesAsync()
         Dim foundTypes As List(Of String)
         For Each resultPath As String In results
@@ -304,6 +310,34 @@ Partial Public Class MainWindow
                 Case sender Is Clothes_Armbands_Import
                     AddMissingTypes(foundTypes, GlobalVariables.ClothingMarket.Armbands)
                     UpdateTextBoxWithStrings(Clothes_Armbands, GlobalVariables.ClothingMarket.Armbands)
+
+                    'Loot Market
+
+                Case sender Is Loot_proprietary_Import
+                    AddMissingTypes(foundTypes, GlobalVariables.LootMarket.proprietary)
+                    UpdateTextBoxWithStrings(Loot_proprietary, GlobalVariables.LootMarket.proprietary)
+                Case sender Is Loot_medical_Import
+                    AddMissingTypes(foundTypes, GlobalVariables.LootMarket.medical)
+                    UpdateTextBoxWithStrings(Loot_medical, GlobalVariables.LootMarket.medical)
+                Case sender Is Loot_food_Import
+                    AddMissingTypes(foundTypes, GlobalVariables.LootMarket.food)
+                    UpdateTextBoxWithStrings(Loot_food, GlobalVariables.LootMarket.food)
+                Case sender Is Loot_drink_Import
+                    AddMissingTypes(foundTypes, GlobalVariables.LootMarket.drink)
+                    UpdateTextBoxWithStrings(Loot_drink, GlobalVariables.LootMarket.drink)
+                Case sender Is Loot_tools_Import
+                    AddMissingTypes(foundTypes, GlobalVariables.LootMarket.tools)
+                    UpdateTextBoxWithStrings(Loot_tools, GlobalVariables.LootMarket.tools)
+                Case sender Is Loot_material_Import
+                    AddMissingTypes(foundTypes, GlobalVariables.LootMarket.material)
+                    UpdateTextBoxWithStrings(Loot_material, GlobalVariables.LootMarket.material)
+                Case sender Is Loot_misc_Import
+                    AddMissingTypes(foundTypes, GlobalVariables.LootMarket.misc)
+                    UpdateTextBoxWithStrings(Loot_misc, GlobalVariables.LootMarket.misc)
+                Case sender Is Loot_valuable_Import
+                    AddMissingTypes(foundTypes, GlobalVariables.LootMarket.valuable)
+                    UpdateTextBoxWithStrings(Loot_valuable, GlobalVariables.LootMarket.valuable)
+
             End Select
 
         Next
@@ -341,12 +375,182 @@ Partial Public Class MainWindow
             strings.Add(line) ' Add each line as a string to the collection
         Next
     End Sub
+    Private Sub ClearTB_Click(sender As Object, e As RoutedEventArgs)
 
-    Private Sub Kits_ClearSidearms_Click(sender As Object, e As RoutedEventArgs) _
-        Handles Kits_ClearSidearms.Click
-        GlobalVariables.SideArms.Clear()
-        Kits_SideArms.Clear()
+        'Dim clickedButton As ButtonAdv = DirectCast(sender, ButtonAdv)
+
+        Select Case True
+            ' Sidearms
+                Case sender Is Kits_ClearSidearms
+                    GlobalVariables.SideArms.Clear()
+                    Kits_SideArms.Clear()
+
+            ' Restricted
+                Case sender Is Kits_ClearRestricted
+                    GlobalVariables.RestrictedTypes.Clear()
+                    Kits_Restricted.Clear()
+
+            ' Clothing Market
+                Case sender Is Clothes_Helmets_Clear
+                    GlobalVariables.ClothingMarket.Helmets.Clear()
+                    Clothes_Helmets.Clear()
+                Case sender Is Clothes_Shirts_Clear
+                    GlobalVariables.ClothingMarket.Shirts.Clear()
+                    Clothes_Shirts.Clear()
+                Case sender Is Clothes_Vests_Clear
+                    GlobalVariables.ClothingMarket.Vests.Clear()
+                    Clothes_Vests.Clear()
+                Case sender Is Clothes_Pants_Clear
+                    GlobalVariables.ClothingMarket.Pants.Clear()
+                    Clothes_Pants.Clear()
+                Case sender Is Clothes_Shoes_Clear
+                    GlobalVariables.ClothingMarket.Shoes.Clear()
+                    Clothes_Shoes.Clear()
+                Case sender Is Clothes_Backpacks_Clear
+                    GlobalVariables.ClothingMarket.Backpacks.Clear()
+                    Clothes_Backpacks.Clear()
+                Case sender Is Clothes_Gloves_Clear
+                    GlobalVariables.ClothingMarket.Gloves.Clear()
+                    Clothes_Gloves.Clear()
+                Case sender Is Clothes_Belts_Clear
+                    GlobalVariables.ClothingMarket.Belts.Clear()
+                    Clothes_Belts.Clear()
+                Case sender Is Clothes_Facewear_Clear
+                    GlobalVariables.ClothingMarket.Facewears.Clear()
+                    Clothes_Facewear.Clear()
+                Case sender Is Clothes_Eyewear_Clear
+                    GlobalVariables.ClothingMarket.Eyewears.Clear()
+                    Clothes_Eyewear.Clear()
+                Case sender Is Clothes_Armbands_Clear
+                    GlobalVariables.ClothingMarket.Armbands.Clear()
+                    Clothes_Armbands.Clear()
+
+            ' Loot Market
+                Case sender Is Loot_proprietary_Clear
+                    GlobalVariables.LootMarket.proprietary.Clear()
+                    Loot_proprietary.Clear()
+                Case sender Is Loot_medical_Clear
+                    GlobalVariables.LootMarket.medical.Clear()
+                    Loot_medical.Clear()
+                Case sender Is Loot_food_Clear
+                    GlobalVariables.LootMarket.food.Clear()
+                    Loot_food.Clear()
+                Case sender Is Loot_drink_Clear
+                    GlobalVariables.LootMarket.drink.Clear()
+                    Loot_drink.Clear()
+                Case sender Is Loot_tools_Clear
+                    GlobalVariables.LootMarket.tools.Clear()
+                    Loot_tools.Clear()
+                Case sender Is Loot_material_Clear
+                    GlobalVariables.LootMarket.material.Clear()
+                    Loot_material.Clear()
+                Case sender Is Loot_misc_Clear
+                    GlobalVariables.LootMarket.misc.Clear()
+                    Loot_misc.Clear()
+                Case sender Is Loot_valuable_Clear
+                    GlobalVariables.LootMarket.valuable.Clear()
+                    Loot_valuable.Clear()
+            End Select
+
     End Sub
+
+    'Private Sub ClearTB_Click(sender As Object, e As RoutedEventArgs)
+    '    'GlobalVariables.SideArms.Clear()
+    '    'Kits_SideArms.Clear()
+    '    Select Case True
+
+    '            'Sidearms
+    '        Case sender Is Kits_ClearSidearms
+    '            GlobalVariables.SideArms.Clear()
+    '            Kits_SideArms.Clear()
+
+    '                'Restricted
+    '        Case sender Is Kits_ClearRestricted
+    '            GlobalVariables.RestrictedTypes.Clear()
+    '            Kits_Restricted.Clear()
+    '                'Clothing Market
+
+    '                'dna_Helm
+    '        Case sender Is Clothes_Helmets_Import
+    '            GlobalVariables.ClothingMarket.Helmets.Clear()
+    '            Clothes_Helmets.Clear()
+    '                'dna_Shirt
+    '        Case sender Is Clothes_Shirts_Import
+    '            GlobalVariables.ClothingMarket.Shirts.Clear()
+    '            Clothes_Shirts.Clear()
+    '                'dna_Vest
+    '        Case sender Is Clothes_Vests_Import
+    '            GlobalVariables.ClothingMarket.Vests.Clear()
+    '            Clothes_Vests.Clear()
+    '                'dna_Pants
+    '        Case sender Is Clothes_Pants_Import
+    '            GlobalVariables.ClothingMarket.Pants.Clear()
+    '            Clothes_Pants.Clear()
+    '                'dna_Shoes
+    '        Case sender Is Clothes_Shoes_Import
+    '            GlobalVariables.ClothingMarket.Shoes.Clear()
+    '            Clothes_Shoes.Clear()
+    '                'dna_Backpack
+    '        Case sender Is Clothes_Backpacks_Import
+    '            GlobalVariables.ClothingMarket.Backpacks.Clear()
+    '            Clothes_Backpacks.Clear()
+    '                'dna_Gloves
+    '        Case sender Is Clothes_Gloves_Import
+    '            GlobalVariables.ClothingMarket.Gloves.Clear()
+    '            Clothes_Gloves.Clear()
+    '                'dna_Belt
+    '        Case sender Is Clothes_Belts_Import
+    '            GlobalVariables.ClothingMarket.Belts.Clear()
+    '            Clothes_Belts.Clear()
+    '                'dna_Facewear
+    '        Case sender Is Clothes_Facewear_Import
+    '            GlobalVariables.ClothingMarket.Facewears.Clear()
+    '            Clothes_Facewear.Clear()
+    '                'dna_Eyewear
+    '        Case sender Is Clothes_Eyewear_Import
+    '            GlobalVariables.ClothingMarket.Eyewears.Clear()
+    '            Clothes_Eyewear.Clear()
+    '                'dna_Armband
+    '        Case sender Is Clothes_Armbands_Import
+    '            GlobalVariables.ClothingMarket.Armbands.Clear()
+    '            Clothes_Armbands.Clear()
+
+    '                'Loot Market
+
+    '        Case sender Is Loot_proprietary_Import
+    '            GlobalVariables.LootMarket.proprietary.Clear()
+    '            Loot_proprietary.Clear()
+
+    '        Case sender Is Loot_medical_Import
+    '            GlobalVariables.LootMarket.medical.Clear()
+    '            Loot_medical.Clear()
+
+    '        Case sender Is Loot_food_Import
+    '            GlobalVariables.LootMarket.food.Clear()
+    '            Loot_food.Clear()
+
+    '        Case sender Is Loot_drink_Import
+    '            GlobalVariables.LootMarket.drink.Clear()
+    '            Loot_drink.Clear()
+
+    '        Case sender Is Loot_tools_Import
+    '            GlobalVariables.LootMarket.tools.Clear()
+    '            Loot_tools.Clear()
+
+    '        Case sender Is Loot_material_Import
+    '            GlobalVariables.LootMarket.material.Clear()
+    '            Loot_material.Clear()
+
+    '        Case sender Is Loot_misc_Import
+    '            GlobalVariables.LootMarket.misc.Clear()
+    '            Loot_misc.Clear()
+
+    '        Case sender Is Loot_valuable_Import
+    '            GlobalVariables.LootMarket.valuable.Clear()
+    '            Loot_valuable.Clear()
+
+    '    End Select
+    'End Sub
 
     Public Function GetRandomString(ByVal percentChance As Integer, ByVal obcoll As ObservableCollection(Of String)) _
         As String
@@ -489,7 +693,7 @@ Partial Public Class MainWindow
 
             For i = 1 To NumSetsToGen
                 Dim tClothesKit As New GenerateConfigs.Clothes.ClothesInfo()
-                tClothesKit.dna_Tier = colorTier
+                tClothesKit.dna_Tier = colorTier.ToLower()
                 For Each tSlot As ObservableCollection(Of String) In tClothingParts
                     If tSlot Is tHelmets Then tClothesKit.dna_Helm = GetRandomString(Helmet_Chance, tSlot)
                     If tSlot Is tShirts Then tClothesKit.dna_Shirt = GetRandomString(Shirt_Chance, tSlot)
@@ -522,6 +726,182 @@ Partial Public Class MainWindow
             End Select
 
             UpdateGeneratedClothingKits()
+
+        End If
+    End Sub
+
+    Private Async Sub LootKits_Generate_Click(sender As Object, e As RoutedEventArgs) _
+        Handles LootKits_Generate_Copy.Click, LootKits_Generate.Click
+        Dim colorTier As String
+
+        If IsNothing(Kit_ColorChoice.SelectedItem) Then
+            Windows.MessageBox.Show("Please select a color tier", "Alert", MessageBoxButtons.OK,
+                                    MessageBoxIcon.Information)
+        Else
+            colorTier = Kit_ColorChoice.SelectedItem.Content
+            colorTier = colorTier.Replace(" Kit", "")
+
+            Dim tproprietary As New ObservableCollection(Of String)()
+            Dim tmedical As New ObservableCollection(Of String)()
+            Dim tfood As New ObservableCollection(Of String)()
+            Dim tdrink As New ObservableCollection(Of String)()
+            Dim ttools As New ObservableCollection(Of String)()
+            Dim tmaterial As New ObservableCollection(Of String)()
+            Dim tmisc As New ObservableCollection(Of String)()
+            Dim tvaluable As New ObservableCollection(Of String)()
+
+            Dim collection As New ObservableCollection(Of ObservableCollection(Of String))()
+            With collection
+                .Add(tproprietary)
+                .Add(tmedical)
+                .Add(tfood)
+                .Add(tdrink)
+                .Add(ttools)
+                .Add(tmaterial)
+                .Add(tmisc)
+                .Add(tvaluable)
+            End With
+
+            For Each type In GlobalVariables.Types.Types
+                checkedAddArgs = Await determineIfAdd(type, False)
+                If checkedAddArgs = True Then
+                    'If GlobalVariables.ClothingMarket.Helmets.Contains(type.typename) Then
+                    If _
+                        GlobalVariables.LootMarket.proprietary.Any(
+                            Function(t_) String.Equals(t_, type.typename, StringComparison.OrdinalIgnoreCase)) Then _
+                        tproprietary.Add(type.typename)
+                    If _
+                        GlobalVariables.LootMarket.medical.Any(
+                            Function(t_) String.Equals(t_, type.typename, StringComparison.OrdinalIgnoreCase)) Then _
+                        tmedical.Add(type.typename)
+                    If _
+                        GlobalVariables.LootMarket.food.Any(
+                            Function(t_) String.Equals(t_, type.typename, StringComparison.OrdinalIgnoreCase)) Then _
+                        tfood.Add(type.typename)
+                    If _
+                        GlobalVariables.LootMarket.drink.Any(
+                            Function(t_) String.Equals(t_, type.typename, StringComparison.OrdinalIgnoreCase)) Then _
+                        tdrink.Add(type.typename)
+                    If _
+                        GlobalVariables.LootMarket.tools.Any(
+                            Function(t_) String.Equals(t_, type.typename, StringComparison.OrdinalIgnoreCase)) Then _
+                        ttools.Add(type.typename)
+                    If _
+                        GlobalVariables.LootMarket.material.Any(
+                            Function(t_) String.Equals(t_, type.typename, StringComparison.OrdinalIgnoreCase)) Then _
+                        tmaterial.Add(type.typename)
+                    If _
+                        GlobalVariables.LootMarket.misc.Any(
+                            Function(t_) String.Equals(t_, type.typename, StringComparison.OrdinalIgnoreCase)) Then _
+                        tmisc.Add(type.typename)
+                    If _
+                        GlobalVariables.LootMarket.valuable.Any(
+                            Function(t_) String.Equals(t_, type.typename, StringComparison.OrdinalIgnoreCase)) Then _
+                        tvaluable.Add(type.typename)
+                End If
+            Next
+
+            Dim tempLootInfo As New GenerateConfigs.Loot.LootInfoCats With {
+                    .proprietary = New Collection(Of GenerateConfigs.Loot.LootInfoType),
+                    .medical = New Collection(Of GenerateConfigs.Loot.LootInfoType),
+                    .food = New Collection(Of GenerateConfigs.Loot.LootInfoType),
+                    .drink = New Collection(Of GenerateConfigs.Loot.LootInfoType),
+                    .tools = New Collection(Of GenerateConfigs.Loot.LootInfoType),
+                    .material = New Collection(Of GenerateConfigs.Loot.LootInfoType),
+                    .misc = New Collection(Of GenerateConfigs.Loot.LootInfoType),
+                    .valuable = New Collection(Of GenerateConfigs.Loot.LootInfoType)
+                    }
+            For Each tSlot As ObservableCollection(Of String) In collection
+                If tSlot Is tproprietary Then
+                    For Each tType In tSlot
+                        Dim info As New GenerateConfigs.Loot.LootInfoType With {
+                                .dna_Tier = colorTier.ToLower(),
+                                .dna_Category = "proprietary",
+                                .dna_Type = tType
+                                }
+
+                        tempLootInfo.proprietary.Add(info)
+                    Next
+                End If
+                If tSlot Is tmedical Then
+                    For Each tType In tSlot
+                        Dim info As New GenerateConfigs.Loot.LootInfoType()
+                        info.dna_Tier = colorTier.ToLower()
+                        info.dna_Category = "medical"
+                        info.dna_Type = tType
+                        tempLootInfo.medical.Add(info)
+                    Next
+                End If
+                If tSlot Is tfood Then
+                    For Each tType In tSlot
+                        Dim info As New GenerateConfigs.Loot.LootInfoType()
+                        info.dna_Tier = colorTier.ToLower()
+                        info.dna_Category = "food"
+                        info.dna_Type = tType
+                        tempLootInfo.food.Add(info)
+                    Next
+                End If
+                If tSlot Is tdrink Then
+                    For Each tType In tSlot
+                        Dim info As New GenerateConfigs.Loot.LootInfoType()
+                        info.dna_Tier = colorTier.ToLower()
+                        info.dna_Category = "drink"
+                        info.dna_Type = tType
+                        tempLootInfo.drink.Add(info)
+                    Next
+                End If
+                If tSlot Is ttools Then
+                    For Each tType In tSlot
+                        Dim info As New GenerateConfigs.Loot.LootInfoType()
+                        info.dna_Tier = colorTier.ToLower()
+                        info.dna_Category = "tools"
+                        info.dna_Type = tType
+                        tempLootInfo.tools.Add(info)
+                    Next
+                End If
+                If tSlot Is tmaterial Then
+                    For Each tType In tSlot
+                        Dim info As New GenerateConfigs.Loot.LootInfoType()
+                        info.dna_Tier = colorTier.ToLower()
+                        info.dna_Category = "material"
+                        info.dna_Type = tType
+                        tempLootInfo.material.Add(info)
+                    Next
+                End If
+                If tSlot Is tmisc Then
+                    For Each tType In tSlot
+                        Dim info As New GenerateConfigs.Loot.LootInfoType()
+                        info.dna_Tier = colorTier.ToLower()
+                        info.dna_Category = "misc"
+                        info.dna_Type = tType
+                        tempLootInfo.misc.Add(info)
+                    Next
+                End If
+                If tSlot Is tvaluable Then
+                    For Each tType In tSlot
+                        Dim info As New GenerateConfigs.Loot.LootInfoType()
+                        info.dna_Tier = colorTier.ToLower()
+                        info.dna_Category = "valuable "
+                        info.dna_Type = tType
+                        tempLootInfo.valuable.Add(info)
+                    Next
+                End If
+            Next
+
+            Select Case colorTier
+                Case "Red"
+                    GenerateConfigs.Loot.RedLootKits = tempLootInfo
+                Case "Purple"
+                    GenerateConfigs.Loot.PurpleLootKits = tempLootInfo
+                Case "Blue"
+                    GenerateConfigs.Loot.BlueLootKits = tempLootInfo
+                Case "Green"
+                    GenerateConfigs.Loot.GreenLootKits = tempLootInfo
+                Case "Yellow"
+                    GenerateConfigs.Loot.YellowLootKits = tempLootInfo
+            End Select
+
+            UpdateGeneratedLootKits()
 
         End If
     End Sub
@@ -622,6 +1002,97 @@ Partial Public Class MainWindow
         Tab_Kits.IsSelected = True
     End Sub
 
+
+    Function GenerateTreeViewNodes_Loot(lootKits As Collection(Of GenerateConfigs.Loot.LootInfoType), contentText As String) As TreeViewNode
+        Dim proprietaryNode As New TreeViewNode
+        proprietaryNode.Content = contentText
+
+        For Each lootSet As GenerateConfigs.Loot.LootInfoType In lootKits
+            Dim lootSetNode As New TreeViewNode
+            lootSetNode.Content = lootSet.dna_Type
+            lootSetNode.ChildNodes.Add(New TreeViewNode() With {.Content = "dna_Tier : " + lootSet.dna_Tier})
+            lootSetNode.ChildNodes.Add(New TreeViewNode() With {.Content = "dna_Category : " + lootSet.dna_Category})
+            lootSetNode.ChildNodes.Add(New TreeViewNode() With {.Content = "dna_Type : " + lootSet.dna_Type})
+            proprietaryNode.ChildNodes.Add(lootSetNode)
+        Next
+        Return proprietaryNode
+    End Function
+
+
+
+
+    Sub UpdateGeneratedLootKits()
+        Tab_KitsGenerated.IsSelected = True
+        Tab_LootKits.IsSelected = True
+
+        'Red Update
+        If GenerateConfigs.Loot.RedLootKits IsNot Nothing Then
+            TV_LootKit_Generated_Red.Nodes.Clear()
+            TV_LootKit_Generated_Red.Nodes.Add(GenerateTreeViewNodes_Loot(GenerateConfigs.Loot.RedLootKits.proprietary, "proprietary"))
+            TV_LootKit_Generated_Red.Nodes.Add(GenerateTreeViewNodes_Loot(GenerateConfigs.Loot.RedLootKits.medical, "medical"))
+            TV_LootKit_Generated_Red.Nodes.Add(GenerateTreeViewNodes_Loot(GenerateConfigs.Loot.RedLootKits.food, "food"))
+            TV_LootKit_Generated_Red.Nodes.Add(GenerateTreeViewNodes_Loot(GenerateConfigs.Loot.RedLootKits.drink, "drink"))
+            TV_LootKit_Generated_Red.Nodes.Add(GenerateTreeViewNodes_Loot(GenerateConfigs.Loot.RedLootKits.tools, "tools"))
+            TV_LootKit_Generated_Red.Nodes.Add(GenerateTreeViewNodes_Loot(GenerateConfigs.Loot.RedLootKits.material, "material"))
+            TV_LootKit_Generated_Red.Nodes.Add(GenerateTreeViewNodes_Loot(GenerateConfigs.Loot.RedLootKits.misc, "misc"))
+            TV_LootKit_Generated_Red.Nodes.Add(GenerateTreeViewNodes_Loot(GenerateConfigs.Loot.RedLootKits.valuable, "valuable "))
+        End If
+        'Purple Update
+        If GenerateConfigs.Loot.PurpleLootKits IsNot Nothing Then
+            TV_LootKit_Generated_Purple.Nodes.Clear()
+            TV_LootKit_Generated_Purple.Nodes.Add(GenerateTreeViewNodes_Loot(GenerateConfigs.Loot.PurpleLootKits.proprietary, "proprietary"))
+            TV_LootKit_Generated_Purple.Nodes.Add(GenerateTreeViewNodes_Loot(GenerateConfigs.Loot.PurpleLootKits.medical, "medical"))
+            TV_LootKit_Generated_Purple.Nodes.Add(GenerateTreeViewNodes_Loot(GenerateConfigs.Loot.PurpleLootKits.food, "food"))
+            TV_LootKit_Generated_Purple.Nodes.Add(GenerateTreeViewNodes_Loot(GenerateConfigs.Loot.PurpleLootKits.drink, "drink"))
+            TV_LootKit_Generated_Purple.Nodes.Add(GenerateTreeViewNodes_Loot(GenerateConfigs.Loot.PurpleLootKits.tools, "tools"))
+            TV_LootKit_Generated_Purple.Nodes.Add(GenerateTreeViewNodes_Loot(GenerateConfigs.Loot.PurpleLootKits.material, "material"))
+            TV_LootKit_Generated_Purple.Nodes.Add(GenerateTreeViewNodes_Loot(GenerateConfigs.Loot.PurpleLootKits.misc, "misc"))
+            TV_LootKit_Generated_Purple.Nodes.Add(GenerateTreeViewNodes_Loot(GenerateConfigs.Loot.PurpleLootKits.valuable, "valuable "))
+        End If
+        'Blue Update
+        If GenerateConfigs.Loot.BlueLootKits IsNot Nothing Then
+            TV_LootKit_Generated_Blue.Nodes.Clear()
+            TV_LootKit_Generated_Blue.Nodes.Add(GenerateTreeViewNodes_Loot(GenerateConfigs.Loot.BlueLootKits.proprietary, "proprietary"))
+            TV_LootKit_Generated_Blue.Nodes.Add(GenerateTreeViewNodes_Loot(GenerateConfigs.Loot.BlueLootKits.medical, "medical"))
+            TV_LootKit_Generated_Blue.Nodes.Add(GenerateTreeViewNodes_Loot(GenerateConfigs.Loot.BlueLootKits.food, "food"))
+            TV_LootKit_Generated_Blue.Nodes.Add(GenerateTreeViewNodes_Loot(GenerateConfigs.Loot.BlueLootKits.drink, "drink"))
+            TV_LootKit_Generated_Blue.Nodes.Add(GenerateTreeViewNodes_Loot(GenerateConfigs.Loot.BlueLootKits.tools, "tools"))
+            TV_LootKit_Generated_Blue.Nodes.Add(GenerateTreeViewNodes_Loot(GenerateConfigs.Loot.BlueLootKits.material, "material"))
+            TV_LootKit_Generated_Blue.Nodes.Add(GenerateTreeViewNodes_Loot(GenerateConfigs.Loot.BlueLootKits.misc, "misc"))
+            TV_LootKit_Generated_Blue.Nodes.Add(GenerateTreeViewNodes_Loot(GenerateConfigs.Loot.BlueLootKits.valuable, "valuable "))
+        End If
+        'Green Update
+        If GenerateConfigs.Loot.GreenLootKits IsNot Nothing Then
+            TV_LootKit_Generated_Green.Nodes.Clear()
+            TV_LootKit_Generated_Green.Nodes.Add(GenerateTreeViewNodes_Loot(GenerateConfigs.Loot.GreenLootKits.proprietary, "proprietary"))
+            TV_LootKit_Generated_Green.Nodes.Add(GenerateTreeViewNodes_Loot(GenerateConfigs.Loot.GreenLootKits.medical, "medical"))
+            TV_LootKit_Generated_Green.Nodes.Add(GenerateTreeViewNodes_Loot(GenerateConfigs.Loot.GreenLootKits.food, "food"))
+            TV_LootKit_Generated_Green.Nodes.Add(GenerateTreeViewNodes_Loot(GenerateConfigs.Loot.GreenLootKits.drink, "drink"))
+            TV_LootKit_Generated_Green.Nodes.Add(GenerateTreeViewNodes_Loot(GenerateConfigs.Loot.GreenLootKits.tools, "tools"))
+            TV_LootKit_Generated_Green.Nodes.Add(GenerateTreeViewNodes_Loot(GenerateConfigs.Loot.GreenLootKits.material, "material"))
+            TV_LootKit_Generated_Green.Nodes.Add(GenerateTreeViewNodes_Loot(GenerateConfigs.Loot.GreenLootKits.misc, "misc"))
+            TV_LootKit_Generated_Green.Nodes.Add(GenerateTreeViewNodes_Loot(GenerateConfigs.Loot.GreenLootKits.valuable, "valuable "))
+        End If
+        'Yellow Update
+        If GenerateConfigs.Loot.YellowLootKits IsNot Nothing Then
+            TV_LootKit_Generated_Yellow.Nodes.Clear()
+            TV_LootKit_Generated_Yellow.Nodes.Add(GenerateTreeViewNodes_Loot(GenerateConfigs.Loot.YellowLootKits.proprietary, "proprietary"))
+            TV_LootKit_Generated_Yellow.Nodes.Add(GenerateTreeViewNodes_Loot(GenerateConfigs.Loot.YellowLootKits.medical, "medical"))
+            TV_LootKit_Generated_Yellow.Nodes.Add(GenerateTreeViewNodes_Loot(GenerateConfigs.Loot.YellowLootKits.food, "food"))
+            TV_LootKit_Generated_Yellow.Nodes.Add(GenerateTreeViewNodes_Loot(GenerateConfigs.Loot.YellowLootKits.drink, "drink"))
+            TV_LootKit_Generated_Yellow.Nodes.Add(GenerateTreeViewNodes_Loot(GenerateConfigs.Loot.YellowLootKits.tools, "tools"))
+            TV_LootKit_Generated_Yellow.Nodes.Add(GenerateTreeViewNodes_Loot(GenerateConfigs.Loot.YellowLootKits.material, "material"))
+            TV_LootKit_Generated_Yellow.Nodes.Add(GenerateTreeViewNodes_Loot(GenerateConfigs.Loot.YellowLootKits.misc, "misc"))
+            TV_LootKit_Generated_Yellow.Nodes.Add(GenerateTreeViewNodes_Loot(GenerateConfigs.Loot.YellowLootKits.valuable, "valuable "))
+        End If
+
+
+        Tab_Kits.IsSelected = True
+    End Sub
+
+
+
+
     Sub UpdateGeneratedWeaponKits()
         Tab_KitsGenerated.IsSelected = True
         Tab_WeaponKits.IsSelected = True
@@ -662,6 +1133,7 @@ Partial Public Class MainWindow
         End If
         Tab_Kits.IsSelected = True
     End Sub
+
 
     Function CreateNodeSetClothes(ClothesSet_ As GenerateConfigs.Clothes.ClothesInfo, tCount As Integer) As TreeViewNode
         Dim tParentNode As New TreeViewNode
@@ -741,14 +1213,105 @@ Partial Public Class MainWindow
     End Sub
 
     Public Sub seedHandlers()
-        AddHandler TV_WeaponKits_Generated_Red.ItemBeginEdit, AddressOf Event_BeginEdit_Generated_Kits _
-        ' tabLocal.ModTree.ItemDropping, AddressOf Steam.TabOperations.modtree_Drop
+        AddHandler TV_WeaponKits_Generated_Red.ItemBeginEdit, AddressOf Event_BeginEdit_Generated_Kits
+        AddHandler TV_WeaponKits_Generated_Purple.ItemBeginEdit, AddressOf Event_BeginEdit_Generated_Kits
+        AddHandler TV_WeaponKits_Generated_Blue.ItemBeginEdit, AddressOf Event_BeginEdit_Generated_Kits
+        AddHandler TV_WeaponKits_Generated_Green.ItemBeginEdit, AddressOf Event_BeginEdit_Generated_Kits
+        AddHandler TV_WeaponKits_Generated_Yellow.ItemBeginEdit, AddressOf Event_BeginEdit_Generated_Kits
+
+        AddHandler TV_WeaponKits_Generated_Red.ItemDeleting, AddressOf Event_Deleting_Generated_Kits
+        AddHandler TV_WeaponKits_Generated_Purple.ItemDeleting, AddressOf Event_Deleting_Generated_Kits
+        AddHandler TV_WeaponKits_Generated_Blue.ItemDeleting, AddressOf Event_Deleting_Generated_Kits
+        AddHandler TV_WeaponKits_Generated_Green.ItemDeleting, AddressOf Event_Deleting_Generated_Kits
+        AddHandler TV_WeaponKits_Generated_Yellow.ItemDeleting, AddressOf Event_Deleting_Generated_Kits
+
+
         AddHandler TV_ClothingKit_Generated_Red.ItemBeginEdit, AddressOf Event_BeginEdit_Generated_Kits
+        AddHandler TV_ClothingKit_Generated_Purple.ItemBeginEdit, AddressOf Event_BeginEdit_Generated_Kits
+        AddHandler TV_ClothingKit_Generated_Blue.ItemBeginEdit, AddressOf Event_BeginEdit_Generated_Kits
+        AddHandler TV_ClothingKit_Generated_Green.ItemBeginEdit, AddressOf Event_BeginEdit_Generated_Kits
+        AddHandler TV_ClothingKit_Generated_Yellow.ItemBeginEdit, AddressOf Event_BeginEdit_Generated_Kits
+
+        AddHandler TV_ClothingKit_Generated_Red.ItemDeleting, AddressOf Event_Deleting_Generated_Kits
+        AddHandler TV_ClothingKit_Generated_Purple.ItemDeleting, AddressOf Event_Deleting_Generated_Kits
+        AddHandler TV_ClothingKit_Generated_Blue.ItemDeleting, AddressOf Event_Deleting_Generated_Kits
+        AddHandler TV_ClothingKit_Generated_Green.ItemDeleting, AddressOf Event_Deleting_Generated_Kits
+        AddHandler TV_ClothingKit_Generated_Yellow.ItemDeleting, AddressOf Event_Deleting_Generated_Kits
+
+        AddHandler TV_LootKit_Generated_Red.ItemBeginEdit, AddressOf Event_BeginEdit_Generated_LootKits
+        AddHandler TV_LootKit_Generated_Purple.ItemBeginEdit, AddressOf Event_BeginEdit_Generated_LootKits
+        AddHandler TV_LootKit_Generated_Blue.ItemBeginEdit, AddressOf Event_BeginEdit_Generated_LootKits
+        AddHandler TV_LootKit_Generated_Green.ItemBeginEdit, AddressOf Event_BeginEdit_Generated_LootKits
+        AddHandler TV_LootKit_Generated_Yellow.ItemBeginEdit, AddressOf Event_BeginEdit_Generated_LootKits
+
+        AddHandler TV_LootKit_Generated_Red.ItemDeleting, AddressOf Event_Deleting_Generated_LootKits
+        AddHandler TV_LootKit_Generated_Purple.ItemDeleting, AddressOf Event_Deleting_Generated_LootKits
+        AddHandler TV_LootKit_Generated_Blue.ItemDeleting, AddressOf Event_Deleting_Generated_LootKits
+        AddHandler TV_LootKit_Generated_Green.ItemDeleting, AddressOf Event_Deleting_Generated_LootKits
+        AddHandler TV_LootKit_Generated_Yellow.ItemDeleting, AddressOf Event_Deleting_Generated_LootKits
+
+        AddHandler Kits_ClearSidearms.Click, AddressOf ClearTB_Click
+        AddHandler Kits_ClearRestricted.Click, AddressOf ClearTB_Click
+
+        AddHandler Clothes_Helmets_Clear.Click, AddressOf ClearTB_Click
+        AddHandler Clothes_Shirts_Clear.Click, AddressOf ClearTB_Click
+        AddHandler Clothes_Vests_Clear.Click, AddressOf ClearTB_Click
+        AddHandler Clothes_Pants_Clear.Click, AddressOf ClearTB_Click
+        AddHandler Clothes_Shoes_Clear.Click, AddressOf ClearTB_Click
+        AddHandler Clothes_Backpacks_Clear.Click, AddressOf ClearTB_Click
+        AddHandler Clothes_Gloves_Clear.Click, AddressOf ClearTB_Click
+        AddHandler Clothes_Belts_Clear.Click, AddressOf ClearTB_Click
+        AddHandler Clothes_Facewear_Clear.Click, AddressOf ClearTB_Click
+        AddHandler Clothes_Eyewear_Clear.Click, AddressOf ClearTB_Click
+        AddHandler Clothes_Armbands_Clear.Click, AddressOf ClearTB_Click
+
+        AddHandler Loot_proprietary_Clear.Click, AddressOf ClearTB_Click
+        AddHandler Loot_medical_Clear.Click, AddressOf ClearTB_Click
+        AddHandler Loot_food_Clear.Click, AddressOf ClearTB_Click
+        AddHandler Loot_drink_Clear.Click, AddressOf ClearTB_Click
+        AddHandler Loot_tools_Clear.Click, AddressOf ClearTB_Click
+        AddHandler Loot_material_Clear.Click, AddressOf ClearTB_Click
+        AddHandler Loot_misc_Clear.Click, AddressOf ClearTB_Click
+        AddHandler Loot_valuable_Clear.Click, AddressOf ClearTB_Click
+
         AddHandler MainExe.Drop, AddressOf MainExeDropFiles
         AttachTextChangedEventToAllTextBoxes(Tab_ClothesSettings)
         AttachTextChangedEventToAllTextBoxes(Tab_Kits)
+        AttachTextChangedEventToAllTextBoxes(Tab_LootSettings)
     End Sub
-
+    Async Sub Event_Deleting_Generated_Kits(sender As Object, e As EventArgs)
+        Dim EventInfo As ItemDeletingEventArgs = e
+        Dim tree_ As SfTreeView = sender
+        Dim xx = ""
+        For Each _node As TreeViewNode In EventInfo.Nodes
+            If _node.HasChildNodes Then
+                EventInfo.Cancel = False
+            Else
+                EventInfo.Cancel = True
+            End If
+        Next
+    End Sub
+    Async Sub Event_Deleting_Generated_LootKits(sender As Object, e As EventArgs)
+        Dim EventInfo As ItemDeletingEventArgs = e
+        Dim tree_ As SfTreeView = sender
+        Dim xx = ""
+        For Each _node As TreeViewNode In EventInfo.Nodes
+            If _node.HasChildNodes Then
+                If _node.ParentNode Is Nothing Then
+                    EventInfo.Cancel = True
+                Else
+                    EventInfo.Cancel = False
+                End If
+            Else
+                EventInfo.Cancel = True
+            End If
+        Next
+    End Sub
+    Async Sub Event_BeginEdit_Generated_LootKits(sender As Object, e As EventArgs)
+        Dim Edited_ As SfTreeView = sender
+        Dim eventInfo As TreeViewItemBeginEditEventArgs = e
+        eventInfo.Cancel = True
+    End Sub
     Async Sub Event_BeginEdit_Generated_Kits(sender As Object, e As EventArgs)
         Dim Edited_ As SfTreeView = sender
         Dim eventInfo As TreeViewItemBeginEditEventArgs = e
@@ -760,7 +1323,7 @@ Partial Public Class MainWindow
         End If
     End Sub
 
-    Async Function determineIfAdd(type As GlobalVariables.Types.TypeInfo) As Task(Of Boolean)
+    Async Function determineIfAdd(type As GlobalVariables.Types.TypeInfo, Optional FilterAttatchments As Boolean = True) As Task(Of Boolean)
         'CHECK IF TYPE CONTAINS REQUIRED FLAGS FOR ADD
         '        'if selectedcats is not nothing then
         '        'for every selectedcat in selectedcats
@@ -769,7 +1332,9 @@ Partial Public Class MainWindow
         '        'else continue
         Dim selectedArgs
 
-        If type.typename.ToLower.Contains("ammo") Or
+
+        If FilterAttatchments Then
+            If type.typename.ToLower.Contains("ammo") Or
            type.typename.ToLower.Contains("mag") Or
            type.typename.ToLower.Contains("stock") Or
            type.typename.ToLower.Contains("optic") Or
@@ -781,8 +1346,10 @@ Partial Public Class MainWindow
            type.typename.ToLower.Contains("compensator") Or
            type.typename.ToLower.Contains("goggles") Or
            type.typename.ToLower.Contains("light") Then
-            Return False
+                Return False
+            End If
         End If
+
 
         If StringExistsInCollection(type.typename.ToLower, GlobalVariables.RestrictedTypes) Then
             Return False
@@ -895,6 +1462,9 @@ Partial Public Class MainWindow
         As Boolean
         Return collection.Any(Function(item) String.Equals(item, searchString, StringComparison.OrdinalIgnoreCase))
     End Function
+    Private Sub TreeView_DeleteMiddleNode(sender As Object, e As TreeViewItemBeginEditEventArgs)
+
+    End Sub
 
     ' Function to find the index of the child TreeViewNode with content containing the specified string.
     Private Function FindChildIndex(parentNode As TreeViewNode, searchString As String) As Integer
@@ -963,7 +1533,42 @@ Partial Public Class MainWindow
         Dim json = JsonConvert.SerializeObject(New With {Key .m_DNAConfig_Clothing = clothingList}, Formatting.Indented)
         File.WriteAllText(filepath, json)
     End Function
+    Async Function ExportLootKitsToJson(filepath As String) As Task
 
+
+        Dim list As New List(Of GenerateConfigs.Loot.LootInfoType)()
+        Dim tTypeColorTrees As New Collection(Of SfTreeView)
+        tTypeColorTrees.Add(TV_LootKit_Generated_Red)
+        tTypeColorTrees.Add(TV_LootKit_Generated_Purple)
+        tTypeColorTrees.Add(TV_LootKit_Generated_Blue)
+        tTypeColorTrees.Add(TV_LootKit_Generated_Green)
+        tTypeColorTrees.Add(TV_LootKit_Generated_Yellow)
+
+        For Each t_TypeColorTree As SfTreeView In tTypeColorTrees
+            'Build based on Shown
+            If t_TypeColorTree.Nodes.First().Content.ToString() <> "Please Generate a Kit" Then
+                For Each Node As TreeViewNode In t_TypeColorTree.Nodes
+                    Dim tLootInfo As GenerateConfigs.Loot.LootInfoType
+                    For Each Node2 In Node.ChildNodes
+                        Try
+                            tLootInfo = New GenerateConfigs.Loot.LootInfoType() With {
+                            .dna_Tier = GetNodeContent(Node2, "dna_Tier"),
+                            .dna_Category = GetNodeContent(Node2, "dna_Category"),
+                            .dna_Type = GetNodeContent(Node2, "dna_Type")
+                            }
+                            list.Add(tLootInfo)
+                        Catch ex As Exception
+                            ' Log or handle the exception as needed
+                            Console.WriteLine("An error occurred while processing a node: " & ex.Message)
+                        End Try
+                    Next
+                Next
+            End If
+        Next
+
+        Dim json = JsonConvert.SerializeObject(New With {Key .m_DNAConfig_Loot = list}, Formatting.Indented)
+        File.WriteAllText(filepath, json)
+    End Function
     Async Function ExportWeaponKitsToJson(filepath As String) As Task
         Dim weaponList As New List(Of GenerateConfigs.Weapons.WeaponInfo)()
         Dim WeaponKitTVTypeArr As New Collection(Of SfTreeView)
@@ -1021,7 +1626,30 @@ Partial Public Class MainWindow
         Next
         Return Nothing
     End Function
+    Private Async Sub LootKits_Generated_Export_Click(sender As Object, e As RoutedEventArgs) _
+    Handles LootKit_Generated_Export.Click
 
+        Dim tsaveFileDialog As New Forms.SaveFileDialog()
+
+        ' Get the directory path of the executable
+        Dim executableDirectory = AppDomain.CurrentDomain.BaseDirectory
+        ' Set initial directory and filename
+        tsaveFileDialog.InitialDirectory = executableDirectory ' Set your desired initial directory
+        tsaveFileDialog.FileName = "KeyCard_General_Config"
+        tsaveFileDialog.DefaultExt = ".json"
+        tsaveFileDialog.Filter = "JSON Files (*.json)|*.json|All Files (*.*)|*.*"
+
+        Dim result As Nullable(Of Boolean) = tsaveFileDialog.ShowDialog()
+
+        If result = True Then
+            Await ExportLootKitsToJson(tsaveFileDialog.FileName)
+            Return
+        Else
+            Windows.MessageBox.Show("Export Canceled.", "Alert", MessageBoxButtons.OK,
+                                    MessageBoxIcon.Information)
+            Return
+        End If
+    End Sub
     Private Async Sub ClothingKits_Generated_Export_Click(sender As Object, e As RoutedEventArgs) _
         Handles ClothingKit_Generated_Export.Click
 
@@ -1086,10 +1714,6 @@ Partial Public Class MainWindow
         UpdateTextBoxWithStrings(WeaponKits_Restricted, GlobalVariables.RestrictedTypes)
     End Sub
 
-    Private Sub Kits_ClearRestricted_Click(sender As Object, e As RoutedEventArgs) Handles Kits_ClearRestricted.Click
-        GlobalVariables.RestrictedTypes.Clear()
-        Kits_Restricted.Clear()
-    End Sub
 
     Private Async Sub MainExeDropFiles(sender As Object, e As Windows.DragEventArgs)
         Dim filePaths As New ObservableCollection(Of String)()

@@ -72,5 +72,33 @@ Public Class GenerateConfigs
         Public Shared GreenClothesKits As ObservableCollection(Of ClothesInfo)
         Public Shared YellowClothesKits As ObservableCollection(Of ClothesInfo)
     End Class
+    Public Class Loot
+        Public Class LootInfoType
+
+            Public Property dna_Tier As String
+            Public Property dna_Category As String = ""
+            Public Property dna_Type As String = ""
+        End Class
+
+        Public Class LootInfoCats
+
+            Public proprietary As Collection(Of LootInfoType)
+            Public medical As Collection(Of LootInfoType)
+            Public food As Collection(Of LootInfoType)
+            Public drink As Collection(Of LootInfoType)
+            Public tools As Collection(Of LootInfoType)
+            Public material As Collection(Of LootInfoType)
+            Public misc As Collection(Of LootInfoType)
+            Public valuable As Collection(Of LootInfoType)
+
+
+        End Class
+
+        Public Shared RedLootKits As LootInfoCats
+        Public Shared PurpleLootKits As LootInfoCats
+        Public Shared BlueLootKits As LootInfoCats
+        Public Shared GreenLootKits As LootInfoCats
+        Public Shared YellowLootKits As LootInfoCats
+    End Class
 End Class
 

@@ -169,18 +169,25 @@
                             </Grid>
                             <syncfusion:ButtonAdv x:Name="WeaponKits_Generate" Content="ButtonAdv"
                                                   Label="                Generate Weapon Kit"
-                                                  Background="#632CC33A" FontSize="24" Margin="480,502,10,72"
+                                                  Background="#632CC33A" FontSize="24" Margin="480,490,10,94"
                                                   AllowDrop="False" Grid.Column="1"
                                                   LargeIcon="etc/ico/ghost_meme/ghost_meme.ico"
-                                                  SmallIcon="etc/ico/ghost_meme/ghost_meme.ico" IconHeight="70"
-                                                  IconWidth="70" HorizontalContentAlignment="Center" />
+                                                  SmallIcon="etc/ico/ghost_meme/ghost_meme.ico" IconHeight="55"
+                                                  IconWidth="55" HorizontalContentAlignment="Center" Padding="2,0,4,1" />
                             <syncfusion:ButtonAdv x:Name="ClothingKits_Generate" Content="ButtonAdv"
                                                   Label="                Generate Clothing Kit"
-                                                  Background="#632CC33A" FontSize="24" Margin="480,553,10,21"
+                                                  Background="#632CC33A" FontSize="24" Margin="480,531,10,53"
                                                   AllowDrop="False" Grid.Column="1"
                                                   LargeIcon="etc/ico/ghost_meme/ghost_meme.ico"
-                                                  SmallIcon="etc/ico/ghost_meme/ghost_meme.ico" IconHeight="70"
-                                                  IconWidth="70" HorizontalContentAlignment="Center" />
+                                                  SmallIcon="etc/ico/ghost_meme/ghost_meme.ico" IconHeight="55"
+                                                  IconWidth="55" HorizontalContentAlignment="Center" Padding="2,0,4,1" />
+                            <syncfusion:ButtonAdv x:Name="LootKits_Generate" Content="ButtonAdv"
+                                Label="                       Generate Loot Kit"
+                                Background="#632CC33A" FontSize="24" Margin="480,572,10,12"
+                                AllowDrop="False" Grid.Column="1"
+                                LargeIcon="etc/ico/ghost_meme/ghost_meme.ico"
+                                SmallIcon="etc/ico/ghost_meme/ghost_meme.ico" IconHeight="55"
+                                IconWidth="55" HorizontalContentAlignment="Center" Padding="2,0,4,1" />
                         </Grid>
                         <Grid x:Name="G_Sidearms_Copy" HorizontalAlignment="Left" Height="340" VerticalAlignment="Top"
                               Width="333" Margin="354,270,0,0" AllowDrop="False">
@@ -649,6 +656,195 @@
                         </Grid>
                     </Grid>
                 </syncfusion:TabItemExt>
+                <syncfusion:TabItemExt x:Name="Tab_LootSettings" Header="Loot Kit Settings" MinWidth="20" MinHeight="20">
+                    <Grid x:Name="G_LootSettings" AllowDrop="True">
+                        <Grid x:Name="G_proprietary" HorizontalAlignment="Left" Height="265" VerticalAlignment="Top"
+                            Width="265" Margin="10,10,0,0" Background="#4C4B2C2C" AllowDrop="True">
+                            <Label Content="Proprietary Types (1 per line)" VerticalAlignment="Top"
+                                HorizontalContentAlignment="Center" VerticalContentAlignment="Center"
+                                BorderBrush="#FF020000" AllowDrop="False" FontSize="16" Padding="0,3,0,0" />
+                            <syncfusion:SfTextBoxExt x:Name="Loot_proprietary"
+                                Height="193" Margin="0,31,0,0" TextWrapping="NoWrap"
+                                VerticalAlignment="Top" AcceptsReturn="True" MinLines="1"
+                                Delimiter="Environment.NewLine" AllowDrop="False"
+                                IsTabStop="False" />
+                            <syncfusion:ButtonAdv x:Name="Loot_proprietary_Import" Content="ButtonAdv" Height="35"
+                                Label="Import Types From Expansion Market JSON"
+                                VerticalAlignment="Bottom" Margin="0,0,80,0" Background="#261A88E4"
+                                AllowDrop="False" LargeIcon="etc/ico/arrow up/arrow-up.ico"
+                                SmallIcon="etc/ico/arrow up/arrow-up.ico" IconHeight="60"
+                                IconWidth="60" FontWeight="Bold" />
+                            <syncfusion:ButtonAdv x:Name="Loot_proprietary_Clear" Content="ButtonAdv" Height="35"
+                                Label="Clear"
+                                VerticalAlignment="Bottom" Margin="190,0,0,1" Background="#4CD13333"
+                                AllowDrop="False" LargeIcon="etc/ico/delete/delete.ico"
+                                SmallIcon="etc/ico/delete/delete.ico" IconHeight="30" IconWidth="30" />
+                        </Grid>
+                        <Grid x:Name="G_medical" HorizontalAlignment="Left" Height="265" VerticalAlignment="Top"
+                            Width="265" Margin="300,10,0,0" Background="#4C4B2C2C" AllowDrop="True">
+                            <Label Content="Medical Types (1 per line)" VerticalAlignment="Top"
+                                HorizontalContentAlignment="Center" VerticalContentAlignment="Center"
+                                BorderBrush="#FF020000" AllowDrop="False" FontSize="16" Padding="0,3,0,0" />
+                            <syncfusion:SfTextBoxExt x:Name="Loot_medical"
+                                Height="193" Margin="0,31,0,0" TextWrapping="NoWrap"
+                                VerticalAlignment="Top" AcceptsReturn="True" MinLines="1"
+                                Delimiter="Environment.NewLine" AllowDrop="False"
+                                IsTabStop="False" />
+                            <syncfusion:ButtonAdv x:Name="Loot_medical_Import" Content="ButtonAdv" Height="35"
+                                Label="Import Types From Expansion Market JSON"
+                                VerticalAlignment="Bottom" Margin="0,0,80,0" Background="#261A88E4"
+                                AllowDrop="False" LargeIcon="etc/ico/arrow up/arrow-up.ico"
+                                SmallIcon="etc/ico/arrow up/arrow-up.ico" IconHeight="60"
+                                IconWidth="60" FontWeight="Bold" />
+                            <syncfusion:ButtonAdv x:Name="Loot_medical_Clear" Content="ButtonAdv" Height="35"
+                                Label="Clear"
+                                VerticalAlignment="Bottom" Margin="190,0,0,1" Background="#4CD13333"
+                                AllowDrop="False" LargeIcon="etc/ico/delete/delete.ico"
+                                SmallIcon="etc/ico/delete/delete.ico" IconHeight="30" IconWidth="30" />
+                        </Grid>
+                        <Grid x:Name="G_food" HorizontalAlignment="Left" Height="265" VerticalAlignment="Top"
+                            Width="265" Margin="585,10,0,0" Background="#4C4B2C2C" AllowDrop="True">
+                            <Label Content="Food Types (1 per line)" VerticalAlignment="Top"
+                                HorizontalContentAlignment="Center" VerticalContentAlignment="Center"
+                                BorderBrush="#FF020000" AllowDrop="False" FontSize="16" Padding="0,3,0,0" />
+                            <syncfusion:SfTextBoxExt x:Name="Loot_food"
+                                Height="193" Margin="0,31,0,0" TextWrapping="NoWrap"
+                                VerticalAlignment="Top" AcceptsReturn="True" MinLines="1"
+                                Delimiter="Environment.NewLine" AllowDrop="False"
+                                IsTabStop="False" />
+                            <syncfusion:ButtonAdv x:Name="Loot_food_Import" Content="ButtonAdv" Height="35"
+                                Label="Import Types From Expansion Market JSON"
+                                VerticalAlignment="Bottom" Margin="0,0,80,0" Background="#261A88E4"
+                                AllowDrop="False" LargeIcon="etc/ico/arrow up/arrow-up.ico"
+                                SmallIcon="etc/ico/arrow up/arrow-up.ico" IconHeight="60"
+                                IconWidth="60" FontWeight="Bold" />
+                            <syncfusion:ButtonAdv x:Name="Loot_food_Clear" Content="ButtonAdv" Height="35"
+                                Label="Clear"
+                                VerticalAlignment="Bottom" Margin="190,0,0,1" Background="#4CD13333"
+                                AllowDrop="False" LargeIcon="etc/ico/delete/delete.ico"
+                                SmallIcon="etc/ico/delete/delete.ico" IconHeight="30" IconWidth="30" />
+                        </Grid>
+                        <Grid x:Name="G_drink" HorizontalAlignment="Left" Height="265" VerticalAlignment="Top"
+                            Width="265" Margin="874,10,0,0" Background="#4C4B2C2C" AllowDrop="True">
+                            <Label Content="Drink Types (1 per line)" VerticalAlignment="Top"
+                                HorizontalContentAlignment="Center" VerticalContentAlignment="Center"
+                                BorderBrush="#FF020000" AllowDrop="False" FontSize="16" Padding="0,3,0,0" />
+                            <syncfusion:SfTextBoxExt x:Name="Loot_drink"
+                                Height="193" Margin="0,31,0,0" TextWrapping="NoWrap"
+                                VerticalAlignment="Top" AcceptsReturn="True" MinLines="1"
+                                Delimiter="Environment.NewLine" AllowDrop="False"
+                                IsTabStop="False" />
+                            <syncfusion:ButtonAdv x:Name="Loot_drink_Import" Content="ButtonAdv" Height="35"
+                                Label="Import Types From Expansion Market JSON"
+                                VerticalAlignment="Bottom" Margin="0,0,80,0" Background="#261A88E4"
+                                AllowDrop="False" LargeIcon="etc/ico/arrow up/arrow-up.ico"
+                                SmallIcon="etc/ico/arrow up/arrow-up.ico" IconHeight="60"
+                                IconWidth="60" FontWeight="Bold" />
+                            <syncfusion:ButtonAdv x:Name="Loot_drink_Clear" Content="ButtonAdv" Height="35"
+                                Label="Clear"
+                                VerticalAlignment="Bottom" Margin="190,0,0,1" Background="#4CD13333"
+                                AllowDrop="False" LargeIcon="etc/ico/delete/delete.ico"
+                                SmallIcon="etc/ico/delete/delete.ico" IconHeight="30" IconWidth="30" />
+                        </Grid>
+                        <Grid x:Name="G_tools" HorizontalAlignment="Left" Height="249" VerticalAlignment="Top"
+                            Width="265" Margin="10,280,0,0" Background="#4C4B2C2C" AllowDrop="True">
+                            <Label Content="Tools Types (1 per line)" VerticalAlignment="Top"
+                                HorizontalContentAlignment="Center" VerticalContentAlignment="Center"
+                                BorderBrush="#FF020000" AllowDrop="False" FontSize="16" Padding="0,3,0,0" />
+                            <syncfusion:SfTextBoxExt x:Name="Loot_tools"
+                                Height="177" Margin="0,31,0,0" TextWrapping="NoWrap"
+                                VerticalAlignment="Top" AcceptsReturn="True" MinLines="1"
+                                Delimiter="Environment.NewLine" AllowDrop="False"
+                                IsTabStop="False" />
+                            <syncfusion:ButtonAdv x:Name="Loot_tools_Import" Content="ButtonAdv" Height="35"
+                                Label="Import Types From Expansion Market JSON"
+                                VerticalAlignment="Bottom" Margin="0,0,80,0" Background="#261A88E4"
+                                AllowDrop="False" LargeIcon="etc/ico/arrow up/arrow-up.ico"
+                                SmallIcon="etc/ico/arrow up/arrow-up.ico" IconHeight="60"
+                                IconWidth="60" FontWeight="Bold" />
+                            <syncfusion:ButtonAdv x:Name="Loot_tools_Clear" Content="ButtonAdv" Height="35"
+                                Label="Clear"
+                                VerticalAlignment="Bottom" Margin="190,0,0,1" Background="#4CD13333"
+                                AllowDrop="False" LargeIcon="etc/ico/delete/delete.ico"
+                                SmallIcon="etc/ico/delete/delete.ico" IconHeight="30" IconWidth="30" />
+                        </Grid>
+                        <Grid x:Name="G_material" HorizontalAlignment="Left" Height="249" VerticalAlignment="Top"
+                            Width="265" Margin="300,280,0,0" Background="#4C4B2C2C" AllowDrop="True">
+                            <Label Content="Material Types (1 per line)" VerticalAlignment="Top"
+                                HorizontalContentAlignment="Center" VerticalContentAlignment="Center"
+                                BorderBrush="#FF020000" AllowDrop="False" FontSize="16" Padding="0,3,0,0" />
+                            <syncfusion:SfTextBoxExt x:Name="Loot_material"
+                                Height="177" Margin="0,31,0,0" TextWrapping="NoWrap"
+                                VerticalAlignment="Top" AcceptsReturn="True" MinLines="1"
+                                Delimiter="Environment.NewLine" AllowDrop="False"
+                                IsTabStop="False" />
+                            <syncfusion:ButtonAdv x:Name="Loot_material_Import" Content="ButtonAdv" Height="35"
+                                Label="Import Types From Expansion Market JSON"
+                                VerticalAlignment="Bottom" Margin="0,0,80,0" Background="#261A88E4"
+                                AllowDrop="False" LargeIcon="etc/ico/arrow up/arrow-up.ico"
+                                SmallIcon="etc/ico/arrow up/arrow-up.ico" IconHeight="60"
+                                IconWidth="60" FontWeight="Bold" />
+                            <syncfusion:ButtonAdv x:Name="Loot_material_Clear" Content="ButtonAdv" Height="35"
+                                Label="Clear"
+                                VerticalAlignment="Bottom" Margin="190,0,0,1" Background="#4CD13333"
+                                AllowDrop="False" LargeIcon="etc/ico/delete/delete.ico"
+                                SmallIcon="etc/ico/delete/delete.ico" IconHeight="30" IconWidth="30" />
+                        </Grid>
+                        <Grid x:Name="G_misc" HorizontalAlignment="Left" Height="249" VerticalAlignment="Top"
+                            Width="265" Margin="585,280,0,0" Background="#4C4B2C2C" AllowDrop="True">
+                            <Label Content="Misc Types (1 per line)" VerticalAlignment="Top"
+                                HorizontalContentAlignment="Center" VerticalContentAlignment="Center"
+                                BorderBrush="#FF020000" AllowDrop="False" FontSize="16" Padding="0,3,0,0" />
+                            <syncfusion:SfTextBoxExt x:Name="Loot_misc"
+                                Height="177" Margin="0,31,0,0" TextWrapping="NoWrap"
+                                VerticalAlignment="Top" AcceptsReturn="True" MinLines="1"
+                                Delimiter="Environment.NewLine" AllowDrop="False"
+                                IsTabStop="False" />
+                            <syncfusion:ButtonAdv x:Name="Loot_misc_Import" Content="ButtonAdv" Height="35"
+                                Label="Import Types From Expansion Market JSON"
+                                VerticalAlignment="Bottom" Margin="0,0,80,0" Background="#261A88E4"
+                                AllowDrop="False" LargeIcon="etc/ico/arrow up/arrow-up.ico"
+                                SmallIcon="etc/ico/arrow up/arrow-up.ico" IconHeight="60"
+                                IconWidth="60" FontWeight="Bold" />
+                            <syncfusion:ButtonAdv x:Name="Loot_misc_Clear" Content="ButtonAdv" Height="35"
+                                Label="Clear"
+                                VerticalAlignment="Bottom" Margin="190,0,0,1" Background="#4CD13333"
+                                AllowDrop="False" LargeIcon="etc/ico/delete/delete.ico"
+                                SmallIcon="etc/ico/delete/delete.ico" IconHeight="30" IconWidth="30" />
+                        </Grid>
+                        <Grid x:Name="G_valuable" HorizontalAlignment="Left" Height="249" VerticalAlignment="Top"
+                            Width="265" Margin="874,280,0,0" Background="#4C4B2C2C" AllowDrop="True">
+                            <Label Content="Valuable Types (1 per line)" VerticalAlignment="Top"
+                                HorizontalContentAlignment="Center" VerticalContentAlignment="Center"
+                                BorderBrush="#FF020000" AllowDrop="False" FontSize="16" Padding="0,3,0,0" />
+                            <syncfusion:SfTextBoxExt x:Name="Loot_valuable"
+                                Height="177" Margin="0,31,0,0" TextWrapping="NoWrap"
+                                VerticalAlignment="Top" AcceptsReturn="True" MinLines="1"
+                                Delimiter="Environment.NewLine" AllowDrop="False"
+                                IsTabStop="False" />
+                            <syncfusion:ButtonAdv x:Name="Loot_valuable_Import" Content="ButtonAdv" Height="35"
+                                Label="Import Types From Expansion Market JSON"
+                                VerticalAlignment="Bottom" Margin="0,0,80,0" Background="#261A88E4"
+                                AllowDrop="False" LargeIcon="etc/ico/arrow up/arrow-up.ico"
+                                SmallIcon="etc/ico/arrow up/arrow-up.ico" IconHeight="60"
+                                IconWidth="60" FontWeight="Bold" />
+                            <syncfusion:ButtonAdv x:Name="Loot_valuable_Clear" Content="ButtonAdv" Height="35"
+                                Label="Clear"
+                                VerticalAlignment="Bottom" Margin="190,0,0,1" Background="#4CD13333"
+                                AllowDrop="False" LargeIcon="etc/ico/delete/delete.ico"
+                                SmallIcon="etc/ico/delete/delete.ico" IconHeight="30" IconWidth="30" />
+                        </Grid>
+                        <Grid x:Name="G_BottomSettings1" HorizontalAlignment="Left" Height="51" VerticalAlignment="Top"
+                            Width="859" Margin="10,559,0,0" AllowDrop="True">
+                            <syncfusion:ButtonAdv x:Name="LootKits_Generate_Copy" Content="ButtonAdv"
+                                Label="Generate Loot Kit"
+                                Background="#632CC33A" FontSize="16" Margin="0,10,640,0"
+                                AllowDrop="False" LargeIcon="etc/ico/ghost_meme/ghost_meme.ico"
+                                SmallIcon="etc/ico/ghost_meme/ghost_meme.ico" IconHeight="35"
+                                IconWidth="35" FontWeight="Bold" FontStyle="Italic" />
+                        </Grid>
+                    </Grid>
+                </syncfusion:TabItemExt>
                 <syncfusion:TabItemExt x:Name="Tab_KitsGenerated" Header="Generated Kits" MinWidth="20"
                                        MinHeight="20" AllowDrop="False">
                     <Grid AllowDrop="False">
@@ -1003,6 +1199,172 @@
                                                                              HasChildNodes="False"
                                                                              IsExpanded="False" IsChecked="False"
                                                                              ShowExpanderAnimation="False" />
+                                                </syncfusion:SfTreeView.Nodes>
+                                            </syncfusion:SfTreeView>
+                                        </Grid>
+                                    </Grid>
+                                </Grid>
+                            </syncfusion:TabItemExt>
+                            <syncfusion:TabItemExt x:Name="Tab_LootKits" Header="General (Loot)" MinWidth="200" MinHeight="20" FontSize="18">
+                                <Grid>
+                                    <Grid x:Name="G_LootKit_GenRed" Width="224"
+                                        Background="#4C830E0E" Height="550" HorizontalAlignment="Left"
+                                        VerticalAlignment="Top"
+                                        AllowDrop="False" Margin="4,-3,0,0">
+                                        <Label Content="Red Kits" HorizontalAlignment="Left" VerticalAlignment="Top"
+                                            Width="228"
+                                            HorizontalContentAlignment="Center" VerticalContentAlignment="Center"
+                                            FontSize="16"
+                                            Margin="1,0,0,0" AllowDrop="False" />
+                                        <Grid HorizontalAlignment="Left" Height="519" VerticalAlignment="Top"
+                                            Width="230"
+                                            Margin="0,31,-8,0" AllowDrop="False">
+                                            <syncfusion:SfTreeView x:Name="TV_LootKit_Generated_Red"
+                                                AllowDrop="False"
+                                                ItemTemplateDataContextType="Item" ShowLines="True"
+                                                ShowRootLines="True" SelectionMode="SingleDeselect"
+                                                AllowDeleting="True" EditTrigger="DoubleTap"
+                                                IsAnimationEnabled="True"
+                                                IsManipulationEnabled="True"
+                                                FocusBorderThickness="0,1" Margin="0,0,6,0"
+                                                ScrollViewer.HorizontalScrollBarVisibility="Visible"
+                                                ScrollViewer.VerticalScrollBarVisibility="Visible" AllowEditing="True">
+                                                <syncfusion:SfTreeView.Nodes>
+                                                    <syncfusion:TreeViewNode Content="Please Generate a Kit"
+                                                        HasChildNodes="False"
+                                                        IsExpanded="False" IsChecked="False"
+                                                        ShowExpanderAnimation="False" />
+                                                </syncfusion:SfTreeView.Nodes>
+                                            </syncfusion:SfTreeView>
+                                        </Grid>
+                                    </Grid>
+                                    <syncfusion:ButtonAdv x:Name="LootKit_Generated_Export" Content="ButtonAdv"
+                                        Label="Export : KeyCard General Config Json"
+                                        Margin="228,552,213,10"
+                                        FontSize="18" Background="#4C26D315" AllowDrop="False"
+                                        IconHeight="40" IconWidth="40"
+                                        LargeIcon="etc/ico/savefile/save-file.ico"
+                                        SmallIcon="etc/ico/savefile/save-file.ico" />
+                                    <Grid x:Name="G_LootKit_GenPurp" Width="224"
+                                        Background="#33EE33E5" Height="550" HorizontalAlignment="Left"
+                                        VerticalAlignment="Top"
+                                        Margin="228,-3,0,0" AllowDrop="False">
+                                        <Label Content="Purple Kits" HorizontalAlignment="Left" VerticalAlignment="Top"
+                                            Width="228"
+                                            HorizontalContentAlignment="Center" VerticalContentAlignment="Center"
+                                            FontSize="16"
+                                            Margin="1,0,0,0" AllowDrop="False" />
+                                        <Grid HorizontalAlignment="Left" Height="519" VerticalAlignment="Top"
+                                            Width="230"
+                                            Margin="0,31,-8,0" AllowDrop="False">
+                                            <syncfusion:SfTreeView x:Name="TV_LootKit_Generated_Purple"
+                                                AllowDrop="False"
+                                                ItemTemplateDataContextType="Item" ShowLines="True"
+                                                ShowRootLines="True" SelectionMode="SingleDeselect"
+                                                AllowDeleting="True" EditTrigger="DoubleTap"
+                                                IsAnimationEnabled="True"
+                                                IsManipulationEnabled="True"
+                                                FocusBorderThickness="0,1" Margin="0,0,6,0"
+                                                ScrollViewer.HorizontalScrollBarVisibility="Visible"
+                                                ScrollViewer.VerticalScrollBarVisibility="Visible" AllowEditing="True">
+                                                <syncfusion:SfTreeView.Nodes>
+                                                    <syncfusion:TreeViewNode Content="Please Generate a Kit"
+                                                        HasChildNodes="False"
+                                                        IsExpanded="False" IsChecked="False"
+                                                        ShowExpanderAnimation="False" />
+                                                </syncfusion:SfTreeView.Nodes>
+                                            </syncfusion:SfTreeView>
+                                        </Grid>
+                                    </Grid>
+                                    <Grid x:Name="G_LootKit_GenBlue" Width="224"
+                                        Background="#333043E1" Height="550" HorizontalAlignment="Left"
+                                        VerticalAlignment="Top"
+                                        Margin="452,-3,0,0" AllowDrop="False">
+                                        <Label Content="Blue Kits" HorizontalAlignment="Left" VerticalAlignment="Top"
+                                            Width="228"
+                                            HorizontalContentAlignment="Center" VerticalContentAlignment="Center"
+                                            FontSize="16"
+                                            Margin="1,0,0,0" AllowDrop="False" />
+                                        <Grid HorizontalAlignment="Left" Height="519" VerticalAlignment="Top"
+                                            Width="230"
+                                            Margin="0,31,-9,0" AllowDrop="False">
+                                            <syncfusion:SfTreeView x:Name="TV_LootKit_Generated_Blue"
+                                                AllowDrop="False"
+                                                ItemTemplateDataContextType="Item" ShowLines="True"
+                                                ShowRootLines="True" SelectionMode="SingleDeselect"
+                                                AllowDeleting="True" EditTrigger="DoubleTap"
+                                                IsAnimationEnabled="True"
+                                                IsManipulationEnabled="True"
+                                                FocusBorderThickness="0,1" Margin="0,0,6,0"
+                                                ScrollViewer.HorizontalScrollBarVisibility="Visible"
+                                                ScrollViewer.VerticalScrollBarVisibility="Visible" AllowEditing="True">
+                                                <syncfusion:SfTreeView.Nodes>
+                                                    <syncfusion:TreeViewNode Content="Please Generate a Kit"
+                                                        HasChildNodes="False"
+                                                        IsExpanded="False" IsChecked="False"
+                                                        ShowExpanderAnimation="False" />
+                                                </syncfusion:SfTreeView.Nodes>
+                                            </syncfusion:SfTreeView>
+                                        </Grid>
+                                    </Grid>
+                                    <Grid x:Name="G_LootKit_GenGreen" Width="224"
+                                        Background="#3350FF47" Height="550" HorizontalAlignment="Left"
+                                        VerticalAlignment="Top"
+                                        Margin="676,-3,0,0" AllowDrop="False">
+                                        <Label Content="Green Kits" HorizontalAlignment="Left" VerticalAlignment="Top"
+                                            Width="228"
+                                            HorizontalContentAlignment="Center" VerticalContentAlignment="Center"
+                                            FontSize="16"
+                                            Margin="1,0,0,0" AllowDrop="False" />
+                                        <Grid HorizontalAlignment="Left" Height="519" VerticalAlignment="Top"
+                                            Width="230"
+                                            Margin="0,31,-8,0" AllowDrop="False">
+                                            <syncfusion:SfTreeView x:Name="TV_LootKit_Generated_Green"
+                                                AllowDrop="False"
+                                                ItemTemplateDataContextType="Item" ShowLines="True"
+                                                ShowRootLines="True" SelectionMode="SingleDeselect"
+                                                AllowDeleting="True" EditTrigger="DoubleTap"
+                                                IsAnimationEnabled="True"
+                                                IsManipulationEnabled="True"
+                                                FocusBorderThickness="0,1" Margin="0,0,6,0"
+                                                ScrollViewer.HorizontalScrollBarVisibility="Visible"
+                                                ScrollViewer.VerticalScrollBarVisibility="Visible" AllowEditing="True">
+                                                <syncfusion:SfTreeView.Nodes>
+                                                    <syncfusion:TreeViewNode Content="Please Generate a Kit"
+                                                        HasChildNodes="False"
+                                                        IsExpanded="False" IsChecked="False"
+                                                        ShowExpanderAnimation="False" />
+                                                </syncfusion:SfTreeView.Nodes>
+                                            </syncfusion:SfTreeView>
+                                        </Grid>
+                                    </Grid>
+                                    <Grid x:Name="G_LootKit_GenYellow" Width="224"
+                                        Background="#4CFFF300" Height="550" HorizontalAlignment="Left"
+                                        VerticalAlignment="Top"
+                                        Margin="900,-3,0,0" AllowDrop="False">
+                                        <Label Content="Yellow Kits" HorizontalAlignment="Left" VerticalAlignment="Top"
+                                            Width="228"
+                                            HorizontalContentAlignment="Center" VerticalContentAlignment="Center"
+                                            FontSize="16"
+                                            Margin="1,0,0,0" AllowDrop="False" />
+                                        <Grid HorizontalAlignment="Left" Height="519" VerticalAlignment="Top"
+                                            Width="214"
+                                            Margin="0,31,0,0" AllowDrop="False">
+                                            <syncfusion:SfTreeView x:Name="TV_LootKit_Generated_Yellow"
+                                                AllowDrop="False"
+                                                ItemTemplateDataContextType="Item" ShowLines="True"
+                                                ShowRootLines="True" SelectionMode="SingleDeselect"
+                                                AllowDeleting="True" EditTrigger="DoubleTap"
+                                                IsAnimationEnabled="True"
+                                                IsManipulationEnabled="True"
+                                                FocusBorderThickness="0,1"
+                                                ScrollViewer.HorizontalScrollBarVisibility="Visible"
+                                                ScrollViewer.VerticalScrollBarVisibility="Visible" AllowEditing="True">
+                                                <syncfusion:SfTreeView.Nodes>
+                                                    <syncfusion:TreeViewNode Content="Please Generate a Kit"
+                                                        HasChildNodes="False"
+                                                        IsExpanded="False" IsChecked="False"
+                                                        ShowExpanderAnimation="False" />
                                                 </syncfusion:SfTreeView.Nodes>
                                             </syncfusion:SfTreeView>
                                         </Grid>
