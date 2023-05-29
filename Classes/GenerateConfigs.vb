@@ -100,5 +100,61 @@ Public Class GenerateConfigs
         Public Shared GreenLootKits As LootInfoCats
         Public Shared YellowLootKits As LootInfoCats
     End Class
+    Public Class System
+        Public Class DNAConfigVersion
+            Public Property dna_WarningMessage As String
+            Public Property dna_ConfigVersion As Integer
+        End Class
+
+        Public Shared DNAConfigMainSystem As ObservableCollection(Of MainSystemSettings)
+
+        Public Class MainSystemSettings
+            Public Property dna_Option As String
+            Public Property dna_Setting As Integer
+        End Class
+
+
+        Public Class Locations
+            Public Class Crate
+
+                Public Shared Red As ObservableCollection(Of SpawnablePositionalData)
+                Public Shared Purple As ObservableCollection(Of SpawnablePositionalData)
+                Public Shared Blue As ObservableCollection(Of SpawnablePositionalData)
+                Public Shared Green As ObservableCollection(Of SpawnablePositionalData)
+                Public Shared Yellow As ObservableCollection(Of SpawnablePositionalData)
+
+            End Class
+            Public Class Strongroom
+
+                Public Shared Red As ObservableCollection(Of SpawnablePositionalData)
+                Public Shared Purple As ObservableCollection(Of SpawnablePositionalData)
+                Public Shared Blue As ObservableCollection(Of SpawnablePositionalData)
+                Public Shared Green As ObservableCollection(Of SpawnablePositionalData)
+                Public Shared Yellow As ObservableCollection(Of SpawnablePositionalData)
+
+            End Class
+
+        End Class
+
+        Public Class SpawnablePositionalData
+            Public Property dna_Location As String
+            Public Property dna_Rotation As String
+        End Class
+
+
+        'Dim m_DNAYellow_Crate_Locations As ObservableCollection(Of SpawnablePositionalData)
+        'Dim m_DNAGreen_Crate_Locations As ObservableCollection(Of SpawnablePositionalData)
+        'Dim m_DNABlue_Crate_Locations As ObservableCollection(Of SpawnablePositionalData)
+        'Dim m_DNAPurple_Crate_Locations As ObservableCollection(Of SpawnablePositionalData)
+        'Dim m_DNARed_Crate_Locations As ObservableCollection(Of SpawnablePositionalData)
+        'Dim m_DNAYellow_Strongroom_Locations As ObservableCollection(Of SpawnablePositionalData)
+        'Dim m_DNAGreen_Strongroom_Locations As ObservableCollection(Of SpawnablePositionalData)
+        'Dim m_DNABlue_Strongroom_Locations As ObservableCollection(Of SpawnablePositionalData)
+        'Dim m_DNAPurple_Strongroom_Locations As ObservableCollection(Of SpawnablePositionalData)
+        'Dim m_DNARed_Strongroom_Locations As ObservableCollection(Of SpawnablePositionalData)
+
+
+
+    End Class
 End Class
 

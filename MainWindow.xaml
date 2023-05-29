@@ -1374,6 +1374,36 @@
                         </syncfusion:TabControlExt>
                     </Grid>
                 </syncfusion:TabItemExt>
+                <syncfusion:TabItemExt x:Name="Tab_SystemConfig" Header="System Config" MinWidth="20" MinHeight="20" IsSelected="True">
+                    <Grid>
+                        <Grid x:Name="G_Tags_Copy" HorizontalAlignment="Left" Height="310" VerticalAlignment="Top"
+                            Width="1129" Margin="10,10,0,0" AllowDrop="False">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="91*" />
+                                <RowDefinition Height="136*" />
+                            </Grid.RowDefinitions>
+                            <Label x:Name="___Label___Detected_Config_Settings_" Content="Detected Settings" HorizontalAlignment="Left" VerticalAlignment="Top"
+                                Width="209"
+                                VerticalContentAlignment="Center"
+                                BorderBrush="#FF020000" AllowDrop="False" Margin="10,0,0,0" FontSize="16" Padding="5,0,5,5" />
+                            <syncfusion:CheckListBox x:Name="CHK_Kits_Tag1" HorizontalAlignment="Left" Width="1119"
+                                Margin="0,31,0,10"
+                                BorderThickness="2" DisplayMemberPath="Name" Grid.RowSpan="2"
+                                AllowDrop="False" />
+                        </Grid>
+                        <Grid HorizontalAlignment="Left" Height="85" VerticalAlignment="Top" Width="1149" Margin="0,535,0,0">
+                            <syncfusion:ButtonAdv x:Name="Kits_ImportSystemConfig" Content="ButtonAdv"
+                                HorizontalAlignment="Left" Height="51"
+                                Label="Import KeyCard__Main__System__Config.json"
+                                VerticalAlignment="Top"
+                                Width="294" Margin="10,24,0,0"
+                                Click="ButtonImportExpansionMarketClick" Background="#261A88E4"
+                                AllowDrop="False" LargeIcon="etc/ico/arrow up/arrow-up.ico"
+                                SmallIcon="etc/ico/arrow up/arrow-up.ico" IconHeight="60"
+                                IconWidth="60" FontSize="14" />
+                        </Grid>
+                    </Grid>
+                </syncfusion:TabItemExt>
             </syncfusion:TabControlExt>
         </Grid>
         <Label x:Name="FooterText"
