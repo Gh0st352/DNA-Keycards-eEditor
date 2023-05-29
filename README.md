@@ -38,49 +38,53 @@ This program allows for easy macro level configuration of the DayZ DNA Keycard m
 ## Visual Tutorial
 
 ### Import Types
-
-![App Screenshot](https://via.placeholder.com/468x300?text=App+Screenshot+Here)
-![App Screenshot](https://via.placeholder.com/468x300?text=App+Screenshot+Here)
+![1 - Import](https://github.com/Gh0st352/DNA-Keycards-eEditor/assets/95618468/0ddc820b-5434-4e88-abca-0ecc898495a3)
+![1a](https://github.com/Gh0st352/DNA-Keycards-eEditor/assets/95618468/629000f2-d22a-4c87-8826-431c5948e00d)
 
 ### Types Tab
-
-![App Screenshot](https://via.placeholder.com/468x300?text=App+Screenshot+Here)
+![2 - Types Tab](https://github.com/Gh0st352/DNA-Keycards-eEditor/assets/95618468/3ec5184a-d4a4-4263-9c27-8517a7d70e7d)
 
 ### Clothing Kit Settings Tab
-
-![App Screenshot](https://via.placeholder.com/468x300?text=App+Screenshot+Here)
+![3 - Clothing Kit Settings Tab](https://github.com/Gh0st352/DNA-Keycards-eEditor/assets/95618468/e2daa8a8-0303-4100-a165-a82f42668f6d)
 
 ##### Automatic Import
-![App Screenshot](https://via.placeholder.com/468x300?text=App+Screenshot+Here)
+![3a - Automatic Import](https://github.com/Gh0st352/DNA-Keycards-eEditor/assets/95618468/e598dcc7-fe81-47c6-856f-7e3c9933ec35)
+
 ##### Manual Import
-![App Screenshot](https://via.placeholder.com/468x300?text=App+Screenshot+Here)
+![3b - Manual Import](https://github.com/Gh0st352/DNA-Keycards-eEditor/assets/95618468/a54e71aa-4a29-417f-9b96-592d824259b7)
+
 ##### Percent Chance Randomizer
-![App Screenshot](https://via.placeholder.com/468x300?text=App+Screenshot+Here)
+![3c - Percent Chance](https://github.com/Gh0st352/DNA-Keycards-eEditor/assets/95618468/79307261-ac08-4312-b56d-45270a6a4d3a)
+
 ##### Number of Sets to Generate
-![App Screenshot](https://via.placeholder.com/468x300?text=App+Screenshot+Here)
+![3d - Number of Sets to generate](https://github.com/Gh0st352/DNA-Keycards-eEditor/assets/95618468/19fa25cb-fc97-4a8a-8052-843c1fa08eb3)
 
 ### Kits Tab
-![App Screenshot](https://via.placeholder.com/468x300?text=App+Screenshot+Here)
+![4 - Kits Tab](https://github.com/Gh0st352/DNA-Keycards-eEditor/assets/95618468/608ff46e-bc0a-404b-90f3-7eb1a2da3343)
 
 ##### Filtering Types
-![App Screenshot](https://via.placeholder.com/468x300?text=App+Screenshot+Here)
+![4a - Filtering](https://github.com/Gh0st352/DNA-Keycards-eEditor/assets/95618468/b354025d-ab4e-4887-9810-f640017c1b32)
+
 ##### Restricting Types
-![App Screenshot](https://via.placeholder.com/468x300?text=App+Screenshot+Here)
+![4b - Restricting](https://github.com/Gh0st352/DNA-Keycards-eEditor/assets/95618468/13896e11-6f2e-46d0-afb0-c74c8d425e23)
+
 ##### Sidearms Types
-![App Screenshot](https://via.placeholder.com/468x300?text=App+Screenshot+Here)
+
+![4c - Sidearms](https://github.com/Gh0st352/DNA-Keycards-eEditor/assets/95618468/b00654a8-c29c-4e94-97c5-140d305899d2)
 
 ### Check the Lists
-![App Screenshot](https://via.placeholder.com/468x300?text=App+Screenshot+Here)
+![5 - Check Lists](https://github.com/Gh0st352/DNA-Keycards-eEditor/assets/95618468/02426f22-c108-44c6-bb1c-b5598d54ace3)
 
 ### Kit Generation
-![App Screenshot](https://via.placeholder.com/468x300?text=App+Screenshot+Here)
-![App Screenshot](https://via.placeholder.com/468x300?text=App+Screenshot+Here)
+![6 - Kit Generation](https://github.com/Gh0st352/DNA-Keycards-eEditor/assets/95618468/12ed7889-1600-426f-9cb1-ab35e2fc67dc)
+![6a - Kit Generation](https://github.com/Gh0st352/DNA-Keycards-eEditor/assets/95618468/d2f0151a-8f42-4b8a-9339-784da1b71b93)
 
 ### Kit Editing
-![App Screenshot](https://via.placeholder.com/468x300?text=App+Screenshot+Here)
+![7 - Kit Editing](https://github.com/Gh0st352/DNA-Keycards-eEditor/assets/95618468/bd71bf37-2645-47a6-908f-3022c2bf6f6b)
 
 ### Export
-![App Screenshot](https://via.placeholder.com/468x300?text=App+Screenshot+Here)
+![8 - Export](https://github.com/Gh0st352/DNA-Keycards-eEditor/assets/95618468/141d7f68-5fbf-4010-b1bc-daf3665f9694)
+
 ## Acknowledgements
 
  - [Absence of Humanity | DayZ Servers](https://www.discord.gg/9twJTux)
