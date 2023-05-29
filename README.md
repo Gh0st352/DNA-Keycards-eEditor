@@ -15,21 +15,21 @@ This program allows for easy macro level configuration of the DayZ DNA Keycard m
 - Ability to use DayZ Expansion Market files for importing types to filter output.
 
 ### Table of Contents
-- [Video Tutorial](##video-tutorial)
-- [Importing Types](###import-types)
-- [Clothing Kit Settings](###clothing-kit-settings-tab)
-    - [Automatic Import](#####automatic-import)
-    - [Manual Import](#####manual-import)
-    - [Percent Chance Randomizer](#####percent-chance-randomizer)
-    - [Number of Sets to Generate](#####number-of-sets-to-generate)
-- [Kits Tab](###kits-tab)
-    - [Filtering Types](#####filtering-types)
-    - [Restricting Types](#####restricting-types)
-    - [Sidearms Types](#####sidearms-types)
-- [Check the Lists](###check-the-lists)
-- [Kit Generation](###kit-generation)
-- [Kit Editing](###kit-editing)
-- [Export](###export)
+- [Video Tutorial](#video-tutorial)
+- [Importing Types](#import-types)
+- [Clothing Kit Settings](#clothing-kit-settings-tab)
+    - [Automatic Import](#automatic-import)
+    - [Manual Import](#manual-import)
+    - [Percent Chance Randomizer](#percent-chance-randomizer)
+    - [Number of Sets to Generate](#number-of-sets-to-generate)
+- [Kits Tab](#kits-tab)
+    - [Filtering Types](#filtering-types)
+    - [Restricting Types](#restricting-types)
+    - [Sidearms Types](#sidearms-types)
+- [Check the Lists](#check-the-lists)
+- [Kit Generation](#kit-generation)
+- [Kit Editing](#kit-editing)
+- [Export](#export)
 ## Video Tutorial
 
 Insert gif or link to demo
