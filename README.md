@@ -10,7 +10,7 @@ This program allows for easy macro level configuration of the DayZ DNA Keycard m
 ## Features
 
 - Automatically create thousands of unique kits in seconds.
-- Weapon and Clothing Kits supported (more to come)
+- Weapon, Clothing, and General Loot Kits are supported (more to come)
 - Automatically build kits based on your server Types file.
 - Ability to use DayZ Expansion Market files for importing types to filter output.
 
@@ -33,7 +33,7 @@ This program allows for easy macro level configuration of the DayZ DNA Keycard m
 ## Video Tutorial
 
 [DNA Keycards eEditor Tutorial | v1.0.0.0](https://youtu.be/d1PAQ7JYUn8)
-
+General Loot Kit Generation has been added since recording. It functions on the same whitelist foundation as the rest of the program.
 
 ## Visual Tutorial
 
