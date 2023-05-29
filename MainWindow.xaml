@@ -1396,8 +1396,7 @@
                                 HorizontalAlignment="Left" Height="51"
                                 Label="Import KeyCard__Main__System__Config.json"
                                 VerticalAlignment="Top"
-                                Width="294" Margin="10,24,0,0"
-                                Click="ButtonImportExpansionMarketClick" Background="#261A88E4"
+                                Width="294" Margin="10,24,0,0" Background="#261A88E4"
                                 AllowDrop="False" LargeIcon="etc/ico/arrow up/arrow-up.ico"
                                 SmallIcon="etc/ico/arrow up/arrow-up.ico" IconHeight="60"
                                 IconWidth="60" FontSize="14" />

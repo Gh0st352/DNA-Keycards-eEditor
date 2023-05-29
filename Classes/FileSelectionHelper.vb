@@ -60,12 +60,25 @@ Namespace Classes
             openFileDialog.Multiselect = True
 
             Dim fileNames As String() = Await Application.Current.Dispatcher.InvokeAsync(Function()
-                If openFileDialog.ShowDialog() = True Then
-                    Return openFileDialog.FileNames
-                Else
-                    Return New String() {}
-                End If
-            End Function)
+                                                                                             If openFileDialog.ShowDialog() = True Then
+                                                                                                 Return openFileDialog.FileNames
+                                                                                             Else
+                                                                                                 Return New String() {}
+                                                                                             End If
+                                                                                         End Function)
+            Return fileNames
+        End Function
+        Public Shared Async Function SelectSingleFileAsync() As Task(Of String)
+            Dim openFileDialog As New OpenFileDialog()
+            openFileDialog.Multiselect = False
+
+            Dim fileNames As String = Await Application.Current.Dispatcher.InvokeAsync(Function()
+                                                                                           If openFileDialog.ShowDialog() = True Then
+                                                                                               Return openFileDialog.FileName
+                                                                                           Else
+                                                                                               Return ""
+                                                                                           End If
+                                                                                       End Function)
             Return fileNames
         End Function
 
@@ -262,7 +275,7 @@ Namespace Classes
                 Dim jsonText As String = Await reader.ReadToEndAsync()
 
                 ' Deserialize the JSON data
-                Dim jsonData As JObject = JsonConvert.DeserializeObject (Of JObject)(jsonText)
+                Dim jsonData As JObject = JsonConvert.DeserializeObject(Of JObject)(jsonText)
 
                 ' Get the "Items" array
                 Dim itemsArray As JArray = jsonData("Items")
@@ -287,6 +300,308 @@ Namespace Classes
                         classNamesAndVariants.Add(variantString)
                     Next
                 Next
+            End Using
+
+            ' Return the list of unique "classname" and "variants" strings
+            Return classNamesAndVariants.ToList()
+        End Function
+        Public Class JSON
+
+            Public Shared Function GetNodeValue(json As JObject, path As String) As Object
+                'Dim json As JObject = JObject.Parse(jsonString)
+                'Dim nodeValue As Object = GetNodeValue(json, "m_DNAConfig_Version[0].dna_WarningMessage")
+
+                Dim tokens As JToken = json.SelectToken(path)
+                If tokens IsNot Nothing Then
+                    Return tokens
+                Else
+                    Return Nothing
+                End If
+            End Function
+
+            Public Shared Function GetNodeAttributes(json As JObject, path As String) As Dictionary(Of String, Object)
+                'Dim json As JObject = JObject.Parse(jsonString)
+                'Dim nodeAttributes As Dictionary(Of String, Object) = GetNodeAttributes(json, "m_DNAConfig_Main_System[0]")
+
+                Dim attributes As New Dictionary(Of String, Object)()
+
+                Dim tokens As JToken = json.SelectToken(path)
+                If tokens IsNot Nothing AndAlso tokens.Type = JTokenType.Object Then
+                    Dim obj As JObject = CType(tokens, JObject)
+                    For Each prop As JProperty In obj.Properties()
+                        attributes.Add(prop.Name, prop.Value)
+                    Next
+                End If
+
+                Return attributes
+            End Function
+
+            Public Shared Function GetChildNodes(json As JObject, path As String) As List(Of JObject)
+                'Dim json As JObject = JObject.Parse(jsonString)
+                'Dim childNodes As List(Of JObject) = GetChildNodes(json, "arbitraryname1")
+
+                Dim childNodes As New List(Of JObject)()
+
+                Dim tokens As JToken = json.SelectToken(path)
+                If tokens IsNot Nothing AndAlso tokens.Type = JTokenType.Array Then
+                    Dim array As JArray = CType(tokens, JArray)
+                    For Each item As JObject In array.Children(Of JObject)()
+                        childNodes.Add(item)
+                    Next
+                End If
+
+                Return childNodes
+            End Function
+            Public Shared Sub TraverseJSONNodes(json As JObject, Optional ByVal indent As Integer = 0)
+                'Dim jsonString As String = "{...}" ' Your JSON string here
+                'Dim json As JObject = JObject.Parse(jsonString)
+                'TraverseJSONNodes(json)
+
+                For Each prop As JProperty In json.Properties()
+                    Dim nodePath As String = prop.Path
+                    Dim nodeName As String = prop.Name
+                    Dim nodeValue As Object = prop.Value
+
+                    ' Indent the output for readability
+                    Console.WriteLine($"{New String(" "c, indent)}Node Path: {nodePath}")
+                    Console.WriteLine($"{New String(" "c, indent)}Node Name: {nodeName}")
+                    Console.WriteLine($"{New String(" "c, indent)}Node Value: {nodeValue}")
+
+                    ' Check if the node has child nodes
+                    If prop.Value.Type = JTokenType.Array OrElse prop.Value.Type = JTokenType.Object Then
+                        Dim childNodes As List(Of JObject) = GetChildNodes(json, nodePath)
+
+                        ' Recursively traverse child nodes
+                        For Each childNode As JObject In childNodes
+                            TraverseJSONNodes(childNode, indent + 2)
+                        Next
+                    End If
+                Next
+            End Sub
+
+            Public Shared Function ParseSystemConfigJSON(jsonString As String) As Dictionary(Of String, List(Of Dictionary(Of String, Object)))
+                Dim result As New Dictionary(Of String, List(Of Dictionary(Of String, Object)))()
+
+                ' Parse the JSON string
+                Dim json As JObject = JObject.Parse(jsonString)
+
+                ' Iterate over the properties in the JSON object
+                For Each prop As KeyValuePair(Of String, JToken) In json
+                    Dim dataList As New List(Of Dictionary(Of String, Object))()
+
+                    ' Iterate over the array of objects for each property
+                    For Each item As JObject In prop.Value
+                        Dim dataItem As New Dictionary(Of String, Object)()
+
+                        ' Iterate over the properties in each object
+                        For Each subProp As KeyValuePair(Of String, JToken) In item
+                            dataItem.Add(subProp.Key, subProp.Value.ToString())
+                        Next
+
+                        dataList.Add(dataItem)
+                    Next
+
+                    result.Add(prop.Key, dataList)
+                Next
+
+                Return result
+            End Function
+        End Class
+        Public Shared Function RetrieveKeyValuePairs(propertyData As List(Of Dictionary(Of String, Object))) As List(Of KeyValuePair(Of String, Object))
+            Dim keyValuePairs As New List(Of KeyValuePair(Of String, Object))()
+
+            For Each item As Dictionary(Of String, Object) In propertyData
+                For Each kvp As KeyValuePair(Of String, Object) In item
+                    keyValuePairs.Add(kvp)
+                Next
+            Next
+
+            Return keyValuePairs
+        End Function
+        Public Shared Async Function ImportSystemConfigJSON(jsonFilePath As String) As Task(Of List(Of String))
+
+            'Reset Lists
+
+            Dim tDNAConfigMainSystem As New ObservableCollection(Of GenerateConfigs.System.MainSystemSettings)
+            Dim tLocations As New GenerateConfigs.System.Locations
+
+            Dim classNamesAndVariants As New HashSet(Of String)()
+            ' Read the JSON file
+            Using reader As StreamReader = File.OpenText(jsonFilePath)
+                Dim jsonText As String = Await reader.ReadToEndAsync()
+                'Dim parsedData As Dictionary(Of String, List(Of Dictionary(Of String, Object))) = JSON.ParseSystemConfigJSON(jsonText)
+
+
+                Dim tjsonObject As JObject = JObject.Parse(jsonText)
+
+                JSON.TraverseJSONNodes(tjsonObject)
+
+                For Each tChiledd 
+
+
+
+
+
+
+
+
+                'For Each prop As JProperty In JSON.Properties()
+                '    Dim nodePath As String = prop.Path
+                '    Dim nodeName As String = prop.Name
+                '    Dim nodeValue As Object = prop.Value
+
+                '    ' Indent the output for readability
+                '    Console.WriteLine($"{New String(" "c, indent)}Node Path: {nodePath}")
+                '    Console.WriteLine($"{New String(" "c, indent)}Node Name: {nodeName}")
+                '    Console.WriteLine($"{New String(" "c, indent)}Node Value: {nodeValue}")
+
+                '    ' Check if the node has child nodes
+                '    If prop.Value.Type = JTokenType.Array OrElse prop.Value.Type = JTokenType.Object Then
+                '        Dim childNodes As List(Of JObject) = GetChildNodes(JSON, nodePath)
+
+                '        ' Recursively traverse child nodes
+                '        For Each childNode As JObject In childNodes
+                '            TraverseJSONNodes(childNode, indent + 2)
+                '        Next
+                '    End If
+                'Next
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                'For Each kvp As KeyValuePair(Of String, List(Of Dictionary(Of String, Object))) In parsedData
+                '    Dim propertyName As String = kvp.Key
+                '    Dim propertyData As List(Of Dictionary(Of String, Object)) = kvp.Value
+                '    Dim keyValuePairs As List(Of KeyValuePair(Of String, Object)) = RetrieveKeyValuePairs(propertyData)
+
+
+
+                '    Select Case True
+
+                '        'CONFIG HEADER
+                '        Case propertyName = "m_DNAConfig_Version"
+                '            For Each kvpItem As KeyValuePair(Of String, Object) In keyValuePairs
+                '                Dim key As String = kvpItem.Key
+                '                Dim value As Object = kvpItem.Value
+
+                '                If key = "dna_WarningMessage" Then GenerateConfigs.System.DNAConfigVersion.dna_WarningMessage = value
+                '                If key = "dna_ConfigVersion" Then GenerateConfigs.System.DNAConfigVersion.dna_ConfigVersion = value
+                '            Next
+
+                '        'MAIN SYSTEM CONFIGS
+                '        Case propertyName = "m_DNAConfig_Main_System"
+                '            For Each kvpItem As KeyValuePair(Of String, Object) In keyValuePairs
+                '                Dim key As String = kvpItem.Key
+                '                Dim value As Object = kvpItem.Value
+                '                Dim tempSetting As New GenerateConfigs.System.MainSystemSettings With {.dna_Option = key, .dna_Setting = value}
+                '                GenerateConfigs.System.DNAConfigMainSystem.Add(tempSetting)
+                '            Next
+
+                '        'LOCATION CONFIGS
+                '        Case propertyName.ToLower().Contains("locations")
+                '            Select Case True
+                '                'CRATE LOCATIONS
+                '                Case propertyName.ToLower().Contains("crate")
+                '                    'CHOOSE COLOR TIER
+                '                    Select Case True
+                '                        Case propertyName.ToLower().Contains("red")
+                '                            For Each tSpawnLoc In propertyData
+                '                                GenerateConfigs.System.Locations.Crate.Red.Add(New GenerateConfigs.System.SpawnablePositionalData() With {.dna_Location = "", .dna_Rotation = ""})
+                '                            Next
+                '                        Case propertyName.ToLower().Contains("purple")
+                '                                Case propertyName.ToLower().Contains("blue")
+                '                        Case propertyName.ToLower().Contains("green")
+                '                        Case propertyName.ToLower().Contains("yellow")
+                '                    End Select
+
+                '                    'STRONGROOM LOCATIONS
+                '                Case propertyName.ToLower().Contains("strongroom")
+                '                    'CHOOSE COLOR TIER
+                '                    Select Case True
+                '                        Case propertyName.ToLower().Contains("red")
+                '                        Case propertyName.ToLower().Contains("purple")
+                '                        Case propertyName.ToLower().Contains("blue")
+                '                        Case propertyName.ToLower().Contains("green")
+                '                        Case propertyName.ToLower().Contains("yellow")
+                '                    End Select
+                '            End Select
+                '        Case Else
+                '    End Select
+
+
+
+
+
+
+
+                '    Dim xx2x = ""
+                '    ' Process the key/value pairs as needed
+
+
+
+                '    'Select Case True
+                '    '    Case propertyName = "m_DNAConfig_Version"
+                '    '        GenerateConfigs.System.DNAConfigVersion.dna_ConfigVersion = propertyData.
+
+                '    '    Case Else
+
+                '    'End Select
+
+
+
+                '    ' Process the data as needed
+                '    Dim xxx = ""
+                'Next
+                'Dim xxx3 = ""
+                '' Deserialize the JSON data
+                'Dim jsonData As JObject = JsonConvert.DeserializeObject(Of JObject)(jsonText)
+                'Dim xxx2 = ""
+                '' Get the "Items" array
+                'Dim itemsArray As JArray = jsonData("Items")
+
+                'Dim xxx = ""
+                '' Iterate through each item
+                'For Each item As JObject In itemsArray
+                '    ' Get the "ClassName" value
+                '    Dim className As String = item("ClassName").ToString()
+
+                '    ' Add the "ClassName" value to the hash set if it's not already present
+                '    classNamesAndVariants.Add(className)
+
+                '    ' Get the "Variants" array
+                '    Dim variantsArray As JArray = item("Variants")
+
+                '    ' Iterate through each variant
+                '    For Each tvariant As JToken In variantsArray
+                '        ' Get the variant string
+                '        Dim variantString As String = tvariant.ToString()
+
+                '        ' Add the variant string to the hash set if it's not already present
+                '        classNamesAndVariants.Add(variantString)
+                '    Next
+                'Next
             End Using
 
             ' Return the list of unique "classname" and "variants" strings

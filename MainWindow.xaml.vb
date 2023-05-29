@@ -1867,5 +1867,11 @@ Partial Public Class MainWindow
     Private Sub AttachTextChangedEventToAllTextBoxes(tabItem As TabItemExt)
         AttachTextChangedEventHandlerToTextBoxes(tabItem.Content)
     End Sub
+
+    Private Async Sub Kits_ImportSystemConfig_Click(sender As Object, e As RoutedEventArgs) Handles Kits_ImportSystemConfig.Click
+        Dim resultPath As String = Await FileSelectionHelper.SelectSingleFileAsync()
+        Dim xxx = FileSelectionHelper.ImportSystemConfigJSON(resultPath)
+
+    End Sub
 End Class
 

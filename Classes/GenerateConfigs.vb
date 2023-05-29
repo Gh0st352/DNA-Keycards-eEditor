@@ -102,11 +102,11 @@ Public Class GenerateConfigs
     End Class
     Public Class System
         Public Class DNAConfigVersion
-            Public Property dna_WarningMessage As String
-            Public Property dna_ConfigVersion As Integer
+            Public Shared dna_WarningMessage As String
+            Public Shared dna_ConfigVersion As Integer
         End Class
 
-        Public Shared DNAConfigMainSystem As ObservableCollection(Of MainSystemSettings)
+        Public Shared DNAConfigMainSystem As New ObservableCollection(Of MainSystemSettings)
 
         Public Class MainSystemSettings
             Public Property dna_Option As String
