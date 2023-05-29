@@ -42,47 +42,47 @@ This program allows for easy macro level configuration of the DayZ DNA Keycard m
 ![App Screenshot](https://github.com/Gh0st352/DNA-Keycards-eEditor/blob/master/etc/VisualTutorial/1a.JPG?raw=true)
 
 ### Types Tab
-![App Screenshot]()
+![App Screenshot](https://github.com/Gh0st352/DNA-Keycards-eEditor/blob/master/etc/VisualTutorial/2%20-%20Types%20Tab.JPG?raw=true)
 
 ### Clothing Kit Settings Tab
-![App Screenshot]()
+![App Screenshot](https://github.com/Gh0st352/DNA-Keycards-eEditor/blob/master/etc/VisualTutorial/3%20-%20Clothing%20Kit%20Settings%20Tab.JPG?raw=true)
 
 ##### Automatic Import
-![App Screenshot]()
+![App Screenshot](https://github.com/Gh0st352/DNA-Keycards-eEditor/blob/master/etc/VisualTutorial/3a%20-%20Automatic%20Import.JPG?raw=true)
 
 ##### Manual Import
-![App Screenshot]()
+![App Screenshot](https://github.com/Gh0st352/DNA-Keycards-eEditor/blob/master/etc/VisualTutorial/3b%20-%20Manual%20Import.JPG?raw=true)
 
 ##### Percent Chance Randomizer
-![App Screenshot]()
+![App Screenshot](https://github.com/Gh0st352/DNA-Keycards-eEditor/blob/master/etc/VisualTutorial/3c%20-%20Percent%20Chance.JPG?raw=true)
 
 ##### Number of Sets to Generate
-![App Screenshot]()
+![App Screenshot](https://github.com/Gh0st352/DNA-Keycards-eEditor/blob/master/etc/VisualTutorial/3d%20-%20Number%20of%20Sets%20to%20generate.JPG?raw=true)
 
 ### Kits Tab
-![App Screenshot]()
+![App Screenshot](https://github.com/Gh0st352/DNA-Keycards-eEditor/blob/master/etc/VisualTutorial/4%20-%20Kits%20Tab.JPG?raw=true)
 
 ##### Filtering Types
-![App Screenshot]()
+![App Screenshot](https://github.com/Gh0st352/DNA-Keycards-eEditor/blob/master/etc/VisualTutorial/4a%20-%20Filtering.JPG?raw=true)
 
 ##### Restricting Types
-![App Screenshot]()
+![App Screenshot](https://github.com/Gh0st352/DNA-Keycards-eEditor/blob/master/etc/VisualTutorial/4b%20-%20Restricting.JPG?raw=true)
 
 ##### Sidearms Types
-![App Screenshot]()
+![App Screenshot](https://github.com/Gh0st352/DNA-Keycards-eEditor/blob/master/etc/VisualTutorial/4c%20-%20Sidearms.JPG?raw=true)
 
 
 ### Check the Lists
-![App Screenshot]()
+![App Screenshot](https://github.com/Gh0st352/DNA-Keycards-eEditor/blob/master/etc/VisualTutorial/5%20-%20Check%20Lists.JPG?raw=true)
 
 ### Kit Generation
-![App Screenshot]()
+![App Screenshot](https://github.com/Gh0st352/DNA-Keycards-eEditor/blob/master/etc/VisualTutorial/6%20-%20Kit%20Generation.JPG?raw=true)
 
 ### Kit Editing
-![App Screenshot]()
+![App Screenshot](https://github.com/Gh0st352/DNA-Keycards-eEditor/blob/master/etc/VisualTutorial/7%20-%20Kit%20Editing.JPG?raw=true)
 
 ### Export
-![App Screenshot]()
+![App Screenshot](https://github.com/Gh0st352/DNA-Keycards-eEditor/blob/master/etc/VisualTutorial/8%20-%20Export.JPG?raw=true)
 
 ## Acknowledgements
 
