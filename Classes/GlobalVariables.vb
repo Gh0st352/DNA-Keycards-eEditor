@@ -28,6 +28,16 @@ Imports System.Collections.ObjectModel
 
 Namespace Classes
     Public Class GlobalVariables
+        Public Class LootMarket
+            Public Shared proprietary As New ObservableCollection(Of String)()
+            Public Shared medical As New ObservableCollection(Of String)()
+            Public Shared food As New ObservableCollection(Of String)()
+            Public Shared drink As New ObservableCollection(Of String)()
+            Public Shared tools As New ObservableCollection(Of String)()
+            Public Shared material As New ObservableCollection(Of String)()
+            Public Shared misc As New ObservableCollection(Of String)()
+            Public Shared valuable As New ObservableCollection(Of String)()
+        End Class
         Public Class ClothingMarket
             Public Shared Helmets As New ObservableCollection(Of String)()
             Public Shared Shirts As New ObservableCollection(Of String)()

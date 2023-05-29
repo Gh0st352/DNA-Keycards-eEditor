@@ -181,7 +181,7 @@
                                                   LargeIcon="etc/ico/ghost_meme/ghost_meme.ico"
                                                   SmallIcon="etc/ico/ghost_meme/ghost_meme.ico" IconHeight="55"
                                                   IconWidth="55" HorizontalContentAlignment="Center" Padding="2,0,4,1" />
-                            <syncfusion:ButtonAdv x:Name="ClothingKits_Generate_Copy1" Content="ButtonAdv"
+                            <syncfusion:ButtonAdv x:Name="LootKits_Generate" Content="ButtonAdv"
                                 Label="                       Generate Loot Kit"
                                 Background="#632CC33A" FontSize="24" Margin="480,572,10,12"
                                 AllowDrop="False" Grid.Column="1"
