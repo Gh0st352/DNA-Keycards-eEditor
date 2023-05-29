@@ -82,14 +82,15 @@ Public Class GenerateConfigs
 
         Public Class LootInfoCats
 
-            Public Property proprietary As Collection(Of LootInfoType)
-            Public Property medical As Collection(Of LootInfoType)
-            Public Property food As Collection(Of LootInfoType)
-            Public Property drink As Collection(Of LootInfoType)
-            Public Property tools As Collection(Of LootInfoType)
-            Public Property material As Collection(Of LootInfoType)
-            Public Property misc As Collection(Of LootInfoType)
-            Public Property valuable As Collection(Of LootInfoType)
+            Public proprietary As Collection(Of LootInfoType)
+            Public medical As Collection(Of LootInfoType)
+            Public food As Collection(Of LootInfoType)
+            Public drink As Collection(Of LootInfoType)
+            Public tools As Collection(Of LootInfoType)
+            Public material As Collection(Of LootInfoType)
+            Public misc As Collection(Of LootInfoType)
+            Public valuable As Collection(Of LootInfoType)
+
 
         End Class
 

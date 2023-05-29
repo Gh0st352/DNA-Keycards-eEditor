@@ -1223,13 +1223,12 @@
                                                 AllowDrop="False"
                                                 ItemTemplateDataContextType="Item" ShowLines="True"
                                                 ShowRootLines="True" SelectionMode="SingleDeselect"
-                                                AllowDeleting="True"
-                                                AllowEditing="True" EditTrigger="DoubleTap"
+                                                AllowDeleting="True" EditTrigger="DoubleTap"
                                                 IsAnimationEnabled="True"
                                                 IsManipulationEnabled="True"
                                                 FocusBorderThickness="0,1" Margin="0,0,6,0"
                                                 ScrollViewer.HorizontalScrollBarVisibility="Visible"
-                                                ScrollViewer.VerticalScrollBarVisibility="Visible">
+                                                ScrollViewer.VerticalScrollBarVisibility="Visible" AllowEditing="True">
                                                 <syncfusion:SfTreeView.Nodes>
                                                     <syncfusion:TreeViewNode Content="Please Generate a Kit"
                                                         HasChildNodes="False"
@@ -1262,13 +1261,12 @@
                                                 AllowDrop="False"
                                                 ItemTemplateDataContextType="Item" ShowLines="True"
                                                 ShowRootLines="True" SelectionMode="SingleDeselect"
-                                                AllowDeleting="True"
-                                                AllowEditing="True" EditTrigger="DoubleTap"
+                                                AllowDeleting="True" EditTrigger="DoubleTap"
                                                 IsAnimationEnabled="True"
                                                 IsManipulationEnabled="True"
                                                 FocusBorderThickness="0,1" Margin="0,0,6,0"
                                                 ScrollViewer.HorizontalScrollBarVisibility="Visible"
-                                                ScrollViewer.VerticalScrollBarVisibility="Visible">
+                                                ScrollViewer.VerticalScrollBarVisibility="Visible" AllowEditing="True">
                                                 <syncfusion:SfTreeView.Nodes>
                                                     <syncfusion:TreeViewNode Content="Please Generate a Kit"
                                                         HasChildNodes="False"
@@ -1294,13 +1292,12 @@
                                                 AllowDrop="False"
                                                 ItemTemplateDataContextType="Item" ShowLines="True"
                                                 ShowRootLines="True" SelectionMode="SingleDeselect"
-                                                AllowDeleting="True"
-                                                AllowEditing="True" EditTrigger="DoubleTap"
+                                                AllowDeleting="True" EditTrigger="DoubleTap"
                                                 IsAnimationEnabled="True"
                                                 IsManipulationEnabled="True"
                                                 FocusBorderThickness="0,1" Margin="0,0,6,0"
                                                 ScrollViewer.HorizontalScrollBarVisibility="Visible"
-                                                ScrollViewer.VerticalScrollBarVisibility="Visible">
+                                                ScrollViewer.VerticalScrollBarVisibility="Visible" AllowEditing="True">
                                                 <syncfusion:SfTreeView.Nodes>
                                                     <syncfusion:TreeViewNode Content="Please Generate a Kit"
                                                         HasChildNodes="False"
@@ -1326,13 +1323,12 @@
                                                 AllowDrop="False"
                                                 ItemTemplateDataContextType="Item" ShowLines="True"
                                                 ShowRootLines="True" SelectionMode="SingleDeselect"
-                                                AllowDeleting="True"
-                                                AllowEditing="True" EditTrigger="DoubleTap"
+                                                AllowDeleting="True" EditTrigger="DoubleTap"
                                                 IsAnimationEnabled="True"
                                                 IsManipulationEnabled="True"
                                                 FocusBorderThickness="0,1" Margin="0,0,6,0"
                                                 ScrollViewer.HorizontalScrollBarVisibility="Visible"
-                                                ScrollViewer.VerticalScrollBarVisibility="Visible">
+                                                ScrollViewer.VerticalScrollBarVisibility="Visible" AllowEditing="True">
                                                 <syncfusion:SfTreeView.Nodes>
                                                     <syncfusion:TreeViewNode Content="Please Generate a Kit"
                                                         HasChildNodes="False"
@@ -1358,13 +1354,12 @@
                                                 AllowDrop="False"
                                                 ItemTemplateDataContextType="Item" ShowLines="True"
                                                 ShowRootLines="True" SelectionMode="SingleDeselect"
-                                                AllowDeleting="True"
-                                                AllowEditing="True" EditTrigger="DoubleTap"
+                                                AllowDeleting="True" EditTrigger="DoubleTap"
                                                 IsAnimationEnabled="True"
                                                 IsManipulationEnabled="True"
                                                 FocusBorderThickness="0,1"
                                                 ScrollViewer.HorizontalScrollBarVisibility="Visible"
-                                                ScrollViewer.VerticalScrollBarVisibility="Visible">
+                                                ScrollViewer.VerticalScrollBarVisibility="Visible" AllowEditing="True">
                                                 <syncfusion:SfTreeView.Nodes>
                                                     <syncfusion:TreeViewNode Content="Please Generate a Kit"
                                                         HasChildNodes="False"
