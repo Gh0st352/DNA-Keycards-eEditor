@@ -174,8 +174,35 @@ Namespace Classes
                 Next
                 GlobalVariables.Types.Types.Add(_Type)
             Next
+            RemoveDuplicatesFromTypes(GlobalVariables.Types.Types)
         End Function
+        Shared Sub RemoveDuplicatesFromTypes(collection As ObservableCollection(Of GlobalVariables.Types.TypeInfo))
+            Dim uniqueItems As New ObservableCollection(Of GlobalVariables.Types.TypeInfo)()
 
+            For Each item In collection
+                If Not uniqueItems.Any(Function(x) x.typename = item.typename AndAlso
+                                                   x.nominal = item.nominal AndAlso
+                                                   x.lifetime = item.lifetime AndAlso
+                                                   x.restock = item.restock AndAlso
+                                                   x.min = item.min AndAlso
+                                                   x.quantmin = item.quantmin AndAlso
+                                                   x.quantmax = item.quantmax AndAlso
+                                                   x.cost = item.cost AndAlso
+                                                   x.flags = item.flags AndAlso
+                                                   x.category = item.category AndAlso
+                                                   x.usage = item.usage AndAlso
+                                                   x.tag = item.tag AndAlso
+                                                   x.value = item.value) Then
+                    uniqueItems.Add(item)
+                End If
+            Next
+
+            ' Replace the original collection with the unique items
+            collection.Clear()
+            For Each item In uniqueItems
+                collection.Add(item)
+            Next
+        End Sub
         Public Shared Function IsStringExistsInCollection (Of T)(collection As ObservableCollection(Of T),
                                                                  searchString As String) As Boolean
             For Each item As T In collection
