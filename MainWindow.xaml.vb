@@ -1993,6 +1993,128 @@ Partial Public Class MainWindow
                 TV_other.Nodes.Add(tHeader)
             Next
         End If
+
+
+        ''''''''''LOCATION
+
+        '''''''RED
+        Tab_MainLoc_Red.IsSelected = True
+        If GenerateConfigs.System.Locations.Strongroom.Red IsNot Nothing Then
+            TV_Location_Red_Strongroom.Nodes.Clear()
+            Dim tCount = 1
+            For Each setting_ As GenerateConfigs.System.SpawnablePositionalData In GenerateConfigs.System.Locations.Strongroom.Red
+                TV_Location_Red_Strongroom.Nodes.Add(Await LocationSpawnNodeBuilder(setting_, tCount))
+                tCount += 1
+            Next
+        End If
+
+        If GenerateConfigs.System.Locations.Crate.Red IsNot Nothing Then
+            TV_Location_Red_Crate.Nodes.Clear()
+            Dim tCount = 1
+            For Each setting_ As GenerateConfigs.System.SpawnablePositionalData In GenerateConfigs.System.Locations.Crate.Red
+                TV_Location_Red_Crate.Nodes.Add(Await LocationSpawnNodeBuilder(setting_, tCount))
+                tCount += 1
+            Next
+        End If
+
+        '''''''Purple
+        Tab_MainLoc_Purple.IsSelected = True
+        If GenerateConfigs.System.Locations.Strongroom.Purple IsNot Nothing Then
+            TV_Location_Purple_Strongroom.Nodes.Clear()
+            Dim tCount = 1
+            For Each setting_ As GenerateConfigs.System.SpawnablePositionalData In GenerateConfigs.System.Locations.Strongroom.Purple
+                TV_Location_Purple_Strongroom.Nodes.Add(Await LocationSpawnNodeBuilder(setting_, tCount))
+                tCount += 1
+            Next
+        End If
+
+        If GenerateConfigs.System.Locations.Crate.Purple IsNot Nothing Then
+            TV_Location_Purple_Crate.Nodes.Clear()
+            Dim tCount = 1
+            For Each setting_ As GenerateConfigs.System.SpawnablePositionalData In GenerateConfigs.System.Locations.Crate.Purple
+                TV_Location_Purple_Crate.Nodes.Add(Await LocationSpawnNodeBuilder(setting_, tCount))
+                tCount += 1
+            Next
+        End If
+        '''''''Blue
+        Tab_MainLoc_Blue.IsSelected = True
+        If GenerateConfigs.System.Locations.Strongroom.Blue IsNot Nothing Then
+            TV_Location_Blue_Strongroom.Nodes.Clear()
+            Dim tCount = 1
+            For Each setting_ As GenerateConfigs.System.SpawnablePositionalData In GenerateConfigs.System.Locations.Strongroom.Blue
+                TV_Location_Blue_Strongroom.Nodes.Add(Await LocationSpawnNodeBuilder(setting_, tCount))
+                tCount += 1
+            Next
+        End If
+
+        If GenerateConfigs.System.Locations.Crate.Blue IsNot Nothing Then
+            TV_Location_Blue_Crate.Nodes.Clear()
+            Dim tCount = 1
+            For Each setting_ As GenerateConfigs.System.SpawnablePositionalData In GenerateConfigs.System.Locations.Crate.Blue
+                TV_Location_Blue_Crate.Nodes.Add(Await LocationSpawnNodeBuilder(setting_, tCount))
+                tCount += 1
+            Next
+        End If
+        '''''''Green
+        Tab_MainLoc_Green.IsSelected = True
+        If GenerateConfigs.System.Locations.Strongroom.Green IsNot Nothing Then
+            TV_Location_Green_Strongroom.Nodes.Clear()
+            Dim tCount = 1
+            For Each setting_ As GenerateConfigs.System.SpawnablePositionalData In GenerateConfigs.System.Locations.Strongroom.Green
+                TV_Location_Green_Strongroom.Nodes.Add(Await LocationSpawnNodeBuilder(setting_, tCount))
+                tCount += 1
+            Next
+        End If
+
+        If GenerateConfigs.System.Locations.Crate.Green IsNot Nothing Then
+            TV_Location_Green_Crate.Nodes.Clear()
+            Dim tCount = 1
+            For Each setting_ As GenerateConfigs.System.SpawnablePositionalData In GenerateConfigs.System.Locations.Crate.Green
+                TV_Location_Green_Crate.Nodes.Add(Await LocationSpawnNodeBuilder(setting_, tCount))
+                tCount += 1
+            Next
+        End If
+        '''''''Yellow
+        Tab_MainLoc_Yellow.IsSelected = True
+        If GenerateConfigs.System.Locations.Strongroom.Yellow IsNot Nothing Then
+            TV_Location_Yellow_Strongroom.Nodes.Clear()
+            Dim tCount = 1
+            For Each setting_ As GenerateConfigs.System.SpawnablePositionalData In GenerateConfigs.System.Locations.Strongroom.Yellow
+                TV_Location_Yellow_Strongroom.Nodes.Add(Await LocationSpawnNodeBuilder(setting_, tCount))
+                tCount += 1
+            Next
+        End If
+
+        If GenerateConfigs.System.Locations.Crate.Yellow IsNot Nothing Then
+            TV_Location_Yellow_Crate.Nodes.Clear()
+            Dim tCount = 1
+            For Each setting_ As GenerateConfigs.System.SpawnablePositionalData In GenerateConfigs.System.Locations.Crate.Yellow
+                TV_Location_Yellow_Crate.Nodes.Add(Await LocationSpawnNodeBuilder(setting_, tCount))
+                tCount += 1
+            Next
+        End If
+
+
+
+
+
+    End Function
+
+    Async Function LocationSpawnNodeBuilder(setting_ As GenerateConfigs.System.SpawnablePositionalData, tCount As Double) As Task(Of TreeViewNode)
+        Dim tHeader As New TreeViewNode With {.Content = "StrongRoom: # " + tCount.ToString()}
+        Dim tLocation As New TreeViewNode With {.Content = "Location: (X Y Z)"}
+        Dim tRotation As New TreeViewNode With {.Content = "Rotation: (X Y Z)"}
+        Dim tLocArr = setting_.dna_Location.Split(" ")
+        Dim tRotArr = setting_.dna_Rotation.Split(" ")
+        For Each tLoc In tLocArr
+            tLocation.ChildNodes.Add(New TreeViewNode() With {.Content = tLoc})
+        Next
+        For Each tRot In tRotArr
+            tRotation.ChildNodes.Add(New TreeViewNode() With {.Content = tRot})
+        Next
+        tHeader.ChildNodes.Add(tLocation)
+        tHeader.ChildNodes.Add(tRotation)
+        Return tHeader
     End Function
 End Class
 
