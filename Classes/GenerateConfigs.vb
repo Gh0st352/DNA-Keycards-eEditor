@@ -106,8 +106,12 @@ Public Class GenerateConfigs
             Public Shared dna_ConfigVersion As Integer
         End Class
 
-        Public Shared DNAConfigMainSystem As New ObservableCollection(Of MainSystemSettings)
-
+        Public Shared DNAConfigMainSystem_other As New ObservableCollection(Of MainSystemSettings)
+        Public Shared DNAConfigMainSystem_Crates As New ObservableCollection(Of MainSystemSettings)
+        Public Shared DNAConfigMainSystem_Strongrooms As New ObservableCollection(Of MainSystemSettings)
+        Public Shared DNAConfigMainSystem_Card As New ObservableCollection(Of MainSystemSettings)
+        Public Shared DNAConfigMainSystem_Separate As New ObservableCollection(Of MainSystemSettings)
+        Public Shared DNAConfigMainSystem_lockout As New ObservableCollection(Of MainSystemSettings)
         Public Class MainSystemSettings
             Public Property dna_Option As String
             Public Property dna_Setting As Integer
@@ -137,23 +141,14 @@ Public Class GenerateConfigs
         End Class
 
         Public Class SpawnablePositionalData
+            Public Sub New(dna_Location As String, dna_Rotation As String)
+                Me.dna_Location = dna_Location
+                Me.dna_Rotation = dna_Rotation
+            End Sub
+
             Public Property dna_Location As String
             Public Property dna_Rotation As String
         End Class
-
-
-        'Dim m_DNAYellow_Crate_Locations As ObservableCollection(Of SpawnablePositionalData)
-        'Dim m_DNAGreen_Crate_Locations As ObservableCollection(Of SpawnablePositionalData)
-        'Dim m_DNABlue_Crate_Locations As ObservableCollection(Of SpawnablePositionalData)
-        'Dim m_DNAPurple_Crate_Locations As ObservableCollection(Of SpawnablePositionalData)
-        'Dim m_DNARed_Crate_Locations As ObservableCollection(Of SpawnablePositionalData)
-        'Dim m_DNAYellow_Strongroom_Locations As ObservableCollection(Of SpawnablePositionalData)
-        'Dim m_DNAGreen_Strongroom_Locations As ObservableCollection(Of SpawnablePositionalData)
-        'Dim m_DNABlue_Strongroom_Locations As ObservableCollection(Of SpawnablePositionalData)
-        'Dim m_DNAPurple_Strongroom_Locations As ObservableCollection(Of SpawnablePositionalData)
-        'Dim m_DNARed_Strongroom_Locations As ObservableCollection(Of SpawnablePositionalData)
-
-
 
     End Class
 End Class

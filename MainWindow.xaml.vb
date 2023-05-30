@@ -1210,6 +1210,7 @@ Partial Public Class MainWindow
         CHK_Kits_Use.ItemsSource = GlobalVariables.Types.Usages
         CHK_Kits_Val.ItemsSource = GlobalVariables.Types.Values
         CHK_Kits_Tag.ItemsSource = GlobalVariables.Types.Tags
+        ' TV_Strongrooms.ItemsSource = GenerateConfigs.System.DNAConfigMainSystem_Strongrooms
     End Sub
 
     Public Sub seedHandlers()
@@ -1871,7 +1872,24 @@ Partial Public Class MainWindow
     Private Async Sub Kits_ImportSystemConfig_Click(sender As Object, e As RoutedEventArgs) Handles Kits_ImportSystemConfig.Click
         Dim resultPath As String = Await FileSelectionHelper.SelectSingleFileAsync()
         Dim xxx = FileSelectionHelper.ImportSystemConfigJSON(resultPath)
-
+        Dim xxx2 = UpdateSystemConfigTab()
     End Sub
+    Async Function UpdateSystemConfigTab() As Task
+        Tab_KitsGenerated.IsSelected = True
+        Tab_WeaponKits.IsSelected = True
+        'Red Update
+        If GenerateConfigs.System.DNAConfigMainSystem_Strongrooms IsNot Nothing Then
+            TV_Strongrooms.Nodes.Clear()
+            For Each WeaponSet_ As GenerateConfigs.Weapons.WeaponInfo In GenerateConfigs.Weapons.RedWeaponKits
+                TV_WeaponKits_Generated_Red.Nodes.Add(CreateNodeSetWeapon(WeaponSet_))
+            Next
+        End If
+        For Each t_cfg In GenerateConfigs.System.DNAConfigMainSystem_Strongrooms
+
+        Next
+
+
+
+    End Function
 End Class
 

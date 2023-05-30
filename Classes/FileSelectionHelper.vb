@@ -55,6 +55,9 @@ Imports Newtonsoft.Json.Linq
 
 Namespace Classes
     Public Class FileSelectionHelper
+        Public Shared Function StringContainsText(inputString As String, searchText As String) As Boolean
+            Return inputString.IndexOf(searchText, StringComparison.OrdinalIgnoreCase) >= 0
+        End Function
         Public Shared Async Function SelectMultipleFilesAsync() As Task(Of String())
             Dim openFileDialog As New OpenFileDialog()
             openFileDialog.Multiselect = True
@@ -216,7 +219,7 @@ Namespace Classes
                 collection.Add(item)
             Next
         End Sub
-        Public Shared Function IsStringExistsInCollection (Of T)(collection As ObservableCollection(Of T),
+        Public Shared Function IsStringExistsInCollection(Of T)(collection As ObservableCollection(Of T),
                                                                  searchString As String) As Boolean
             For Each item As T In collection
                 Dim properties = item.GetType().GetProperties()
@@ -235,12 +238,12 @@ Namespace Classes
             Return separatedArray
         End Function
 
-        Public Shared Sub UpdateCollectionsList (Of T)(searchString As String,
+        Public Shared Sub UpdateCollectionsList(Of T)(searchString As String,
                                                        CollectionObject As ObservableCollection(Of T), type As String)
             Dim tCollectionObject As ObservableCollection(Of T) = CollectionObject
             Dim TempStringArr As String() = SeparateString(searchString)
             For Each _str In TempStringArr
-                Dim exists As Boolean = IsStringExistsInCollection (Of T)(tCollectionObject, _str)
+                Dim exists As Boolean = IsStringExistsInCollection(Of T)(tCollectionObject, _str)
                 If exists Then
                     Continue For
                 Else
@@ -418,19 +421,12 @@ Namespace Classes
 
             Return keyValuePairs
         End Function
-        Public Shared Async Function ImportSystemConfigJSON(jsonFilePath As String) As Task(Of List(Of String))
-
-            'Reset Lists
-
-            Dim tDNAConfigMainSystem As New ObservableCollection(Of GenerateConfigs.System.MainSystemSettings)
-            Dim tLocations As New GenerateConfigs.System.Locations
-
+        Public Shared Async Function ImportSystemConfigJSON(jsonFilePath As String) As Task
             Dim classNamesAndVariants As New HashSet(Of String)()
             ' Read the JSON file
             Using reader As StreamReader = File.OpenText(jsonFilePath)
                 Dim jsonText As String = Await reader.ReadToEndAsync()
                 Dim xxx = JSON.ParseSystemConfigJSON(jsonText)
-
                 'Header Cycle
                 For Each tHeader In xxx
                     Dim OptionCount = tHeader.Value.Count
@@ -445,243 +441,111 @@ Namespace Classes
                         Next i
                     End If
 
+
+                    ''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''
+
                     If tHeader.Key = "m_DNAConfig_Main_System" Then
                         For i = 0 To OptionCount - 1
-                            'Dim tOption = tHeader.Value.Item(i).Values.ToList()(0)
-                            'Dim tSetting = tHeader.Value.Item(i).Values.ToList()(1)
-                            GenerateConfigs.System.DNAConfigMainSystem.Add(New GenerateConfigs.System.MainSystemSettings() With {.dna_Option = tHeader.Value.Item(i).Values.ToList()(0), .dna_Setting = tHeader.Value.Item(i).Values.ToList()(1)})
+                            Dim OptText As String = tHeader.Value.Item(i).Values.ToList()(0)
 
 
+                            Select Case True
+                                Case StringContainsText(OptText, "crates")
+                                    GenerateConfigs.System.DNAConfigMainSystem_Crates.Add(New GenerateConfigs.System.MainSystemSettings() With {.dna_Option = tHeader.Value.Item(i).Values.ToList()(0), .dna_Setting = tHeader.Value.Item(i).Values.ToList()(1)})
+                                Case StringContainsText(OptText, "strongrooms")
+                                    GenerateConfigs.System.DNAConfigMainSystem_Strongrooms.Add(New GenerateConfigs.System.MainSystemSettings() With {.dna_Option = tHeader.Value.Item(i).Values.ToList()(0), .dna_Setting = tHeader.Value.Item(i).Values.ToList()(1)})
+                                Case StringContainsText(OptText, "card")
+                                    GenerateConfigs.System.DNAConfigMainSystem_Card.Add(New GenerateConfigs.System.MainSystemSettings() With {.dna_Option = tHeader.Value.Item(i).Values.ToList()(0), .dna_Setting = tHeader.Value.Item(i).Values.ToList()(1)})
+                                Case StringContainsText(OptText, "separate")
+                                    GenerateConfigs.System.DNAConfigMainSystem_Separate.Add(New GenerateConfigs.System.MainSystemSettings() With {.dna_Option = tHeader.Value.Item(i).Values.ToList()(0), .dna_Setting = tHeader.Value.Item(i).Values.ToList()(1)})
+                                Case StringContainsText(OptText, "lockout")
+                                    GenerateConfigs.System.DNAConfigMainSystem_lockout.Add(New GenerateConfigs.System.MainSystemSettings() With {.dna_Option = tHeader.Value.Item(i).Values.ToList()(0), .dna_Setting = tHeader.Value.Item(i).Values.ToList()(1)})
+                                Case Else
+                                    GenerateConfigs.System.DNAConfigMainSystem_other.Add(New GenerateConfigs.System.MainSystemSettings() With {.dna_Option = tHeader.Value.Item(i).Values.ToList()(0), .dna_Setting = tHeader.Value.Item(i).Values.ToList()(1)})
+                            End Select
 
-                            'Options Cycle
-                            'For y = 0 To tHeader.Value.Item(i).Keys.Count - 1
-                            '    If tHeader.Value.Item(i).Keys.ToList()(y) = "dna_Option" Then
-
-
-                            '    End If
-
-                            '    'If tHeader.Value.Item(i).Keys.ToList()(y) = "dna_Option" Then GenerateConfigs.System.DNAConfigMainSystem.Add(New GenerateConfigs.System.MainSystemSettings() With {.dna_Option = "", .dna_Setting = ""}) = tHeader.Value.Item(i).Values.ToList()(y)
-                            '    'If tHeader.Value.Item(i).Keys.ToList()(y) = "dna_Setting" Then GenerateConfigs.System.DNAConfigVersion.dna_ConfigVersion = tHeader.Value.Item(i).Values.ToList()(y)
-                            'Next y
                         Next i
                     End If
 
+                    ''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''
 
+                    If tHeader.Key = "m_DNAYellow_Crate_Locations" Then
+                        Dim t As New ObservableCollection(Of GenerateConfigs.System.SpawnablePositionalData)
+                        For i = 0 To OptionCount - 1
+                            t.Add(New GenerateConfigs.System.SpawnablePositionalData(tHeader.Value.Item(i).Values.ToList()(0), tHeader.Value.Item(i).Values.ToList()(1)))
+                        Next i
+                        GenerateConfigs.System.Locations.Crate.Yellow = t
+                    End If
+                    If tHeader.Key = "m_DNAGreen_Crate_Locations" Then
+                        Dim t As New ObservableCollection(Of GenerateConfigs.System.SpawnablePositionalData)
+                        For i = 0 To OptionCount - 1
+                            t.Add(New GenerateConfigs.System.SpawnablePositionalData(tHeader.Value.Item(i).Values.ToList()(0), tHeader.Value.Item(i).Values.ToList()(1)))
+                        Next i
+                        GenerateConfigs.System.Locations.Crate.Green = t
+                    End If
+                    If tHeader.Key = "m_DNABlue_Crate_Locations" Then
+                        Dim t As New ObservableCollection(Of GenerateConfigs.System.SpawnablePositionalData)
+                        For i = 0 To OptionCount - 1
+                            t.Add(New GenerateConfigs.System.SpawnablePositionalData(tHeader.Value.Item(i).Values.ToList()(0), tHeader.Value.Item(i).Values.ToList()(1)))
+                        Next i
+                        GenerateConfigs.System.Locations.Crate.Blue = t
+                    End If
+                    If tHeader.Key = "m_DNAPurple_Crate_Locations" Then
+                        Dim t As New ObservableCollection(Of GenerateConfigs.System.SpawnablePositionalData)
+                        For i = 0 To OptionCount - 1
+                            t.Add(New GenerateConfigs.System.SpawnablePositionalData(tHeader.Value.Item(i).Values.ToList()(0), tHeader.Value.Item(i).Values.ToList()(1)))
+                        Next i
+                        GenerateConfigs.System.Locations.Crate.Purple = t
+                    End If
+                    If tHeader.Key = "m_DNARed_Crate_Locations" Then
+                        Dim t As New ObservableCollection(Of GenerateConfigs.System.SpawnablePositionalData)
+                        For i = 0 To OptionCount - 1
+                            t.Add(New GenerateConfigs.System.SpawnablePositionalData(tHeader.Value.Item(i).Values.ToList()(0), tHeader.Value.Item(i).Values.ToList()(1)))
+                        Next i
+                        GenerateConfigs.System.Locations.Crate.Red = t
+                    End If
 
+                    ''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''
 
-
-
-
-
+                    If tHeader.Key = "m_DNAYellow_Strongroom_Locations" Then
+                        Dim t As New ObservableCollection(Of GenerateConfigs.System.SpawnablePositionalData)
+                        For i = 0 To OptionCount - 1
+                            t.Add(New GenerateConfigs.System.SpawnablePositionalData(tHeader.Value.Item(i).Values.ToList()(0), tHeader.Value.Item(i).Values.ToList()(1)))
+                        Next i
+                        GenerateConfigs.System.Locations.Strongroom.Yellow = t
+                    End If
+                    If tHeader.Key = "m_DNAGreen_Strongroom_Locations" Then
+                        Dim t As New ObservableCollection(Of GenerateConfigs.System.SpawnablePositionalData)
+                        For i = 0 To OptionCount - 1
+                            t.Add(New GenerateConfigs.System.SpawnablePositionalData(tHeader.Value.Item(i).Values.ToList()(0), tHeader.Value.Item(i).Values.ToList()(1)))
+                        Next i
+                        GenerateConfigs.System.Locations.Strongroom.Green = t
+                    End If
+                    If tHeader.Key = "m_DNABlue_Strongroom_Locations" Then
+                        Dim t As New ObservableCollection(Of GenerateConfigs.System.SpawnablePositionalData)
+                        For i = 0 To OptionCount - 1
+                            t.Add(New GenerateConfigs.System.SpawnablePositionalData(tHeader.Value.Item(i).Values.ToList()(0), tHeader.Value.Item(i).Values.ToList()(1)))
+                        Next i
+                        GenerateConfigs.System.Locations.Strongroom.Blue = t
+                    End If
+                    If tHeader.Key = "m_DNAPurple_Strongroom_Locations" Then
+                        Dim t As New ObservableCollection(Of GenerateConfigs.System.SpawnablePositionalData)
+                        For i = 0 To OptionCount - 1
+                            t.Add(New GenerateConfigs.System.SpawnablePositionalData(tHeader.Value.Item(i).Values.ToList()(0), tHeader.Value.Item(i).Values.ToList()(1)))
+                        Next i
+                        GenerateConfigs.System.Locations.Strongroom.Purple = t
+                    End If
+                    If tHeader.Key = "m_DNARed_Strongroom_Locations" Then
+                        Dim t As New ObservableCollection(Of GenerateConfigs.System.SpawnablePositionalData)
+                        For i = 0 To OptionCount - 1
+                            t.Add(New GenerateConfigs.System.SpawnablePositionalData(tHeader.Value.Item(i).Values.ToList()(0), tHeader.Value.Item(i).Values.ToList()(1)))
+                        Next i
+                        GenerateConfigs.System.Locations.Strongroom.Red = t
+                    End If
 
                 Next
-
-
-
-
-
-
-                'Dim parsedData As Dictionary(Of String, List(Of Dictionary(Of String, Object))) = JSON.ParseSystemConfigJSON(jsonText)
-
-
-                'Dim tjsonObject As JObject = JObject.Parse(jsonText)
-
-                'JSON.TraverseJSONNodes(tjsonObject)
-
-                ''header
-                'For Each prop As JProperty In tjsonObject.Properties()
-                '    Dim breakt = ""
-                '    Dim propObject As JToken = tjsonObject.Item(prop.Name)
-                '    ''''''''''''''''
-
-
-                '    If prop.Name = "m_DNAConfig_Version" Then
-                '        'For each cfg option
-                '        For Each tKey In propObject.Children()
-
-                '            For Each CFGSet
-
-
-                '            Dim x7xx7 = ""
-
-                '        Next
-                '    End If
-
-
-
-
-
-
-                '    Dim xxx7 = ""
-                'Next
-
-
-
-
-
-
-
-                'For Each prop As JProperty In JSON.Properties()
-                '    Dim nodePath As String = prop.Path
-                '    Dim nodeName As String = prop.Name
-                '    Dim nodeValue As Object = prop.Value
-
-                '    ' Indent the output for readability
-                '    Console.WriteLine($"{New String(" "c, indent)}Node Path: {nodePath}")
-                '    Console.WriteLine($"{New String(" "c, indent)}Node Name: {nodeName}")
-                '    Console.WriteLine($"{New String(" "c, indent)}Node Value: {nodeValue}")
-
-                '    ' Check if the node has child nodes
-                '    If prop.Value.Type = JTokenType.Array OrElse prop.Value.Type = JTokenType.Object Then
-                '        Dim childNodes As List(Of JObject) = GetChildNodes(JSON, nodePath)
-
-                '        ' Recursively traverse child nodes
-                '        For Each childNode As JObject In childNodes
-                '            TraverseJSONNodes(childNode, indent + 2)
-                '        Next
-                '    End If
-                'Next
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-                'For Each kvp As KeyValuePair(Of String, List(Of Dictionary(Of String, Object))) In parsedData
-                '    Dim propertyName As String = kvp.Key
-                '    Dim propertyData As List(Of Dictionary(Of String, Object)) = kvp.Value
-                '    Dim keyValuePairs As List(Of KeyValuePair(Of String, Object)) = RetrieveKeyValuePairs(propertyData)
-
-
-
-                '    Select Case True
-
-                '        'CONFIG HEADER
-                '        Case propertyName = "m_DNAConfig_Version"
-                '            For Each kvpItem As KeyValuePair(Of String, Object) In keyValuePairs
-                '                Dim key As String = kvpItem.Key
-                '                Dim value As Object = kvpItem.Value
-
-                '                If key = "dna_WarningMessage" Then GenerateConfigs.System.DNAConfigVersion.dna_WarningMessage = value
-                '                If key = "dna_ConfigVersion" Then GenerateConfigs.System.DNAConfigVersion.dna_ConfigVersion = value
-                '            Next
-
-                '        'MAIN SYSTEM CONFIGS
-                '        Case propertyName = "m_DNAConfig_Main_System"
-                '            For Each kvpItem As KeyValuePair(Of String, Object) In keyValuePairs
-                '                Dim key As String = kvpItem.Key
-                '                Dim value As Object = kvpItem.Value
-                '                Dim tempSetting As New GenerateConfigs.System.MainSystemSettings With {.dna_Option = key, .dna_Setting = value}
-                '                GenerateConfigs.System.DNAConfigMainSystem.Add(tempSetting)
-                '            Next
-
-                '        'LOCATION CONFIGS
-                '        Case propertyName.ToLower().Contains("locations")
-                '            Select Case True
-                '                'CRATE LOCATIONS
-                '                Case propertyName.ToLower().Contains("crate")
-                '                    'CHOOSE COLOR TIER
-                '                    Select Case True
-                '                        Case propertyName.ToLower().Contains("red")
-                '                            For Each tSpawnLoc In propertyData
-                '                                GenerateConfigs.System.Locations.Crate.Red.Add(New GenerateConfigs.System.SpawnablePositionalData() With {.dna_Location = "", .dna_Rotation = ""})
-                '                            Next
-                '                        Case propertyName.ToLower().Contains("purple")
-                '                                Case propertyName.ToLower().Contains("blue")
-                '                        Case propertyName.ToLower().Contains("green")
-                '                        Case propertyName.ToLower().Contains("yellow")
-                '                    End Select
-
-                '                    'STRONGROOM LOCATIONS
-                '                Case propertyName.ToLower().Contains("strongroom")
-                '                    'CHOOSE COLOR TIER
-                '                    Select Case True
-                '                        Case propertyName.ToLower().Contains("red")
-                '                        Case propertyName.ToLower().Contains("purple")
-                '                        Case propertyName.ToLower().Contains("blue")
-                '                        Case propertyName.ToLower().Contains("green")
-                '                        Case propertyName.ToLower().Contains("yellow")
-                '                    End Select
-                '            End Select
-                '        Case Else
-                '    End Select
-
-
-
-
-
-
-
-                '    Dim xx2x = ""
-                '    ' Process the key/value pairs as needed
-
-
-
-                '    'Select Case True
-                '    '    Case propertyName = "m_DNAConfig_Version"
-                '    '        GenerateConfigs.System.DNAConfigVersion.dna_ConfigVersion = propertyData.
-
-                '    '    Case Else
-
-                '    'End Select
-
-
-
-                '    ' Process the data as needed
-                '    Dim xxx = ""
-                'Next
-                'Dim xxx3 = ""
-                '' Deserialize the JSON data
-                'Dim jsonData As JObject = JsonConvert.DeserializeObject(Of JObject)(jsonText)
-                'Dim xxx2 = ""
-                '' Get the "Items" array
-                'Dim itemsArray As JArray = jsonData("Items")
-
-                'Dim xxx = ""
-                '' Iterate through each item
-                'For Each item As JObject In itemsArray
-                '    ' Get the "ClassName" value
-                '    Dim className As String = item("ClassName").ToString()
-
-                '    ' Add the "ClassName" value to the hash set if it's not already present
-                '    classNamesAndVariants.Add(className)
-
-                '    ' Get the "Variants" array
-                '    Dim variantsArray As JArray = item("Variants")
-
-                '    ' Iterate through each variant
-                '    For Each tvariant As JToken In variantsArray
-                '        ' Get the variant string
-                '        Dim variantString As String = tvariant.ToString()
-
-                '        ' Add the variant string to the hash set if it's not already present
-                '        classNamesAndVariants.Add(variantString)
-                '    Next
-                'Next
             End Using
-
-            ' Return the list of unique "classname" and "variants" strings
-            Return classNamesAndVariants.ToList()
+            Return
         End Function
 
         Public Shared Async Function RemoveDuplicates(ByVal list As List(Of String)) As Task(Of List(Of String))
