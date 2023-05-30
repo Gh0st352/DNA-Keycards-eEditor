@@ -429,15 +429,91 @@ Namespace Classes
             ' Read the JSON file
             Using reader As StreamReader = File.OpenText(jsonFilePath)
                 Dim jsonText As String = Await reader.ReadToEndAsync()
+                Dim xxx = JSON.ParseSystemConfigJSON(jsonText)
+
+                'Header Cycle
+                For Each tHeader In xxx
+                    Dim OptionCount = tHeader.Value.Count
+
+                    If tHeader.Key = "m_DNAConfig_Version" Then
+                        For i = 0 To OptionCount - 1
+                            'Options Cycle
+                            For y = 0 To tHeader.Value.Item(i).Keys.Count - 1
+                                If tHeader.Value.Item(i).Keys.ToList()(y) = "dna_WarningMessage" Then GenerateConfigs.System.DNAConfigVersion.dna_WarningMessage = tHeader.Value.Item(i).Values.ToList()(y)
+                                If tHeader.Value.Item(i).Keys.ToList()(y) = "dna_ConfigVersion" Then GenerateConfigs.System.DNAConfigVersion.dna_ConfigVersion = tHeader.Value.Item(i).Values.ToList()(y)
+                            Next y
+                        Next i
+                    End If
+
+                    If tHeader.Key = "m_DNAConfig_Main_System" Then
+                        For i = 0 To OptionCount - 1
+                            'Dim tOption = tHeader.Value.Item(i).Values.ToList()(0)
+                            'Dim tSetting = tHeader.Value.Item(i).Values.ToList()(1)
+                            GenerateConfigs.System.DNAConfigMainSystem.Add(New GenerateConfigs.System.MainSystemSettings() With {.dna_Option = tHeader.Value.Item(i).Values.ToList()(0), .dna_Setting = tHeader.Value.Item(i).Values.ToList()(1)})
+
+
+
+                            'Options Cycle
+                            'For y = 0 To tHeader.Value.Item(i).Keys.Count - 1
+                            '    If tHeader.Value.Item(i).Keys.ToList()(y) = "dna_Option" Then
+
+
+                            '    End If
+
+                            '    'If tHeader.Value.Item(i).Keys.ToList()(y) = "dna_Option" Then GenerateConfigs.System.DNAConfigMainSystem.Add(New GenerateConfigs.System.MainSystemSettings() With {.dna_Option = "", .dna_Setting = ""}) = tHeader.Value.Item(i).Values.ToList()(y)
+                            '    'If tHeader.Value.Item(i).Keys.ToList()(y) = "dna_Setting" Then GenerateConfigs.System.DNAConfigVersion.dna_ConfigVersion = tHeader.Value.Item(i).Values.ToList()(y)
+                            'Next y
+                        Next i
+                    End If
+
+
+
+
+
+
+
+
+
+                Next
+
+
+
+
+
+
                 'Dim parsedData As Dictionary(Of String, List(Of Dictionary(Of String, Object))) = JSON.ParseSystemConfigJSON(jsonText)
 
 
-                Dim tjsonObject As JObject = JObject.Parse(jsonText)
+                'Dim tjsonObject As JObject = JObject.Parse(jsonText)
 
-                JSON.TraverseJSONNodes(tjsonObject)
+                'JSON.TraverseJSONNodes(tjsonObject)
 
-                For Each tChiledd 
+                ''header
+                'For Each prop As JProperty In tjsonObject.Properties()
+                '    Dim breakt = ""
+                '    Dim propObject As JToken = tjsonObject.Item(prop.Name)
+                '    ''''''''''''''''
 
+
+                '    If prop.Name = "m_DNAConfig_Version" Then
+                '        'For each cfg option
+                '        For Each tKey In propObject.Children()
+
+                '            For Each CFGSet
+
+
+                '            Dim x7xx7 = ""
+
+                '        Next
+                '    End If
+
+
+
+
+
+
+                '    Dim xxx7 = ""
+                'Next
 
 
 
