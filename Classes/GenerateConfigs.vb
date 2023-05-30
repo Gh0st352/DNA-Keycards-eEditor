@@ -114,6 +114,8 @@ Public Class GenerateConfigs
         Public Shared DNAConfigMainSystem_lockout As New ObservableCollection(Of MainSystemSettings)
         Public Class MainSystemSettings
             Public Property dna_Option As String
+            Public Property dna_Option_Bak As String
+            Public Property HelpText As String
             Public Property dna_Setting As Integer
         End Class
 

@@ -451,17 +451,17 @@ Namespace Classes
 
                             Select Case True
                                 Case StringContainsText(OptText, "crates")
-                                    GenerateConfigs.System.DNAConfigMainSystem_Crates.Add(New GenerateConfigs.System.MainSystemSettings() With {.dna_Option = tHeader.Value.Item(i).Values.ToList()(0), .dna_Setting = tHeader.Value.Item(i).Values.ToList()(1)})
+                                    GenerateConfigs.System.DNAConfigMainSystem_Crates.Add(New GenerateConfigs.System.MainSystemSettings() With {.HelpText = tHeader.Value.Item(i).Values.ToList()(0), .dna_Option = tHeader.Value.Item(i).Values.ToList()(0), .dna_Option_Bak = tHeader.Value.Item(i).Values.ToList()(0), .dna_Setting = tHeader.Value.Item(i).Values.ToList()(1)})
                                 Case StringContainsText(OptText, "strongrooms")
-                                    GenerateConfigs.System.DNAConfigMainSystem_Strongrooms.Add(New GenerateConfigs.System.MainSystemSettings() With {.dna_Option = tHeader.Value.Item(i).Values.ToList()(0), .dna_Setting = tHeader.Value.Item(i).Values.ToList()(1)})
+                                    GenerateConfigs.System.DNAConfigMainSystem_Strongrooms.Add(New GenerateConfigs.System.MainSystemSettings() With {.HelpText = tHeader.Value.Item(i).Values.ToList()(0), .dna_Option = tHeader.Value.Item(i).Values.ToList()(0), .dna_Option_Bak = tHeader.Value.Item(i).Values.ToList()(0), .dna_Setting = tHeader.Value.Item(i).Values.ToList()(1)})
                                 Case StringContainsText(OptText, "card")
-                                    GenerateConfigs.System.DNAConfigMainSystem_Card.Add(New GenerateConfigs.System.MainSystemSettings() With {.dna_Option = tHeader.Value.Item(i).Values.ToList()(0), .dna_Setting = tHeader.Value.Item(i).Values.ToList()(1)})
+                                    GenerateConfigs.System.DNAConfigMainSystem_Card.Add(New GenerateConfigs.System.MainSystemSettings() With {.HelpText = tHeader.Value.Item(i).Values.ToList()(0), .dna_Option = tHeader.Value.Item(i).Values.ToList()(0), .dna_Option_Bak = tHeader.Value.Item(i).Values.ToList()(0), .dna_Setting = tHeader.Value.Item(i).Values.ToList()(1)})
                                 Case StringContainsText(OptText, "separate")
-                                    GenerateConfigs.System.DNAConfigMainSystem_Separate.Add(New GenerateConfigs.System.MainSystemSettings() With {.dna_Option = tHeader.Value.Item(i).Values.ToList()(0), .dna_Setting = tHeader.Value.Item(i).Values.ToList()(1)})
+                                    GenerateConfigs.System.DNAConfigMainSystem_Separate.Add(New GenerateConfigs.System.MainSystemSettings() With {.HelpText = tHeader.Value.Item(i).Values.ToList()(0), .dna_Option = tHeader.Value.Item(i).Values.ToList()(0), .dna_Option_Bak = tHeader.Value.Item(i).Values.ToList()(0), .dna_Setting = tHeader.Value.Item(i).Values.ToList()(1)})
                                 Case StringContainsText(OptText, "lockout")
-                                    GenerateConfigs.System.DNAConfigMainSystem_lockout.Add(New GenerateConfigs.System.MainSystemSettings() With {.dna_Option = tHeader.Value.Item(i).Values.ToList()(0), .dna_Setting = tHeader.Value.Item(i).Values.ToList()(1)})
+                                    GenerateConfigs.System.DNAConfigMainSystem_lockout.Add(New GenerateConfigs.System.MainSystemSettings() With {.HelpText = tHeader.Value.Item(i).Values.ToList()(0), .dna_Option = tHeader.Value.Item(i).Values.ToList()(0), .dna_Option_Bak = tHeader.Value.Item(i).Values.ToList()(0), .dna_Setting = tHeader.Value.Item(i).Values.ToList()(1)})
                                 Case Else
-                                    GenerateConfigs.System.DNAConfigMainSystem_other.Add(New GenerateConfigs.System.MainSystemSettings() With {.dna_Option = tHeader.Value.Item(i).Values.ToList()(0), .dna_Setting = tHeader.Value.Item(i).Values.ToList()(1)})
+                                    GenerateConfigs.System.DNAConfigMainSystem_other.Add(New GenerateConfigs.System.MainSystemSettings() With {.HelpText = tHeader.Value.Item(i).Values.ToList()(0), .dna_Option = tHeader.Value.Item(i).Values.ToList()(0), .dna_Option_Bak = tHeader.Value.Item(i).Values.ToList()(0), .dna_Setting = tHeader.Value.Item(i).Values.ToList()(1)})
                             End Select
 
                         Next i

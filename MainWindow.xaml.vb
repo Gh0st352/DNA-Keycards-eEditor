@@ -46,6 +46,7 @@ Imports System.Windows.Threading
 Imports DNA_Keycard_Editor.Classes
 Imports System.IO
 Imports System.Reflection
+Imports System.Text.RegularExpressions
 Imports System.Windows.Forms
 Imports Syncfusion.UI.Xaml.Grid
 Imports Newtonsoft.Json
@@ -1874,19 +1875,71 @@ Partial Public Class MainWindow
         Dim xxx = FileSelectionHelper.ImportSystemConfigJSON(resultPath)
         Dim xxx2 = UpdateSystemConfigTab()
     End Sub
+    Public Shared Function SeparateStrings(ByVal inputString As String) As (String, String)
+        Dim pattern As String = "\([0-9]+\)\s(.+)"
+        Dim regex As New Regex(pattern)
+        Dim match As Match = regex.Match(inputString)
+
+        Dim separatedA As String = ""
+        Dim separatedB As String = ""
+
+        If match.Success Then
+            separatedA = match.Groups(0).Value.Trim()
+            separatedB = match.Groups(1).Value.Trim()
+        End If
+
+        Return (separatedA, separatedB)
+    End Function
+    Public Function ExtractCFGSettingName(ByVal inputString As String) As String
+        Dim pattern As String = "\)(.*?)\("
+        Dim match As Match = Regex.Match(inputString, pattern)
+
+        If match.Success Then
+            Return match.Groups(1).Value.Trim()
+        Else
+            Return String.Empty
+        End If
+    End Function
+    Public Function ExtractTextAfterFirstOccurrence(ByVal InputString As String) As String
+        ' Find the index of the first occurrence of '('
+        Dim firstIndex As Integer = InputString.IndexOf("(")
+        ' If the first occurrence is found, search for the second occurrence
+        If firstIndex <> -1 Then
+            ' Starting from the position after the first occurrence, find the index of the second occurrence
+            Dim secondIndex As Integer = InputString.IndexOf("(", firstIndex + 1)
+            If secondIndex <> -1 Then
+                Console.WriteLine("Index of the second occurrence of '(': " & secondIndex)
+                Dim extractedText As String = InputString.Substring(secondIndex).TrimStart()
+                Return extractedText
+            Else
+                'Console.WriteLine("Second occurrence of '(' not found.")
+            End If
+        Else
+            'Console.WriteLine("First occurrence of '(' not found.")
+        End If
+
+    End Function
     Async Function UpdateSystemConfigTab() As Task
-        Tab_KitsGenerated.IsSelected = True
-        Tab_WeaponKits.IsSelected = True
-        'Red Update
+        Tab_SystemConfig.IsSelected = True
+
         If GenerateConfigs.System.DNAConfigMainSystem_Strongrooms IsNot Nothing Then
             TV_Strongrooms.Nodes.Clear()
-            For Each WeaponSet_ As GenerateConfigs.Weapons.WeaponInfo In GenerateConfigs.Weapons.RedWeaponKits
-                TV_WeaponKits_Generated_Red.Nodes.Add(CreateNodeSetWeapon(WeaponSet_))
+            For Each setting_ As GenerateConfigs.System.MainSystemSettings In GenerateConfigs.System.DNAConfigMainSystem_Strongrooms
+
+                Dim tHeader As New TreeViewNode With {.Content = ExtractCFGSettingName(setting_.dna_Option)}
+                tHeader.ChildNodes.Add(New TreeViewNode() With {.Content = "TIP:" + ExtractTextAfterFirstOccurrence(setting_.HelpText)})
+                tHeader.ChildNodes.Add(New TreeViewNode() With {.Content = setting_.dna_Setting})
+                TV_Strongrooms.Nodes.Add(tHeader)
             Next
         End If
-        For Each t_cfg In GenerateConfigs.System.DNAConfigMainSystem_Strongrooms
 
-        Next
+
+
+
+
+
+
+
 
 
 
