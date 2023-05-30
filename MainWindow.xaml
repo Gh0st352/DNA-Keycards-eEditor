@@ -1382,18 +1382,18 @@
                                 <RowDefinition Height="91*" />
                                 <RowDefinition Height="136*" />
                             </Grid.RowDefinitions>
-                            <Grid x:Name="G_Strongrooms" HorizontalAlignment="Left" Height="268" VerticalAlignment="Top" Width="617" Grid.RowSpan="2" Background="#FF2E2E2E">
+                            <Grid x:Name="G_Strongrooms" HorizontalAlignment="Left" Height="273" VerticalAlignment="Top" Width="627" Grid.RowSpan="2" Background="#FF2E2E2E">
                                 <Label x:Name="l_Strongrooms" Content="Strongroom settings" HorizontalAlignment="Left" VerticalAlignment="Top"
                                 Width="209"
                                 VerticalContentAlignment="Center"
                                 BorderBrush="#FF020000" AllowDrop="False" Margin="10,5,0,0" FontSize="16" Padding="5,0,5,5" />
-                                <syncfusion:SfTreeView x:Name="TV_Strongrooms" AllowDragging="True" AllowDrop="True" Height="232" ItemTemplateDataContextType="Item" Margin="0,36,0,0" ShowLines="True" ShowRootLines="True" SelectionMode="Multiple" VerticalAlignment="Top" FocusBorderThickness="0,1">
+                                <syncfusion:SfTreeView x:Name="TV_Strongrooms" AllowDragging="True" AllowDrop="True" Height="237" ItemTemplateDataContextType="Item" Margin="0,36,0,0" ShowLines="True" ShowRootLines="True" SelectionMode="Multiple" VerticalAlignment="Top" FocusBorderThickness="0,1">
                                     <syncfusion:SfTreeView.Nodes>
                                         <syncfusion:TreeViewNode Content="Please Import a config" HasChildNodes="False" IsExpanded="False" IsChecked="False" ShowExpanderAnimation="False"/>
                                     </syncfusion:SfTreeView.Nodes>
                                 </syncfusion:SfTreeView>
                             </Grid>
-                            <Grid x:Name="G_keycard" HorizontalAlignment="Left" Height="154" VerticalAlignment="Top" Width="507" Background="#FF2E2E2E" Margin="622,163,0,0" Grid.RowSpan="2">
+                            <Grid x:Name="G_keycard" HorizontalAlignment="Left" Height="154" VerticalAlignment="Top" Width="222" Background="#FF2E2E2E" Margin="571,240,0,-73" Grid.Row="1">
                                 <Label x:Name="l_keycard" Content="KeyCard settings" HorizontalAlignment="Left" VerticalAlignment="Top"
                                     Width="209"
                                     VerticalContentAlignment="Center"
@@ -1404,38 +1404,79 @@
                                     </syncfusion:SfTreeView.Nodes>
                                 </syncfusion:SfTreeView>
                             </Grid>
-                            <Grid x:Name="G_separation" HorizontalAlignment="Left" Height="177" VerticalAlignment="Top" Width="507" Background="#FF2E2E2E" Margin="622,107,0,0" Grid.Row="1">
+                            <Grid x:Name="G_separation" HorizontalAlignment="Left" Height="172" VerticalAlignment="Top" Width="222" Background="#FF2E2E2E" Margin="571,63,0,0" Grid.Row="1">
                                 <Label x:Name="l_separation" Content="Separation settings" HorizontalAlignment="Left" VerticalAlignment="Top"
                                     Width="209"
                                     VerticalContentAlignment="Center"
                                     BorderBrush="#FF020000" AllowDrop="False" Margin="10,5,0,0" FontSize="16" Padding="5,0,5,5" />
-                                <syncfusion:SfTreeView x:Name="TV_separation" AllowDragging="True" AllowDrop="True" Height="134" ItemTemplateDataContextType="Item" Margin="0,36,0,0" ShowLines="True" ShowRootLines="True" SelectionMode="Multiple" VerticalAlignment="Top" FocusBorderThickness="0,1">
+                                <syncfusion:SfTreeView x:Name="TV_separation" AllowDragging="True" AllowDrop="True" Height="141" ItemTemplateDataContextType="Item" Margin="0,36,0,0" ShowLines="True" ShowRootLines="True" SelectionMode="Multiple" VerticalAlignment="Top" FocusBorderThickness="0,1">
                                     <syncfusion:SfTreeView.Nodes>
                                         <syncfusion:TreeViewNode Content="New TreeViewNode" HasChildNodes="False" IsExpanded="False" IsChecked="False" ShowExpanderAnimation="False"/>
                                     </syncfusion:SfTreeView.Nodes>
                                 </syncfusion:SfTreeView>
                             </Grid>
-                            <Grid x:Name="G_lockout" HorizontalAlignment="Left" Height="158" VerticalAlignment="Top" Width="507" Background="#FF2E2E2E" Margin="622,0,0,0">
+                            <Grid x:Name="G_lockout" HorizontalAlignment="Left" Height="208" VerticalAlignment="Top" Width="331" Background="#FF2E2E2E" Margin="798,63,0,0" Grid.Row="1">
                                 <Label x:Name="l_lockout" Content="Lockout settings" HorizontalAlignment="Left" VerticalAlignment="Top"
                                     Width="209"
                                     VerticalContentAlignment="Center"
                                     BorderBrush="#FF020000" AllowDrop="False" Margin="10,5,0,0" FontSize="16" Padding="5,0,5,5" />
-                                <syncfusion:SfTreeView x:Name="TV_lockout" AllowDragging="True" AllowDrop="True" Height="122" ItemTemplateDataContextType="Item" Margin="0,36,0,0" ShowLines="True" ShowRootLines="True" SelectionMode="Multiple" VerticalAlignment="Top" FocusBorderThickness="0,1">
+                                <syncfusion:SfTreeView x:Name="TV_lockout" AllowDragging="True" AllowDrop="True" Height="177" ItemTemplateDataContextType="Item" Margin="0,36,0,0" ShowLines="True" ShowRootLines="True" SelectionMode="Multiple" VerticalAlignment="Top" FocusBorderThickness="0,1">
                                     <syncfusion:SfTreeView.Nodes>
                                         <syncfusion:TreeViewNode Content="New TreeViewNode" HasChildNodes="False" IsExpanded="False" IsChecked="False" ShowExpanderAnimation="False"/>
                                     </syncfusion:SfTreeView.Nodes>
                                 </syncfusion:SfTreeView>
                             </Grid>
-                            <Grid x:Name="G_crates" HorizontalAlignment="Left" Height="263" VerticalAlignment="Top" Width="617" Background="#FF2E2E2E" Margin="0,58,0,0" Grid.Row="1">
+                            <Grid x:Name="G_crates" HorizontalAlignment="Left" Height="258" VerticalAlignment="Top" Width="566" Background="#FF2E2E2E" Margin="0,63,0,0" Grid.Row="1">
                                 <Label x:Name="l_crates" Content="Crates settings" HorizontalAlignment="Left" VerticalAlignment="Top"
                                     Width="209"
                                     VerticalContentAlignment="Center"
                                     BorderBrush="#FF020000" AllowDrop="False" Margin="10,5,0,0" FontSize="16" Padding="5,0,5,5" />
-                                <syncfusion:SfTreeView x:Name="TV_crates" AllowDragging="True" AllowDrop="True" Height="208" ItemTemplateDataContextType="Item" Margin="0,36,0,0" ShowLines="True" ShowRootLines="True" SelectionMode="Multiple" VerticalAlignment="Top" FocusBorderThickness="0,1">
+                                <syncfusion:SfTreeView x:Name="TV_crates" AllowDragging="True" AllowDrop="True" Height="227" ItemTemplateDataContextType="Item" Margin="0,36,0,0" ShowLines="True" ShowRootLines="True" SelectionMode="Multiple" VerticalAlignment="Top" FocusBorderThickness="0,1">
                                     <syncfusion:SfTreeView.Nodes>
                                         <syncfusion:TreeViewNode Content="New TreeViewNode" HasChildNodes="False" IsExpanded="False" IsChecked="False" ShowExpanderAnimation="False"/>
                                     </syncfusion:SfTreeView.Nodes>
                                 </syncfusion:SfTreeView>
+                            </Grid>
+                            <Grid x:Name="G_other" HorizontalAlignment="Left" Height="118" VerticalAlignment="Top" Width="331" Background="#FF2E2E2E" Margin="798,276,0,-73" Grid.Row="1">
+                                <Label x:Name="l_other" Content="Unsortable settings" HorizontalAlignment="Left" VerticalAlignment="Top"
+                                Width="209"
+                                VerticalContentAlignment="Center"
+                                BorderBrush="#FF020000" AllowDrop="False" Margin="10,5,0,0" FontSize="16" Padding="5,0,5,5" />
+                                <syncfusion:SfTreeView x:Name="TV_other" AllowDragging="True" AllowDrop="True" Height="82" ItemTemplateDataContextType="Item" Margin="0,36,0,0" ShowLines="True" ShowRootLines="True" SelectionMode="Multiple" VerticalAlignment="Top" FocusBorderThickness="0,1">
+                                    <syncfusion:SfTreeView.Nodes>
+                                        <syncfusion:TreeViewNode Content="New TreeViewNode" HasChildNodes="False" IsExpanded="False" IsChecked="False" ShowExpanderAnimation="False"/>
+                                    </syncfusion:SfTreeView.Nodes>
+                                </syncfusion:SfTreeView>
+                            </Grid>
+                            <Grid x:Name="G_LOCATION" HorizontalAlignment="Left" Height="273" VerticalAlignment="Top" Width="497" Margin="632,0,0,0" Grid.RowSpan="2">
+                                <syncfusion:TabControlExt x:Name="Tab_MainLocation" TabStripPlacement="Top" TabItemSize="Normal" TabScrollButtonVisibility="Hidden" CloseButtonType="Hide" ShowTabItemContextMenu="False" ShowTabListContextMenu="False" EnableLabelEdit="False">
+                                    <syncfusion:TabItemExt x:Name="Tab_MainLoc_Red" syncfusion:TabControlExt.CustomEditableTemplate="{Binding (syncfusion:TabItemExt.CustomEditableTemplate), Mode=TwoWay}" Header="Red" syncfusion:TabControlExt.HoverBackground="{Binding (syncfusion:TabItemExt.HoverBackground), Mode=TwoWay}" syncfusion:TabControlExt.ImageAlignment="{Binding (syncfusion:TabItemExt.ImageAlignment), Mode=TwoWay}" syncfusion:TabControlExt.ImageWidth="{Binding (syncfusion:TabItemExt.ImageWidth), Mode=TwoWay}" syncfusion:TabControlExt.Image="{Binding (syncfusion:TabItemExt.Image), Mode=TwoWay}" syncfusion:TabControlExt.ImageHeight="{Binding (syncfusion:TabItemExt.ImageHeight), Mode=TwoWay}" MinWidth="55" MinHeight="20" syncfusion:TabControlExt.UseCustomEditableTemplate="{Binding (syncfusion:TabItemExt.UseCustomEditableTemplate), Mode=TwoWay}">
+                                        <Grid>
+                                            <Grid x:Name="G_separation_Copy" HorizontalAlignment="Left" Height="248" VerticalAlignment="Top" Width="248" Background="#FF2E2E2E">
+                                                <Label x:Name="l_separation1" Content="Strongroom Spawns" HorizontalAlignment="Left" VerticalAlignment="Top"
+                                                    Width="209"
+                                                    VerticalContentAlignment="Center"
+                                                    BorderBrush="#FF020000" AllowDrop="False" Margin="10,5,0,0" FontSize="16" Padding="5,0,5,5" />
+                                                <syncfusion:SfTreeView x:Name="TV_separation1" AllowDragging="True" AllowDrop="True" Height="212" ItemTemplateDataContextType="Item" Margin="0,36,0,0" ShowLines="True" ShowRootLines="True" SelectionMode="Multiple" VerticalAlignment="Top" FocusBorderThickness="0,1">
+                                                    <syncfusion:SfTreeView.Nodes>
+                                                        <syncfusion:TreeViewNode Content="New TreeViewNode" HasChildNodes="False" IsExpanded="False" IsChecked="False" ShowExpanderAnimation="False"/>
+                                                    </syncfusion:SfTreeView.Nodes>
+                                                </syncfusion:SfTreeView>
+                                            </Grid>
+                                            <Grid x:Name="G_separation_Copy1" HorizontalAlignment="Right" Height="248" VerticalAlignment="Top" Width="248" Background="#FF2E2E2E">
+                                                <Label x:Name="l_separation2" Content="Crate Spawns" HorizontalAlignment="Left" VerticalAlignment="Top"
+                                                    Width="209"
+                                                    VerticalContentAlignment="Center"
+                                                    BorderBrush="#FF020000" AllowDrop="False" Margin="10,5,0,0" FontSize="16" Padding="5,0,5,5" />
+                                                <syncfusion:SfTreeView x:Name="TV_separation2" AllowDragging="True" AllowDrop="True" Height="212" ItemTemplateDataContextType="Item" Margin="0,36,0,0" ShowLines="True" ShowRootLines="True" SelectionMode="Multiple" VerticalAlignment="Top" FocusBorderThickness="0,1">
+                                                    <syncfusion:SfTreeView.Nodes>
+                                                        <syncfusion:TreeViewNode Content="New TreeViewNode" HasChildNodes="False" IsExpanded="False" IsChecked="False" ShowExpanderAnimation="False"/>
+                                                    </syncfusion:SfTreeView.Nodes>
+                                                </syncfusion:SfTreeView>
+                                            </Grid>
+                                        </Grid>
+                                    </syncfusion:TabItemExt>
+                                </syncfusion:TabControlExt>
                             </Grid>
                         </Grid>
                         <Grid HorizontalAlignment="Left" Height="69" VerticalAlignment="Top" Width="1149" Margin="0,551,0,0">
@@ -1447,17 +1488,6 @@
                                 AllowDrop="False" LargeIcon="etc/ico/arrow up/arrow-up.ico"
                                 SmallIcon="etc/ico/arrow up/arrow-up.ico" IconHeight="60"
                                 IconWidth="60" FontSize="14" />
-                        </Grid>
-                        <Grid x:Name="G_other" HorizontalAlignment="Left" Height="96" VerticalAlignment="Top" Width="505" Background="#FF2E2E2E" Margin="634,514,0,0">
-                            <Label x:Name="l_other" Content="Other settings" HorizontalAlignment="Left" VerticalAlignment="Top"
-                                Width="209"
-                                VerticalContentAlignment="Center"
-                                BorderBrush="#FF020000" AllowDrop="False" Margin="10,5,0,0" FontSize="16" Padding="5,0,5,5" />
-                            <syncfusion:SfTreeView x:Name="TV_other" AllowDragging="True" AllowDrop="True" Height="59" ItemTemplateDataContextType="Item" Margin="0,36,0,0" ShowLines="True" ShowRootLines="True" SelectionMode="Multiple" VerticalAlignment="Top" FocusBorderThickness="0,1">
-                                <syncfusion:SfTreeView.Nodes>
-                                    <syncfusion:TreeViewNode Content="New TreeViewNode" HasChildNodes="False" IsExpanded="False" IsChecked="False" ShowExpanderAnimation="False"/>
-                                </syncfusion:SfTreeView.Nodes>
-                            </syncfusion:SfTreeView>
                         </Grid>
                     </Grid>
                 </syncfusion:TabItemExt>

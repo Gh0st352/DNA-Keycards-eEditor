@@ -1873,7 +1873,7 @@ Partial Public Class MainWindow
     Private Async Sub Kits_ImportSystemConfig_Click(sender As Object, e As RoutedEventArgs) Handles Kits_ImportSystemConfig.Click
         Dim resultPath As String = Await FileSelectionHelper.SelectSingleFileAsync()
         Dim xxx = FileSelectionHelper.ImportSystemConfigJSON(resultPath)
-        Dim xxx2 = UpdateSystemConfigTab()
+        Await UpdateSystemConfigTab()
     End Sub
     Public Shared Function SeparateStrings(ByVal inputString As String) As (String, String)
         Dim pattern As String = "\([0-9]+\)\s(.+)"
@@ -1919,6 +1919,11 @@ Partial Public Class MainWindow
         End If
 
     End Function
+    Function RemoveSubstring(originalString As String, substringToRemove As String) As String
+        Dim pattern As String = Regex.Escape(substringToRemove)
+        Dim result As String = Regex.Replace(originalString, pattern, "", RegexOptions.IgnoreCase)
+        Return result
+    End Function
     Async Function UpdateSystemConfigTab() As Task
         Tab_SystemConfig.IsSelected = True
 
@@ -1926,7 +1931,7 @@ Partial Public Class MainWindow
             TV_Strongrooms.Nodes.Clear()
             For Each setting_ As GenerateConfigs.System.MainSystemSettings In GenerateConfigs.System.DNAConfigMainSystem_Strongrooms
 
-                Dim tHeader As New TreeViewNode With {.Content = ExtractCFGSettingName(setting_.dna_Option)}
+                Dim tHeader As New TreeViewNode With {.Content = RemoveSubstring(ExtractCFGSettingName(setting_.dna_Option), "Strongrooms ").Replace(" -", "")}
                 tHeader.ChildNodes.Add(New TreeViewNode() With {.Content = "TIP:" + ExtractTextAfterFirstOccurrence(setting_.HelpText)})
                 tHeader.ChildNodes.Add(New TreeViewNode() With {.Content = setting_.dna_Setting})
                 TV_Strongrooms.Nodes.Add(tHeader)
@@ -1935,14 +1940,59 @@ Partial Public Class MainWindow
 
 
 
+        If GenerateConfigs.System.DNAConfigMainSystem_Crates IsNot Nothing Then
+            TV_crates.Nodes.Clear()
+            For Each setting_ As GenerateConfigs.System.MainSystemSettings In GenerateConfigs.System.DNAConfigMainSystem_Crates
 
+                Dim tHeader As New TreeViewNode With {.Content = RemoveSubstring(ExtractCFGSettingName(setting_.dna_Option), "crates ").Replace(" -", "")}
+                tHeader.ChildNodes.Add(New TreeViewNode() With {.Content = "TIP:" + ExtractTextAfterFirstOccurrence(setting_.HelpText)})
+                tHeader.ChildNodes.Add(New TreeViewNode() With {.Content = setting_.dna_Setting})
+                TV_crates.Nodes.Add(tHeader)
+            Next
+        End If
 
+        If GenerateConfigs.System.DNAConfigMainSystem_lockout IsNot Nothing Then
+            TV_lockout.Nodes.Clear()
+            For Each setting_ As GenerateConfigs.System.MainSystemSettings In GenerateConfigs.System.DNAConfigMainSystem_lockout
 
+                Dim tHeader As New TreeViewNode With {.Content = RemoveSubstring(ExtractCFGSettingName(setting_.dna_Option), "lockout ").Replace(" -", "")}
+                tHeader.ChildNodes.Add(New TreeViewNode() With {.Content = "TIP:" + ExtractTextAfterFirstOccurrence(setting_.HelpText)})
+                tHeader.ChildNodes.Add(New TreeViewNode() With {.Content = setting_.dna_Setting})
+                TV_lockout.Nodes.Add(tHeader)
+            Next
+        End If
 
+        If GenerateConfigs.System.DNAConfigMainSystem_Card IsNot Nothing Then
+            TV_keycard.Nodes.Clear()
+            For Each setting_ As GenerateConfigs.System.MainSystemSettings In GenerateConfigs.System.DNAConfigMainSystem_Card
 
+                Dim tHeader As New TreeViewNode With {.Content = RemoveSubstring(setting_.dna_Option, "card ").Replace(" -", "")}
+                tHeader.ChildNodes.Add(New TreeViewNode() With {.Content = "TIP: ~~~~"})
+                tHeader.ChildNodes.Add(New TreeViewNode() With {.Content = setting_.dna_Setting})
+                TV_keycard.Nodes.Add(tHeader)
+            Next
+        End If
 
+        If GenerateConfigs.System.DNAConfigMainSystem_Separate IsNot Nothing Then
+            TV_separation.Nodes.Clear()
+            For Each setting_ As GenerateConfigs.System.MainSystemSettings In GenerateConfigs.System.DNAConfigMainSystem_Separate
 
+                Dim tHeader As New TreeViewNode With {.Content = RemoveSubstring(ExtractCFGSettingName(setting_.dna_Option), "Separate ").Replace(" -", "")}
+                tHeader.ChildNodes.Add(New TreeViewNode() With {.Content = "TIP:" + ExtractTextAfterFirstOccurrence(setting_.HelpText)})
+                tHeader.ChildNodes.Add(New TreeViewNode() With {.Content = setting_.dna_Setting})
+                TV_separation.Nodes.Add(tHeader)
+            Next
+        End If
+        If GenerateConfigs.System.DNAConfigMainSystem_other IsNot Nothing Then
+            TV_other.Nodes.Clear()
+            For Each setting_ As GenerateConfigs.System.MainSystemSettings In GenerateConfigs.System.DNAConfigMainSystem_other
 
+                Dim tHeader As New TreeViewNode With {.Content = ExtractCFGSettingName(setting_.dna_Option)}
+                tHeader.ChildNodes.Add(New TreeViewNode() With {.Content = "TIP:" + ExtractTextAfterFirstOccurrence(setting_.HelpText)})
+                tHeader.ChildNodes.Add(New TreeViewNode() With {.Content = setting_.dna_Setting})
+                TV_other.Nodes.Add(tHeader)
+            Next
+        End If
     End Function
 End Class
 
