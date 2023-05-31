@@ -46,6 +46,7 @@ Imports System.Windows.Threading
 Imports DNA_Keycard_Editor.Classes
 Imports System.IO
 Imports System.Reflection
+Imports System.Text.RegularExpressions
 Imports System.Windows.Forms
 Imports Syncfusion.UI.Xaml.Grid
 Imports Newtonsoft.Json
@@ -641,51 +642,74 @@ Partial Public Class MainWindow
             For Each type In GlobalVariables.Types.Types
                 checkedAddArgs = Await determineIfAdd(type)
                 If checkedAddArgs = True Then
+
+
+
+
+                    If IsStringPresentInTextBox(Clothes_Helmets, type.typename) Then tHelmets.Add(type.typename)
+                    If IsStringPresentInTextBox(Clothes_Shirts, type.typename) Then tShirts.Add(type.typename)
+                    If IsStringPresentInTextBox(Clothes_Vests, type.typename) Then tVests.Add(type.typename)
+                    If IsStringPresentInTextBox(Clothes_Pants, type.typename) Then tPants.Add(type.typename)
+                    If IsStringPresentInTextBox(Clothes_Shoes, type.typename) Then tShoes.Add(type.typename)
+                    If IsStringPresentInTextBox(Clothes_Backpacks, type.typename) Then tBackpacks.Add(type.typename)
+                    If IsStringPresentInTextBox(Clothes_Gloves, type.typename) Then tGloves.Add(type.typename)
+                    If IsStringPresentInTextBox(Clothes_Belts, type.typename) Then tBelts.Add(type.typename)
+                    If IsStringPresentInTextBox(Clothes_Facewear, type.typename) Then tFacewears.Add(type.typename)
+                    If IsStringPresentInTextBox(Clothes_Eyewear, type.typename) Then tEyewears.Add(type.typename)
+                    If IsStringPresentInTextBox(Clothes_Armbands, type.typename) Then tArmbands.Add(type.typename)
+
+
+
+
+
+
+
+
                     'If GlobalVariables.ClothingMarket.Helmets.Contains(type.typename) Then
-                    If _
-                        GlobalVariables.ClothingMarket.Helmets.Any(
-                            Function(t_) String.Equals(t_, type.typename, StringComparison.OrdinalIgnoreCase)) Then _
-                        tHelmets.Add(type.typename)
-                    If _
-                        GlobalVariables.ClothingMarket.Shirts.Any(
-                            Function(t_) String.Equals(t_, type.typename, StringComparison.OrdinalIgnoreCase)) Then _
-                        tShirts.Add(type.typename)
-                    If _
-                        GlobalVariables.ClothingMarket.Vests.Any(
-                            Function(t_) String.Equals(t_, type.typename, StringComparison.OrdinalIgnoreCase)) Then _
-                        tVests.Add(type.typename)
-                    If _
-                        GlobalVariables.ClothingMarket.Pants.Any(
-                            Function(t_) String.Equals(t_, type.typename, StringComparison.OrdinalIgnoreCase)) Then _
-                        tPants.Add(type.typename)
-                    If _
-                        GlobalVariables.ClothingMarket.Shoes.Any(
-                            Function(t_) String.Equals(t_, type.typename, StringComparison.OrdinalIgnoreCase)) Then _
-                        tShoes.Add(type.typename)
-                    If _
-                        GlobalVariables.ClothingMarket.Backpacks.Any(
-                            Function(t_) String.Equals(t_, type.typename, StringComparison.OrdinalIgnoreCase)) Then _
-                        tBackpacks.Add(type.typename)
-                    If _
-                        GlobalVariables.ClothingMarket.Gloves.Any(
-                            Function(t_) String.Equals(t_, type.typename, StringComparison.OrdinalIgnoreCase)) Then _
-                        tGloves.Add(type.typename)
-                    If _
-                        GlobalVariables.ClothingMarket.Belts.Any(
-                            Function(t_) String.Equals(t_, type.typename, StringComparison.OrdinalIgnoreCase)) Then _
-                        tBelts.Add(type.typename)
-                    If _
-                        GlobalVariables.ClothingMarket.Facewears.Any(
-                            Function(t_) String.Equals(t_, type.typename, StringComparison.OrdinalIgnoreCase)) Then _
-                        tFacewears.Add(type.typename)
-                    If _
-                        GlobalVariables.ClothingMarket.Eyewears.Any(
-                            Function(t_) String.Equals(t_, type.typename, StringComparison.OrdinalIgnoreCase)) Then _
-                        tEyewears.Add(type.typename)
-                    If _
-                        GlobalVariables.ClothingMarket.Armbands.Any(
-                            Function(t_) String.Equals(t_, type.typename, StringComparison.OrdinalIgnoreCase)) Then _
-                        tArmbands.Add(type.typename)
+                    'If _
+                    '    GlobalVariables.ClothingMarket.Helmets.Any(
+                    '        Function(t_) String.Equals(t_, type.typename, StringComparison.OrdinalIgnoreCase)) Then _
+                    '    tHelmets.Add(type.typename)
+                    'If _
+                    '    GlobalVariables.ClothingMarket.Shirts.Any(
+                    '        Function(t_) String.Equals(t_, type.typename, StringComparison.OrdinalIgnoreCase)) Then _
+                    '    tShirts.Add(type.typename)
+                    'If _
+                    '    GlobalVariables.ClothingMarket.Vests.Any(
+                    '        Function(t_) String.Equals(t_, type.typename, StringComparison.OrdinalIgnoreCase)) Then _
+                    '    tVests.Add(type.typename)
+                    'If _
+                    '    GlobalVariables.ClothingMarket.Pants.Any(
+                    '        Function(t_) String.Equals(t_, type.typename, StringComparison.OrdinalIgnoreCase)) Then _
+                    '    tPants.Add(type.typename)
+                    'If _
+                    '    GlobalVariables.ClothingMarket.Shoes.Any(
+                    '        Function(t_) String.Equals(t_, type.typename, StringComparison.OrdinalIgnoreCase)) Then _
+                    '    tShoes.Add(type.typename)
+                    'If _
+                    '    GlobalVariables.ClothingMarket.Backpacks.Any(
+                    '        Function(t_) String.Equals(t_, type.typename, StringComparison.OrdinalIgnoreCase)) Then _
+                    '    tBackpacks.Add(type.typename)
+                    'If _
+                    '    GlobalVariables.ClothingMarket.Gloves.Any(
+                    '        Function(t_) String.Equals(t_, type.typename, StringComparison.OrdinalIgnoreCase)) Then _
+                    '    tGloves.Add(type.typename)
+                    'If _
+                    '    GlobalVariables.ClothingMarket.Belts.Any(
+                    '        Function(t_) String.Equals(t_, type.typename, StringComparison.OrdinalIgnoreCase)) Then _
+                    '    tBelts.Add(type.typename)
+                    'If _
+                    '    GlobalVariables.ClothingMarket.Facewears.Any(
+                    '        Function(t_) String.Equals(t_, type.typename, StringComparison.OrdinalIgnoreCase)) Then _
+                    '    tFacewears.Add(type.typename)
+                    'If _
+                    '    GlobalVariables.ClothingMarket.Eyewears.Any(
+                    '        Function(t_) String.Equals(t_, type.typename, StringComparison.OrdinalIgnoreCase)) Then _
+                    '    tEyewears.Add(type.typename)
+                    'If _
+                    '    GlobalVariables.ClothingMarket.Armbands.Any(
+                    '        Function(t_) String.Equals(t_, type.typename, StringComparison.OrdinalIgnoreCase)) Then _
+                    '    tArmbands.Add(type.typename)
                 End If
             Next
 
@@ -766,38 +790,47 @@ Partial Public Class MainWindow
                 checkedAddArgs = Await determineIfAdd(type, False)
                 If checkedAddArgs = True Then
                     'If GlobalVariables.ClothingMarket.Helmets.Contains(type.typename) Then
-                    If _
-                        GlobalVariables.LootMarket.proprietary.Any(
-                            Function(t_) String.Equals(t_, type.typename, StringComparison.OrdinalIgnoreCase)) Then _
-                        tproprietary.Add(type.typename)
-                    If _
-                        GlobalVariables.LootMarket.medical.Any(
-                            Function(t_) String.Equals(t_, type.typename, StringComparison.OrdinalIgnoreCase)) Then _
-                        tmedical.Add(type.typename)
-                    If _
-                        GlobalVariables.LootMarket.food.Any(
-                            Function(t_) String.Equals(t_, type.typename, StringComparison.OrdinalIgnoreCase)) Then _
-                        tfood.Add(type.typename)
-                    If _
-                        GlobalVariables.LootMarket.drink.Any(
-                            Function(t_) String.Equals(t_, type.typename, StringComparison.OrdinalIgnoreCase)) Then _
-                        tdrink.Add(type.typename)
-                    If _
-                        GlobalVariables.LootMarket.tools.Any(
-                            Function(t_) String.Equals(t_, type.typename, StringComparison.OrdinalIgnoreCase)) Then _
-                        ttools.Add(type.typename)
-                    If _
-                        GlobalVariables.LootMarket.material.Any(
-                            Function(t_) String.Equals(t_, type.typename, StringComparison.OrdinalIgnoreCase)) Then _
-                        tmaterial.Add(type.typename)
-                    If _
-                        GlobalVariables.LootMarket.misc.Any(
-                            Function(t_) String.Equals(t_, type.typename, StringComparison.OrdinalIgnoreCase)) Then _
-                        tmisc.Add(type.typename)
-                    If _
-                        GlobalVariables.LootMarket.valuable.Any(
-                            Function(t_) String.Equals(t_, type.typename, StringComparison.OrdinalIgnoreCase)) Then _
-                        tvaluable.Add(type.typename)
+
+                    If IsStringPresentInTextBox(Loot_proprietary, type.typename) Then tproprietary.Add(type.typename)
+                    If IsStringPresentInTextBox(Loot_medical, type.typename) Then tmedical.Add(type.typename)
+                    If IsStringPresentInTextBox(Loot_food, type.typename) Then tfood.Add(type.typename)
+                    If IsStringPresentInTextBox(Loot_drink, type.typename) Then tdrink.Add(type.typename)
+                    If IsStringPresentInTextBox(Loot_tools, type.typename) Then ttools.Add(type.typename)
+                    If IsStringPresentInTextBox(Loot_material, type.typename) Then tmaterial.Add(type.typename)
+                    If IsStringPresentInTextBox(Loot_misc, type.typename) Then tmisc.Add(type.typename)
+                    If IsStringPresentInTextBox(Loot_valuable, type.typename) Then tvaluable.Add(type.typename)
+
+
+
+
+                    'If _
+                    '    GlobalVariables.LootMarket.medical.Any(
+                    '        Function(t_) String.Equals(t_, type.typename, StringComparison.OrdinalIgnoreCase)) Then _
+                    '    tmedical.Add(type.typename)
+                    '    If _
+                    '        GlobalVariables.LootMarket.food.Any(
+                    '            Function(t_) String.Equals(t_, type.typename, StringComparison.OrdinalIgnoreCase)) Then _
+                    '        tfood.Add(type.typename)
+                    '    If _
+                    '        GlobalVariables.LootMarket.drink.Any(
+                    '            Function(t_) String.Equals(t_, type.typename, StringComparison.OrdinalIgnoreCase)) Then _
+                    '        tdrink.Add(type.typename)
+                    '    If _
+                    '        GlobalVariables.LootMarket.tools.Any(
+                    '            Function(t_) String.Equals(t_, type.typename, StringComparison.OrdinalIgnoreCase)) Then _
+                    '        ttools.Add(type.typename)
+                    '    If _
+                    '        GlobalVariables.LootMarket.material.Any(
+                    '            Function(t_) String.Equals(t_, type.typename, StringComparison.OrdinalIgnoreCase)) Then _
+                    '        tmaterial.Add(type.typename)
+                    '    If _
+                    '        GlobalVariables.LootMarket.misc.Any(
+                    '            Function(t_) String.Equals(t_, type.typename, StringComparison.OrdinalIgnoreCase)) Then _
+                    '        tmisc.Add(type.typename)
+                    '    If _
+                    '        GlobalVariables.LootMarket.valuable.Any(
+                    '            Function(t_) String.Equals(t_, type.typename, StringComparison.OrdinalIgnoreCase)) Then _
+                    '        tvaluable.Add(type.typename)
                 End If
             Next
 
@@ -1018,7 +1051,20 @@ Partial Public Class MainWindow
         Return proprietaryNode
     End Function
 
+    Public Function IsStringPresentInTextBox(textBox As SfTextBoxExt, searchString As String) As Boolean
+        ' Split the text in the textbox into individual lines
+        Dim lines() As String = textBox.Text.Split({Environment.NewLine}, StringSplitOptions.RemoveEmptyEntries)
 
+        ' Check if the search string exists in any of the lines
+        For Each line As String In lines
+            If line.ToLower.Contains(searchString.ToLower()) Then
+                Return True
+            End If
+        Next
+
+        ' If the search string is not found in any line, return false
+        Return False
+    End Function
 
 
     Sub UpdateGeneratedLootKits()
@@ -1210,6 +1256,7 @@ Partial Public Class MainWindow
         CHK_Kits_Use.ItemsSource = GlobalVariables.Types.Usages
         CHK_Kits_Val.ItemsSource = GlobalVariables.Types.Values
         CHK_Kits_Tag.ItemsSource = GlobalVariables.Types.Tags
+        ' TV_Strongrooms.ItemsSource = GenerateConfigs.System.DNAConfigMainSystem_Strongrooms
     End Sub
 
     Public Sub seedHandlers()
@@ -1226,12 +1273,60 @@ Partial Public Class MainWindow
         AddHandler TV_WeaponKits_Generated_Yellow.ItemDeleting, AddressOf Event_Deleting_Generated_Kits
 
 
-        AddHandler TV_ClothingKit_Generated_Red.ItemBeginEdit, AddressOf Event_BeginEdit_Generated_Kits
-        AddHandler TV_ClothingKit_Generated_Purple.ItemBeginEdit, AddressOf Event_BeginEdit_Generated_Kits
-        AddHandler TV_ClothingKit_Generated_Blue.ItemBeginEdit, AddressOf Event_BeginEdit_Generated_Kits
-        AddHandler TV_ClothingKit_Generated_Green.ItemBeginEdit, AddressOf Event_BeginEdit_Generated_Kits
-        AddHandler TV_ClothingKit_Generated_Yellow.ItemBeginEdit, AddressOf Event_BeginEdit_Generated_Kits
 
+
+
+
+        AddHandler TV_Strongrooms.ItemDeleting, AddressOf Event_BeginDel_ConfigGeneral
+        AddHandler TV_crates.ItemDeleting, AddressOf Event_BeginDel_ConfigGeneral
+        AddHandler TV_keycard.ItemDeleting, AddressOf Event_BeginDel_ConfigGeneral
+        AddHandler TV_other.ItemDeleting, AddressOf Event_BeginDel_ConfigGeneral
+        AddHandler TV_separation.ItemDeleting, AddressOf Event_BeginDel_ConfigGeneral
+        AddHandler TV_lockout.ItemDeleting, AddressOf Event_BeginDel_ConfigGeneral
+        AddHandler TV_Strongrooms.ItemBeginEdit, AddressOf Event_BeginEdit_ConfigGeneral
+        AddHandler TV_crates.ItemBeginEdit, AddressOf Event_BeginEdit_ConfigGeneral
+        AddHandler TV_keycard.ItemBeginEdit, AddressOf Event_BeginEdit_ConfigGeneral
+        AddHandler TV_other.ItemBeginEdit, AddressOf Event_BeginEdit_ConfigGeneral
+        AddHandler TV_separation.ItemBeginEdit, AddressOf Event_BeginEdit_ConfigGeneral
+        AddHandler TV_lockout.ItemBeginEdit, AddressOf Event_BeginEdit_ConfigGeneral
+        '''''''''''''''''''''''''''''''''''''''''''''''''''''''''''
+
+
+
+
+
+
+
+
+
+
+
+
+
+        '''
+        '''
+        AddHandler TV_Location_Red_Strongroom.ItemBeginEdit, AddressOf Event_BeginEdit_ConfigLocations
+        AddHandler TV_Location_Purple_Strongroom.ItemBeginEdit, AddressOf Event_BeginEdit_ConfigLocations
+        AddHandler TV_Location_Blue_Strongroom.ItemBeginEdit, AddressOf Event_BeginEdit_ConfigLocations
+        AddHandler TV_Location_Green_Strongroom.ItemBeginEdit, AddressOf Event_BeginEdit_ConfigLocations
+        AddHandler TV_Location_Yellow_Strongroom.ItemBeginEdit, AddressOf Event_BeginEdit_ConfigLocations
+        AddHandler TV_Location_Red_Crate.ItemBeginEdit, AddressOf Event_BeginEdit_ConfigLocations
+        AddHandler TV_Location_Purple_Crate.ItemBeginEdit, AddressOf Event_BeginEdit_ConfigLocations
+        AddHandler TV_Location_Blue_Crate.ItemBeginEdit, AddressOf Event_BeginEdit_ConfigLocations
+        AddHandler TV_Location_Green_Crate.ItemBeginEdit, AddressOf Event_BeginEdit_ConfigLocations
+        AddHandler TV_Location_Yellow_Crate.ItemBeginEdit, AddressOf Event_BeginEdit_ConfigLocations
+        '''''''''''''''''''''''''''''''''''''''''''''''''''''''''''
+        AddHandler TV_Location_Red_Strongroom.ItemDeleting, AddressOf Event_BeginDel_ConfigLocations
+        AddHandler TV_Location_Purple_Strongroom.ItemDeleting, AddressOf Event_BeginDel_ConfigLocations
+        AddHandler TV_Location_Blue_Strongroom.ItemDeleting, AddressOf Event_BeginDel_ConfigLocations
+        AddHandler TV_Location_Green_Strongroom.ItemDeleting, AddressOf Event_BeginDel_ConfigLocations
+        AddHandler TV_Location_Yellow_Strongroom.ItemDeleting, AddressOf Event_BeginDel_ConfigLocations
+        AddHandler TV_Location_Red_Crate.ItemDeleting, AddressOf Event_BeginDel_ConfigLocations
+        AddHandler TV_Location_Purple_Crate.ItemDeleting, AddressOf Event_BeginDel_ConfigLocations
+        AddHandler TV_Location_Blue_Crate.ItemDeleting, AddressOf Event_BeginDel_ConfigLocations
+        AddHandler TV_Location_Green_Crate.ItemDeleting, AddressOf Event_BeginDel_ConfigLocations
+        AddHandler TV_Location_Yellow_Crate.ItemDeleting, AddressOf Event_BeginDel_ConfigLocations
+        '''''''''''''''''''''''''''''''''''''''''''''''''''''''''''
         AddHandler TV_ClothingKit_Generated_Red.ItemDeleting, AddressOf Event_Deleting_Generated_Kits
         AddHandler TV_ClothingKit_Generated_Purple.ItemDeleting, AddressOf Event_Deleting_Generated_Kits
         AddHandler TV_ClothingKit_Generated_Blue.ItemDeleting, AddressOf Event_Deleting_Generated_Kits
@@ -1279,6 +1374,60 @@ Partial Public Class MainWindow
         AttachTextChangedEventToAllTextBoxes(Tab_Kits)
         AttachTextChangedEventToAllTextBoxes(Tab_LootSettings)
     End Sub
+
+    Async Sub Event_BeginDel_ConfigGeneral(sender As Object, e As EventArgs)
+        Dim EventInfo As ItemDeletingEventArgs = e
+        EventInfo.Cancel = True
+    End Sub
+    Async Sub Event_BeginEdit_ConfigGeneral(sender As Object, e As EventArgs)
+        Dim EventInfo As TreeViewItemBeginEditEventArgs = e
+        Dim tree_ As SfTreeView = sender
+        Dim xx = ""
+        Dim _node = EventInfo.Node
+        If _node.ParentNode Is Nothing Then
+            EventInfo.Cancel = True
+        Else
+
+            Dim nodeChecker = _node.ParentNode.ChildNodes.Last()
+            If nodeChecker Is _node Then
+                EventInfo.Cancel = False
+            Else
+                EventInfo.Cancel = True
+            End If
+        End If
+
+
+    End Sub
+    Async Sub Event_BeginEdit_ConfigLocations(sender As Object, e As EventArgs)
+        Dim EventInfo As TreeViewItemBeginEditEventArgs = e
+        Dim tree_ As SfTreeView = sender
+        Dim xx = ""
+        Dim _node = EventInfo.Node
+        If _node.ParentNode IsNot Nothing Then
+            If _node.ChildNodes.Count <> 0 Then
+                EventInfo.Cancel = True
+            Else
+                EventInfo.Cancel = False
+            End If
+        Else
+            EventInfo.Cancel = True
+        End If
+
+
+    End Sub
+    Async Sub Event_BeginDel_ConfigLocations(sender As Object, e As EventArgs)
+        Dim EventInfo As ItemDeletingEventArgs = e
+        Dim tree_ As SfTreeView = sender
+        Dim xx = ""
+        For Each _node As TreeViewNode In EventInfo.Nodes
+            If _node.ParentNode Is Nothing Then
+                EventInfo.Cancel = False
+            Else
+                EventInfo.Cancel = True
+            End If
+        Next
+    End Sub
+
     Async Sub Event_Deleting_Generated_Kits(sender As Object, e As EventArgs)
         Dim EventInfo As ItemDeletingEventArgs = e
         Dim tree_ As SfTreeView = sender
@@ -1568,6 +1717,157 @@ Partial Public Class MainWindow
 
         Dim json = JsonConvert.SerializeObject(New With {Key .m_DNAConfig_Loot = list}, Formatting.Indented)
         File.WriteAllText(filepath, json)
+    End Function
+    'Public Function SortByDnaOption(list As List(Of GenerateConfigs.System.MainSystemSettings)) As List(Of GenerateConfigs.System.MainSystemSettings)
+    '    ' Use LINQ to sort the list by dna_Option_Bak property
+    '    Dim sortedList = list.OrderBy(Function(item) item.dna_Option).ToList()
+    '    Return sortedList
+    'End Function
+    'Public Function SortByPrefix(list As List(Of GenerateConfigs.System.MainSystemSettings)) As List(Of GenerateConfigs.System.MainSystemSettings)
+    '    ' Use LINQ to sort the list by the numeric value in the prefix
+    '    Dim sortedList = list.OrderBy(Function(item) Integer.Parse(item.dna_Option.Substring(1))).ToList()
+    '    Return sortedList
+    'End Function
+
+    Public Function SortByPrefix_SystemConfigExport(list As List(Of GenerateConfigs.System.MainSystemSettingsExport)) As List(Of GenerateConfigs.System.MainSystemSettingsExport)
+        ' Use LINQ to sort the list by the numeric value in the prefix
+        Dim sortedList = list.OrderBy(Function(item) GetPrefixValue(item.dna_Option)).ToList()
+        Return sortedList
+    End Function
+
+    Private Function GetPrefixValue(value As String) As Integer
+        Dim match As Match = Regex.Match(value, "\((\d+)\)")
+        If match.Success Then
+            Dim prefix As String = match.Groups(1).Value
+            Return Integer.Parse(prefix)
+        End If
+        Return 0 ' Default value if prefix is not found
+    End Function
+
+    Async Function ExportSystemConfigToJson(filepath As String) As Task
+
+        Dim json_ As String = ""
+
+        Dim trees As New Collection(Of SfTreeView)
+        trees.Add(TV_Strongrooms)
+        trees.Add(TV_crates)
+        trees.Add(TV_separation)
+        trees.Add(TV_lockout)
+        trees.Add(TV_keycard)
+        trees.Add(TV_other)
+
+        'm_DNAConfig_Version
+        Dim tlist_Version As New List(Of GenerateConfigs.System.DNAConfigVersionExport)()
+        Dim tVersion As New GenerateConfigs.System.DNAConfigVersionExport()
+        tVersion.dna_ConfigVersion = GenerateConfigs.System.DNAConfigVersion.dna_ConfigVersion
+        tVersion.dna_WarningMessage = GenerateConfigs.System.DNAConfigVersion.dna_WarningMessage
+        tlist_Version.Add(tVersion)
+
+        'm_DNAConfig_Main_System
+        Dim tlist_System As New List(Of GenerateConfigs.System.MainSystemSettingsExport)()
+        Dim TotalList As New List(Of GenerateConfigs.System.MainSystemSettings)
+        GenerateConfigs.System.DNAConfigMainSystem_other.ToList().ForEach(Sub(item) TotalList.Add(item))
+        GenerateConfigs.System.DNAConfigMainSystem_Crates.ToList().ForEach(Sub(item) TotalList.Add(item))
+        GenerateConfigs.System.DNAConfigMainSystem_Strongrooms.ToList().ForEach(Sub(item) TotalList.Add(item))
+        GenerateConfigs.System.DNAConfigMainSystem_Card.ToList().ForEach(Sub(item) TotalList.Add(item))
+        GenerateConfigs.System.DNAConfigMainSystem_Separate.ToList().ForEach(Sub(item) TotalList.Add(item))
+        GenerateConfigs.System.DNAConfigMainSystem_lockout.ToList().ForEach(Sub(item) TotalList.Add(item))
+
+        For Each tree As SfTreeView In trees
+            'Build based on Shown
+            If tree.Nodes.Count <> 0 Then
+                If tree.Nodes.First().Content.ToString() <> "Please import a config" Then
+                    tree.SelectedItem = True
+                    For Each Node As TreeViewNode In tree.Nodes
+                        tlist_System.Add(New GenerateConfigs.System.MainSystemSettingsExport() With {.dna_Setting = Node.ChildNodes.Last().Content.ToString().TrimStart(" "), .dna_Option = Node.ChildNodes.Item(Node.ChildNodes.Count - 2).Content.ToString().TrimStart(" ")})
+                    Next
+                End If
+            End If
+        Next
+        tlist_System = SortByPrefix_SystemConfigExport(tlist_System)
+
+        Dim treesLoc As New Collection(Of SfTreeView)
+        treesLoc.Add(TV_Location_Red_Strongroom)
+        treesLoc.Add(TV_Location_Red_Crate)
+        treesLoc.Add(TV_Location_Purple_Strongroom)
+        treesLoc.Add(TV_Location_Purple_Crate)
+        treesLoc.Add(TV_Location_Blue_Strongroom)
+        treesLoc.Add(TV_Location_Blue_Crate)
+        treesLoc.Add(TV_Location_Green_Strongroom)
+        treesLoc.Add(TV_Location_Green_Crate)
+        treesLoc.Add(TV_Location_Yellow_Strongroom)
+        treesLoc.Add(TV_Location_Yellow_Crate)
+
+        'Locations
+        Dim tlist_Locations_Crate_Yellow As New List(Of GenerateConfigs.System.SpawnablePositionalData)()
+        Dim tlist_Locations_Crate_Red As New List(Of GenerateConfigs.System.SpawnablePositionalData)()
+        Dim tlist_Locations_Crate_Purple As New List(Of GenerateConfigs.System.SpawnablePositionalData)()
+        Dim tlist_Locations_Crate_Blue As New List(Of GenerateConfigs.System.SpawnablePositionalData)()
+        Dim tlist_Locations_Crate_Green As New List(Of GenerateConfigs.System.SpawnablePositionalData)()
+
+        Dim tlist_Locations_Strongroom_Red As New List(Of GenerateConfigs.System.SpawnablePositionalData)()
+        Dim tlist_Locations_Strongroom_Purple As New List(Of GenerateConfigs.System.SpawnablePositionalData)()
+        Dim tlist_Locations_Strongroom_Blue As New List(Of GenerateConfigs.System.SpawnablePositionalData)()
+        Dim tlist_Locations_Strongroom_Green As New List(Of GenerateConfigs.System.SpawnablePositionalData)()
+        Dim tlist_Locations_Strongroom_Yellow As New List(Of GenerateConfigs.System.SpawnablePositionalData)()
+
+        For Each tree As SfTreeView In treesLoc
+            'Build based on Shown
+            If tree.Nodes.Count <> 0 Then
+                If tree.Nodes.First().Content.ToString() <> "Please import a config" Then
+                    tree.SelectedItem = True
+                    For Each Node As TreeViewNode In tree.Nodes
+                        Dim chLocation = Node.ChildNodes.First()
+                        Dim chRotation = Node.ChildNodes.Last()
+                        Dim LocX = chLocation.ChildNodes.First().Content
+                        Dim LocY = chLocation.ChildNodes.Item(1).Content
+                        Dim LocZ = chLocation.ChildNodes.Last().Content
+                        Dim RotX = chRotation.ChildNodes.First().Content
+                        Dim RotY = chRotation.ChildNodes.Item(1).Content
+                        Dim RotZ = chRotation.ChildNodes.Last().Content
+                        Dim tPosiData As New GenerateConfigs.System.SpawnablePositionalData(LocX + " " + LocY + " " + LocZ, RotX + " " + RotY + " " + RotZ)
+
+                        Select Case True
+                            Case tree Is TV_Location_Red_Strongroom
+                                tlist_Locations_Strongroom_Red.Add(tPosiData)
+                            Case tree Is TV_Location_Purple_Strongroom
+                                tlist_Locations_Strongroom_Purple.Add(tPosiData)
+                            Case tree Is TV_Location_Blue_Strongroom
+                                tlist_Locations_Strongroom_Blue.Add(tPosiData)
+                            Case tree Is TV_Location_Green_Strongroom
+                                tlist_Locations_Strongroom_Green.Add(tPosiData)
+                            Case tree Is TV_Location_Yellow_Strongroom
+                                tlist_Locations_Strongroom_Yellow.Add(tPosiData)
+                            Case tree Is TV_Location_Red_Crate
+                                tlist_Locations_Crate_Red.Add(tPosiData)
+                            Case tree Is TV_Location_Purple_Crate
+                                tlist_Locations_Crate_Purple.Add(tPosiData)
+                            Case tree Is TV_Location_Blue_Crate
+                                tlist_Locations_Crate_Blue.Add(tPosiData)
+                            Case tree Is TV_Location_Green_Crate
+                                tlist_Locations_Crate_Green.Add(tPosiData)
+                            Case tree Is TV_Location_Yellow_Crate
+                                tlist_Locations_Crate_Yellow.Add(tPosiData)
+                        End Select
+                    Next
+                End If
+            End If
+        Next
+
+        json_ = JsonConvert.SerializeObject(New With {
+                                               Key .m_DNAConfig_Version = tlist_Version,
+                                               Key .m_DNAConfig_Main_System = tlist_System,
+                                               Key .m_DNAYellow_Crate_Locations = tlist_Locations_Crate_Yellow,
+                                               Key .m_DNAGreen_Crate_Locations = tlist_Locations_Crate_Green,
+                                               Key .m_DNABlue_Crate_Locations = tlist_Locations_Crate_Blue,
+                                               Key .m_DNAPurple_Crate_Locations = tlist_Locations_Crate_Purple,
+                                               Key .m_DNARed_Crate_Locations = tlist_Locations_Crate_Red,
+                                               Key .m_DNAYellow_Strongroom_Locations = tlist_Locations_Strongroom_Yellow,
+                                               Key .m_DNAGreen_Strongroom_Locations = tlist_Locations_Strongroom_Green,
+                                               Key .m_DNABlue_Strongroom_Locations = tlist_Locations_Strongroom_Blue,
+                                               Key .m_DNAPurple_Strongroom_Locations = tlist_Locations_Strongroom_Purple,
+                                               Key .m_DNARed_Strongroom_Locations = tlist_Locations_Strongroom_Red}, Formatting.Indented)
+        File.WriteAllText(filepath, json_)
     End Function
     Async Function ExportWeaponKitsToJson(filepath As String) As Task
         Dim weaponList As New List(Of GenerateConfigs.Weapons.WeaponInfo)()
@@ -1866,6 +2166,311 @@ Partial Public Class MainWindow
 
     Private Sub AttachTextChangedEventToAllTextBoxes(tabItem As TabItemExt)
         AttachTextChangedEventHandlerToTextBoxes(tabItem.Content)
+    End Sub
+
+    Private Async Sub Kits_ImportSystemConfig_Click(sender As Object, e As RoutedEventArgs) Handles Kits_ImportSystemConfig.Click
+        Dim resultPath As String = Await FileSelectionHelper.SelectSingleFileAsync()
+        Await FileSelectionHelper.ImportSystemConfigJSON(resultPath)
+        Await UpdateSystemConfigTab()
+    End Sub
+    Public Shared Function SeparateStrings(ByVal inputString As String) As (String, String)
+        Dim pattern As String = "\([0-9]+\)\s(.+)"
+        Dim regex As New Regex(pattern)
+        Dim match As Match = regex.Match(inputString)
+
+        Dim separatedA As String = ""
+        Dim separatedB As String = ""
+
+        If match.Success Then
+            separatedA = match.Groups(0).Value.Trim()
+            separatedB = match.Groups(1).Value.Trim()
+        End If
+
+        Return (separatedA, separatedB)
+    End Function
+    Public Function ExtractCFGSettingName(ByVal inputString As String) As String
+        Dim pattern As String = "\)(.*?)\("
+        Dim match As Match = Regex.Match(inputString, pattern)
+
+        If match.Success Then
+            Return match.Groups(1).Value.Trim()
+        Else
+            Return String.Empty
+        End If
+    End Function
+    Public Function ExtractTextAfterFirstOccurrence(ByVal InputString As String) As String
+        ' Find the index of the first occurrence of '('
+        Dim firstIndex As Integer = InputString.IndexOf("(")
+        ' If the first occurrence is found, search for the second occurrence
+        If firstIndex <> -1 Then
+            ' Starting from the position after the first occurrence, find the index of the second occurrence
+            Dim secondIndex As Integer = InputString.IndexOf("(", firstIndex + 1)
+            If secondIndex <> -1 Then
+                Console.WriteLine("Index of the second occurrence of '(': " & secondIndex)
+                Dim extractedText As String = InputString.Substring(secondIndex).TrimStart()
+                Return extractedText
+            Else
+                'Console.WriteLine("Second occurrence of '(' not found.")
+            End If
+        Else
+            'Console.WriteLine("First occurrence of '(' not found.")
+        End If
+
+    End Function
+    Function RemoveSubstring(originalString As String, substringToRemove As String) As String
+        Dim pattern As String = Regex.Escape(substringToRemove)
+        Dim result As String = Regex.Replace(originalString, pattern, "", RegexOptions.IgnoreCase)
+        Return result
+    End Function
+
+    Async Function UpdateSystemConfigTab() As Task
+        Tab_SystemConfig.IsSelected = True
+
+        If GenerateConfigs.System.DNAConfigMainSystem_Strongrooms IsNot Nothing Then
+            TV_Strongrooms.Nodes.Clear()
+            For Each setting_ As GenerateConfigs.System.MainSystemSettings In GenerateConfigs.System.DNAConfigMainSystem_Strongrooms
+
+                Dim tHeader As New TreeViewNode With {.Content = RemoveSubstring(ExtractCFGSettingName(setting_.dna_Option), "Strongrooms ").Replace(" -", "")}
+                tHeader.ChildNodes.Add(New TreeViewNode() With {.Content = "TIP:" + ExtractTextAfterFirstOccurrence(setting_.HelpText)})
+                tHeader.ChildNodes.Add(New TreeViewNode() With {.Content = "                                                                                                                                                                              " + setting_.dna_Option_Bak})
+                tHeader.ChildNodes.Add(New TreeViewNode() With {.Content = setting_.dna_Setting})
+                TV_Strongrooms.Nodes.Add(tHeader)
+            Next
+        End If
+
+        If GenerateConfigs.System.DNAConfigMainSystem_Crates IsNot Nothing Then
+            TV_crates.Nodes.Clear()
+            For Each setting_ As GenerateConfigs.System.MainSystemSettings In GenerateConfigs.System.DNAConfigMainSystem_Crates
+
+                Dim tHeader As New TreeViewNode With {.Content = RemoveSubstring(ExtractCFGSettingName(setting_.dna_Option), "crates ").Replace(" -", "")}
+                tHeader.ChildNodes.Add(New TreeViewNode() With {.Content = "TIP:" + ExtractTextAfterFirstOccurrence(setting_.HelpText)})
+                tHeader.ChildNodes.Add(New TreeViewNode() With {.Content = "                                                                                                                                                                              " + setting_.dna_Option_Bak})
+                tHeader.ChildNodes.Add(New TreeViewNode() With {.Content = setting_.dna_Setting})
+                TV_crates.Nodes.Add(tHeader)
+            Next
+        End If
+
+        If GenerateConfigs.System.DNAConfigMainSystem_lockout IsNot Nothing Then
+            TV_lockout.Nodes.Clear()
+            For Each setting_ As GenerateConfigs.System.MainSystemSettings In GenerateConfigs.System.DNAConfigMainSystem_lockout
+
+                Dim tHeader As New TreeViewNode With {.Content = RemoveSubstring(ExtractCFGSettingName(setting_.dna_Option), "lockout ").Replace(" -", "")}
+                tHeader.ChildNodes.Add(New TreeViewNode() With {.Content = "TIP:" + ExtractTextAfterFirstOccurrence(setting_.HelpText)})
+                tHeader.ChildNodes.Add(New TreeViewNode() With {.Content = "                                                                                                                                                                              " + setting_.dna_Option_Bak})
+                tHeader.ChildNodes.Add(New TreeViewNode() With {.Content = setting_.dna_Setting})
+                TV_lockout.Nodes.Add(tHeader)
+            Next
+        End If
+
+        If GenerateConfigs.System.DNAConfigMainSystem_Card IsNot Nothing Then
+            TV_keycard.Nodes.Clear()
+            For Each setting_ As GenerateConfigs.System.MainSystemSettings In GenerateConfigs.System.DNAConfigMainSystem_Card
+
+                Dim tHeader As New TreeViewNode With {.Content = RemoveSubstring(setting_.dna_Option, "card ").Replace(" -", "")}
+                tHeader.ChildNodes.Add(New TreeViewNode() With {.Content = "TIP: ~~~~"})
+                tHeader.ChildNodes.Add(New TreeViewNode() With {.Content = "                                                                                                                                                                              " + setting_.dna_Option_Bak})
+                tHeader.ChildNodes.Add(New TreeViewNode() With {.Content = setting_.dna_Setting})
+                TV_keycard.Nodes.Add(tHeader)
+            Next
+        End If
+
+        If GenerateConfigs.System.DNAConfigMainSystem_Separate IsNot Nothing Then
+            TV_separation.Nodes.Clear()
+            For Each setting_ As GenerateConfigs.System.MainSystemSettings In GenerateConfigs.System.DNAConfigMainSystem_Separate
+
+                Dim tHeader As New TreeViewNode With {.Content = RemoveSubstring(ExtractCFGSettingName(setting_.dna_Option), "Separate ").Replace(" -", "")}
+                tHeader.ChildNodes.Add(New TreeViewNode() With {.Content = "TIP:" + ExtractTextAfterFirstOccurrence(setting_.HelpText)})
+                tHeader.ChildNodes.Add(New TreeViewNode() With {.Content = "                                                                                                                                                                              " + setting_.dna_Option_Bak})
+                tHeader.ChildNodes.Add(New TreeViewNode() With {.Content = setting_.dna_Setting})
+                TV_separation.Nodes.Add(tHeader)
+            Next
+        End If
+        If GenerateConfigs.System.DNAConfigMainSystem_other IsNot Nothing Then
+            TV_other.Nodes.Clear()
+            For Each setting_ As GenerateConfigs.System.MainSystemSettings In GenerateConfigs.System.DNAConfigMainSystem_other
+
+                Dim tHeader As New TreeViewNode With {.Content = ExtractCFGSettingName(setting_.dna_Option)}
+                tHeader.ChildNodes.Add(New TreeViewNode() With {.Content = "TIP:" + ExtractTextAfterFirstOccurrence(setting_.HelpText)})
+                tHeader.ChildNodes.Add(New TreeViewNode() With {.Content = "                                                                                                                                                                              " + setting_.dna_Option_Bak})
+                tHeader.ChildNodes.Add(New TreeViewNode() With {.Content = setting_.dna_Setting})
+                TV_other.Nodes.Add(tHeader)
+            Next
+        End If
+
+
+        ''''''''''LOCATION
+
+        '''''''RED
+        Tab_MainLoc_Red.IsSelected = True
+        If GenerateConfigs.System.Locations.Strongroom.Red IsNot Nothing Then
+            TV_Location_Red_Strongroom.Nodes.Clear()
+            Dim tCount = 1
+            For Each setting_ As GenerateConfigs.System.SpawnablePositionalData In GenerateConfigs.System.Locations.Strongroom.Red
+                TV_Location_Red_Strongroom.Nodes.Add(Await LocationSpawnNodeBuilder(setting_, tCount))
+                tCount += 1
+            Next
+        End If
+
+        If GenerateConfigs.System.Locations.Crate.Red IsNot Nothing Then
+            TV_Location_Red_Crate.Nodes.Clear()
+            Dim tCount = 1
+            For Each setting_ As GenerateConfigs.System.SpawnablePositionalData In GenerateConfigs.System.Locations.Crate.Red
+                TV_Location_Red_Crate.Nodes.Add(Await LocationSpawnNodeBuilder(setting_, tCount))
+                tCount += 1
+            Next
+        End If
+
+        '''''''Purple
+        Tab_MainLoc_Purple.IsSelected = True
+        If GenerateConfigs.System.Locations.Strongroom.Purple IsNot Nothing Then
+            TV_Location_Purple_Strongroom.Nodes.Clear()
+            Dim tCount = 1
+            For Each setting_ As GenerateConfigs.System.SpawnablePositionalData In GenerateConfigs.System.Locations.Strongroom.Purple
+                TV_Location_Purple_Strongroom.Nodes.Add(Await LocationSpawnNodeBuilder(setting_, tCount))
+                tCount += 1
+            Next
+        End If
+
+        If GenerateConfigs.System.Locations.Crate.Purple IsNot Nothing Then
+            TV_Location_Purple_Crate.Nodes.Clear()
+            Dim tCount = 1
+            For Each setting_ As GenerateConfigs.System.SpawnablePositionalData In GenerateConfigs.System.Locations.Crate.Purple
+                TV_Location_Purple_Crate.Nodes.Add(Await LocationSpawnNodeBuilder(setting_, tCount))
+                tCount += 1
+            Next
+        End If
+        '''''''Blue
+        Tab_MainLoc_Blue.IsSelected = True
+        If GenerateConfigs.System.Locations.Strongroom.Blue IsNot Nothing Then
+            TV_Location_Blue_Strongroom.Nodes.Clear()
+            Dim tCount = 1
+            For Each setting_ As GenerateConfigs.System.SpawnablePositionalData In GenerateConfigs.System.Locations.Strongroom.Blue
+                TV_Location_Blue_Strongroom.Nodes.Add(Await LocationSpawnNodeBuilder(setting_, tCount))
+                tCount += 1
+            Next
+        End If
+
+        If GenerateConfigs.System.Locations.Crate.Blue IsNot Nothing Then
+            TV_Location_Blue_Crate.Nodes.Clear()
+            Dim tCount = 1
+            For Each setting_ As GenerateConfigs.System.SpawnablePositionalData In GenerateConfigs.System.Locations.Crate.Blue
+                TV_Location_Blue_Crate.Nodes.Add(Await LocationSpawnNodeBuilder(setting_, tCount))
+                tCount += 1
+            Next
+        End If
+        '''''''Green
+        Tab_MainLoc_Green.IsSelected = True
+        If GenerateConfigs.System.Locations.Strongroom.Green IsNot Nothing Then
+            TV_Location_Green_Strongroom.Nodes.Clear()
+            Dim tCount = 1
+            For Each setting_ As GenerateConfigs.System.SpawnablePositionalData In GenerateConfigs.System.Locations.Strongroom.Green
+                TV_Location_Green_Strongroom.Nodes.Add(Await LocationSpawnNodeBuilder(setting_, tCount))
+                tCount += 1
+            Next
+        End If
+
+        If GenerateConfigs.System.Locations.Crate.Green IsNot Nothing Then
+            TV_Location_Green_Crate.Nodes.Clear()
+            Dim tCount = 1
+            For Each setting_ As GenerateConfigs.System.SpawnablePositionalData In GenerateConfigs.System.Locations.Crate.Green
+                TV_Location_Green_Crate.Nodes.Add(Await LocationSpawnNodeBuilder(setting_, tCount))
+                tCount += 1
+            Next
+        End If
+        '''''''Yellow
+        Tab_MainLoc_Yellow.IsSelected = True
+        If GenerateConfigs.System.Locations.Strongroom.Yellow IsNot Nothing Then
+            TV_Location_Yellow_Strongroom.Nodes.Clear()
+            Dim tCount = 1
+            For Each setting_ As GenerateConfigs.System.SpawnablePositionalData In GenerateConfigs.System.Locations.Strongroom.Yellow
+                TV_Location_Yellow_Strongroom.Nodes.Add(Await LocationSpawnNodeBuilder(setting_, tCount))
+                tCount += 1
+            Next
+        End If
+
+        If GenerateConfigs.System.Locations.Crate.Yellow IsNot Nothing Then
+            TV_Location_Yellow_Crate.Nodes.Clear()
+            Dim tCount = 1
+            For Each setting_ As GenerateConfigs.System.SpawnablePositionalData In GenerateConfigs.System.Locations.Crate.Yellow
+                TV_Location_Yellow_Crate.Nodes.Add(Await LocationSpawnNodeBuilder(setting_, tCount))
+                tCount += 1
+            Next
+        End If
+
+
+
+        Return
+
+    End Function
+
+    Async Function LocationSpawnNodeBuilder(setting_ As GenerateConfigs.System.SpawnablePositionalData, tCount As Double) As Task(Of TreeViewNode)
+        Dim tHeader As New TreeViewNode With {.Content = "StrongRoom: # " + tCount.ToString()}
+        Dim tLocation As New TreeViewNode With {.Content = "Location: (X Y Z)"}
+        Dim tRotation As New TreeViewNode With {.Content = "Rotation: (X Y Z)"}
+        Dim tLocArr = setting_.dna_Location.Split(" ")
+        Dim tRotArr = setting_.dna_Rotation.Split(" ")
+        For Each tLoc In tLocArr
+            tLocation.ChildNodes.Add(New TreeViewNode() With {.Content = tLoc})
+        Next
+        For Each tRot In tRotArr
+            tRotation.ChildNodes.Add(New TreeViewNode() With {.Content = tRot})
+        Next
+        tHeader.ChildNodes.Add(tLocation)
+        tHeader.ChildNodes.Add(tRotation)
+        Return tHeader
+    End Function
+
+    Private Async Sub Kits_ImportSystemConfig_MAP_Click(sender As Object, e As RoutedEventArgs) Handles Kits_ImportSystemConfig_MAP.Click
+        Dim whiteListTypes As New List(Of String)
+        With whiteListTypes
+            .Add("DNA_Crate_Red")
+            .Add("DNA_Crate_Green")
+            .Add("DNA_Crate_Blue")
+            .Add("DNA_Crate_Purple")
+            .Add("DNA_Crate_Yellow")
+            .Add("DNA_Strongroom_Red")
+            .Add("DNA_Strongroom_Purple")
+            .Add("DNA_Strongroom_Blue")
+            .Add("DNA_Strongroom_Green")
+            .Add("DNA_Strongroom_Yellow")
+        End With
+        Dim results As String() = Await FileSelectionHelper.SelectMultipleFilesAsync()
+        Dim foundTypes As List(Of String)
+        For Each resultPath As String In results
+            foundTypes = New List(Of String)()
+
+            Dim entries = Await FileSelectionHelper.LinkerAddressMapParser.ParseLinkerAddressMapFile(resultPath)
+            Await FileSelectionHelper.LinkerAddressMapParser.RemoveNodesByNames(entries, whiteListTypes)
+            Await FileSelectionHelper.LinkerAddressMapParser.ParseToUsable(entries)
+            Await UpdateSystemConfigTab()
+
+
+
+
+        Next
+    End Sub
+
+    Private Async Sub Kits_ExportSystemConfig_Click(sender As Object, e As RoutedEventArgs) Handles Kits_ExportSystemConfig.Click
+        Dim tsaveFileDialog As New Forms.SaveFileDialog()
+
+        ' Get the directory path of the executable
+        Dim executableDirectory = AppDomain.CurrentDomain.BaseDirectory
+        ' Set initial directory and filename
+        tsaveFileDialog.InitialDirectory = executableDirectory ' Set your desired initial directory
+        tsaveFileDialog.FileName = "KeyCard_Main_System_Config"
+        tsaveFileDialog.DefaultExt = ".json"
+        tsaveFileDialog.Filter = "JSON Files (*.json)|*.json|All Files (*.*)|*.*"
+
+        Dim result As Nullable(Of Boolean) = tsaveFileDialog.ShowDialog()
+
+        If result = True Then
+            Await ExportSystemConfigToJson(tsaveFileDialog.FileName)
+            Return
+        Else
+            Windows.MessageBox.Show("Export Canceled.", "Alert", MessageBoxButtons.OK,
+                                    MessageBoxIcon.Information)
+            Return
+        End If
     End Sub
 End Class
 

@@ -100,5 +100,65 @@ Public Class GenerateConfigs
         Public Shared GreenLootKits As LootInfoCats
         Public Shared YellowLootKits As LootInfoCats
     End Class
+    Public Class System
+        Public Class DNAConfigVersion
+            Public Shared dna_WarningMessage As String
+            Public Shared dna_ConfigVersion As Integer
+        End Class
+        Public Class DNAConfigVersionExport
+            Public Property dna_WarningMessage As String
+            Public Property dna_ConfigVersion As Integer
+        End Class
+        Public Shared DNAConfigMainSystem_other As New ObservableCollection(Of MainSystemSettings)
+        Public Shared DNAConfigMainSystem_Crates As New ObservableCollection(Of MainSystemSettings)
+        Public Shared DNAConfigMainSystem_Strongrooms As New ObservableCollection(Of MainSystemSettings)
+        Public Shared DNAConfigMainSystem_Card As New ObservableCollection(Of MainSystemSettings)
+        Public Shared DNAConfigMainSystem_Separate As New ObservableCollection(Of MainSystemSettings)
+        Public Shared DNAConfigMainSystem_lockout As New ObservableCollection(Of MainSystemSettings)
+        Public Class MainSystemSettings
+            Public Property dna_Option As String
+            Public Property dna_Option_Bak As String
+            Public Property HelpText As String
+            Public Property dna_Setting As Integer
+        End Class
+        Public Class MainSystemSettingsExport
+            Public Property dna_Option As String
+            Public Property dna_Setting As Integer
+        End Class
+
+
+        Public Class Locations
+            Public Class Crate
+
+                Public Shared Red As ObservableCollection(Of SpawnablePositionalData)
+                Public Shared Purple As ObservableCollection(Of SpawnablePositionalData)
+                Public Shared Blue As ObservableCollection(Of SpawnablePositionalData)
+                Public Shared Green As ObservableCollection(Of SpawnablePositionalData)
+                Public Shared Yellow As ObservableCollection(Of SpawnablePositionalData)
+
+            End Class
+            Public Class Strongroom
+
+                Public Shared Red As ObservableCollection(Of SpawnablePositionalData)
+                Public Shared Purple As ObservableCollection(Of SpawnablePositionalData)
+                Public Shared Blue As ObservableCollection(Of SpawnablePositionalData)
+                Public Shared Green As ObservableCollection(Of SpawnablePositionalData)
+                Public Shared Yellow As ObservableCollection(Of SpawnablePositionalData)
+
+            End Class
+
+        End Class
+
+        Public Class SpawnablePositionalData
+            Public Sub New(dna_Location As String, dna_Rotation As String)
+                Me.dna_Location = dna_Location
+                Me.dna_Rotation = dna_Rotation
+            End Sub
+
+            Public Property dna_Location As String
+            Public Property dna_Rotation As String
+        End Class
+
+    End Class
 End Class
 

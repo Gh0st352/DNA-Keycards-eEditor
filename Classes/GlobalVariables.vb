@@ -28,6 +28,7 @@ Imports System.Collections.ObjectModel
 
 Namespace Classes
     Public Class GlobalVariables
+
         Public Class LootMarket
             Public Shared proprietary As New ObservableCollection(Of String)()
             Public Shared medical As New ObservableCollection(Of String)()
