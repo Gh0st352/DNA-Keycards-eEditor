@@ -1277,18 +1277,32 @@ Partial Public Class MainWindow
 
 
 
-        AddHandler TV_Strongrooms.ItemDeleting, AddressOf Event_BeginDel_ConfigLocations
-        AddHandler TV_crates.ItemDeleting, AddressOf Event_BeginDel_ConfigLocations
-        AddHandler TV_keycard.ItemDeleting, AddressOf Event_BeginDel_ConfigLocations
-        AddHandler TV_other.ItemDeleting, AddressOf Event_BeginDel_ConfigLocations
-        AddHandler TV_separation.ItemDeleting, AddressOf Event_BeginDel_ConfigLocations
-        AddHandler TV_lockout.ItemDeleting, AddressOf Event_BeginDel_ConfigLocations
+        AddHandler TV_Strongrooms.ItemDeleting, AddressOf Event_BeginDel_ConfigGeneral
+        AddHandler TV_crates.ItemDeleting, AddressOf Event_BeginDel_ConfigGeneral
+        AddHandler TV_keycard.ItemDeleting, AddressOf Event_BeginDel_ConfigGeneral
+        AddHandler TV_other.ItemDeleting, AddressOf Event_BeginDel_ConfigGeneral
+        AddHandler TV_separation.ItemDeleting, AddressOf Event_BeginDel_ConfigGeneral
+        AddHandler TV_lockout.ItemDeleting, AddressOf Event_BeginDel_ConfigGeneral
+        AddHandler TV_Strongrooms.ItemBeginEdit, AddressOf Event_BeginEdit_ConfigGeneral
+        AddHandler TV_crates.ItemBeginEdit, AddressOf Event_BeginEdit_ConfigGeneral
+        AddHandler TV_keycard.ItemBeginEdit, AddressOf Event_BeginEdit_ConfigGeneral
+        AddHandler TV_other.ItemBeginEdit, AddressOf Event_BeginEdit_ConfigGeneral
+        AddHandler TV_separation.ItemBeginEdit, AddressOf Event_BeginEdit_ConfigGeneral
+        AddHandler TV_lockout.ItemBeginEdit, AddressOf Event_BeginEdit_ConfigGeneral
         '''''''''''''''''''''''''''''''''''''''''''''''''''''''''''
-        '''
-        '''
-        '''
-        '''
-        '''
+
+
+
+
+
+
+
+
+
+
+
+
+
         '''
         '''
         AddHandler TV_Location_Red_Strongroom.ItemBeginEdit, AddressOf Event_BeginEdit_ConfigLocations
@@ -1361,7 +1375,7 @@ Partial Public Class MainWindow
         AttachTextChangedEventToAllTextBoxes(Tab_LootSettings)
     End Sub
 
-    Async Sub Event_BeginDel_ConfigLocations(sender As Object, e As EventArgs)
+    Async Sub Event_BeginDel_ConfigGeneral(sender As Object, e As EventArgs)
         Dim EventInfo As ItemDeletingEventArgs = e
         EventInfo.Cancel = True
     End Sub
@@ -1370,11 +1384,16 @@ Partial Public Class MainWindow
         Dim tree_ As SfTreeView = sender
         Dim xx = ""
         Dim _node = EventInfo.Node
-        If _node.ParentNode IsNot Nothing Then
+        If _node.ParentNode Is Nothing Then
             EventInfo.Cancel = True
         Else
-            Dim xx = ""
-            EventInfo.Cancel = True
+
+            Dim nodeChecker = _node.ParentNode.ChildNodes.Last()
+            If nodeChecker Is _node Then
+                EventInfo.Cancel = False
+            Else
+                EventInfo.Cancel = True
+            End If
         End If
 
 
