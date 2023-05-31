@@ -1387,7 +1387,7 @@
                                 Width="209"
                                 VerticalContentAlignment="Center"
                                 BorderBrush="#FF020000" AllowDrop="False" Margin="10,5,0,0" FontSize="16" Padding="5,0,5,5" />
-                                <syncfusion:SfTreeView x:Name="TV_Strongrooms" AllowDragging="True" AllowDrop="True" Height="237" ItemTemplateDataContextType="Item" Margin="0,36,0,0" ShowLines="True" ShowRootLines="True" SelectionMode="Multiple" VerticalAlignment="Top" FocusBorderThickness="0,1">
+                                <syncfusion:SfTreeView x:Name="TV_Strongrooms" AllowDragging="True" AllowDrop="True" Height="237" ItemTemplateDataContextType="Item" Margin="0,36,0,0" ShowLines="True" ShowRootLines="True" VerticalAlignment="Top" FocusBorderThickness="0,1" AllowEditing="True" AllowDeleting="True" IsManipulationEnabled="True" IsAnimationEnabled="True" EditTrigger="DoubleTap">
                                     <syncfusion:SfTreeView.Nodes>
                                         <syncfusion:TreeViewNode Content="Please Import a config" HasChildNodes="False" IsExpanded="False" IsChecked="False" ShowExpanderAnimation="False"/>
                                     </syncfusion:SfTreeView.Nodes>
@@ -1398,7 +1398,7 @@
                                     Width="209"
                                     VerticalContentAlignment="Center"
                                     BorderBrush="#FF020000" AllowDrop="False" Margin="10,5,0,0" FontSize="16" Padding="5,0,5,5" />
-                                <syncfusion:SfTreeView x:Name="TV_keycard" AllowDragging="True" AllowDrop="True" Height="118" ItemTemplateDataContextType="Item" Margin="0,36,0,0" ShowLines="True" ShowRootLines="True" SelectionMode="Multiple" VerticalAlignment="Top" FocusBorderThickness="0,1">
+                                <syncfusion:SfTreeView x:Name="TV_keycard" AllowDragging="True" AllowDrop="True" Height="118" ItemTemplateDataContextType="Item" Margin="0,36,0,0" ShowLines="True" ShowRootLines="True" VerticalAlignment="Top" FocusBorderThickness="0,1" AllowEditing="True" AllowDeleting="True" IsManipulationEnabled="True" IsAnimationEnabled="True" EditTrigger="DoubleTap">
                                     <syncfusion:SfTreeView.Nodes>
                                         <syncfusion:TreeViewNode Content="Please Import a config" HasChildNodes="False" IsExpanded="False" IsChecked="False" ShowExpanderAnimation="False"/>
                                     </syncfusion:SfTreeView.Nodes>
@@ -1409,7 +1409,7 @@
                                     Width="209"
                                     VerticalContentAlignment="Center"
                                     BorderBrush="#FF020000" AllowDrop="False" Margin="10,5,0,0" FontSize="16" Padding="5,0,5,5" />
-                                <syncfusion:SfTreeView x:Name="TV_separation" AllowDragging="True" AllowDrop="True" Height="141" ItemTemplateDataContextType="Item" Margin="0,36,0,0" ShowLines="True" ShowRootLines="True" SelectionMode="Multiple" VerticalAlignment="Top" FocusBorderThickness="0,1">
+                                <syncfusion:SfTreeView x:Name="TV_separation" AllowDragging="True" AllowDrop="True" Height="141" ItemTemplateDataContextType="Item" Margin="0,36,0,0" ShowLines="True" ShowRootLines="True" VerticalAlignment="Top" FocusBorderThickness="0,1" AllowEditing="True" AllowDeleting="True" IsManipulationEnabled="True" IsAnimationEnabled="True" EditTrigger="DoubleTap">
                                     <syncfusion:SfTreeView.Nodes>
                                         <syncfusion:TreeViewNode Content="Please Import a config" HasChildNodes="False" IsExpanded="False" IsChecked="False" ShowExpanderAnimation="False"/>
                                     </syncfusion:SfTreeView.Nodes>
@@ -1420,7 +1420,7 @@
                                     Width="209"
                                     VerticalContentAlignment="Center"
                                     BorderBrush="#FF020000" AllowDrop="False" Margin="10,5,0,0" FontSize="16" Padding="5,0,5,5" />
-                                <syncfusion:SfTreeView x:Name="TV_lockout" AllowDragging="True" AllowDrop="True" Height="177" ItemTemplateDataContextType="Item" Margin="0,36,0,0" ShowLines="True" ShowRootLines="True" SelectionMode="Multiple" VerticalAlignment="Top" FocusBorderThickness="0,1">
+                                <syncfusion:SfTreeView x:Name="TV_lockout" AllowDragging="True" AllowDrop="True" Height="177" ItemTemplateDataContextType="Item" Margin="0,36,0,0" ShowLines="True" ShowRootLines="True" VerticalAlignment="Top" FocusBorderThickness="0,1" AllowEditing="True" AllowDeleting="True" IsManipulationEnabled="True" IsAnimationEnabled="True" EditTrigger="DoubleTap">
                                     <syncfusion:SfTreeView.Nodes>
                                         <syncfusion:TreeViewNode Content="Please Import a config" HasChildNodes="False" IsExpanded="False" IsChecked="False" ShowExpanderAnimation="False"/>
                                     </syncfusion:SfTreeView.Nodes>
@@ -1431,7 +1431,7 @@
                                     Width="209"
                                     VerticalContentAlignment="Center"
                                     BorderBrush="#FF020000" AllowDrop="False" Margin="10,5,0,0" FontSize="16" Padding="5,0,5,5" />
-                                <syncfusion:SfTreeView x:Name="TV_crates" AllowDragging="True" AllowDrop="True" Height="227" ItemTemplateDataContextType="Item" Margin="0,36,0,0" ShowLines="True" ShowRootLines="True" SelectionMode="Multiple" VerticalAlignment="Top" FocusBorderThickness="0,1">
+                                <syncfusion:SfTreeView x:Name="TV_crates" AllowDragging="True" AllowDrop="True" Height="227" ItemTemplateDataContextType="Item" Margin="0,36,0,0" ShowLines="True" ShowRootLines="True" VerticalAlignment="Top" FocusBorderThickness="0,1" AllowEditing="True" AllowDeleting="True" IsManipulationEnabled="True" IsAnimationEnabled="True" EditTrigger="DoubleTap">
                                     <syncfusion:SfTreeView.Nodes>
                                         <syncfusion:TreeViewNode Content="Please Import a config" HasChildNodes="False" IsExpanded="False" IsChecked="False" ShowExpanderAnimation="False"/>
                                     </syncfusion:SfTreeView.Nodes>
@@ -1442,7 +1442,7 @@
                                 Width="209"
                                 VerticalContentAlignment="Center"
                                 BorderBrush="#FF020000" AllowDrop="False" Margin="10,5,0,0" FontSize="16" Padding="5,0,5,5" />
-                                <syncfusion:SfTreeView x:Name="TV_other" AllowDragging="True" AllowDrop="True" Height="82" ItemTemplateDataContextType="Item" Margin="0,36,0,0" ShowLines="True" ShowRootLines="True" SelectionMode="Multiple" VerticalAlignment="Top" FocusBorderThickness="0,1">
+                                <syncfusion:SfTreeView x:Name="TV_other" AllowDragging="True" AllowDrop="True" Height="82" ItemTemplateDataContextType="Item" Margin="0,36,0,0" ShowLines="True" ShowRootLines="True" VerticalAlignment="Top" FocusBorderThickness="0,1" AllowEditing="True" AllowDeleting="True" IsManipulationEnabled="True" IsAnimationEnabled="True" EditTrigger="DoubleTap">
                                     <syncfusion:SfTreeView.Nodes>
                                         <syncfusion:TreeViewNode Content="Please Import a config" HasChildNodes="False" IsExpanded="False" IsChecked="False" ShowExpanderAnimation="False"/>
                                     </syncfusion:SfTreeView.Nodes>
@@ -1457,7 +1457,7 @@
                                                     Width="209"
                                                     VerticalContentAlignment="Center"
                                                     BorderBrush="#FF020000" AllowDrop="False" Margin="10,5,0,0" FontSize="16" Padding="5,0,5,5" />
-                                                <syncfusion:SfTreeView x:Name="TV_Location_Red_Strongroom" AllowDragging="True" AllowDrop="True" Height="212" ItemTemplateDataContextType="Item" Margin="0,36,0,0" ShowLines="True" ShowRootLines="True" SelectionMode="Multiple" VerticalAlignment="Top" FocusBorderThickness="0,1">
+                                                <syncfusion:SfTreeView x:Name="TV_Location_Red_Strongroom" AllowDragging="True" AllowDrop="True" Height="212" ItemTemplateDataContextType="Item" Margin="0,36,5,0" ShowLines="True" ShowRootLines="True" VerticalAlignment="Top" FocusBorderThickness="0,1" AllowEditing="True" AllowDeleting="True" IsAnimationEnabled="True" IsManipulationEnabled="True" EditTrigger="DoubleTap">
                                                     <syncfusion:SfTreeView.Nodes>
                                                         <syncfusion:TreeViewNode Content="Please Import a config" HasChildNodes="False" IsExpanded="False" IsChecked="False" ShowExpanderAnimation="False"/>
                                                     </syncfusion:SfTreeView.Nodes>
@@ -1468,7 +1468,7 @@
                                                     Width="209"
                                                     VerticalContentAlignment="Center"
                                                     BorderBrush="#FF020000" AllowDrop="False" Margin="10,5,0,0" FontSize="16" Padding="5,0,5,5" />
-                                                <syncfusion:SfTreeView x:Name="TV_Location_Red_Crate" AllowDragging="True" AllowDrop="True" Height="212" ItemTemplateDataContextType="Item" Margin="0,36,0,0" ShowLines="True" ShowRootLines="True" SelectionMode="Multiple" VerticalAlignment="Top" FocusBorderThickness="0,1">
+                                                <syncfusion:SfTreeView x:Name="TV_Location_Red_Crate" AllowDragging="True" AllowDrop="True" Height="212" ItemTemplateDataContextType="Item" Margin="0,36,0,0" ShowLines="True" ShowRootLines="True" VerticalAlignment="Top" FocusBorderThickness="0,1" AllowEditing="True" AllowDeleting="True" IsAnimationEnabled="True" IsManipulationEnabled="True" EditTrigger="DoubleTap">
                                                     <syncfusion:SfTreeView.Nodes>
                                                         <syncfusion:TreeViewNode Content="Please Import a config" HasChildNodes="False" IsExpanded="False" IsChecked="False" ShowExpanderAnimation="False"/>
                                                     </syncfusion:SfTreeView.Nodes>
@@ -1483,7 +1483,7 @@
                                                     Width="209"
                                                     VerticalContentAlignment="Center"
                                                     BorderBrush="#FF020000" AllowDrop="False" Margin="10,5,0,0" FontSize="16" Padding="5,0,5,5" />
-                                                <syncfusion:SfTreeView x:Name="TV_Location_Purple_Strongroom" AllowDragging="True" AllowDrop="True" Height="212" ItemTemplateDataContextType="Item" Margin="0,36,0,0" ShowLines="True" ShowRootLines="True" SelectionMode="Multiple" VerticalAlignment="Top" FocusBorderThickness="0,1">
+                                                <syncfusion:SfTreeView x:Name="TV_Location_Purple_Strongroom" AllowDragging="True" AllowDrop="True" Height="212" ItemTemplateDataContextType="Item" Margin="0,36,0,0" ShowLines="True" ShowRootLines="True" VerticalAlignment="Top" FocusBorderThickness="0,1" AllowEditing="True" AllowDeleting="True" IsAnimationEnabled="True" IsManipulationEnabled="True" EditTrigger="DoubleTap">
                                                     <syncfusion:SfTreeView.Nodes>
                                                         <syncfusion:TreeViewNode Content="Please Import a config" HasChildNodes="False" IsExpanded="False" IsChecked="False" ShowExpanderAnimation="False"/>
                                                     </syncfusion:SfTreeView.Nodes>
@@ -1494,7 +1494,7 @@
                                                     Width="209"
                                                     VerticalContentAlignment="Center"
                                                     BorderBrush="#FF020000" AllowDrop="False" Margin="10,5,0,0" FontSize="16" Padding="5,0,5,5" />
-                                                <syncfusion:SfTreeView x:Name="TV_Location_Purple_Crate" AllowDragging="True" AllowDrop="True" Height="212" ItemTemplateDataContextType="Item" Margin="0,36,0,0" ShowLines="True" ShowRootLines="True" SelectionMode="Multiple" VerticalAlignment="Top" FocusBorderThickness="0,1">
+                                                <syncfusion:SfTreeView x:Name="TV_Location_Purple_Crate" AllowDragging="True" AllowDrop="True" Height="212" ItemTemplateDataContextType="Item" Margin="0,36,0,0" ShowLines="True" ShowRootLines="True" VerticalAlignment="Top" FocusBorderThickness="0,1" AllowEditing="True" AllowDeleting="True" IsAnimationEnabled="True" IsManipulationEnabled="True" EditTrigger="DoubleTap">
                                                     <syncfusion:SfTreeView.Nodes>
                                                         <syncfusion:TreeViewNode Content="Please Import a config" HasChildNodes="False" IsExpanded="False" IsChecked="False" ShowExpanderAnimation="False"/>
                                                     </syncfusion:SfTreeView.Nodes>
@@ -1509,7 +1509,7 @@
                                                     Width="209"
                                                     VerticalContentAlignment="Center"
                                                     BorderBrush="#FF020000" AllowDrop="False" Margin="10,5,0,0" FontSize="16" Padding="5,0,5,5" />
-                                                <syncfusion:SfTreeView x:Name="TV_Location_Blue_Strongroom" AllowDragging="True" AllowDrop="True" Height="212" ItemTemplateDataContextType="Item" Margin="0,36,0,0" ShowLines="True" ShowRootLines="True" SelectionMode="Multiple" VerticalAlignment="Top" FocusBorderThickness="0,1">
+                                                <syncfusion:SfTreeView x:Name="TV_Location_Blue_Strongroom" AllowDragging="True" AllowDrop="True" Height="212" ItemTemplateDataContextType="Item" Margin="0,36,0,0" ShowLines="True" ShowRootLines="True" VerticalAlignment="Top" FocusBorderThickness="0,1" AllowEditing="True" AllowDeleting="True" IsAnimationEnabled="True" IsManipulationEnabled="True" EditTrigger="DoubleTap">
                                                     <syncfusion:SfTreeView.Nodes>
                                                         <syncfusion:TreeViewNode Content="Please Import a config" HasChildNodes="False" IsExpanded="False" IsChecked="False" ShowExpanderAnimation="False"/>
                                                     </syncfusion:SfTreeView.Nodes>
@@ -1520,7 +1520,7 @@
                                                     Width="209"
                                                     VerticalContentAlignment="Center"
                                                     BorderBrush="#FF020000" AllowDrop="False" Margin="10,5,0,0" FontSize="16" Padding="5,0,5,5" />
-                                                <syncfusion:SfTreeView x:Name="TV_Location_Blue_Crate" AllowDragging="True" AllowDrop="True" Height="212" ItemTemplateDataContextType="Item" Margin="0,36,0,0" ShowLines="True" ShowRootLines="True" SelectionMode="Multiple" VerticalAlignment="Top" FocusBorderThickness="0,1">
+                                                <syncfusion:SfTreeView x:Name="TV_Location_Blue_Crate" AllowDragging="True" AllowDrop="True" Height="212" ItemTemplateDataContextType="Item" Margin="0,36,0,0" ShowLines="True" ShowRootLines="True" VerticalAlignment="Top" FocusBorderThickness="0,1" AllowEditing="True" AllowDeleting="True" IsAnimationEnabled="True" IsManipulationEnabled="True" EditTrigger="DoubleTap">
                                                     <syncfusion:SfTreeView.Nodes>
                                                         <syncfusion:TreeViewNode Content="Please Import a config" HasChildNodes="False" IsExpanded="False" IsChecked="False" ShowExpanderAnimation="False"/>
                                                     </syncfusion:SfTreeView.Nodes>
@@ -1535,7 +1535,7 @@
                                                     Width="209"
                                                     VerticalContentAlignment="Center"
                                                     BorderBrush="#FF020000" AllowDrop="False" Margin="10,5,0,0" FontSize="16" Padding="5,0,5,5" />
-                                                <syncfusion:SfTreeView x:Name="TV_Location_Green_Strongroom" AllowDragging="True" AllowDrop="True" Height="212" ItemTemplateDataContextType="Item" Margin="0,36,0,0" ShowLines="True" ShowRootLines="True" SelectionMode="Multiple" VerticalAlignment="Top" FocusBorderThickness="0,1">
+                                                <syncfusion:SfTreeView x:Name="TV_Location_Green_Strongroom" AllowDragging="True" AllowDrop="True" Height="212" ItemTemplateDataContextType="Item" Margin="0,36,0,0" ShowLines="True" ShowRootLines="True" VerticalAlignment="Top" FocusBorderThickness="0,1" AllowEditing="True" AllowDeleting="True" IsManipulationEnabled="True" EditTrigger="DoubleTap" IsAnimationEnabled="True">
                                                     <syncfusion:SfTreeView.Nodes>
                                                         <syncfusion:TreeViewNode Content="Please Import a config" HasChildNodes="False" IsExpanded="False" IsChecked="False" ShowExpanderAnimation="False"/>
                                                     </syncfusion:SfTreeView.Nodes>
@@ -1546,7 +1546,7 @@
                                                     Width="209"
                                                     VerticalContentAlignment="Center"
                                                     BorderBrush="#FF020000" AllowDrop="False" Margin="10,5,0,0" FontSize="16" Padding="5,0,5,5" />
-                                                <syncfusion:SfTreeView x:Name="TV_Location_Green_Crate" AllowDragging="True" AllowDrop="True" Height="212" ItemTemplateDataContextType="Item" Margin="0,36,0,0" ShowLines="True" ShowRootLines="True" SelectionMode="Multiple" VerticalAlignment="Top" FocusBorderThickness="0,1">
+                                                <syncfusion:SfTreeView x:Name="TV_Location_Green_Crate" AllowDragging="True" AllowDrop="True" Height="212" ItemTemplateDataContextType="Item" Margin="0,36,0,0" ShowLines="True" ShowRootLines="True" VerticalAlignment="Top" FocusBorderThickness="0,1" AllowEditing="True" AllowDeleting="True" IsManipulationEnabled="True" EditTrigger="DoubleTap" IsAnimationEnabled="True">
                                                     <syncfusion:SfTreeView.Nodes>
                                                         <syncfusion:TreeViewNode Content="Please Import a config" HasChildNodes="False" IsExpanded="False" IsChecked="False" ShowExpanderAnimation="False"/>
                                                     </syncfusion:SfTreeView.Nodes>
@@ -1561,7 +1561,7 @@
                                                     Width="209"
                                                     VerticalContentAlignment="Center"
                                                     BorderBrush="#FF020000" AllowDrop="False" Margin="10,5,0,0" FontSize="16" Padding="5,0,5,5" />
-                                                <syncfusion:SfTreeView x:Name="TV_Location_Yellow_Strongroom" AllowDragging="True" AllowDrop="True" Height="212" ItemTemplateDataContextType="Item" Margin="0,36,0,0" ShowLines="True" ShowRootLines="True" SelectionMode="Multiple" VerticalAlignment="Top" FocusBorderThickness="0,1">
+                                                <syncfusion:SfTreeView x:Name="TV_Location_Yellow_Strongroom" AllowDragging="True" AllowDrop="True" Height="212" ItemTemplateDataContextType="Item" Margin="0,36,0,0" ShowLines="True" ShowRootLines="True" VerticalAlignment="Top" FocusBorderThickness="0,1" AllowEditing="True" AllowDeleting="True" IsManipulationEnabled="True" IsAnimationEnabled="True" EditTrigger="DoubleTap">
                                                     <syncfusion:SfTreeView.Nodes>
                                                         <syncfusion:TreeViewNode Content="Please Import a config" HasChildNodes="False" IsExpanded="False" IsChecked="False" ShowExpanderAnimation="False"/>
                                                     </syncfusion:SfTreeView.Nodes>
@@ -1572,7 +1572,7 @@
                                                     Width="209"
                                                     VerticalContentAlignment="Center"
                                                     BorderBrush="#FF020000" AllowDrop="False" Margin="10,5,0,0" FontSize="16" Padding="5,0,5,5" />
-                                                <syncfusion:SfTreeView x:Name="TV_Location_Yellow_Crate" AllowDragging="True" AllowDrop="True" Height="212" ItemTemplateDataContextType="Item" Margin="0,36,0,0" ShowLines="True" ShowRootLines="True" SelectionMode="Multiple" VerticalAlignment="Top" FocusBorderThickness="0,1">
+                                                <syncfusion:SfTreeView x:Name="TV_Location_Yellow_Crate" AllowDragging="True" AllowDrop="True" Height="212" ItemTemplateDataContextType="Item" Margin="0,36,0,0" ShowLines="True" ShowRootLines="True" VerticalAlignment="Top" FocusBorderThickness="0,1" AllowEditing="True" AllowDeleting="True" IsManipulationEnabled="True" IsAnimationEnabled="True" EditTrigger="DoubleTap">
                                                     <syncfusion:SfTreeView.Nodes>
                                                         <syncfusion:TreeViewNode Content="Please Import a config" HasChildNodes="False" IsExpanded="False" IsChecked="False" ShowExpanderAnimation="False"/>
                                                     </syncfusion:SfTreeView.Nodes>

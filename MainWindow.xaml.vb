@@ -1228,12 +1228,46 @@ Partial Public Class MainWindow
         AddHandler TV_WeaponKits_Generated_Yellow.ItemDeleting, AddressOf Event_Deleting_Generated_Kits
 
 
-        AddHandler TV_ClothingKit_Generated_Red.ItemBeginEdit, AddressOf Event_BeginEdit_Generated_Kits
-        AddHandler TV_ClothingKit_Generated_Purple.ItemBeginEdit, AddressOf Event_BeginEdit_Generated_Kits
-        AddHandler TV_ClothingKit_Generated_Blue.ItemBeginEdit, AddressOf Event_BeginEdit_Generated_Kits
-        AddHandler TV_ClothingKit_Generated_Green.ItemBeginEdit, AddressOf Event_BeginEdit_Generated_Kits
-        AddHandler TV_ClothingKit_Generated_Yellow.ItemBeginEdit, AddressOf Event_BeginEdit_Generated_Kits
 
+
+
+
+        AddHandler TV_Strongrooms.ItemDeleting, AddressOf Event_BeginDel_ConfigLocations
+        AddHandler TV_crates.ItemDeleting, AddressOf Event_BeginDel_ConfigLocations
+        AddHandler TV_keycard.ItemDeleting, AddressOf Event_BeginDel_ConfigLocations
+        AddHandler TV_other.ItemDeleting, AddressOf Event_BeginDel_ConfigLocations
+        AddHandler TV_separation.ItemDeleting, AddressOf Event_BeginDel_ConfigLocations
+        AddHandler TV_lockout.ItemDeleting, AddressOf Event_BeginDel_ConfigLocations
+        '''''''''''''''''''''''''''''''''''''''''''''''''''''''''''
+        '''
+        '''
+        '''
+        '''
+        '''
+        '''
+        '''
+        AddHandler TV_Location_Red_Strongroom.ItemBeginEdit, AddressOf Event_BeginEdit_ConfigLocations
+        AddHandler TV_Location_Purple_Strongroom.ItemBeginEdit, AddressOf Event_BeginEdit_ConfigLocations
+        AddHandler TV_Location_Blue_Strongroom.ItemBeginEdit, AddressOf Event_BeginEdit_ConfigLocations
+        AddHandler TV_Location_Green_Strongroom.ItemBeginEdit, AddressOf Event_BeginEdit_ConfigLocations
+        AddHandler TV_Location_Yellow_Strongroom.ItemBeginEdit, AddressOf Event_BeginEdit_ConfigLocations
+        AddHandler TV_Location_Red_Crate.ItemBeginEdit, AddressOf Event_BeginEdit_ConfigLocations
+        AddHandler TV_Location_Purple_Crate.ItemBeginEdit, AddressOf Event_BeginEdit_ConfigLocations
+        AddHandler TV_Location_Blue_Crate.ItemBeginEdit, AddressOf Event_BeginEdit_ConfigLocations
+        AddHandler TV_Location_Green_Crate.ItemBeginEdit, AddressOf Event_BeginEdit_ConfigLocations
+        AddHandler TV_Location_Yellow_Crate.ItemBeginEdit, AddressOf Event_BeginEdit_ConfigLocations
+        '''''''''''''''''''''''''''''''''''''''''''''''''''''''''''
+        AddHandler TV_Location_Red_Strongroom.ItemDeleting, AddressOf Event_BeginDel_ConfigLocations
+        AddHandler TV_Location_Purple_Strongroom.ItemDeleting, AddressOf Event_BeginDel_ConfigLocations
+        AddHandler TV_Location_Blue_Strongroom.ItemDeleting, AddressOf Event_BeginDel_ConfigLocations
+        AddHandler TV_Location_Green_Strongroom.ItemDeleting, AddressOf Event_BeginDel_ConfigLocations
+        AddHandler TV_Location_Yellow_Strongroom.ItemDeleting, AddressOf Event_BeginDel_ConfigLocations
+        AddHandler TV_Location_Red_Crate.ItemDeleting, AddressOf Event_BeginDel_ConfigLocations
+        AddHandler TV_Location_Purple_Crate.ItemDeleting, AddressOf Event_BeginDel_ConfigLocations
+        AddHandler TV_Location_Blue_Crate.ItemDeleting, AddressOf Event_BeginDel_ConfigLocations
+        AddHandler TV_Location_Green_Crate.ItemDeleting, AddressOf Event_BeginDel_ConfigLocations
+        AddHandler TV_Location_Yellow_Crate.ItemDeleting, AddressOf Event_BeginDel_ConfigLocations
+        '''''''''''''''''''''''''''''''''''''''''''''''''''''''''''
         AddHandler TV_ClothingKit_Generated_Red.ItemDeleting, AddressOf Event_Deleting_Generated_Kits
         AddHandler TV_ClothingKit_Generated_Purple.ItemDeleting, AddressOf Event_Deleting_Generated_Kits
         AddHandler TV_ClothingKit_Generated_Blue.ItemDeleting, AddressOf Event_Deleting_Generated_Kits
@@ -1281,6 +1315,37 @@ Partial Public Class MainWindow
         AttachTextChangedEventToAllTextBoxes(Tab_Kits)
         AttachTextChangedEventToAllTextBoxes(Tab_LootSettings)
     End Sub
+
+    Async Sub Event_BeginEdit_ConfigLocations(sender As Object, e As EventArgs)
+        Dim EventInfo As TreeViewItemBeginEditEventArgs = e
+        Dim tree_ As SfTreeView = sender
+        Dim xx = ""
+        Dim _node = EventInfo.Node
+        If _node.ParentNode IsNot Nothing Then
+            If _node.ChildNodes.Count <> 0 Then
+                EventInfo.Cancel = True
+            Else
+                EventInfo.Cancel = False
+            End If
+        Else
+            EventInfo.Cancel = True
+        End If
+
+
+    End Sub
+    Async Sub Event_BeginDel_ConfigLocations(sender As Object, e As EventArgs)
+        Dim EventInfo As ItemDeletingEventArgs = e
+        Dim tree_ As SfTreeView = sender
+        Dim xx = ""
+        For Each _node As TreeViewNode In EventInfo.Nodes
+            If _node.ParentNode Is Nothing Then
+                EventInfo.Cancel = False
+            Else
+                EventInfo.Cancel = True
+            End If
+        Next
+    End Sub
+
     Async Sub Event_Deleting_Generated_Kits(sender As Object, e As EventArgs)
         Dim EventInfo As ItemDeletingEventArgs = e
         Dim tree_ As SfTreeView = sender
@@ -1596,6 +1661,7 @@ Partial Public Class MainWindow
         End If
         Return 0 ' Default value if prefix is not found
     End Function
+
     Async Function ExportSystemConfigToJson(filepath As String) As Task
 
         Dim json_ As String = ""
@@ -2309,7 +2375,7 @@ Partial Public Class MainWindow
         Dim executableDirectory = AppDomain.CurrentDomain.BaseDirectory
         ' Set initial directory and filename
         tsaveFileDialog.InitialDirectory = executableDirectory ' Set your desired initial directory
-        tsaveFileDialog.FileName = "KeyCard_Clothing_Config"
+        tsaveFileDialog.FileName = "KeyCard_Main_System_Config"
         tsaveFileDialog.DefaultExt = ".json"
         tsaveFileDialog.Filter = "JSON Files (*.json)|*.json|All Files (*.*)|*.*"
 
