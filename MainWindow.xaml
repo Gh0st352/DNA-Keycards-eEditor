@@ -1374,7 +1374,7 @@
                         </syncfusion:TabControlExt>
                     </Grid>
                 </syncfusion:TabItemExt>
-                <syncfusion:TabItemExt x:Name="Tab_SystemConfig" Header="System Config" MinWidth="20" MinHeight="20" IsSelected="True">
+                <syncfusion:TabItemExt x:Name="Tab_SystemConfig" Header="System Config" MinWidth="20" MinHeight="20">
                     <Grid>
                         <Grid x:Name="G_SystemConfigMain" HorizontalAlignment="Left" Height="536" VerticalAlignment="Top"
                             Width="1129" Margin="10,10,0,0" AllowDrop="False">
@@ -1600,7 +1600,7 @@
                                 AllowDrop="False" LargeIcon="etc/ico/arrow up/arrow-up.ico"
                                 SmallIcon="etc/ico/arrow up/arrow-up.ico" IconHeight="20"
                                 IconWidth="20" FontSize="14" />
-                            <syncfusion:ButtonAdv x:Name="Kits_ImportSystemConfig_MAP_Copy" Content="ButtonAdv"
+                            <syncfusion:ButtonAdv x:Name="Kits_ExportSystemConfig" Content="ButtonAdv"
                                 HorizontalAlignment="Left" Height="69"
                                 Label="Export Config As Shown"
                                 VerticalAlignment="Top"

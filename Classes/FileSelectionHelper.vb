@@ -55,6 +55,16 @@ Imports Newtonsoft.Json.Linq
 
 Namespace Classes
     Public Class FileSelectionHelper
+        Public Shared Function FindMemberByDNAOptionBak(list As List(Of GenerateConfigs.System.MainSystemSettings), searchString As String) As GenerateConfigs.System.MainSystemSettings
+            For Each member As GenerateConfigs.System.MainSystemSettings In list
+                If StringContainsText(searchString.ToLower(), member.dna_Option_Bak.ToLower()) Then
+                    Return member
+                End If
+            Next
+
+            Return Nothing ' Return Nothing if no match is found
+        End Function
+
         Public Shared Function StringContainsText(inputString As String, searchText As String) As Boolean
             Return inputString.IndexOf(searchText, StringComparison.OrdinalIgnoreCase) >= 0
         End Function
@@ -308,6 +318,156 @@ Namespace Classes
             ' Return the list of unique "classname" and "variants" strings
             Return classNamesAndVariants.ToList()
         End Function
+        Public Class LinkerAddressMapParser
+            Public Shared Async Function ParseToUsable(entries As List(Of LinkerAddressMapEntry)) As Task
+                Dim tLocRedCrate As ObservableCollection(Of GenerateConfigs.System.SpawnablePositionalData) = GenerateConfigs.System.Locations.Crate.Red
+                Dim tLocPCrate As ObservableCollection(Of GenerateConfigs.System.SpawnablePositionalData) = GenerateConfigs.System.Locations.Crate.Purple
+                Dim tLocBCrate As ObservableCollection(Of GenerateConfigs.System.SpawnablePositionalData) = GenerateConfigs.System.Locations.Crate.Blue
+                Dim tLocGCrate As ObservableCollection(Of GenerateConfigs.System.SpawnablePositionalData) = GenerateConfigs.System.Locations.Crate.Green
+                Dim tLocYCrate As ObservableCollection(Of GenerateConfigs.System.SpawnablePositionalData) = GenerateConfigs.System.Locations.Crate.Yellow
+
+                Dim tLocR_SR As ObservableCollection(Of GenerateConfigs.System.SpawnablePositionalData) = GenerateConfigs.System.Locations.Strongroom.Red
+                Dim tLocP_SR As ObservableCollection(Of GenerateConfigs.System.SpawnablePositionalData) = GenerateConfigs.System.Locations.Strongroom.Purple
+                Dim tLocB_SR As ObservableCollection(Of GenerateConfigs.System.SpawnablePositionalData) = GenerateConfigs.System.Locations.Strongroom.Blue
+                Dim tLocG_SR As ObservableCollection(Of GenerateConfigs.System.SpawnablePositionalData) = GenerateConfigs.System.Locations.Strongroom.Green
+                Dim tLocY_SR As ObservableCollection(Of GenerateConfigs.System.SpawnablePositionalData) = GenerateConfigs.System.Locations.Strongroom.Yellow
+
+
+                For Each entry_ In entries
+                    Select Case True
+                        Case StringContainsText(entry_.Name.ToLower(), "crate_red")
+                            tLocRedCrate.Add(New GenerateConfigs.System.SpawnablePositionalData(entry_.Position.X.ToString() + " " + entry_.Position.Y.ToString() + " " + entry_.Position.Z.ToString(), entry_.Rotation.X.ToString() + " " + entry_.Rotation.Y.ToString() + " " + entry_.Rotation.Z.ToString()))
+                        Case StringContainsText(entry_.Name.ToLower(), "crate_purple")
+                            tLocPCrate.Add(New GenerateConfigs.System.SpawnablePositionalData(entry_.Position.X.ToString() + " " + entry_.Position.Y.ToString() + " " + entry_.Position.Z.ToString(), entry_.Rotation.X.ToString() + " " + entry_.Rotation.Y.ToString() + " " + entry_.Rotation.Z.ToString()))
+                        Case StringContainsText(entry_.Name.ToLower(), "crate_blue")
+                            tLocBCrate.Add(New GenerateConfigs.System.SpawnablePositionalData(entry_.Position.X.ToString() + " " + entry_.Position.Y.ToString() + " " + entry_.Position.Z.ToString(), entry_.Rotation.X.ToString() + " " + entry_.Rotation.Y.ToString() + " " + entry_.Rotation.Z.ToString()))
+                        Case StringContainsText(entry_.Name.ToLower(), "crate_green")
+                            tLocGCrate.Add(New GenerateConfigs.System.SpawnablePositionalData(entry_.Position.X.ToString() + " " + entry_.Position.Y.ToString() + " " + entry_.Position.Z.ToString(), entry_.Rotation.X.ToString() + " " + entry_.Rotation.Y.ToString() + " " + entry_.Rotation.Z.ToString()))
+                        Case StringContainsText(entry_.Name.ToLower(), "crate_yellow")
+                            tLocYCrate.Add(New GenerateConfigs.System.SpawnablePositionalData(entry_.Position.X.ToString() + " " + entry_.Position.Y.ToString() + " " + entry_.Position.Z.ToString(), entry_.Rotation.X.ToString() + " " + entry_.Rotation.Y.ToString() + " " + entry_.Rotation.Z.ToString()))
+
+
+                        Case StringContainsText(entry_.Name.ToLower(), "strongroom_red")
+                            tLocR_SR.Add(New GenerateConfigs.System.SpawnablePositionalData(entry_.Position.X.ToString() + " " + entry_.Position.Y.ToString() + " " + entry_.Position.Z.ToString(), entry_.Rotation.X.ToString() + " " + entry_.Rotation.Y.ToString() + " " + entry_.Rotation.Z.ToString()))
+                        Case StringContainsText(entry_.Name.ToLower(), "strongroom_purple")
+                            tLocP_SR.Add(New GenerateConfigs.System.SpawnablePositionalData(entry_.Position.X.ToString() + " " + entry_.Position.Y.ToString() + " " + entry_.Position.Z.ToString(), entry_.Rotation.X.ToString() + " " + entry_.Rotation.Y.ToString() + " " + entry_.Rotation.Z.ToString()))
+                        Case StringContainsText(entry_.Name.ToLower(), "strongroom_blue")
+                            tLocB_SR.Add(New GenerateConfigs.System.SpawnablePositionalData(entry_.Position.X.ToString() + " " + entry_.Position.Y.ToString() + " " + entry_.Position.Z.ToString(), entry_.Rotation.X.ToString() + " " + entry_.Rotation.Y.ToString() + " " + entry_.Rotation.Z.ToString()))
+                        Case StringContainsText(entry_.Name.ToLower(), "strongroom_green")
+                            tLocG_SR.Add(New GenerateConfigs.System.SpawnablePositionalData(entry_.Position.X.ToString() + " " + entry_.Position.Y.ToString() + " " + entry_.Position.Z.ToString(), entry_.Rotation.X.ToString() + " " + entry_.Rotation.Y.ToString() + " " + entry_.Rotation.Z.ToString()))
+                        Case StringContainsText(entry_.Name.ToLower(), "strongroom_yellow")
+                            tLocY_SR.Add(New GenerateConfigs.System.SpawnablePositionalData(entry_.Position.X.ToString() + " " + entry_.Position.Y.ToString() + " " + entry_.Position.Z.ToString(), entry_.Rotation.X.ToString() + " " + entry_.Rotation.Y.ToString() + " " + entry_.Rotation.Z.ToString()))
+
+                    End Select
+                Next
+
+                GenerateConfigs.System.Locations.Crate.Red = tLocRedCrate
+                GenerateConfigs.System.Locations.Crate.Purple = tLocPCrate
+                GenerateConfigs.System.Locations.Crate.Blue = tLocBCrate
+                GenerateConfigs.System.Locations.Crate.Green = tLocGCrate
+                GenerateConfigs.System.Locations.Crate.Yellow = tLocYCrate
+
+                GenerateConfigs.System.Locations.Strongroom.Red = tLocR_SR
+                GenerateConfigs.System.Locations.Strongroom.Purple = tLocP_SR
+                GenerateConfigs.System.Locations.Strongroom.Blue = tLocB_SR
+                GenerateConfigs.System.Locations.Strongroom.Green = tLocG_SR
+                GenerateConfigs.System.Locations.Strongroom.Yellow = tLocY_SR
+
+            End Function
+            Public Shared Async Function RemoveNodesByNames(entries As List(Of LinkerAddressMapEntry), allowedNames As List(Of String)) As Task
+                entries.RemoveAll(Function(entry) Not allowedNames.Exists(Function(allowedName) entry.Name.IndexOf(allowedName, StringComparison.OrdinalIgnoreCase) >= 0))
+
+            End Function
+
+            Public Shared Async Function ParseLinkerAddressMapFile(filePath As String) As Task(Of List(Of LinkerAddressMapEntry))
+                Dim entries As New List(Of LinkerAddressMapEntry)()
+
+                Using reader As New StreamReader(filePath)
+                    While Not reader.EndOfStream
+                        Dim line As String = reader.ReadLine()
+                        Dim parts As String() = line.Split("|"c)
+
+                        If parts.Length = 3 Then
+                            Dim entry As New LinkerAddressMapEntry()
+                            entry.Name = parts(0).Trim()
+                            entry.Position = ParseVector3(parts(1).Trim())
+                            entry.Rotation = ParseVector3(parts(2).Trim())
+
+                            entries.Add(entry)
+                        End If
+                    End While
+                End Using
+                Return entries
+            End Function
+
+            Private Shared Function ParseVector3(vectorString As String) As Vector3
+                Dim values As String() = vectorString.Split(" "c)
+                Dim vector As New Vector3()
+
+                If values.Length = 3 Then
+                    vector.X = Single.Parse(values(0))
+                    vector.Y = Single.Parse(values(1))
+                    vector.Z = Single.Parse(values(2))
+                End If
+
+                Return vector
+            End Function
+        End Class
+
+        Public Class LinkerAddressMapEntry
+            Public Property Name As String
+            Public Property Position As Vector3
+            Public Property Rotation As Vector3
+        End Class
+
+        Public Structure Vector3
+            Public X As Single
+            Public Y As Single
+            Public Z As Single
+        End Structure
+        'Public Class MAP
+        '    Public Shared Async Function ImportMAP(mapPath As String) As Task(Of List(Of String))
+        '        Dim classNamesAndVariants As New HashSet(Of String)()
+
+        '        ' Read the JSON file
+        '        Using reader As StreamReader = File.OpenText(mapPath)
+
+
+
+        '            'Dim jsonText As String = Await reader.ReadToEndAsync()
+
+        '            '' Deserialize the JSON data
+        '            'Dim jsonData As JObject = JsonConvert.DeserializeObject(Of JObject)(jsonText)
+
+        '            '' Get the "Items" array
+        '            'Dim itemsArray As JArray = jsonData("Items")
+
+        '            '' Iterate through each item
+        '            'For Each item As JObject In itemsArray
+        '            '    ' Get the "ClassName" value
+        '            '    Dim className As String = item("ClassName").ToString()
+
+        '            '    ' Add the "ClassName" value to the hash set if it's not already present
+        '            '    classNamesAndVariants.Add(className)
+
+        '            '    ' Get the "Variants" array
+        '            '    Dim variantsArray As JArray = item("Variants")
+
+        '            '    ' Iterate through each variant
+        '            '    For Each tvariant As JToken In variantsArray
+        '            '        ' Get the variant string
+        '            '        Dim variantString As String = tvariant.ToString()
+
+        '            '        ' Add the variant string to the hash set if it's not already present
+        '            '        classNamesAndVariants.Add(variantString)
+        '            '    Next
+        '            'Next
+        '        End Using
+
+        '        ' Return the list of unique "classname" and "variants" strings
+        '        Return classNamesAndVariants.ToList()
+        '    End Function
+        'End Class
         Public Class JSON
 
             Public Shared Function GetNodeValue(json As JObject, path As String) As Object

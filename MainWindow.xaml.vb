@@ -1571,6 +1571,156 @@ Partial Public Class MainWindow
         Dim json = JsonConvert.SerializeObject(New With {Key .m_DNAConfig_Loot = list}, Formatting.Indented)
         File.WriteAllText(filepath, json)
     End Function
+    'Public Function SortByDnaOption(list As List(Of GenerateConfigs.System.MainSystemSettings)) As List(Of GenerateConfigs.System.MainSystemSettings)
+    '    ' Use LINQ to sort the list by dna_Option_Bak property
+    '    Dim sortedList = list.OrderBy(Function(item) item.dna_Option).ToList()
+    '    Return sortedList
+    'End Function
+    'Public Function SortByPrefix(list As List(Of GenerateConfigs.System.MainSystemSettings)) As List(Of GenerateConfigs.System.MainSystemSettings)
+    '    ' Use LINQ to sort the list by the numeric value in the prefix
+    '    Dim sortedList = list.OrderBy(Function(item) Integer.Parse(item.dna_Option.Substring(1))).ToList()
+    '    Return sortedList
+    'End Function
+
+    Public Function SortByPrefix_SystemConfigExport(list As List(Of GenerateConfigs.System.MainSystemSettingsExport)) As List(Of GenerateConfigs.System.MainSystemSettingsExport)
+        ' Use LINQ to sort the list by the numeric value in the prefix
+        Dim sortedList = list.OrderBy(Function(item) GetPrefixValue(item.dna_Option)).ToList()
+        Return sortedList
+    End Function
+
+    Private Function GetPrefixValue(value As String) As Integer
+        Dim match As Match = Regex.Match(value, "\((\d+)\)")
+        If match.Success Then
+            Dim prefix As String = match.Groups(1).Value
+            Return Integer.Parse(prefix)
+        End If
+        Return 0 ' Default value if prefix is not found
+    End Function
+    Async Function ExportSystemConfigToJson(filepath As String) As Task
+
+        Dim json_ As String = ""
+
+        Dim trees As New Collection(Of SfTreeView)
+        trees.Add(TV_Strongrooms)
+        trees.Add(TV_crates)
+        trees.Add(TV_separation)
+        trees.Add(TV_lockout)
+        trees.Add(TV_keycard)
+        trees.Add(TV_other)
+
+        'm_DNAConfig_Version
+        Dim tlist_Version As New List(Of GenerateConfigs.System.DNAConfigVersionExport)()
+        Dim tVersion As New GenerateConfigs.System.DNAConfigVersionExport()
+        tVersion.dna_ConfigVersion = GenerateConfigs.System.DNAConfigVersion.dna_ConfigVersion
+        tVersion.dna_WarningMessage = GenerateConfigs.System.DNAConfigVersion.dna_WarningMessage
+        tlist_Version.Add(tVersion)
+
+        'm_DNAConfig_Main_System
+        Dim tlist_System As New List(Of GenerateConfigs.System.MainSystemSettingsExport)()
+        Dim TotalList As New List(Of GenerateConfigs.System.MainSystemSettings)
+        GenerateConfigs.System.DNAConfigMainSystem_other.ToList().ForEach(Sub(item) TotalList.Add(item))
+        GenerateConfigs.System.DNAConfigMainSystem_Crates.ToList().ForEach(Sub(item) TotalList.Add(item))
+        GenerateConfigs.System.DNAConfigMainSystem_Strongrooms.ToList().ForEach(Sub(item) TotalList.Add(item))
+        GenerateConfigs.System.DNAConfigMainSystem_Card.ToList().ForEach(Sub(item) TotalList.Add(item))
+        GenerateConfigs.System.DNAConfigMainSystem_Separate.ToList().ForEach(Sub(item) TotalList.Add(item))
+        GenerateConfigs.System.DNAConfigMainSystem_lockout.ToList().ForEach(Sub(item) TotalList.Add(item))
+
+        For Each tree As SfTreeView In trees
+            'Build based on Shown
+            If tree.Nodes.Count <> 0 Then
+                If tree.Nodes.First().Content.ToString() <> "Please import a config" Then
+                    tree.SelectedItem = True
+                    For Each Node As TreeViewNode In tree.Nodes
+                        tlist_System.Add(New GenerateConfigs.System.MainSystemSettingsExport() With {.dna_Setting = Node.ChildNodes.Last().Content.ToString().TrimStart(" "), .dna_Option = Node.ChildNodes.Item(Node.ChildNodes.Count - 2).Content.ToString().TrimStart(" ")})
+                    Next
+                End If
+            End If
+        Next
+        tlist_System = SortByPrefix_SystemConfigExport(tlist_System)
+
+        Dim treesLoc As New Collection(Of SfTreeView)
+        treesLoc.Add(TV_Location_Red_Strongroom)
+        treesLoc.Add(TV_Location_Red_Crate)
+        treesLoc.Add(TV_Location_Purple_Strongroom)
+        treesLoc.Add(TV_Location_Purple_Crate)
+        treesLoc.Add(TV_Location_Blue_Strongroom)
+        treesLoc.Add(TV_Location_Blue_Crate)
+        treesLoc.Add(TV_Location_Green_Strongroom)
+        treesLoc.Add(TV_Location_Green_Crate)
+        treesLoc.Add(TV_Location_Yellow_Strongroom)
+        treesLoc.Add(TV_Location_Yellow_Crate)
+
+        'Locations
+        Dim tlist_Locations_Crate_Yellow As New List(Of GenerateConfigs.System.SpawnablePositionalData)()
+        Dim tlist_Locations_Crate_Red As New List(Of GenerateConfigs.System.SpawnablePositionalData)()
+        Dim tlist_Locations_Crate_Purple As New List(Of GenerateConfigs.System.SpawnablePositionalData)()
+        Dim tlist_Locations_Crate_Blue As New List(Of GenerateConfigs.System.SpawnablePositionalData)()
+        Dim tlist_Locations_Crate_Green As New List(Of GenerateConfigs.System.SpawnablePositionalData)()
+
+        Dim tlist_Locations_Strongroom_Red As New List(Of GenerateConfigs.System.SpawnablePositionalData)()
+        Dim tlist_Locations_Strongroom_Purple As New List(Of GenerateConfigs.System.SpawnablePositionalData)()
+        Dim tlist_Locations_Strongroom_Blue As New List(Of GenerateConfigs.System.SpawnablePositionalData)()
+        Dim tlist_Locations_Strongroom_Green As New List(Of GenerateConfigs.System.SpawnablePositionalData)()
+        Dim tlist_Locations_Strongroom_Yellow As New List(Of GenerateConfigs.System.SpawnablePositionalData)()
+
+        For Each tree As SfTreeView In treesLoc
+            'Build based on Shown
+            If tree.Nodes.Count <> 0 Then
+                If tree.Nodes.First().Content.ToString() <> "Please import a config" Then
+                    tree.SelectedItem = True
+                    For Each Node As TreeViewNode In tree.Nodes
+                        Dim chLocation = Node.ChildNodes.First()
+                        Dim chRotation = Node.ChildNodes.Last()
+                        Dim LocX = chLocation.ChildNodes.First().Content
+                        Dim LocY = chLocation.ChildNodes.Item(1).Content
+                        Dim LocZ = chLocation.ChildNodes.Last().Content
+                        Dim RotX = chRotation.ChildNodes.First().Content
+                        Dim RotY = chRotation.ChildNodes.Item(1).Content
+                        Dim RotZ = chRotation.ChildNodes.Last().Content
+                        Dim tPosiData As New GenerateConfigs.System.SpawnablePositionalData(LocX + " " + LocY + " " + LocZ, RotX + " " + RotY + " " + RotZ)
+
+                        Select Case True
+                            Case tree Is TV_Location_Red_Strongroom
+                                tlist_Locations_Strongroom_Red.Add(tPosiData)
+                            Case tree Is TV_Location_Purple_Strongroom
+                                tlist_Locations_Strongroom_Purple.Add(tPosiData)
+                            Case tree Is TV_Location_Blue_Strongroom
+                                tlist_Locations_Strongroom_Blue.Add(tPosiData)
+                            Case tree Is TV_Location_Green_Strongroom
+                                tlist_Locations_Strongroom_Green.Add(tPosiData)
+                            Case tree Is TV_Location_Yellow_Strongroom
+                                tlist_Locations_Strongroom_Yellow.Add(tPosiData)
+                            Case tree Is TV_Location_Red_Crate
+                                tlist_Locations_Crate_Red.Add(tPosiData)
+                            Case tree Is TV_Location_Purple_Crate
+                                tlist_Locations_Crate_Purple.Add(tPosiData)
+                            Case tree Is TV_Location_Blue_Crate
+                                tlist_Locations_Crate_Blue.Add(tPosiData)
+                            Case tree Is TV_Location_Green_Crate
+                                tlist_Locations_Crate_Green.Add(tPosiData)
+                            Case tree Is TV_Location_Yellow_Crate
+                                tlist_Locations_Crate_Yellow.Add(tPosiData)
+                        End Select
+                    Next
+                End If
+            End If
+        Next
+
+        json_ = JsonConvert.SerializeObject(New With {
+                                               Key .m_DNAConfig_Version = tlist_Version,
+                                               Key .m_DNAConfig_Main_System = tlist_System,
+                                               Key .m_DNAYellow_Crate_Locations = tlist_Locations_Crate_Yellow,
+                                               Key .m_DNAGreen_Crate_Locations = tlist_Locations_Crate_Green,
+                                               Key .m_DNABlue_Crate_Locations = tlist_Locations_Crate_Blue,
+                                               Key .m_DNAPurple_Crate_Locations = tlist_Locations_Crate_Purple,
+                                               Key .m_DNARed_Crate_Locations = tlist_Locations_Crate_Red,
+                                               Key .m_DNAYellow_Strongroom_Locations = tlist_Locations_Strongroom_Yellow,
+                                               Key .m_DNAGreen_Strongroom_Locations = tlist_Locations_Strongroom_Green,
+                                               Key .m_DNABlue_Strongroom_Locations = tlist_Locations_Strongroom_Blue,
+                                               Key .m_DNAPurple_Strongroom_Locations = tlist_Locations_Strongroom_Purple,
+                                               Key .m_DNARed_Strongroom_Locations = tlist_Locations_Strongroom_Red}, Formatting.Indented)
+        File.WriteAllText(filepath, json_)
+    End Function
     Async Function ExportWeaponKitsToJson(filepath As String) As Task
         Dim weaponList As New List(Of GenerateConfigs.Weapons.WeaponInfo)()
         Dim WeaponKitTVTypeArr As New Collection(Of SfTreeView)
@@ -1872,7 +2022,7 @@ Partial Public Class MainWindow
 
     Private Async Sub Kits_ImportSystemConfig_Click(sender As Object, e As RoutedEventArgs) Handles Kits_ImportSystemConfig.Click
         Dim resultPath As String = Await FileSelectionHelper.SelectSingleFileAsync()
-        Dim xxx = FileSelectionHelper.ImportSystemConfigJSON(resultPath)
+        Await FileSelectionHelper.ImportSystemConfigJSON(resultPath)
         Await UpdateSystemConfigTab()
     End Sub
     Public Shared Function SeparateStrings(ByVal inputString As String) As (String, String)
@@ -1924,6 +2074,7 @@ Partial Public Class MainWindow
         Dim result As String = Regex.Replace(originalString, pattern, "", RegexOptions.IgnoreCase)
         Return result
     End Function
+
     Async Function UpdateSystemConfigTab() As Task
         Tab_SystemConfig.IsSelected = True
 
@@ -1933,12 +2084,11 @@ Partial Public Class MainWindow
 
                 Dim tHeader As New TreeViewNode With {.Content = RemoveSubstring(ExtractCFGSettingName(setting_.dna_Option), "Strongrooms ").Replace(" -", "")}
                 tHeader.ChildNodes.Add(New TreeViewNode() With {.Content = "TIP:" + ExtractTextAfterFirstOccurrence(setting_.HelpText)})
+                tHeader.ChildNodes.Add(New TreeViewNode() With {.Content = "                                                                                                                                                                              " + setting_.dna_Option_Bak})
                 tHeader.ChildNodes.Add(New TreeViewNode() With {.Content = setting_.dna_Setting})
                 TV_Strongrooms.Nodes.Add(tHeader)
             Next
         End If
-
-
 
         If GenerateConfigs.System.DNAConfigMainSystem_Crates IsNot Nothing Then
             TV_crates.Nodes.Clear()
@@ -1946,6 +2096,7 @@ Partial Public Class MainWindow
 
                 Dim tHeader As New TreeViewNode With {.Content = RemoveSubstring(ExtractCFGSettingName(setting_.dna_Option), "crates ").Replace(" -", "")}
                 tHeader.ChildNodes.Add(New TreeViewNode() With {.Content = "TIP:" + ExtractTextAfterFirstOccurrence(setting_.HelpText)})
+                tHeader.ChildNodes.Add(New TreeViewNode() With {.Content = "                                                                                                                                                                              " + setting_.dna_Option_Bak})
                 tHeader.ChildNodes.Add(New TreeViewNode() With {.Content = setting_.dna_Setting})
                 TV_crates.Nodes.Add(tHeader)
             Next
@@ -1957,6 +2108,7 @@ Partial Public Class MainWindow
 
                 Dim tHeader As New TreeViewNode With {.Content = RemoveSubstring(ExtractCFGSettingName(setting_.dna_Option), "lockout ").Replace(" -", "")}
                 tHeader.ChildNodes.Add(New TreeViewNode() With {.Content = "TIP:" + ExtractTextAfterFirstOccurrence(setting_.HelpText)})
+                tHeader.ChildNodes.Add(New TreeViewNode() With {.Content = "                                                                                                                                                                              " + setting_.dna_Option_Bak})
                 tHeader.ChildNodes.Add(New TreeViewNode() With {.Content = setting_.dna_Setting})
                 TV_lockout.Nodes.Add(tHeader)
             Next
@@ -1968,6 +2120,7 @@ Partial Public Class MainWindow
 
                 Dim tHeader As New TreeViewNode With {.Content = RemoveSubstring(setting_.dna_Option, "card ").Replace(" -", "")}
                 tHeader.ChildNodes.Add(New TreeViewNode() With {.Content = "TIP: ~~~~"})
+                tHeader.ChildNodes.Add(New TreeViewNode() With {.Content = "                                                                                                                                                                              " + setting_.dna_Option_Bak})
                 tHeader.ChildNodes.Add(New TreeViewNode() With {.Content = setting_.dna_Setting})
                 TV_keycard.Nodes.Add(tHeader)
             Next
@@ -1979,6 +2132,7 @@ Partial Public Class MainWindow
 
                 Dim tHeader As New TreeViewNode With {.Content = RemoveSubstring(ExtractCFGSettingName(setting_.dna_Option), "Separate ").Replace(" -", "")}
                 tHeader.ChildNodes.Add(New TreeViewNode() With {.Content = "TIP:" + ExtractTextAfterFirstOccurrence(setting_.HelpText)})
+                tHeader.ChildNodes.Add(New TreeViewNode() With {.Content = "                                                                                                                                                                              " + setting_.dna_Option_Bak})
                 tHeader.ChildNodes.Add(New TreeViewNode() With {.Content = setting_.dna_Setting})
                 TV_separation.Nodes.Add(tHeader)
             Next
@@ -1989,6 +2143,7 @@ Partial Public Class MainWindow
 
                 Dim tHeader As New TreeViewNode With {.Content = ExtractCFGSettingName(setting_.dna_Option)}
                 tHeader.ChildNodes.Add(New TreeViewNode() With {.Content = "TIP:" + ExtractTextAfterFirstOccurrence(setting_.HelpText)})
+                tHeader.ChildNodes.Add(New TreeViewNode() With {.Content = "                                                                                                                                                                              " + setting_.dna_Option_Bak})
                 tHeader.ChildNodes.Add(New TreeViewNode() With {.Content = setting_.dna_Setting})
                 TV_other.Nodes.Add(tHeader)
             Next
@@ -2096,7 +2251,7 @@ Partial Public Class MainWindow
 
 
 
-
+        Return
 
     End Function
 
@@ -2116,5 +2271,58 @@ Partial Public Class MainWindow
         tHeader.ChildNodes.Add(tRotation)
         Return tHeader
     End Function
+
+    Private Async Sub Kits_ImportSystemConfig_MAP_Click(sender As Object, e As RoutedEventArgs) Handles Kits_ImportSystemConfig_MAP.Click
+        Dim whiteListTypes As New List(Of String)
+        With whiteListTypes
+            .Add("DNA_Crate_Red")
+            .Add("DNA_Crate_Green")
+            .Add("DNA_Crate_Blue")
+            .Add("DNA_Crate_Purple")
+            .Add("DNA_Crate_Yellow")
+            .Add("DNA_Strongroom_Red")
+            .Add("DNA_Strongroom_Purple")
+            .Add("DNA_Strongroom_Blue")
+            .Add("DNA_Strongroom_Green")
+            .Add("DNA_Strongroom_Yellow")
+        End With
+        Dim results As String() = Await FileSelectionHelper.SelectMultipleFilesAsync()
+        Dim foundTypes As List(Of String)
+        For Each resultPath As String In results
+            foundTypes = New List(Of String)()
+
+            Dim entries = Await FileSelectionHelper.LinkerAddressMapParser.ParseLinkerAddressMapFile(resultPath)
+            Await FileSelectionHelper.LinkerAddressMapParser.RemoveNodesByNames(entries, whiteListTypes)
+            Await FileSelectionHelper.LinkerAddressMapParser.ParseToUsable(entries)
+            Await UpdateSystemConfigTab()
+
+
+
+
+        Next
+    End Sub
+
+    Private Async Sub Kits_ExportSystemConfig_Click(sender As Object, e As RoutedEventArgs) Handles Kits_ExportSystemConfig.Click
+        Dim tsaveFileDialog As New Forms.SaveFileDialog()
+
+        ' Get the directory path of the executable
+        Dim executableDirectory = AppDomain.CurrentDomain.BaseDirectory
+        ' Set initial directory and filename
+        tsaveFileDialog.InitialDirectory = executableDirectory ' Set your desired initial directory
+        tsaveFileDialog.FileName = "KeyCard_Clothing_Config"
+        tsaveFileDialog.DefaultExt = ".json"
+        tsaveFileDialog.Filter = "JSON Files (*.json)|*.json|All Files (*.*)|*.*"
+
+        Dim result As Nullable(Of Boolean) = tsaveFileDialog.ShowDialog()
+
+        If result = True Then
+            Await ExportSystemConfigToJson(tsaveFileDialog.FileName)
+            Return
+        Else
+            Windows.MessageBox.Show("Export Canceled.", "Alert", MessageBoxButtons.OK,
+                                    MessageBoxIcon.Information)
+            Return
+        End If
+    End Sub
 End Class
 

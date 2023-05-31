@@ -105,7 +105,10 @@ Public Class GenerateConfigs
             Public Shared dna_WarningMessage As String
             Public Shared dna_ConfigVersion As Integer
         End Class
-
+        Public Class DNAConfigVersionExport
+            Public Property dna_WarningMessage As String
+            Public Property dna_ConfigVersion As Integer
+        End Class
         Public Shared DNAConfigMainSystem_other As New ObservableCollection(Of MainSystemSettings)
         Public Shared DNAConfigMainSystem_Crates As New ObservableCollection(Of MainSystemSettings)
         Public Shared DNAConfigMainSystem_Strongrooms As New ObservableCollection(Of MainSystemSettings)
@@ -116,6 +119,10 @@ Public Class GenerateConfigs
             Public Property dna_Option As String
             Public Property dna_Option_Bak As String
             Public Property HelpText As String
+            Public Property dna_Setting As Integer
+        End Class
+        Public Class MainSystemSettingsExport
+            Public Property dna_Option As String
             Public Property dna_Setting As Integer
         End Class
 
