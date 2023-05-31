@@ -642,51 +642,74 @@ Partial Public Class MainWindow
             For Each type In GlobalVariables.Types.Types
                 checkedAddArgs = Await determineIfAdd(type)
                 If checkedAddArgs = True Then
+
+
+
+
+                    If IsStringPresentInTextBox(Clothes_Helmets, type.typename) Then tHelmets.Add(type.typename)
+                    If IsStringPresentInTextBox(Clothes_Shirts, type.typename) Then tShirts.Add(type.typename)
+                    If IsStringPresentInTextBox(Clothes_Vests, type.typename) Then tVests.Add(type.typename)
+                    If IsStringPresentInTextBox(Clothes_Pants, type.typename) Then tPants.Add(type.typename)
+                    If IsStringPresentInTextBox(Clothes_Shoes, type.typename) Then tShoes.Add(type.typename)
+                    If IsStringPresentInTextBox(Clothes_Backpacks, type.typename) Then tBackpacks.Add(type.typename)
+                    If IsStringPresentInTextBox(Clothes_Gloves, type.typename) Then tGloves.Add(type.typename)
+                    If IsStringPresentInTextBox(Clothes_Belts, type.typename) Then tBelts.Add(type.typename)
+                    If IsStringPresentInTextBox(Clothes_Facewear, type.typename) Then tFacewears.Add(type.typename)
+                    If IsStringPresentInTextBox(Clothes_Eyewear, type.typename) Then tEyewears.Add(type.typename)
+                    If IsStringPresentInTextBox(Clothes_Armbands, type.typename) Then tArmbands.Add(type.typename)
+
+
+
+
+
+
+
+
                     'If GlobalVariables.ClothingMarket.Helmets.Contains(type.typename) Then
-                    If _
-                        GlobalVariables.ClothingMarket.Helmets.Any(
-                            Function(t_) String.Equals(t_, type.typename, StringComparison.OrdinalIgnoreCase)) Then _
-                        tHelmets.Add(type.typename)
-                    If _
-                        GlobalVariables.ClothingMarket.Shirts.Any(
-                            Function(t_) String.Equals(t_, type.typename, StringComparison.OrdinalIgnoreCase)) Then _
-                        tShirts.Add(type.typename)
-                    If _
-                        GlobalVariables.ClothingMarket.Vests.Any(
-                            Function(t_) String.Equals(t_, type.typename, StringComparison.OrdinalIgnoreCase)) Then _
-                        tVests.Add(type.typename)
-                    If _
-                        GlobalVariables.ClothingMarket.Pants.Any(
-                            Function(t_) String.Equals(t_, type.typename, StringComparison.OrdinalIgnoreCase)) Then _
-                        tPants.Add(type.typename)
-                    If _
-                        GlobalVariables.ClothingMarket.Shoes.Any(
-                            Function(t_) String.Equals(t_, type.typename, StringComparison.OrdinalIgnoreCase)) Then _
-                        tShoes.Add(type.typename)
-                    If _
-                        GlobalVariables.ClothingMarket.Backpacks.Any(
-                            Function(t_) String.Equals(t_, type.typename, StringComparison.OrdinalIgnoreCase)) Then _
-                        tBackpacks.Add(type.typename)
-                    If _
-                        GlobalVariables.ClothingMarket.Gloves.Any(
-                            Function(t_) String.Equals(t_, type.typename, StringComparison.OrdinalIgnoreCase)) Then _
-                        tGloves.Add(type.typename)
-                    If _
-                        GlobalVariables.ClothingMarket.Belts.Any(
-                            Function(t_) String.Equals(t_, type.typename, StringComparison.OrdinalIgnoreCase)) Then _
-                        tBelts.Add(type.typename)
-                    If _
-                        GlobalVariables.ClothingMarket.Facewears.Any(
-                            Function(t_) String.Equals(t_, type.typename, StringComparison.OrdinalIgnoreCase)) Then _
-                        tFacewears.Add(type.typename)
-                    If _
-                        GlobalVariables.ClothingMarket.Eyewears.Any(
-                            Function(t_) String.Equals(t_, type.typename, StringComparison.OrdinalIgnoreCase)) Then _
-                        tEyewears.Add(type.typename)
-                    If _
-                        GlobalVariables.ClothingMarket.Armbands.Any(
-                            Function(t_) String.Equals(t_, type.typename, StringComparison.OrdinalIgnoreCase)) Then _
-                        tArmbands.Add(type.typename)
+                    'If _
+                    '    GlobalVariables.ClothingMarket.Helmets.Any(
+                    '        Function(t_) String.Equals(t_, type.typename, StringComparison.OrdinalIgnoreCase)) Then _
+                    '    tHelmets.Add(type.typename)
+                    'If _
+                    '    GlobalVariables.ClothingMarket.Shirts.Any(
+                    '        Function(t_) String.Equals(t_, type.typename, StringComparison.OrdinalIgnoreCase)) Then _
+                    '    tShirts.Add(type.typename)
+                    'If _
+                    '    GlobalVariables.ClothingMarket.Vests.Any(
+                    '        Function(t_) String.Equals(t_, type.typename, StringComparison.OrdinalIgnoreCase)) Then _
+                    '    tVests.Add(type.typename)
+                    'If _
+                    '    GlobalVariables.ClothingMarket.Pants.Any(
+                    '        Function(t_) String.Equals(t_, type.typename, StringComparison.OrdinalIgnoreCase)) Then _
+                    '    tPants.Add(type.typename)
+                    'If _
+                    '    GlobalVariables.ClothingMarket.Shoes.Any(
+                    '        Function(t_) String.Equals(t_, type.typename, StringComparison.OrdinalIgnoreCase)) Then _
+                    '    tShoes.Add(type.typename)
+                    'If _
+                    '    GlobalVariables.ClothingMarket.Backpacks.Any(
+                    '        Function(t_) String.Equals(t_, type.typename, StringComparison.OrdinalIgnoreCase)) Then _
+                    '    tBackpacks.Add(type.typename)
+                    'If _
+                    '    GlobalVariables.ClothingMarket.Gloves.Any(
+                    '        Function(t_) String.Equals(t_, type.typename, StringComparison.OrdinalIgnoreCase)) Then _
+                    '    tGloves.Add(type.typename)
+                    'If _
+                    '    GlobalVariables.ClothingMarket.Belts.Any(
+                    '        Function(t_) String.Equals(t_, type.typename, StringComparison.OrdinalIgnoreCase)) Then _
+                    '    tBelts.Add(type.typename)
+                    'If _
+                    '    GlobalVariables.ClothingMarket.Facewears.Any(
+                    '        Function(t_) String.Equals(t_, type.typename, StringComparison.OrdinalIgnoreCase)) Then _
+                    '    tFacewears.Add(type.typename)
+                    'If _
+                    '    GlobalVariables.ClothingMarket.Eyewears.Any(
+                    '        Function(t_) String.Equals(t_, type.typename, StringComparison.OrdinalIgnoreCase)) Then _
+                    '    tEyewears.Add(type.typename)
+                    'If _
+                    '    GlobalVariables.ClothingMarket.Armbands.Any(
+                    '        Function(t_) String.Equals(t_, type.typename, StringComparison.OrdinalIgnoreCase)) Then _
+                    '    tArmbands.Add(type.typename)
                 End If
             Next
 
@@ -767,38 +790,47 @@ Partial Public Class MainWindow
                 checkedAddArgs = Await determineIfAdd(type, False)
                 If checkedAddArgs = True Then
                     'If GlobalVariables.ClothingMarket.Helmets.Contains(type.typename) Then
-                    If _
-                        GlobalVariables.LootMarket.proprietary.Any(
-                            Function(t_) String.Equals(t_, type.typename, StringComparison.OrdinalIgnoreCase)) Then _
-                        tproprietary.Add(type.typename)
-                    If _
-                        GlobalVariables.LootMarket.medical.Any(
-                            Function(t_) String.Equals(t_, type.typename, StringComparison.OrdinalIgnoreCase)) Then _
-                        tmedical.Add(type.typename)
-                    If _
-                        GlobalVariables.LootMarket.food.Any(
-                            Function(t_) String.Equals(t_, type.typename, StringComparison.OrdinalIgnoreCase)) Then _
-                        tfood.Add(type.typename)
-                    If _
-                        GlobalVariables.LootMarket.drink.Any(
-                            Function(t_) String.Equals(t_, type.typename, StringComparison.OrdinalIgnoreCase)) Then _
-                        tdrink.Add(type.typename)
-                    If _
-                        GlobalVariables.LootMarket.tools.Any(
-                            Function(t_) String.Equals(t_, type.typename, StringComparison.OrdinalIgnoreCase)) Then _
-                        ttools.Add(type.typename)
-                    If _
-                        GlobalVariables.LootMarket.material.Any(
-                            Function(t_) String.Equals(t_, type.typename, StringComparison.OrdinalIgnoreCase)) Then _
-                        tmaterial.Add(type.typename)
-                    If _
-                        GlobalVariables.LootMarket.misc.Any(
-                            Function(t_) String.Equals(t_, type.typename, StringComparison.OrdinalIgnoreCase)) Then _
-                        tmisc.Add(type.typename)
-                    If _
-                        GlobalVariables.LootMarket.valuable.Any(
-                            Function(t_) String.Equals(t_, type.typename, StringComparison.OrdinalIgnoreCase)) Then _
-                        tvaluable.Add(type.typename)
+
+                    If IsStringPresentInTextBox(Loot_proprietary, type.typename) Then tproprietary.Add(type.typename)
+                    If IsStringPresentInTextBox(Loot_medical, type.typename) Then tmedical.Add(type.typename)
+                    If IsStringPresentInTextBox(Loot_food, type.typename) Then tfood.Add(type.typename)
+                    If IsStringPresentInTextBox(Loot_drink, type.typename) Then tdrink.Add(type.typename)
+                    If IsStringPresentInTextBox(Loot_tools, type.typename) Then ttools.Add(type.typename)
+                    If IsStringPresentInTextBox(Loot_material, type.typename) Then tmaterial.Add(type.typename)
+                    If IsStringPresentInTextBox(Loot_misc, type.typename) Then tmisc.Add(type.typename)
+                    If IsStringPresentInTextBox(Loot_valuable, type.typename) Then tvaluable.Add(type.typename)
+
+
+
+
+                    'If _
+                    '    GlobalVariables.LootMarket.medical.Any(
+                    '        Function(t_) String.Equals(t_, type.typename, StringComparison.OrdinalIgnoreCase)) Then _
+                    '    tmedical.Add(type.typename)
+                    '    If _
+                    '        GlobalVariables.LootMarket.food.Any(
+                    '            Function(t_) String.Equals(t_, type.typename, StringComparison.OrdinalIgnoreCase)) Then _
+                    '        tfood.Add(type.typename)
+                    '    If _
+                    '        GlobalVariables.LootMarket.drink.Any(
+                    '            Function(t_) String.Equals(t_, type.typename, StringComparison.OrdinalIgnoreCase)) Then _
+                    '        tdrink.Add(type.typename)
+                    '    If _
+                    '        GlobalVariables.LootMarket.tools.Any(
+                    '            Function(t_) String.Equals(t_, type.typename, StringComparison.OrdinalIgnoreCase)) Then _
+                    '        ttools.Add(type.typename)
+                    '    If _
+                    '        GlobalVariables.LootMarket.material.Any(
+                    '            Function(t_) String.Equals(t_, type.typename, StringComparison.OrdinalIgnoreCase)) Then _
+                    '        tmaterial.Add(type.typename)
+                    '    If _
+                    '        GlobalVariables.LootMarket.misc.Any(
+                    '            Function(t_) String.Equals(t_, type.typename, StringComparison.OrdinalIgnoreCase)) Then _
+                    '        tmisc.Add(type.typename)
+                    '    If _
+                    '        GlobalVariables.LootMarket.valuable.Any(
+                    '            Function(t_) String.Equals(t_, type.typename, StringComparison.OrdinalIgnoreCase)) Then _
+                    '        tvaluable.Add(type.typename)
                 End If
             Next
 
@@ -1019,7 +1051,20 @@ Partial Public Class MainWindow
         Return proprietaryNode
     End Function
 
+    Public Function IsStringPresentInTextBox(textBox As SfTextBoxExt, searchString As String) As Boolean
+        ' Split the text in the textbox into individual lines
+        Dim lines() As String = textBox.Text.Split({Environment.NewLine}, StringSplitOptions.RemoveEmptyEntries)
 
+        ' Check if the search string exists in any of the lines
+        For Each line As String In lines
+            If line.ToLower.Contains(searchString.ToLower()) Then
+                Return True
+            End If
+        Next
+
+        ' If the search string is not found in any line, return false
+        Return False
+    End Function
 
 
     Sub UpdateGeneratedLootKits()
@@ -1316,6 +1361,24 @@ Partial Public Class MainWindow
         AttachTextChangedEventToAllTextBoxes(Tab_LootSettings)
     End Sub
 
+    Async Sub Event_BeginDel_ConfigLocations(sender As Object, e As EventArgs)
+        Dim EventInfo As ItemDeletingEventArgs = e
+        EventInfo.Cancel = True
+    End Sub
+    Async Sub Event_BeginEdit_ConfigGeneral(sender As Object, e As EventArgs)
+        Dim EventInfo As TreeViewItemBeginEditEventArgs = e
+        Dim tree_ As SfTreeView = sender
+        Dim xx = ""
+        Dim _node = EventInfo.Node
+        If _node.ParentNode IsNot Nothing Then
+            EventInfo.Cancel = True
+        Else
+            Dim xx = ""
+            EventInfo.Cancel = True
+        End If
+
+
+    End Sub
     Async Sub Event_BeginEdit_ConfigLocations(sender As Object, e As EventArgs)
         Dim EventInfo As TreeViewItemBeginEditEventArgs = e
         Dim tree_ As SfTreeView = sender
